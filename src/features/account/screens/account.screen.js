@@ -10,27 +10,12 @@ import {
   Container,
   AuthButton,
 } from "../components/account.styles";
-import { Spacer } from "../../../components/spacer/spacer.component";
 
-const AnimationWrapper = styled.View`
-  position: absolute;
-  top: 20px;
-  width: 20%;
-  height: 20%;
-  align-self: center;
-`;
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
-      {/* <AccountCover /> */}
-      <AnimationWrapper>
-        <LottieView
-          source={require("../../../../assets/lottiething.json")}
-          autoPlay
-          loop
-        />
-      </AnimationWrapper>
       <Container>
         <AwesomeButtonC
           type="primary"

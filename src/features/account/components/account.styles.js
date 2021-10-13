@@ -2,13 +2,13 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { Platform } from "react-native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
-import { Button } from "react-native-paper";
+// import { Button } from "react-native-paper";
 
 export const AccountBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/splash.png"),
 })`
   flex: 1;
-  background-color: #020302;
+  background-color: #fff;
   justify-content: center;
 `;
 
@@ -29,7 +29,9 @@ export const Container = styled.View`
   align-self: center;
 `;
 
-export const AuthButton = styled(AwesomeButtonC).attrs({})`
+export const AuthButton = styled(AwesomeButtonC).attrs({
+  textFontFamily: "Airstrike",
+})`
   align-self: center;
 `;
 

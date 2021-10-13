@@ -10,6 +10,7 @@ export const Navigation = () => {
 
   return (
     <NavigationContainer>
+      {/* <AccountNavigator /> */}
       {user ? <AppNavigator /> : <AccountNavigator />}
     </NavigationContainer>
   );
