@@ -31,6 +31,8 @@ export const Container = styled.View`
 
 export const AuthButton = styled(AwesomeButtonC).attrs({
   textFontFamily: "Airstrike",
+  // backgroundDarker: "#ff5a5f",
+  borderRadius: 2,
 })`
   align-self: center;
 `;

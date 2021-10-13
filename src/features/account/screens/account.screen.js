@@ -17,21 +17,21 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <Container>
-        <AwesomeButtonC
+        <AuthButton
           type="primary"
           size="large"
           onPress={() => navigation.navigate("Login")}
         >
           Login
-        </AwesomeButtonC>
+        </AuthButton>
         <Spacer size="large" />
-        <AwesomeButtonC
+        <AuthButton
           type="secondary"
           size="large"
           onPress={() => navigation.navigate("Register")}
         >
           Register
-        </AwesomeButtonC>
+        </AuthButton>
       </Container>
     </AccountBackground>
   );
