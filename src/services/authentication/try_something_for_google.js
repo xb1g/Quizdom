@@ -5,6 +5,9 @@ import DashboardScreen from '../../features/home/screens/DashboardScreen';
 import React from 'react';
 import { StyleSheet,Text,View } from 'react-native';
 import { Component } from 'react';
+import * as firebase from 'firebase'
+import { firebaseConfig } from '../config';
+firebase.initializeApp(firebaseConfig)
 const AppSwitchNavigator = createSwitchNavigator({
     LoadingScreen:LoadingScreen,
     LoginScreen:LoginScreen,
