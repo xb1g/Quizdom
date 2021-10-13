@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import * as firebase from "firebase";
+import * as Google from 'expo-google-app-auth';
 
 import {
   loginRequest,
