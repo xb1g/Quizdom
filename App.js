@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as firebase from "firebase";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { Navigation } from "./src/infrastructure/navigation";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD2xfxFrxhaXMwLoXSej652YzjKZx20NMk",
@@ -20,10 +21,7 @@ if (!firebase.apps.length) {
 export default function App() {
   return (
     <AuthenticationContextProvider>
-      <View style={styles.container}>
-        <Text>cool</Text>
-        <StatusBar style="auto" />
-      </View>
+      <Navigation />
     </AuthenticationContextProvider>
   );
 }
