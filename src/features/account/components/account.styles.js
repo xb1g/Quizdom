@@ -31,8 +31,21 @@ export const Container = styled.View`
 
 export const AuthButton = styled(AwesomeButtonC).attrs({
   textFontFamily: "Airstrike",
+  textSize: 20,
   // backgroundDarker: "#ff5a5f",
-  borderRadius: 2,
+  borderRadius: 10,
+})`
+  align-self: center;
+`;
+
+export const AuthIconButton = styled(AwesomeButtonC).attrs({
+  textFontFamily: "Airstrike",
+  textSize: 20,
+  backgroundColoractivityColor: "#fff",
+  backgroundActive: "#f3f3f3",
+  backgroundColor: "#fafafa",
+  backgroundDarker: "#f2f2f2",
+  borderRadius: 10,
 })`
   align-self: center;
 `;
