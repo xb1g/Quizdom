@@ -6,11 +6,11 @@ import { Header } from "../components/header.component";
 
 export const HomeScreen = () => {
   return (
-    <SafeArea>
+    <>
       <Header />
       <Text>Home search bar thingy</Text>
       <Text>Today</Text>
       <Text>Maps</Text>
-    </SafeArea>
+    </>
   );
 };
