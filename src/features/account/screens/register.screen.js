@@ -75,17 +75,6 @@ export const RegisterScreen = ({ navigation }) => {
           )}
         </Center>
       </Container>
-      {/* <Spacer size="large" />
-      <Spacer size="large" />
-      <AuthButton
-        type="secondary"
-        size="medium"
-        onPress={() => {
-          navigation.goBack();
-        }}
-      >
-        Back
-      </AuthButton> */}
     </AccountBackground>
   );
 };

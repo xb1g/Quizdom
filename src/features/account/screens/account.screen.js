@@ -13,6 +13,7 @@ import {
 } from "../components/account.styles";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Icon } from "../../../components/icon/icon.component";
 
 const LogoText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -20,14 +21,6 @@ const LogoText = styled.Text`
   position: absolute;
   top: 15%;
   align-self: center;
-`;
-
-const Icon = styled.Image`
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  justify-content: center;
-  resize-mode: contain;
 `;
 
 export const AccountScreen = ({ navigation }) => {
