@@ -8,6 +8,7 @@ import {
   AccountCover,
   Container,
   AuthInput,
+  BackButton,
   AuthButton,
 } from "../components/account.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -22,6 +23,7 @@ export const LoginScreen = ({ navigation }) => {
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
     <AccountBackground>
+      <BackButton navigation={navigation} />
       <Container>
         {error && (
           <Spacer position="bottom" size="medium">
@@ -64,7 +66,7 @@ export const LoginScreen = ({ navigation }) => {
           )}
         </Center>
       </Container>
-      <Spacer size="large" />
+      {/* <Spacer size="large" />
       <Spacer size="large" />
       <AuthButton
         type="secondary"
@@ -74,7 +76,7 @@ export const LoginScreen = ({ navigation }) => {
         }}
       >
         Back
-      </AuthButton>
+      </AuthButton> */}
     </AccountBackground>
   );
 };

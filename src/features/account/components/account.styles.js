@@ -1,11 +1,12 @@
+import React from "react";
+
 import styled from "styled-components/native";
-import { TextInput } from "react-native-paper";
-import { Platform } from "react-native";
+import { TextInput, Text } from "react-native-paper";
+import { Button, Platform, TouchableOpacity } from "react-native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
-// import { Button } from "react-native-paper";
 
 export const AccountBackground = styled.ImageBackground.attrs({
-  source: require("../../../../assets/splash.png"),
+  // source: require("../../../../assets/splash.png"),
 })`
   flex: 1;
   background-color: #fff;
@@ -53,3 +54,24 @@ export const AuthIconButton = styled(AwesomeButtonC).attrs({
 export const AuthInput = styled(TextInput)`
   ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
 `;
+
+export const BackButton = ({ navigation }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        position: "absolute",
+        top: "5%",
+      }}
+      onPress={() => {
+        navigation.goBack();
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 150,
+          fontFamily: "Airstrike",
+        }}
+      >{`< `}</Text>
+    </TouchableOpacity>
+  );
+};
