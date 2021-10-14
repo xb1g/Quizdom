@@ -51,6 +51,7 @@ export default function App() {
             <Navigation />
           </AuthenticationContextProvider>
         </ThemeProvider>
+        <StatusBar style="auto" />
       </>
     );
   }
