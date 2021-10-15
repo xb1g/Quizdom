@@ -9,6 +9,7 @@ import { HomeScreen } from "../../features/home/screens/home.screen";
 import { CommunityScreen } from "../../features/community/screens/community.screen";
 import { PlannerScreen } from "../../features/planner/screens/planner.screen";
 import { SafeArea } from "../../components/utility/safe-area.component";
+import { shadow } from "../../components/shadow/shadow.styles";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -25,19 +26,19 @@ const createScreenOptions = ({ route }) => ({
     }
     // You can return any component that you like here!
     // own icon later
-    return <Ionicons name={iconName} size={size + 5} color={color} />;
+    return <Ionicons name={iconName} size={size + 7} color={color} />;
   },
   tabBarStyle: {
-    // shadowColor: "black",
-    // shadowOpacity: 0.1,
-    // shadowRadius: 20,
+    ...shadow.shadow2,
     // elevation: 5,
+    bottom: 0,
+    marginHorizontal: 10,
     borderRadius: 20,
-
-    style: {
-      backgroundColor: "white",
-      borderRadius: 20,
-    },
+  },
+  style: {
+    backgroundColor: "red",
+    borderRadius: 20,
+    position: "absolute",
   },
   tabBarActiveTintColor: "#e91ef3",
   tabBarInactiveTintColor: "gray",

@@ -18,7 +18,7 @@ export const HomeScreen = ({ navigation }) => {
     <>
       <Header />
       <Heading>Today</Heading>
-      <Today style={shadow} />
+      <Today style={shadow} navigation={navigation} />
       <Heading>Maps</Heading>
     </>
   );

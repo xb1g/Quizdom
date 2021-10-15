@@ -6,6 +6,7 @@ import { Button } from "react-native-paper";
 import styled from "styled-components";
 import { shadow } from "../../../../components/shadow/shadow.styles";
 import { Text } from "../../../../components/typography/text.component";
+import { TodoTopic } from "./todo-topic.component";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -19,10 +20,9 @@ export const Today = ({ navigation }) => {
   return (
     <TodayView style={shadow.shadow1}>
       <ScrollView>
-        <Text>Today</Text>
-        <Button mode="contained" onPress={() => navigation.navigate("Planner")}>
-          Go to Home
-        </Button>
+        <TodoTopic navigation={navigation} />
+        <Text>asd</Text>
+
         <Text>Today</Text>
         <Text>Today</Text>
       </ScrollView>
