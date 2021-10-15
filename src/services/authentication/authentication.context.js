@@ -1,12 +1,13 @@
 import React, { useState, useEffect, createContext } from "react";
 import * as firebase from "firebase";
-import * as Google from 'expo-google-app-auth';
+import * as Google from "expo-google-app-auth";
 
 import {
   loginRequest,
   logoutRequest,
   registerRequest,
   resetPasswordRequest,
+  loginGoogle,
 } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -63,6 +64,14 @@ export const AuthenticationContextProvider = ({ children }) => {
   const onLogout = () => {
     setUser(null);
     logoutRequest();
+  };
+
+  const onGoogleLogin = () => {
+    loginGoogle().then((usr) => {
+      setUser(usr);
+      setError(null);
+      setIsLoading(false);
+    });
   };
 
   return (
