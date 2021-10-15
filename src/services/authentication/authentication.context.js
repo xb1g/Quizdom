@@ -67,11 +67,17 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const onGoogleLogin = () => {
-    loginGoogle().then((usr) => {
-      setUser(usr);
-      setError(null);
-      setIsLoading(false);
-    });
+    setIsLoading(true);
+    loginGoogle()
+      .then((usr) => {
+        setUser(usr);
+        setError(null);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setError(e.toString());
+        setIsLoading(false);
+      });
   };
 
   return (

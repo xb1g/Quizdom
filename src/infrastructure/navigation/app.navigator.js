@@ -22,7 +22,7 @@ const createScreenOptions = ({ route }) => ({
     } else if (route.name === "Community") {
       iconName = focused ? "ios-people-circle" : "ios-people-circle-outline";
     } else if (route.name === "User") {
-      iconName = focused ? "ios-map" : "ios-map-outline";
+      iconName = focused ? "ios-person-circle" : "ios-person-circle-outline";
     }
     // You can return any component that you like here!
     // own icon later
