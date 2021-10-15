@@ -11,4 +11,19 @@ export const registerRequest = (email, password) =>
 export const resetPasswordRequest = (email) =>
   firebase.auth().sendPasswordResetEmail(email);
 
-const signinwithgoogle
+const signinwithgoogle = async () => {
+  try {
+    const result = await Expo.Google.logInAsync({
+      //androidClientId:YOUR_CLIENT_ID_HERE,
+      //iosClientId:YOUR_CLIENT_ID_HERE,
+      scopes: ["profile", "email"],
+    });
+    if (result.type === "success") {
+      return result.accessToken;
+    } else {
+      return { cancelled: true };
+    }
+  } catch (e) {
+    return { error: true };
+  }
+};
