@@ -46,29 +46,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": 2,
-      "skill_level": 0,
-      "title": "basics",
-      "resources": [
-        {
-          "id": 1,
-          "title": "Introduction to HTML",
-          "style": "document",
-          "url": "https://www.w3schools.com/html/default.asp",
-          "description": "Learn how to create your own web pages using HTML.",
-          "tags": ["html", "web"]
-        },
-        {
-          "id": 2,
-          "title": "Introduction to CSS",
-          "style": "document",
-          "url": "https://www.w3schools.com/css/default.asp",
-          "description": "Learn how to style your web pages using CSS.",
-          "tags": ["css", "web"]
-        }
-      ]
     }
   ]
 }
