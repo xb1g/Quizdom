@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import * as firebase from "firebase";
-import * as Google from 'expo-google-app-auth';
+import * as Google from "expo-google-app-auth";
 
 import {
   loginRequest,
@@ -64,7 +64,9 @@ export const AuthenticationContextProvider = ({ children }) => {
     setUser(null);
     logoutRequest();
   };
-
+  const onGoogle = () => {
+    PASS = 0;
+  };
   return (
     <AuthenticationContext.Provider
       value={{ user, isLoading, error, onLogin, onRegister, onLogout }}
