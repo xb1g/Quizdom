@@ -18,6 +18,7 @@
           "id": 1,
           "value": 20,
           "question": "What is the union of A and B?",
+          "picture": false,
           "answers": [
             {
               "id": 1,
