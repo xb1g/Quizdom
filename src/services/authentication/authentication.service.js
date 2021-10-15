@@ -10,3 +10,5 @@ export const registerRequest = (email, password) =>
 
 export const resetPasswordRequest = (email) =>
   firebase.auth().sendPasswordResetEmail(email);
+
+const signinwithgoogle
