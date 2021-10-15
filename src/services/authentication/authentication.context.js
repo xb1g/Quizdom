@@ -7,6 +7,7 @@ import {
   logoutRequest,
   registerRequest,
   resetPasswordRequest,
+  signinWithGoogle,
 } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -65,7 +66,8 @@ export const AuthenticationContextProvider = ({ children }) => {
     logoutRequest();
   };
   const onGoogle = () => {
-    PASS = 0;
+    setIsLoading(true);
+    signinWithGoogle();
   };
   return (
     <AuthenticationContext.Provider
