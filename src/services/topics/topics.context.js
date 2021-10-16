@@ -8,6 +8,7 @@ const fakeData = [
     resources: [{}, {}, {}],
   },
 ];
+
 export const TopicsContext = React.createContext();
 
 export const TopicsContextProvider = ({ children }) => {

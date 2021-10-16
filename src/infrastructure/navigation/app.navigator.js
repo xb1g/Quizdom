@@ -7,9 +7,17 @@ import styled from "styled-components";
 import { UserScreen } from "../../features/user/screens/user.screen";
 import { HomeScreen } from "../../features/home/screens/home.screen";
 import { CommunityScreen } from "../../features/community/screens/community.screen";
-import { PlannerScreen } from "../../features/planner/screens/planner.screen";
+import { PlannerNavigator } from "./planner.navigator";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { shadow } from "../../components/shadow/shadow.styles";
+
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+  SafeAreaView,
+} from "react-native-safe-area-context";
+import { View } from "react-native";
+import { PlansContextProvider } from "../../services/plans/plans.context";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -40,7 +48,7 @@ const createScreenOptions = ({ route }) => ({
     borderRadius: 20,
     position: "absolute",
   },
-  tabBarActiveTintColor: "#e91ef3",
+  tabBarActiveTintColor: "#ea3ef6",
   tabBarInactiveTintColor: "gray",
   tabBarShowLabel: false,
 });
@@ -51,32 +59,50 @@ const TabNavigator = styled(Tab.Navigator)``;
 
 export const AppNavigator = () => {
   return (
-    <SafeArea>
-      <Tab.Navigator
-        screenOptions={createScreenOptions}
-        options={{ headerShown: false }}
-      >
-        <Tab.Screen
-          name="Planner"
-          component={PlannerScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Community"
-          component={CommunityScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="User"
-          component={UserScreen}
-          options={{ headerShown: false }}
-        />
-      </Tab.Navigator>
-    </SafeArea>
+    <>
+      {/* <View
+        style={{
+          position: "absolute",
+          zIndex: 99,
+          height: 50,
+          top: 0,
+          width: "100%",
+          backgroundColor: "white",
+        }}
+      /> */}
+      {/* <SafeArea> */}
+      <SafeAreaProvider>
+        <PlansContextProvider>
+          <Tab.Navigator
+            screenOptions={createScreenOptions}
+            // options={{ headerShown: false }}
+          >
+            <Tab.Screen
+              name="Planner"
+              component={PlannerNavigator}
+              // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Community"
+              component={CommunityScreen}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="User"
+              component={UserScreen}
+              options={{ headerShown: false }}
+            />
+          </Tab.Navigator>
+        </PlansContextProvider>
+      </SafeAreaProvider>
+      {/* </SafeAreaView> */}
+      {/* </SafeArea> */}
+    </>
   );
 };

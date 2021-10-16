@@ -1,4 +1,9 @@
 {
+  "status": "tracked",
+  "started": {
+    "date": "someday do it pls perth"
+  },
+
   "milestones": [
     {
       "id": 1,

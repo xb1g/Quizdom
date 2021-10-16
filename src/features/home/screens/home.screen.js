@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { View } from "react-native";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Header } from "../components/header.component";
@@ -14,6 +19,7 @@ const Heading = styled.Text`
   margin-top: 10px;
 `;
 export const HomeScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   return (
     <>
       <Header />
