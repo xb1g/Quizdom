@@ -29,7 +29,7 @@
               "id": 1,
               "text": "A + B",
               "correct": true,
-              "explain": "something sjdfa"
+              "explain": "something"
             },
             {
               "id": 2,
@@ -70,7 +70,7 @@
         {
           "id": 1,
           "value": 20,
-          "question": "What is the union of A and B?",
+          "question": "What is the intersection of A and B?",
           "answers": [
             {
               "id": 1,
