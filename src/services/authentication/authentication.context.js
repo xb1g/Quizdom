@@ -52,6 +52,14 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((u) => {
         setUser(u);
         setError(null);
+        console.log(u);
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(firebase.auth().currentUser.uid)
+          .set({
+            email,
+          });
         setIsLoading(false);
       })
       .catch((e) => {
