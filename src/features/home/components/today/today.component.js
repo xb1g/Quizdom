@@ -22,7 +22,8 @@ export const Today = ({
   navigation,
   todos = [
     {
-      title: "Beautiful and dramatic Antelope Canyon",
+      title: "Type of sets",
+      resource: ["some web", "youtube"],
       subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
       illustration: "https://i.imgur.com/UYiroysl.jpg",
     },
@@ -41,13 +42,16 @@ export const Today = ({
   return (
     <TodayView style={shadow.shadow1}>
       <Carousel
-        sliderWidth={screenWidth}
+        sliderWidth={screenWidth - 60}
         sliderHeight={300}
-        itemWidth={300 - 60}
+        itemWidth={screenWidth - 110}
         data={todos}
         renderItem={({ item, index }, parallaxProps) => {
           return (
             <View style={styles.container}>
+              <Text style={styles.title} numberOfLines={2}>
+                {item.title}
+              </Text>
               <ParallaxImage
                 source={{ uri: item.illustration }}
                 containerStyle={styles.imageContainer}
@@ -55,9 +59,6 @@ export const Today = ({
                 parallaxFactor={0.4}
                 {...parallaxProps}
               />
-              <Text style={styles.title} numberOfLines={2}>
-                {item.title}
-              </Text>
             </View>
           );
         }}
