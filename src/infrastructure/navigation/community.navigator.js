@@ -3,30 +3,30 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { PlannerScreen } from "../../features/planner/screens/planner.screen";
-import { AddPlanScreen } from "../../features/planner/screens/add-plan.screen";
 import { Button } from "../../features/planner/components/button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 
-const PlannerStack = createStackNavigator();
+import { CommunityScreen } from "../../features/community/screens/community.screen";
 
-export const PlannerNavigator = ({ navigation }) => {
+const CommunityStack = createStackNavigator();
+
+export const CommunityNavigator = ({ navigation }) => {
   return (
-    <PlannerStack.Navigator
-      initialRouteName="PlannerScreen"
+    <CommunityStack.Navigator
+      initialRouteName="Planner"
       screenOptions={{
         // headerShown: false,
         ...TransitionPresets.ModalPresentationIOS,
       }}
     >
-      <PlannerStack.Screen
+      <CommunityStack.Screen
         name="PlannerScreen"
-        component={PlannerScreen}
+        component={CommunityScreen}
         options={{
-          title: "Plan ",
+          title: "Community ",
           headerTitleStyle: {
             position: "absolute",
-            left: -180,
+            left: -190,
             top: -5,
             alignSelf: "flex-start",
             fontSize: 50,
@@ -45,13 +45,6 @@ export const PlannerNavigator = ({ navigation }) => {
           },
         }}
       />
-      <PlannerStack.Screen
-        name="AddPlan"
-        component={AddPlanScreen}
-        options={{
-          gestureResponseDistance: 400,
-        }}
-      />
-    </PlannerStack.Navigator>
+    </CommunityStack.Navigator>
   );
 };

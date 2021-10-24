@@ -18,6 +18,8 @@ import {
 } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { PlansContextProvider } from "../../services/plans/plans.context";
+import { CommunityNavigator } from "./community.navigator";
+import { HomeNavigator } from "./home.navigator";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -72,34 +74,35 @@ export const AppNavigator = () => {
       /> */}
       {/* <SafeArea> */}
       <SafeAreaProvider>
-        <PlansContextProvider>
-          <Tab.Navigator
-            screenOptions={createScreenOptions}
-            // options={{ headerShown: false }}
-          >
-            <Tab.Screen
-              name="Planner"
-              component={PlannerNavigator}
-              // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="Community"
-              component={CommunityScreen}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="User"
-              component={UserScreen}
-              options={{ headerShown: false }}
-            />
-          </Tab.Navigator>
-        </PlansContextProvider>
+        {/* <PlansContextProvider> */}
+        <Tab.Navigator
+          initialRouteName="Home"
+          screenOptions={createScreenOptions}
+          // options={{ headerShown: false }}
+        >
+          <Tab.Screen
+            name="Planner"
+            component={PlannerNavigator}
+            // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="Home"
+            component={HomeNavigator}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="Community"
+            component={CommunityNavigator}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="User"
+            component={UserScreen}
+            options={{ headerShown: false }}
+          />
+        </Tab.Navigator>
+        {/* </PlansContextProvider> */}
       </SafeAreaProvider>
       {/* </SafeAreaView> */}
       {/* </SafeArea> */}

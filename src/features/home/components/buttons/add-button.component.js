@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Icon } from "../../../components/icon/icon.component";
-
+import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { View } from "react-native";
 
-export const Button = ({ navigation }) => {
+export const AddButton = ({ navigation }) => {
   return (
     <TouchableOpacity
       style={{
         flexDirection: "row",
-        paddingRight: 25,
+        paddingLeft: 25,
         marginTop: -20,
         marginRight: 10,
       }}
@@ -17,7 +17,9 @@ export const Button = ({ navigation }) => {
         navigation.navigate("AddPlan");
       }}
     >
-      <Icon source={require("../../../../assets/login-icons/apple.png")} />
+      <View>
+        <Ionicons name="add-circle" color="pink" size={40} />
+      </View>
     </TouchableOpacity>
   );
 };

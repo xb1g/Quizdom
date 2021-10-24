@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Button } from "react-native-paper";
 import { Text } from "../../../../components/typography/text.component";
 
-export const TodoTopic = ({ topicProgress, navigation }) => {
+export const TodoTopic = ({ todo, navigation }) => {
   // it should be a carousel
   return (
     <View>

@@ -9,8 +9,8 @@ import {
 } from "react-native-safe-area-context";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
-import { Header } from "../components/header.component";
 import { Today } from "../components/today/today.component";
+import { Maps } from "../components/maps.component";
 
 const Heading = styled.Text`
   font-size: 60px;
@@ -19,13 +19,30 @@ const Heading = styled.Text`
   margin-top: 10px;
 `;
 export const HomeScreen = ({ navigation }) => {
-  const insets = useSafeAreaInsets();
+  const maps = [
+    {
+      title: "Sets",
+      id: 1,
+      progress: "3/10",
+      isStarted: true,
+      isPaused: false,
+      image: require("../../../../assets/icon.png"),
+    },
+    {
+      title: "exponential",
+      id: 2,
+      progress: "0/7",
+      isStarted: false,
+      isPaused: false,
+      image: require("../../../../assets/favicon.png"),
+    },
+  ];
   return (
     <>
-      <Header />
       <Heading>Today</Heading>
       <Today style={shadow} navigation={navigation} />
       <Heading>Maps</Heading>
+      <Maps maps={maps} />
     </>
   );
 };

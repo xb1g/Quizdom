@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "styled-components/native";
-import { Icon } from "../../../components/icon/icon.component";
-
+import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const Button = ({ navigation }) => {
+export const SettingButton = ({ navigation }) => {
   return (
     <TouchableOpacity
       style={{
@@ -14,10 +12,10 @@ export const Button = ({ navigation }) => {
         marginRight: 10,
       }}
       onPress={() => {
-        navigation.navigate("AddPlan");
+        navigation.navigate("Settings");
       }}
     >
-      <Icon source={require("../../../../assets/login-icons/apple.png")} />
+      <Ionicons name="settings" size={40} />
     </TouchableOpacity>
   );
 };
