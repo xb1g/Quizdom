@@ -6,8 +6,10 @@ import { View } from "react-native";
 import { Button } from "react-native-paper";
 import styled from "styled-components";
 import { shadow } from "../../../../components/shadow/shadow.styles";
+import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../../components/typography/text.component";
 import { TodoTopic } from "./todo-topic.component";
+import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -23,17 +25,28 @@ export const Today = ({
   todos = [
     {
       title: "Type of sets",
-      resource: ["some web", "youtube"],
+      resource: [
+        { type: "web", link: "someotherlink", title: "sets suck" },
+        { type: "video", link: "linkshit", title: "sets suck" },
+      ],
       subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
       illustration: "https://i.imgur.com/UYiroysl.jpg",
     },
     {
-      title: "Earlier this morning, NYC",
+      title: "Inequalities",
+      resource: [
+        { type: "web", link: "someotherlink", title: "cool title" },
+        { type: "video", link: "linkshit", title: "cool title" },
+      ],
       subtitle: "Lorem ipsum dolor sit amet",
       illustration: "https://i.imgur.com/UPrs1EWl.jpg",
     },
     {
-      title: "White Pocket Sunset",
+      title: "Exponential",
+      resource: [
+        { type: "web", link: "someotherlink", title: "cool title" },
+        { type: "video", link: "linkshit", title: "cool title" },
+      ],
       subtitle: "Lorem ipsum dolor sit amet et nuncat ",
       illustration: "https://i.imgur.com/MABUbpDl.jpg",
     },
@@ -46,19 +59,78 @@ export const Today = ({
         sliderHeight={300}
         itemWidth={screenWidth - 110}
         data={todos}
-        renderItem={({ item, index }, parallaxProps) => {
+        renderItem={({ item, index }) => {
           return (
             <View style={styles.container}>
-              <Text style={styles.title} numberOfLines={2}>
+              <Text
+                style={{
+                  fontSize: 22,
+                }}
+                numberOfLines={2}
+              >
                 {item.title}
               </Text>
-              <ParallaxImage
+              <View>
+                <FlatList
+                  data={item.resource}
+                  renderItem={({ item }) => {
+                    return (
+                      <TouchableOpacity onPress={() => {}}>
+                        {item.type === "video" ? (
+                          <Ionicons
+                            name="play-circle-outline"
+                            size={24}
+                            color="#33f"
+                          />
+                        ) : (
+                          <Ionicons name="reader" size={24} color="#33f" />
+                        )}
+                        <Text>{item.title}</Text>
+                      </TouchableOpacity>
+                    );
+                  }}
+                  keyExtractor={(item) => item.type}
+                />
+              </View>
+              {/* <ParallaxImage
                 source={{ uri: item.illustration }}
                 containerStyle={styles.imageContainer}
                 style={styles.image}
                 parallaxFactor={0.4}
                 {...parallaxProps}
-              />
+              /> */}
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "flex-end",
+                  alignContent: "center",
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#1ff",
+                    padding: 10,
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Ionicons name="help-circle-outline" size={32} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#3afc2c",
+                    width: "100%",
+                    padding: 10,
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Ionicons name="chatbubbles-outline" size={32} />
+                </TouchableOpacity>
+              </View>
             </View>
           );
         }}
@@ -71,6 +143,9 @@ export const Today = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
+    backgroundColor: "#ccc",
+    borderRadius: 20,
   },
   item: {
     width: 300 - 60,
