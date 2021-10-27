@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 import { UserScreen } from "../../features/user/screens/user.screen";
 import { HomeScreen } from "../../features/home/screens/home.screen";
-import { CommunityScreen } from "../../features/community/screens/community.screen";
+// import { CommunityScreen } from "../../features/community/screens/community.screen";
+
 import { PlannerNavigator } from "./planner.navigator";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { shadow } from "../../components/shadow/shadow.styles";
