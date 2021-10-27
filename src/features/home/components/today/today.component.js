@@ -76,16 +76,24 @@ export const Today = ({
                   renderItem={({ item }) => {
                     return (
                       <TouchableOpacity onPress={() => {}}>
-                        {item.type === "video" ? (
-                          <Ionicons
-                            name="play-circle-outline"
-                            size={24}
-                            color="#33f"
-                          />
-                        ) : (
-                          <Ionicons name="reader" size={24} color="#33f" />
-                        )}
-                        <Text>{item.title}</Text>
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            margin: 10,
+                            alignItems: "center",
+                          }}
+                        >
+                          {item.type === "video" ? (
+                            <Ionicons
+                              name="play-circle-outline"
+                              size={24}
+                              color="#f3f"
+                            />
+                          ) : (
+                            <Ionicons name="reader" size={24} color="#33f" />
+                          )}
+                          <Text>{item.title}</Text>
+                        </View>
                       </TouchableOpacity>
                     );
                   }}
@@ -144,7 +152,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#ccc",
+    backgroundColor: "#fef",
     borderRadius: 20,
   },
   item: {
