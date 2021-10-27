@@ -18,7 +18,7 @@ export const SendingButton = ({ navigation }) => {
       }}
     >
       <View>
-        <Ionicons name="sending-button" color="pink" size={20} />
+        <Ionicons name="sending-button" color="pink" size={40} />
       </View>
     </TouchableOpacity>
   );
