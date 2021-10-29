@@ -14,9 +14,10 @@ export const PlannerScreen = ({ navigation }) => {
       <FlatList
         data={plans}
         renderItem={({ item }) => {
-          item.key = item.id + item.name;
+          // item.key = item.id + item.name;
           return <Text>{item.name}</Text>;
         }}
+        keyExtractor={(item) => item.id}
       />
       <Text>PlannerScreen</Text>
     </>

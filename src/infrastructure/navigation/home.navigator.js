@@ -43,7 +43,7 @@ export const HomeNavigator = ({ navigation }) => {
             backgroundColor: "white",
             borderBottomRightRadius: 30,
             borderBottomLeftRadius: 30,
-            height: 110,
+            // height: 80,
             ...shadow.shadow2,
           },
         }}

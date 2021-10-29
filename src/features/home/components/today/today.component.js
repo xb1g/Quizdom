@@ -97,7 +97,7 @@ export const Today = ({
                       </TouchableOpacity>
                     );
                   }}
-                  keyExtractor={(item) => item.type}
+                  keyExtractor={(item) => item.link}
                 />
               </View>
               {/* <ParallaxImage
@@ -118,6 +118,7 @@ export const Today = ({
                 <TouchableOpacity
                   style={{
                     backgroundColor: "#1ff",
+                    flex: 1,
                     padding: 10,
                     borderRadius: 20,
                     justifyContent: "center",
@@ -129,7 +130,9 @@ export const Today = ({
                 <TouchableOpacity
                   style={{
                     backgroundColor: "#3afc2c",
-                    width: "100%",
+                    // width: "100%",
+                    flex: 1,
+                    flexDirection: "column",
                     padding: 10,
                     borderRadius: 20,
                     justifyContent: "center",

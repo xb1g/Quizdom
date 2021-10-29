@@ -40,7 +40,7 @@ export const PlannerNavigator = ({ navigation }) => {
             backgroundColor: "white",
             borderBottomRightRadius: 30,
             borderBottomLeftRadius: 30,
-            height: 110,
+            // height: 110,
             ...shadow.shadow2,
           },
         }}

@@ -8,6 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
+import { Row } from "../../../components/utility/row.component";
 
 const MapContainer = styled.View`
   background-color: #fff;
@@ -22,10 +23,11 @@ const MapContainer = styled.View`
 
 const MapCardContainer = styled.View`
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 30px;
   margin-horizontal: 20px;
   margin-bottom: 20px;
   width: 200px;
+  height: 300px;
   margin-horizontal: 10px;
 `;
 
@@ -46,53 +48,72 @@ export const Maps = ({ maps }) => {
         renderItem={({ item }) => {
           item.key = item.id + item.name;
           return (
-            //pressable is more complex
-            <MapCardContainer
-              style={{
-                ...shadow.shadow1,
-              }}
-            >
-              <LinearGradient
-                colors={["rgba(0,0,0,0.8)", "transparent"]}
+            <Row>
+              <Text
+                variant="label"
                 style={{
-                  width: 100,
-                  height: 100,
-                  position: "absolute",
-                  zIndex: 8,
+                  marginLeft: 10,
+                  fontSize: 20,
                 }}
-              />
-              <TouchableOpacity
-              // onPress={() => {
-              //   navigation.navigate("RestaurantDetail", {
-              //     restaurant: item,
-              //   });
-              // }}
               >
-                <View
+                {item.title}
+              </Text>
+              <Text
+                variant="label"
+                style={{
+                  position: "absolute",
+                  top: 30,
+                  left: 20,
+                  color: "#fff",
+                  zIndex: 1,
+                  fontSize: 54,
+                }}
+              >
+                {item.progress + " "}
+              </Text>
+              <MapCardContainer
+                style={{
+                  ...shadow.shadow1,
+                }}
+              >
+                <TouchableOpacity
                   style={{
-                    borderRadius: 20,
-                    padding: 10,
+                    flex: 1,
                   }}
                 >
-                  <Text
-                    style={{
-                      fontSize: 20,
-                    }}
-                  >
-                    {item.title}
-                  </Text>
+                  {/* <View
+                  style={{
+                    flex: 1,
+                    borderRadius: 20,
+                    // padding: 10,
+                  }}
+                > */}
                   <Image
                     source={item.image}
                     style={{
+                      // width: 200,
+                      // resizeMode: "contain",
+                      flex: 1,
+                      width: "100%",
+                      height: "100%",
+                      resizeMode: "cover",
+                    }}
+                  />
+                  <LinearGradient
+                    colors={["rgba(0,0,0,0.8)", "transparent"]}
+                    style={{
                       width: 200,
-
                       height: 200,
+                      position: "absolute",
+                      zIndex: 8,
+                      borderRadius: 30,
                     }}
                   />
                   {/* </LinearGradient> */}
-                </View>
-              </TouchableOpacity>
-            </MapCardContainer>
+                  {/* </View> */}
+                </TouchableOpacity>
+              </MapCardContainer>
+            </Row>
           );
         }}
         keyExtractor={(item) => item.id + item.title}
