@@ -145,7 +145,7 @@ export const Today = ({
             </View>
           );
         }}
-        hasParallaxImages={true}
+        // hasParallaxImages={true}
       />
     </TodayView>
   );

@@ -26,8 +26,8 @@ const MapCardContainer = styled.View`
   border-radius: 30px;
   margin-horizontal: 20px;
   margin-bottom: 20px;
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 250px;
   margin-horizontal: 10px;
 `;
 
@@ -40,7 +40,6 @@ export const Maps = ({ maps }) => {
           <Text>Map 1</Text>
         </Card>
       </ScrollView> */}
-
       <FlatList
         horizontal
         data={maps}
@@ -66,7 +65,7 @@ export const Maps = ({ maps }) => {
                   left: 20,
                   color: "#fff",
                   zIndex: 1,
-                  fontSize: 54,
+                  fontSize: 42,
                 }}
               >
                 {item.progress + " "}
@@ -79,6 +78,8 @@ export const Maps = ({ maps }) => {
                 <TouchableOpacity
                   style={{
                     flex: 1,
+                    // height: 100,
+                    // width: 100,
                   }}
                 >
                   {/* <View
@@ -91,18 +92,14 @@ export const Maps = ({ maps }) => {
                   <Image
                     source={item.image}
                     style={{
-                      // width: 200,
-                      // resizeMode: "contain",
                       flex: 1,
-                      width: "100%",
-                      height: "100%",
-                      resizeMode: "cover",
+                      resizeMode: "contain",
                     }}
                   />
                   <LinearGradient
                     colors={["rgba(0,0,0,0.8)", "transparent"]}
                     style={{
-                      width: 200,
+                      width: 150,
                       height: 200,
                       position: "absolute",
                       zIndex: 8,
