@@ -89,23 +89,32 @@ export const Maps = ({ maps }) => {
                     // padding: 10,
                   }}
                 > */}
-                  <Image
-                    source={item.image}
-                    style={{
-                      flex: 1,
-                      resizeMode: "contain",
-                    }}
-                  />
                   <LinearGradient
                     colors={["rgba(0,0,0,0.8)", "transparent"]}
                     style={{
                       width: 150,
-                      height: 200,
+                      height: 250,
                       position: "absolute",
                       zIndex: 8,
                       borderRadius: 30,
                     }}
                   />
+                  <View
+                    style={{
+                      width: 150,
+                      height: 250,
+                    }}
+                  >
+                    <Image
+                      source={item.image}
+                      style={{
+                        width: 150,
+                        height: 250,
+                        borderRadius: 30,
+                      }}
+                    />
+                  </View>
+
                   {/* </LinearGradient> */}
                   {/* </View> */}
                 </TouchableOpacity>
