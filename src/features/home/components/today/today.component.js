@@ -100,25 +100,21 @@ export const Today = ({
                   keyExtractor={(item) => item.link}
                 />
               </View>
-              {/* <ParallaxImage
-                source={{ uri: item.illustration }}
-                containerStyle={styles.imageContainer}
-                style={styles.image}
-                parallaxFactor={0.4}
-                {...parallaxProps}
-              /> */}
               <View
                 style={{
                   flex: 1,
+
                   flexDirection: "row",
-                  alignItems: "flex-end",
-                  alignContent: "center",
+                  justifyContent: "flex-end",
+                  backgroundColor: "#fff",
                 }}
               >
                 <TouchableOpacity
                   style={{
                     backgroundColor: "#1ff",
                     flex: 1,
+                    width: "50%",
+                    flexDirection: "row",
                     padding: 10,
                     borderRadius: 20,
                     justifyContent: "center",
