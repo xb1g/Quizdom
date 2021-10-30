@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Dimensions } from "react-native";
+import { ScrollView, StyleSheet, Dimensions, Pressable } from "react-native";
 
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 import { View } from "react-native";
@@ -9,7 +9,11 @@ import { shadow } from "../../../../components/shadow/shadow.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../../components/typography/text.component";
 import { TodoTopic } from "./todo-topic.component";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  FlatList,
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -103,40 +107,62 @@ export const Today = ({
               <View
                 style={{
                   flex: 1,
-
+                  width: "100%",
                   flexDirection: "row",
+                  // backgroundColor: "#fff",
                   justifyContent: "flex-end",
-                  backgroundColor: "#fff",
+                  alignItems: "flex-end",
+                  alignSelf: "flex-end",
+                  alignContent: "center",
                 }}
               >
-                <TouchableOpacity
+                {/* <Pressable></Pressable> */}
+
+                <View
                   style={{
-                    backgroundColor: "#1ff",
+                    backgroundColor: "#26ffed",
                     flex: 1,
                     width: "50%",
-                    flexDirection: "row",
-                    padding: 10,
-                    borderRadius: 20,
+                    height: 50,
+                    alignSelf: "flex-end",
+                    flexGrow: 1,
+                    flexShrink: 0,
                     justifyContent: "center",
-                    alignItems: "center",
+                    borderRadius: 10,
+                    marginRight: 5,
                   }}
                 >
-                  <Ionicons name="help-circle-outline" size={32} />
-                </TouchableOpacity>
-                <TouchableOpacity
+                  <TouchableHighlight>
+                    <View
+                      style={{ alignSelf: "center", backgroundColor: "red" }}
+                    >
+                      <Ionicons name="help-circle-outline" size={32} />
+                    </View>
+                  </TouchableHighlight>
+                </View>
+
+                <View
                   style={{
-                    backgroundColor: "#3afc2c",
-                    // width: "100%",
                     flex: 1,
-                    flexDirection: "column",
-                    padding: 10,
-                    borderRadius: 20,
+                    backgroundColor: "#0dff21",
+                    width: "50%",
+                    height: 50,
+                    alignSelf: "flex-end",
                     justifyContent: "center",
-                    alignItems: "center",
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    borderRadius: 10,
+                    marginLeft: 5,
                   }}
                 >
-                  <Ionicons name="chatbubbles-outline" size={32} />
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      alignSelf: "center",
+                    }}
+                  >
+                    <Ionicons name="chatbubbles-outline" size={32} />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           );
