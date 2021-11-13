@@ -31,15 +31,9 @@ const MapCardContainer = styled.View`
   margin-horizontal: 10px;
 `;
 
-export const Maps = ({ maps }) => {
+export const Maps = ({ maps, navigation }) => {
   return (
     <>
-      {/* // <MapContainer style={shadow.shadow1}> */}
-      {/* <ScrollView horizontal="true">
-        <Card>
-          <Text>Map 1</Text>
-        </Card>
-      </ScrollView> */}
       <FlatList
         horizontal
         data={maps}
@@ -78,8 +72,11 @@ export const Maps = ({ maps }) => {
                 <TouchableOpacity
                   style={{
                     flex: 1,
-                    // height: 100,
-                    // width: 100,
+                  }}
+                  onPress={() => {
+                    navigation.navigate("MapScreen", {
+                      map: item,
+                    });
                   }}
                 >
                   {/* <View

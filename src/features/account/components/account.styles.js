@@ -51,20 +51,28 @@ export const AuthIconButton = styled(AwesomeButtonC).attrs({
   align-self: center;
 `;
 
+export const Input = styled(TextInput)`
+  ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
+`;
+
 export const AuthInput = styled(TextInput)`
   ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
 `;
 
-export const BackButton = ({ navigation }) => {
+export const BackButton = ({ navigation, onPress }) => {
   return (
     <TouchableOpacity
       style={{
         position: "absolute",
         top: "5%",
       }}
-      onPress={() => {
-        navigation.goBack();
-      }}
+      onPress={
+        onPress
+          ? onPress
+          : () => {
+              navigation.goBack();
+            }
+      }
     >
       <Text
         style={{

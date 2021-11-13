@@ -44,7 +44,7 @@ export const HomeScreen = ({ navigation }) => {
         <Heading>Today</Heading>
         <Today style={shadow} navigation={navigation} />
         <Heading>Maps</Heading>
-        <Maps maps={maps} />
+        <Maps maps={maps} navigation={navigation} />
       </ScrollView>
     </>
   );

@@ -4,8 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import styled from "styled-components";
 
-import { UserScreen } from "../../features/user/screens/user.screen";
-import { HomeScreen } from "../../features/home/screens/home.screen";
 // import { CommunityScreen } from "../../features/community/screens/community.screen";
 
 import { PlannerNavigator } from "./planner.navigator";
@@ -21,6 +19,8 @@ import { View } from "react-native";
 import { PlansContextProvider } from "../../services/plans/plans.context";
 import { CommunityNavigator } from "./community.navigator";
 import { HomeNavigator } from "./home.navigator";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { SettingsNavigator } from "./settings.navigator";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -64,16 +64,6 @@ const TabNavigator = styled(Tab.Navigator)``;
 export const AppNavigator = () => {
   return (
     <>
-      {/* <View
-        style={{
-          position: "absolute",
-          zIndex: 99,
-          height: 50,
-          top: 0,
-          width: "100%",
-          backgroundColor: "white",
-        }}
-      /> */}
       {/* <SafeArea> */}
       <SafeAreaProvider>
         {/* <PlansContextProvider> */}
@@ -100,7 +90,7 @@ export const AppNavigator = () => {
           />
           <Tab.Screen
             name="User"
-            component={UserScreen}
+            component={SettingsNavigator}
             options={{ headerShown: false }}
           />
         </Tab.Navigator>

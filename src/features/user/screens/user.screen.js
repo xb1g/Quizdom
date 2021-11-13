@@ -20,6 +20,9 @@ const AvaterContainer = styled.View`
 `;
 
 export const UserScreen = ({ navigation }) => {
+  const onEditUserInfo = () => {
+    navigation.navigate("EditUserInfoScreen");
+  };
   const { onLogout, user } = useContext(AuthenticationContext);
   return (
     <SafeArea>
@@ -28,6 +31,13 @@ export const UserScreen = ({ navigation }) => {
         <Spacer />
         <Text>{user.email}</Text>
       </AvaterContainer>
+      <List.Section>
+        <SettingsItem
+          title="edit user info"
+          onPress={onEditUserInfo}
+          left={(props) => <List.Icon {...props} color="black" icon="pencil" />}
+        />
+      </List.Section>
       <List.Section>
         <SettingsItem
           title="Logout"
