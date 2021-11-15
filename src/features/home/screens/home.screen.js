@@ -20,24 +20,26 @@ const Heading = styled.Text`
   margin-top: 10px;
 `;
 export const HomeScreen = ({ navigation }) => {
-  const maps = [
-    {
-      title: "Sets",
-      id: 1,
-      progress: "3/10",
-      isStarted: true,
-      isPaused: false,
-      image: require("../../../../assets/maps-image/setsmapimg.png"),
-    },
-    {
-      title: "exponential",
-      id: 2,
-      progress: "0/7",
-      isStarted: false,
-      isPaused: false,
-      image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
-    },
-  ];
+  // const { maps } = useContext(MapsContext);
+  const [maps, setMaps] = React.useState([]);
+  // const maps = [
+  //   {
+  //     title: "Sets",
+  //     id: 1,
+  //     progress: "3/10",
+  //     isStarted: true,
+  //     isPaused: false,
+  //     image: require("../../../../assets/maps-image/setsmapimg.png"),
+  //   },
+  //   {
+  //     title: "exponential",
+  //     id: 2,
+  //     progress: "0/7",
+  //     isStarted: false,
+  //     isPaused: false,
+  //     image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
+  //   },
+  // ];
   return (
     <>
       <ScrollView>

@@ -24,6 +24,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     if (usr) {
       // console.log(usr);
       setUser(usr);
+      setError(null);
       setIsLoading(false);
     } else {
       setUser(null);
@@ -35,13 +36,14 @@ export const AuthenticationContextProvider = ({ children }) => {
     setIsLoading(true);
     loginRequest(email, password)
       .then((u) => {
+        console.log(u);
         setUser(u);
         setError(null);
         setIsLoading(false);
       })
       .catch((e) => {
-        // console.log(e, e.toString());
-        setError(e.toString());
+        console.log(e, e.toString());
+        // setError(e.toString());
         setIsLoading(false);
       });
   };
@@ -58,18 +60,20 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((u) => {
         // console.log("objec userInfo t", userInfo);
         console.log("USERRRR");
-        console.log(u);
+        console.log(u.user);
+        console.log(":UINFOOOOOOOOOOOOOOOO");
+        console.log(userInfo);
         u.displayName = userInfo.username;
-        const newUser = { ...u, ...userInfo };
+        const newUser = { ...u.user, userInfo };
+        console.log("uidddddddddddddddddddddddddddddddddddddd");
+        const uid = newUser.uid;
         setUser(newUser);
-        console.log("objecNEWUSERt===", u.uid);
-        console.log(user);
+        //cant use immediantely
+        console.log("objecNEWUSERidt===", uid);
+        console.log(uid);
         setError(null);
-      })
-      .then(() => {
-        console.log("UIDDD");
-        console.log("UID", user);
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", uid);
+        console.log(docRef);
         const payload = {
           email,
           ...userInfo,
@@ -99,21 +103,21 @@ export const AuthenticationContextProvider = ({ children }) => {
     logoutRequest();
   };
 
-  const onUpdateInfo = (info) => {
-    setIsLoading(true);
-    const userRef = db.collection("users").doc(user.uid);
-    userRef
-      .update({ ...user, info })
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsLoading(false);
-      });
+  // const onUpdateInfo = (info) => {
+  //   setIsLoading(true);
+  //   const userRef = db.collection("users").doc(user.uid);
+  //   userRef
+  //     .update({ ...user, info })
+  //     .then(() => {
+  //       setIsLoading(false);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //       setIsLoading(false);
+  //     });
 
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   return (
     <AuthenticationContext.Provider

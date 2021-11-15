@@ -115,7 +115,24 @@ export const UserInfoScreen = () => {
             value={name}
             onChangeText={setName}
           />
-          <Button type="primary">Change</Button>
+
+          <Button
+            type="primary"
+            onPress={() => {
+              console.log("object");
+              console.log(userInfo);
+              const docRef = doc(db, "users", user.uid);
+              setDoc(docRef, {
+                ...userInfo,
+                name,
+                email: user.email,
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
+            }}
+          >
+            aha
+          </Button>
         </View>
 
         <Spacer />
@@ -138,7 +155,23 @@ export const UserInfoScreen = () => {
             value={lastname}
             onChangeText={setLastname}
           />
-          <Button type="primary">Change</Button>
+          <Button
+            type="primary"
+            onPress={() => {
+              console.log("object");
+              console.log(userInfo);
+              const docRef = doc(db, "users", user.uid);
+              setDoc(docRef, {
+                ...userInfo,
+                lastname,
+                email: user.email,
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
+            }}
+          >
+            aha
+          </Button>
         </View>
         <Spacer />
 
@@ -161,7 +194,23 @@ export const UserInfoScreen = () => {
             value={age}
             onChangeText={setAge}
           />
-          <Button type="primary">Change</Button>
+          <Button
+            type="primary"
+            onPress={() => {
+              console.log("object");
+              console.log(userInfo);
+              const docRef = doc(db, "users", user.uid);
+              setDoc(docRef, {
+                ...userInfo,
+                age,
+                email: user.email,
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
+            }}
+          >
+            aha
+          </Button>
         </View>
       </View>
     </SafeAreaView>

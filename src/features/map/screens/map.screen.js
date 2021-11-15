@@ -1,10 +1,6 @@
 import React from "react";
-import { Image, View } from "react-native";
-import {
-  ScrollView,
-  TouchableOpacity,
-  TouchableHighlight,
-} from "react-native-gesture-handler";
+import { Image, View, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 // import Icon from "react-native-ionicons";
 // import { Icon } from "../../../components/icon/icon.component";
 import styled from "styled-components/native";
@@ -32,75 +28,103 @@ export const MapScreen = ({ route, navigation }) => {
   return (
     <View
       style={{
-        // flex: 1,
-        // backgroundColor: "#fff",
-        justifyContent: "center",
         flex: 1,
-        margin: 10,
       }}
     >
-      {/* <View style>
-        <TouchableHighlight
-          style={
-            {
-              // borderWidth: 1,
-              // borderColor: "rgba(0,0,0,0.2)",
-              // alignItems: "center",
-              // justifyContent: "center",
-              // // position: "absolute",
-              // borderRadius: 100,
-              // zIndex: 100,
-            }
-          }
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
+      <TouchableOpacity
+        // activeOpacity={0.5}
+        onPress={() => {
+          console.log("object");
+          navigation.goBack();
+        }}
+        style={{
+          position: "absolute",
+          alignItems: "center",
+          justifyContent: "center",
+          left: 0,
+          top: 30,
+          zIndex: 2,
+          padding: 10,
+        }}
+      >
+        <View>
           <Text
             variant="label"
             style={{
-              fontSize: 70,
+              fontSize: 80,
             }}
           >
             {"< "}
           </Text>
-          {/* </View> 
-        </TouchableHighlight>
-      </View> 
-    
-    */}
-      <ScrollView
+        </View>
+      </TouchableOpacity>
+
+      <View
         style={{
           flex: 1,
-          backgroundColor: "#4ff",
+          // backgroundColor: "#75ffba",
+          zIndex: -1,
         }}
       >
-        <Ionicons name="at-circle-outline" size={80} color="white" />
-      </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={() => null}
-        style={{
-          position: "absolute",
-          width: 50,
-          height: 50,
-          alignItems: "center",
-          justifyContent: "center",
-          left: 30,
-          top: 30,
-        }}
-      >
-        <Image
-          source={{
-            uri: "https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png",
-          }}
+        <ScrollView
           style={{
-            resizeMode: "contain",
-            width: 50,
-            height: 50,
+            flex: 1,
+            backgroundColor: "#62ff62",
           }}
-        />
-      </TouchableOpacity>
+        >
+          <TouchableOpacity
+            onPress={() => {
+              console.log("COOL");
+              navigation.navigate("ModuleInfoScreen", { module });
+            }}
+          >
+            <Ionicons
+              style={{
+                position: "absolute",
+                top: 100,
+                left: 20,
+              }}
+              name="at-circle-outline"
+              size={80}
+              color="white"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              console.log("COOL");
+              navigation.navigate("ModuleInfoScreen", { module });
+            }}
+          >
+            <Ionicons
+              style={{
+                position: "absolute",
+                top: 140,
+                left: 90,
+              }}
+              name="at-circle-outline"
+              size={80}
+              color="white"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              console.log("COOL");
+              navigation.navigate("ModuleInfoScreen", { module });
+            }}
+          >
+            <Ionicons
+              style={{
+                position: "absolute",
+                top: 300,
+                left: 50,
+              }}
+              name="at-circle-outline"
+              size={80}
+              color="white"
+            />
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
     </View>
   );
 };

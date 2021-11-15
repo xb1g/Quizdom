@@ -21,6 +21,7 @@ import { CommunityNavigator } from "./community.navigator";
 import { HomeNavigator } from "./home.navigator";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { SettingsNavigator } from "./settings.navigator";
+import { MapsContextProvider } from "../../services/maps/maps.context";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -66,6 +67,7 @@ export const AppNavigator = () => {
     <>
       {/* <SafeArea> */}
       <SafeAreaProvider>
+        {/* <MapsContextProvider> */}
         {/* <PlansContextProvider> */}
         <Tab.Navigator
           initialRouteName="Home"
@@ -95,6 +97,7 @@ export const AppNavigator = () => {
           />
         </Tab.Navigator>
         {/* </PlansContextProvider> */}
+        {/* </MapsContextProvider> */}
       </SafeAreaProvider>
       {/* </SafeAreaView> */}
       {/* </SafeArea> */}
