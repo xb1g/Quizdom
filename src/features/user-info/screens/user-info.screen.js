@@ -22,6 +22,7 @@ export const UserInfoScreen = () => {
     email: "no phone bruh",
     age: "no address bruh",
   });
+
   useEffect(
     () =>
       onSnapshot(doc(db, "users", user.uid), (u) => {

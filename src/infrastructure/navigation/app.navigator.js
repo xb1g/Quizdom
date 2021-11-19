@@ -10,18 +10,15 @@ import { PlannerNavigator } from "./planner.navigator";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-  SafeAreaView,
-} from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { PlansContextProvider } from "../../services/plans/plans.context";
 import { CommunityNavigator } from "./community.navigator";
 import { HomeNavigator } from "./home.navigator";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import { SettingsNavigator } from "./settings.navigator";
+import { UserNavigator } from "./user.navigator";
 import { MapsContextProvider } from "../../services/maps/maps.context";
+import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -42,17 +39,8 @@ const createScreenOptions = ({ route }) => ({
   },
   tabBarStyle: {
     ...shadow.shadow2,
-    // elevation: 5,
     bottom: 0,
-    // marginHorizontal: 10,
-    // borderRadius: 20,
   },
-  // headerStyle: {},
-  // style: {
-  //   backgroundColor: "red",
-  //   borderRadius: 20,
-  //   position: "absolute",
-  // },
   tabBarActiveTintColor: "#ea3ef6",
   tabBarInactiveTintColor: "gray",
   tabBarShowLabel: false,
@@ -67,38 +55,41 @@ export const AppNavigator = () => {
     <>
       {/* <SafeArea> */}
       <SafeAreaProvider>
-        {/* <MapsContextProvider> */}
-        {/* <PlansContextProvider> */}
-        <Tab.Navigator
-          initialRouteName="Home"
-          screenOptions={createScreenOptions}
-          // options={{ headerShown: false }}
-        >
-          <Tab.Screen
-            name="Planner"
-            component={PlannerNavigator}
-            // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="Home"
-            component={HomeNavigator}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="Community"
-            component={CommunityNavigator}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="User"
-            component={SettingsNavigator}
-            options={{ headerShown: false }}
-          />
-        </Tab.Navigator>
-        {/* </PlansContextProvider> */}
-        {/* </MapsContextProvider> */}
+        <MapsContextProvider>
+          {/* <MapsContextProvider> */}
+          {/* <PlansContextProvider> */}
+          <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={createScreenOptions}
+            // options={{ headerShown: false }}
+          >
+            <Tab.Screen
+              name="Planner"
+              component={PlannerNavigator}
+              // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Home"
+              component={HomeNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Community"
+              component={CommunityNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="User"
+              component={UserNavigator}
+              options={{ headerShown: false }}
+            />
+          </Tab.Navigator>
+          {/* </PlansContextProvider> */}
+          {/* </MapsContextProvider> */}
+        </MapsContextProvider>
       </SafeAreaProvider>
+      <ExpoStatusBar style="light" />
       {/* </SafeAreaView> */}
       {/* </SafeArea> */}
     </>

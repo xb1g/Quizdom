@@ -1,7 +1,13 @@
 import React, { useState, useEffect, createContext } from "react";
 
 import { db, auth } from "../../../firebase-config";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 import {
@@ -10,6 +16,7 @@ import {
   registerRequest,
   resetPasswordRequest,
   loginGoogle,
+  getUserInfo,
 } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -17,20 +24,30 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
 
-  onAuthStateChanged(auth, (usr) => {
-    if (usr) {
-      // console.log(usr);
-      setUser(usr);
-      setError(null);
-      setIsLoading(false);
-    } else {
-      setUser(null);
-      setIsLoading(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (usr) => {
+      if (usr) {
+        console.log("got user", usr.uid);
+        setUser(usr);
+        onSnapshot(doc(db, "users", usr.uid), (u) => {
+          console.log(u.data());
+          const userInfo = u.data();
+          console.log(userInfo);
+          setUserInfo(userInfo);
+        });
+        setError(null);
+        setIsLoading(false);
+      } else {
+        console.log("no user");
+        setUser(null);
+        setUserInfo(null);
+        setIsLoading(false);
+      }
+    });
+  }, [user]);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -55,7 +72,6 @@ export const AuthenticationContextProvider = ({ children }) => {
       setError("Passwords do not match");
       return;
     }
-
     registerRequest(email, password)
       .then((u) => {
         // console.log("objec userInfo t", userInfo);
@@ -128,6 +144,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin,
         onRegister,
         onLogout,
+        userInfo,
         // firstTimeUser,
         // onUpdateInfo,
       }}

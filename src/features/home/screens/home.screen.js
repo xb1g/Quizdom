@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { View } from "react-native";
 import { shadow } from "../../../components/shadow/shadow.styles";
@@ -13,6 +13,11 @@ import { Today } from "../components/today/today.component";
 import { Maps } from "../components/maps.component";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { MapsContext } from "../../../services/maps/maps.context";
+import { Button } from "react-native-paper";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { StatusBar } from "expo-status-bar";
+
 const Heading = styled.Text`
   font-size: 60px;
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -20,8 +25,9 @@ const Heading = styled.Text`
   margin-top: 10px;
 `;
 export const HomeScreen = ({ navigation }) => {
-  // const { maps } = useContext(MapsContext);
-  const [maps, setMaps] = React.useState([]);
+  const { maps } = useContext(MapsContext);
+  const { onLogout } = useContext(AuthenticationContext);
+  // const [maps, setMaps] = React.useState([]);
   // const maps = [
   //   {
   //     title: "Sets",
@@ -43,11 +49,14 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <>
       <ScrollView>
+        <Button onPress={onLogout}>Logout</Button>
         <Heading>Today</Heading>
+        {/* <Button onPress={onLogout}>Logout</Button> */}
         <Today style={shadow} navigation={navigation} />
         <Heading>Maps</Heading>
         <Maps maps={maps} navigation={navigation} />
       </ScrollView>
+      <StatusBar style="light" />
     </>
   );
 };
