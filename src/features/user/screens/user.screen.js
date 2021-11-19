@@ -87,81 +87,36 @@ export const UserScreen = ({ navigation }) => {
               title="Friends"
               onPress={() => navigation.navigate("FriendsScreen")}
             />
+            <Line />
+            <UserItem
+              icon="person"
+              title="Announcement"
+              onPress={() => navigation.navigate("AnnouncementScreen")}
+            />
           </ItemContainer>
           {/* </View> */}
         </List.Section>
         <List.Section>
           <ItemContainer style={{ ...shadow.shadow1 }}>
-            <SettingsItem
-              title="Chat"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="white" icon="chat" />
-              )}
+            <UserItem
+              icon="settings-outline"
+              title="Settings"
+              onPress={() => navigation.navigate("SettingScreen")}
             />
-            <SettingsItem
-              title="Announcement"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="bell" />
-              )}
+            <Line />
+            <UserItem
+              icon="help-outline"
+              title="Help"
+              onPress={() => navigation.navigate("SettingScreen")}
             />
           </ItemContainer>
         </List.Section>
         <List.Section>
-          <ItemContainer style={{ ...shadow.shadow1 }}>
-            <SettingsItem
-              title="Store"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="store" />
-              )}
-            />
-            <SettingsItem
-              title="Chat"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="chat" />
-              )}
-            />
-            <SettingsItem
-              title="Announcement"
-              onPress={() => navigation.navigate("AnnouncementScreen")}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="bell" />
-              )}
-            />
-            <SettingsItem
+          <ItemContainer style={{ ...shadow.shadow2 }}>
+            <UserItem
+              icon="log-out-outline"
               title="Logout"
               onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="door" />
-              )}
-            />
-          </ItemContainer>
-        </List.Section>
-        <List.Section>
-          <ItemContainer style={{ ...shadow.shadow1 }}>
-            <SettingsItem
-              title="Setttings"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="store" />
-              )}
-            />
-            <SettingsItem
-              title="Feedback"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="chat" />
-              )}
-            />
-            <SettingsItem
-              title="Help"
-              onPress={onLogout}
-              left={(props) => (
-                <List.Icon {...props} color="black" icon="bell" />
-              )}
             />
           </ItemContainer>
         </List.Section>
