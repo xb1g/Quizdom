@@ -38,10 +38,13 @@ const createScreenOptions = ({ route }) => ({
     return <Ionicons name={iconName} size={size + 7} color={color} />;
   },
   tabBarStyle: {
-    ...shadow.shadow2,
+    backgroundColor: "#2b2b2b",
     bottom: 0,
+    borderTopColor: "transparent",
+    overflow: "hidden",
   },
-  tabBarActiveTintColor: "#ea3ef6",
+
+  tabBarActiveTintColor: "#fbbcff",
   tabBarInactiveTintColor: "gray",
   tabBarShowLabel: false,
 });

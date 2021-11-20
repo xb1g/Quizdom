@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 // import { View, Text } from "react-native";
-import { Text } from "../../../components/typography/text.component";
+import { Text as CoolText } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -12,8 +12,12 @@ import { View } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { collection, onSnapshot, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
+import styled from "styled-components/native";
 
-export const UserInfoScreen = () => {
+const Text = styled(CoolText)`
+  color: #fff;
+`;
+export const EditUserInfoScreen = () => {
   const { user } = useContext(AuthenticationContext);
   // const { userInfo } = useContext(UserInfoContext);
   const [userInfo, setUserInfo] = useState({
@@ -52,9 +56,10 @@ export const UserInfoScreen = () => {
           variant="label"
           style={{
             fontSize: 40,
+            color: "#fff",
           }}
         >
-          UserInfoScreen {user.uid} {userInfo.name}
+          edit
         </Text>
         <Spacer size="large" />
 
@@ -175,44 +180,6 @@ export const UserInfoScreen = () => {
           </Button>
         </View>
         <Spacer />
-
-        <Text>Age: {userInfo.age}</Text>
-        <View
-          style={{
-            margin: 10,
-            flexDirection: "row",
-          }}
-        >
-          <TextInput
-            style={{
-              height: 40,
-              flex: 1,
-              borderColor: "gray",
-              borderWidth: 1,
-              margin: 10,
-              padding: 10,
-            }}
-            value={age}
-            onChangeText={setAge}
-          />
-          <Button
-            type="primary"
-            onPress={() => {
-              console.log("object");
-              console.log(userInfo);
-              const docRef = doc(db, "users", user.uid);
-              setDoc(docRef, {
-                ...userInfo,
-                age,
-                email: user.email,
-              })
-                .then(console.log("success"))
-                .catch(console.log("error"));
-            }}
-          >
-            aha
-          </Button>
-        </View>
       </View>
     </SafeAreaView>
   );

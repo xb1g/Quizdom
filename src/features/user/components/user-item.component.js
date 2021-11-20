@@ -14,7 +14,7 @@ export const UserItem = ({ icon, title, onPress }) => {
           margin: 10,
         }}
       >
-        <Ionicons name={icon} size={25} color="pink" />
+        <Ionicons name={icon} size={25} color="#ffa2d5" />
         <Text style={{ color: "white", paddingLeft: 30 }}>{title}</Text>
       </View>
     </TouchableOpacity>

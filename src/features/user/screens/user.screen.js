@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View } from "react-native";
 import { List, Avatar } from "react-native-paper";
 
@@ -47,6 +47,9 @@ const Line = styled.View`
 `;
 
 export const UserScreen = ({ navigation }) => {
+  useEffect(() => {
+    console.log(user);
+  }, []);
   const onEditUserInfo = () => {
     navigation.navigate("EditUserInfoScreen");
   };
@@ -61,11 +64,13 @@ export const UserScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         {/* <Spacer size="large" /> */}
-        <TouchableOpacity onPress={onEditUserInfo}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("UserProfileScreen")}
+        >
           <Container style={{ ...shadow.shadow2 }}>
             <UserIcon size={75} icon="human" backgroundColor="#2182bd" />
             <Spacer />
-            <Text>{userInfo.username}</Text>
+            <Text style={{ color: "white" }}>{userInfo.username}</Text>
           </Container>
         </TouchableOpacity>
         <List.Section>

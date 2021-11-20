@@ -37,7 +37,7 @@ export const HomeNavigator = ({ navigation }) => {
               alignItems: "center",
               justifyContent: "center",
               fontFamily: "Airstrike",
-              marginTop: -20,
+              marginTop: Platform.OS === "ios" ? -20 : -10,
               fontSize: 45,
               color: "#fff",
             },
@@ -58,16 +58,6 @@ export const HomeNavigator = ({ navigation }) => {
                 }}
               ></View>
             ),
-            barStyle: {
-              borderRadius: 50,
-              backgroundColor: "orange",
-              position: "absolute",
-              overflow: "hidden",
-              left: 0,
-              bottom: 0,
-              right: 0,
-              padding: 5,
-            },
           }}
         />
         <HomeStack.Screen

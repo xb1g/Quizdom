@@ -4,11 +4,13 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
+
 import { UserScreen } from "../../features/user/screens/user.screen";
 import { AchievementScreen } from "../../features/user/screens/achievement.screen";
 import { LeaderboardScreen } from "../../features/user/screens/leaderboard.screen";
 import { FriendsScreen } from "../../features/user/screens/friends.screen";
-import { UserInfoScreen } from "../../features/user-info/screens/user-info.screen";
+import { EditUserInfoScreen } from "../../features/user-info/screens/user-info.screen";
+import { UserProfileScreen } from "../../features/user/screens/user-profile.screen";
 // import { UserInfoContextProvider } from "../../services/user-info/user-info.context";
 
 const UserStack = createStackNavigator();
@@ -19,11 +21,24 @@ export const UserNavigator = ({ route, navigation }) => {
     <UserStack.Navigator
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        cardStyle: {
+          backgroundColor: "#33363d",
+        },
       }}
     >
       <UserStack.Screen
         name="UserScreen"
         component={UserScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+      <UserStack.Screen
+        name="UserProfileScreen"
+        component={UserProfileScreen}
         options={{
           headerShown: false,
           cardStyle: {
@@ -64,7 +79,7 @@ export const UserNavigator = ({ route, navigation }) => {
       <UserStack.Screen
         options={{ headerShown: false }}
         name="EditUserInfoScreen"
-        component={UserInfoScreen}
+        component={EditUserInfoScreen}
       />
       {/* <SettingsStack.Screen name="EditUser" component={FavouritesScreen} /> */}
     </UserStack.Navigator>
