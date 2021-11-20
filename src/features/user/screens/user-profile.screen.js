@@ -53,6 +53,10 @@ export const UserProfileScreen = ({ navigation }) => {
       // setProfileImage(imageUrl);
       // save uri to firestore
       const docRef = doc(db, "users", user.uid);
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(docRef, {
+        profileImage: imageUrl,
+      });
     } catch (e) {
       console.log(e);
       alert("Upload failed, sorry :(");
