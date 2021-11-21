@@ -3,6 +3,8 @@ import { View, Image, Button, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 
+import { LinearGradient } from "expo-linear-gradient";
+
 import { Text } from "../../../components/typography/text.component";
 // import { Row } from "../../../components/utility/row.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -20,12 +22,16 @@ const H1 = styled(Text)`
   font-size: 25px;
 `;
 
+const H2 = styled(Text)`
+  color: #fff;
+  font-size: 15px;
+`;
+
 const Row = styled.View`
   margin-top: 70px;
   flex-direction: row;
 `;
 export const UserProfileScreen = ({ navigation }) => {
-  const [profileImage, setProfileImage] = React.useState(null);
   const { userInfo, user } = useContext(AuthenticationContext);
 
   let openImagePickerAsync = async () => {
@@ -72,12 +78,13 @@ export const UserProfileScreen = ({ navigation }) => {
         <TouchableOpacity onPress={openImagePickerAsync}>
           <Image
             style={{
-              width: 150,
-              height: 150,
+              width: 100,
+              height: 100,
               borderRadius: 100,
-              borderColor: "white",
-              borderWidth: 2,
               marginLeft: 20,
+              marginRight: 10,
+              marginTop: 20,
+              marginBottom: 20,
             }}
             source={{
               uri: userInfo.profileImage
@@ -86,8 +93,50 @@ export const UserProfileScreen = ({ navigation }) => {
             }}
           />
         </TouchableOpacity>
-        <H1>{userInfo.username}</H1>
+        <H1
+          variant="label"
+          style={{
+            marginTop: 20,
+            color: "#000",
+          }}
+        >
+          {userInfo.username + " "}
+        </H1>
       </Row>
+      <LinearGradient
+        colors={["transparent", "rgba(0,0,0,0.8)"]}
+        style={{
+          width: "100%",
+          position: "absolute",
+          zIndex: 130,
+          borderRadius: 30,
+        }}
+      />
+      <H2
+        variant="label"
+        style={{
+          // marginTop: 20,
+          position: "absolute",
+          top: 120,
+          left: 140,
+          color: "#000",
+        }}
+      >
+        About
+      </H2>
+
+      <Image
+        style={{
+          position: "absolute",
+          zIndex: -1,
+          top: 0,
+          width: "100%",
+          height: 150,
+        }}
+        source={{
+          uri: "https://media.discordapp.net/attachments/888677982535839744/911146458256916540/unknown.png",
+        }}
+      />
       <Button
         title="edit"
         onPress={() => navigation.navigate("EditUserInfoScreen")}

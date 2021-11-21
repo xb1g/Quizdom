@@ -6,7 +6,7 @@ export const BackButton = ({ navigation, onPress }) => {
     <TouchableOpacity
       style={{
         position: "absolute",
-        top: "3%",
+        top: 50,
         paddingLeft: 15,
         zIndex: 1,
         backgroundColor: "rgba(121, 121, 121, 0.5)",

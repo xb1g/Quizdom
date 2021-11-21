@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import { List, Avatar } from "react-native-paper";
 
 import { shadow } from "../../../components/shadow/shadow.styles";
@@ -68,7 +68,23 @@ export const UserScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("UserProfileScreen")}
         >
           <Container style={{ ...shadow.shadow2 }}>
-            <UserIcon size={75} icon="human" backgroundColor="#2182bd" />
+            {/* <UserIcon size={75} icon="human" backgroundColor="#2182bd" /> */}
+            <Image
+              style={{
+                width: 75,
+                height: 75,
+                borderRadius: 100,
+                marginLeft: 20,
+                marginRight: 10,
+                marginTop: 20,
+                marginBottom: 20,
+              }}
+              source={{
+                uri: userInfo.profileImage
+                  ? userInfo.profileImage
+                  : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+              }}
+            />
             <Spacer />
             <Text style={{ color: "white" }}>{userInfo.username}</Text>
           </Container>
