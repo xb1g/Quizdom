@@ -10,7 +10,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import styled from "styled-components/native";
-import { BackButton } from "../components/user-profile.styles";
+import { BackButton, BackgroundColor } from "../components/user-profile.styles";
 import { db, storage } from "../../../../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
@@ -19,7 +19,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const H1 = styled(Text)`
   color: #fff;
-  font-size: 25px;
+  font-size: 35px;
 `;
 
 const H2 = styled(Text)`
@@ -28,7 +28,6 @@ const H2 = styled(Text)`
 `;
 
 const Row = styled.View`
-  margin-top: 70px;
   flex-direction: row;
 `;
 export const UserProfileScreen = ({ navigation }) => {
@@ -72,77 +71,67 @@ export const UserProfileScreen = ({ navigation }) => {
   // console.log(user.uid);
   return (
     // <SafeAreaView>
-    <View>
+    <View style={{ flex: 1 }}>
       <BackButton navigation={navigation} />
-      <Row>
-        <TouchableOpacity onPress={openImagePickerAsync}>
-          <Image
+      <Row style={{ backgroundColor: "red" }}>
+        <BackgroundColor>
+          <Spacer size="extraLarge" />
+          <Spacer size="extraLarge" />
+          {/* <Spacer size="extraLarge" /> */}
+          <TouchableOpacity onPress={openImagePickerAsync}>
+            <Image
+              style={{
+                marginBottom: -60,
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+              }}
+              source={{
+                uri: userInfo.profileImage
+                  ? userInfo.profileImage
+                  : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+              }}
+            />
+          </TouchableOpacity>
+          <H1
+            variant="label"
             style={{
-              width: 100,
-              height: 100,
-              borderRadius: 100,
-              marginLeft: 20,
-              marginRight: 10,
-              marginTop: 20,
-              marginBottom: 20,
+              // marginTop: 20,
+              position: "absolute",
+              top: 50,
+              left: 130,
+              color: "#fff",
             }}
-            source={{
-              uri: userInfo.profileImage
-                ? userInfo.profileImage
-                : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+          >
+            {userInfo.username + " "}
+          </H1>
+          <LinearGradient
+            colors={["transparent", "rgba(0,0,0,0.7)"]}
+            style={{
+              flex: 1,
+              // width: "100%",
+              // height: "57.25%",
+              // position: "absolute",
+              zIndex: -1,
+              // borderRadius: 30,s
             }}
-          />
-        </TouchableOpacity>
-        <H1
-          variant="label"
-          style={{
-            marginTop: 20,
-            color: "#000",
-          }}
-        >
-          {userInfo.username + " "}
-        </H1>
+          ></LinearGradient>
+        </BackgroundColor>
       </Row>
-      <LinearGradient
-        colors={["transparent", "rgba(0,0,0,0.8)"]}
+      <Spacer size="extraLarge" />
+      <View
         style={{
-          width: "100%",
-          position: "absolute",
-          zIndex: 130,
-          borderRadius: 30,
-        }}
-      />
-      <H2
-        variant="label"
-        style={{
-          // marginTop: 20,
-          position: "absolute",
-          top: 120,
-          left: 140,
-          color: "#000",
+          flex: 1,
+          padding: 10,
         }}
       >
-        About
-      </H2>
+        <H1 variant="label">Friends</H1>
+      </View>
 
-      <Image
-        style={{
-          position: "absolute",
-          zIndex: -1,
-          top: 0,
-          width: "100%",
-          height: 150,
-        }}
-        source={{
-          uri: "https://media.discordapp.net/attachments/888677982535839744/911146458256916540/unknown.png",
-        }}
-      />
-      <Button
+      {/* <Button
         title="edit"
         onPress={() => navigation.navigate("EditUserInfoScreen")}
-      />
-      {/* <Image source={require("../../../assets/images/user.png")} /> */}
-      <Text>USERPROFILE</Text>
+      /> */}
     </View>
     // </SafeAreaView>
   );
@@ -165,7 +154,7 @@ async function uploadImageAsync(uri) {
     xhr.send(null);
   });
   const fileRef = ref(storage, uuidv4());
-  console.log(fileRef);
+  // console.log(fileRef);
   const result = await uploadBytes(fileRef, blob);
 
   // We're done with the blob, close and release it

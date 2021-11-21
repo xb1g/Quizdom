@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
+import styled from "styled-components/native";
 
 export const BackButton = ({ navigation, onPress }) => {
   return (
@@ -30,3 +31,10 @@ export const BackButton = ({ navigation, onPress }) => {
     </TouchableOpacity>
   );
 };
+
+export const BackgroundColor = styled.View`
+  background-color: #f3a7a7;
+  flex: 1;
+  padding: 20px;
+  z-index: -1;
+`;
