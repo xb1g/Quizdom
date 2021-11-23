@@ -12,7 +12,7 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ScrollView } from "react-native-gesture-handler";
 import { TouchableOpacity } from "react-native";
-import { UserItem } from "../components/user-item.component";
+import { UserItem, BigUserItem } from "../components/user-item.component";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -21,6 +21,17 @@ const SettingsItem = styled(List.Item)`
 const UserIcon = styled(Avatar.Icon)`
   align-self: flex-start;
   margin: 10px;
+`;
+
+const Row = styled(View)`
+  /* flex: 1; */
+  flex-direction: row;
+  /* align-self: auto; */
+  align-items: stretch;
+  /* justify-content: space-between; */
+  /* justify-content: stretch; */
+  justify-content: space-evenly;
+  /* justify-content: space-between; */
 `;
 
 const Container = styled.View`
@@ -86,34 +97,39 @@ export const UserScreen = ({ navigation }) => {
               }}
             />
             <Spacer />
-            <Text style={{ color: "white" }}>{userInfo.username}</Text>
+            <Text variant="label" style={{ color: "white", fontSize: 25 }}>
+              {userInfo.username}
+            </Text>
           </Container>
         </TouchableOpacity>
         <List.Section>
           <ItemContainer style={{ ...shadow.shadow2 }}>
-            <UserItem
-              icon="trophy"
-              title="Achievement"
-              onPress={() => navigation.navigate("AchievementScreen")}
-            />
-            <Line />
-            <UserItem
-              icon="person-outline"
-              title="Leaderboard"
-              onPress={() => navigation.navigate("LeaderboardScreen")}
-            />
-            <Line />
-            <UserItem
-              icon="people-outline"
-              title="Friends"
-              onPress={() => navigation.navigate("FriendsScreen")}
-            />
-            <Line />
-            <UserItem
-              icon="person"
-              title="Announcement"
-              onPress={() => navigation.navigate("AnnouncementScreen")}
-            />
+            <Row>
+              <BigUserItem
+                icon="trophy"
+                title="Achievement"
+                onPress={() => navigation.navigate("AchievementScreen")}
+              />
+              <BigUserItem
+                icon="person-outline"
+                title="Leaderboard"
+                onPress={() => navigation.navigate("LeaderboardScreen")}
+              />
+            </Row>
+            {/* <Line /> */}
+            <Spacer />
+            <Row>
+              <BigUserItem
+                icon="people-outline"
+                title="Friends"
+                onPress={() => navigation.navigate("FriendsScreen")}
+              />
+              <BigUserItem
+                icon="person"
+                title="Announcement"
+                onPress={() => navigation.navigate("AnnouncementScreen")}
+              />
+            </Row>
           </ItemContainer>
           {/* </View> */}
         </List.Section>

@@ -16,10 +16,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import { ScrollView } from "react-native-gesture-handler";
+import { IconButton } from "react-native-paper";
 
 const H1 = styled(Text)`
   color: #fff;
-  font-size: 35px;
+  font-size: 30px;
 `;
 
 const H2 = styled(Text)`
@@ -29,6 +31,15 @@ const H2 = styled(Text)`
 
 const Row = styled.View`
   flex-direction: row;
+  align-items: center;
+`;
+
+const Back = styled.View`
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px;
+  height: 100px;
+  margin: 10px;
 `;
 export const UserProfileScreen = ({ navigation }) => {
   const { userInfo, user } = useContext(AuthenticationContext);
@@ -70,69 +81,88 @@ export const UserProfileScreen = ({ navigation }) => {
   // console.log(userInfo);
   // console.log(user.uid);
   return (
-    // <SafeAreaView>
-    <View style={{ flex: 1 }}>
+    <>
       <BackButton navigation={navigation} />
-      <Row style={{ backgroundColor: "red" }}>
-        <BackgroundColor>
-          <Spacer size="extraLarge" />
-          <Spacer size="extraLarge" />
-          {/* <Spacer size="extraLarge" /> */}
-          <TouchableOpacity onPress={openImagePickerAsync}>
-            <Image
+      <ScrollView>
+        <View style={{ flex: 1 }}>
+          <Row style={{ backgroundColor: "red" }}>
+            <LinearGradient
+              colors={["transparent", "rgba(0,0,0,0.7)"]}
               style={{
-                marginBottom: -60,
+                width: "100%",
+                height: 150,
+              }}
+            />
+            <TouchableOpacity
+              onPress={openImagePickerAsync}
+              style={{
+                position: "absolute",
+                top: 120,
+                left: 20,
+                zIndex: 10,
                 width: 100,
                 height: 100,
                 borderRadius: 50,
               }}
-              source={{
-                uri: userInfo.profileImage
-                  ? userInfo.profileImage
-                  : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+            >
+              <Image
+                style={{
+                  position: "absolute",
+                  top: -10,
+                  left: 0,
+                  zIndex: 10,
+                  // marginBottom: -60,
+                  width: 100,
+                  height: 100,
+                  borderRadius: 50,
+                }}
+                source={{
+                  uri: userInfo.profileImage
+                    ? userInfo.profileImage
+                    : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+                }}
+              />
+            </TouchableOpacity>
+            <H1
+              variant="label"
+              style={{
+                position: "absolute",
+                top: 162,
+                left: 130,
+                color: "#fff",
               }}
-            />
-          </TouchableOpacity>
-          <H1
-            variant="label"
-            style={{
-              // marginTop: 20,
-              position: "absolute",
-              top: 50,
-              left: 130,
-              color: "#fff",
-            }}
-          >
-            {userInfo.username + " "}
-          </H1>
-          <LinearGradient
-            colors={["transparent", "rgba(0,0,0,0.7)"]}
+            >
+              {userInfo.username + " "}
+            </H1>
+          </Row>
+          <Spacer size="extraLarge" />
+          <Spacer size="extraLarge" />
+          <View
             style={{
               flex: 1,
-              // width: "100%",
-              // height: "57.25%",
-              // position: "absolute",
-              zIndex: -1,
-              // borderRadius: 30,s
+              padding: 10,
+              zIndex: -10,
             }}
-          ></LinearGradient>
-        </BackgroundColor>
-      </Row>
-      <Spacer size="extraLarge" />
-      <View
-        style={{
-          flex: 1,
-          padding: 10,
-        }}
-      >
-        <H1 variant="label">Friends</H1>
-      </View>
-
-      {/* <Button
-        title="edit"
-        onPress={() => navigation.navigate("EditUserInfoScreen")}
-      /> */}
-    </View>
+          >
+            <Row>
+              <H1 variant="label">About </H1>
+              <IconButton
+                icon="pencil"
+                size={20}
+                color="white"
+                onPress={() => {}}
+              />
+            </Row>
+            <Back>
+              <Text>fasaadfs</Text>
+            </Back>
+            <H1 variant="label">Friends</H1>
+            <H1 variant="label">Achievements</H1>
+            <H1 variant="label">Questions</H1>
+          </View>
+        </View>
+      </ScrollView>
+    </>
     // </SafeAreaView>
   );
 };
