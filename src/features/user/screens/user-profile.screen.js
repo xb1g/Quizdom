@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { View, Image, Button, TouchableOpacity } from "react-native";
+import { View, Image, Button, TouchableOpacity, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 
@@ -18,6 +18,9 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { ScrollView } from "react-native-gesture-handler";
 import { IconButton } from "react-native-paper";
+import { shadow } from "../../../components/shadow/shadow.styles";
+// import { ColorPicker } from "../components/user-item.component";
+import { AchievementList } from "../components/achievement.component";
 
 const H1 = styled(Text)`
   color: #fff;
@@ -35,13 +38,17 @@ const Row = styled.View`
 `;
 
 const Back = styled.View`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.267);
   border-radius: 10px;
   padding: 10px;
-  height: 100px;
+  /* height: 100px; */
   margin: 10px;
 `;
 export const UserProfileScreen = ({ navigation }) => {
+  const [about, setAbout] = React.useState("");
+  const [color, setColor] = React.useState("");
+  const [editingColor, setEditingColor] = React.useState(false);
+  const [editingAbout, setEditingAbout] = React.useState(false);
   const { userInfo, user } = useContext(AuthenticationContext);
 
   let openImagePickerAsync = async () => {
@@ -78,14 +85,16 @@ export const UserProfileScreen = ({ navigation }) => {
       alert("Upload failed, sorry :(");
     }
   };
-  // console.log(userInfo);
-  // console.log(user.uid);
   return (
     <>
       <BackButton navigation={navigation} />
       <ScrollView>
         <View style={{ flex: 1 }}>
-          <Row style={{ backgroundColor: "red" }}>
+          <Row
+            style={{
+              backgroundColor: userInfo.color ? userInfo.color.rgb : "red",
+            }}
+          >
             <LinearGradient
               colors={["transparent", "rgba(0,0,0,0.7)"]}
               style={{
@@ -93,6 +102,27 @@ export const UserProfileScreen = ({ navigation }) => {
                 height: 150,
               }}
             />
+            {!editingColor && (
+              <IconButton
+                icon="pencil"
+                color="white"
+                size={20}
+                style={{
+                  position: "absolute",
+                  top: 40,
+                  right: 20,
+                  zIndex: 10,
+                  width: 35,
+                  height: 35,
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  borderRadius: 50,
+                  ...shadow.shadow2,
+                }}
+                onPress={() => {
+                  // navigation.navigate("PickColor");
+                }}
+              />
+            )}
             <TouchableOpacity
               onPress={openImagePickerAsync}
               style={{
@@ -103,6 +133,7 @@ export const UserProfileScreen = ({ navigation }) => {
                 width: 100,
                 height: 100,
                 borderRadius: 50,
+                ...shadow.shadow2,
               }}
             >
               <Image
@@ -120,6 +151,22 @@ export const UserProfileScreen = ({ navigation }) => {
                   uri: userInfo.profileImage
                     ? userInfo.profileImage
                     : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
+                }}
+              />
+              <IconButton
+                icon="camera"
+                color="white"
+                size={20}
+                style={{
+                  position: "absolute",
+                  top: -12,
+                  left: 70,
+                  zIndex: 10,
+                  width: 35,
+                  height: 35,
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  borderRadius: 50,
+                  ...shadow.shadow2,
                 }}
               />
             </TouchableOpacity>
@@ -146,18 +193,47 @@ export const UserProfileScreen = ({ navigation }) => {
           >
             <Row>
               <H1 variant="label">About </H1>
-              <IconButton
-                icon="pencil"
-                size={20}
-                color="white"
-                onPress={() => {}}
-              />
+              {!editingAbout ? (
+                <IconButton
+                  icon="pencil"
+                  size={20}
+                  color="white"
+                  onPress={() => {
+                    setEditingAbout(true);
+                  }}
+                />
+              ) : (
+                <IconButton
+                  icon="check"
+                  size={20}
+                  color="white"
+                  onPress={() => {
+                    setEditingAbout(false);
+                    const docRef = doc(db, "users", user.uid);
+                    updateDoc(docRef, {
+                      about: about,
+                    });
+                  }}
+                />
+              )}
             </Row>
             <Back>
-              <Text>fasaadfs</Text>
+              {editingAbout ? (
+                <TextInput
+                  value={about}
+                  multiline={true}
+                  onChangeText={setAbout}
+                  maxLength={200}
+                />
+              ) : (
+                <H2>{userInfo.about}</H2>
+              )}
             </Back>
             <H1 variant="label">Friends</H1>
             <H1 variant="label">Achievements</H1>
+            <Back>
+              <AchievementList achievements={userInfo.achievements} />
+            </Back>
             <H1 variant="label">Questions</H1>
           </View>
         </View>

@@ -116,7 +116,6 @@ export const UserScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate("LeaderboardScreen")}
               />
             </Row>
-            {/* <Line /> */}
             <Spacer />
             <Row>
               <BigUserItem

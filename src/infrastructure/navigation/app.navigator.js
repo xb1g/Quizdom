@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 // import { CommunityScreen } from "../../features/community/screens/community.screen";
 
@@ -20,7 +20,7 @@ import { UserNavigator } from "./user.navigator";
 import { MapsContextProvider } from "../../services/maps/maps.context";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 
-const Icon = styled.Image``;
+// const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {
     let iconName;
@@ -56,20 +56,15 @@ const TabNavigator = styled(Tab.Navigator)``;
 export const AppNavigator = () => {
   return (
     <>
-      {/* <SafeArea> */}
       <SafeAreaProvider>
         <MapsContextProvider>
-          {/* <MapsContextProvider> */}
-          {/* <PlansContextProvider> */}
           <Tab.Navigator
             initialRouteName="Home"
             screenOptions={createScreenOptions}
-            // options={{ headerShown: false }}
           >
             <Tab.Screen
               name="Planner"
               component={PlannerNavigator}
-              // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
               options={{ headerShown: false }}
             />
             <Tab.Screen
@@ -82,19 +77,15 @@ export const AppNavigator = () => {
               component={CommunityNavigator}
               options={{ headerShown: false }}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
               name="User"
               component={UserNavigator}
               options={{ headerShown: false }}
-            />
+            /> */}
           </Tab.Navigator>
-          {/* </PlansContextProvider> */}
-          {/* </MapsContextProvider> */}
         </MapsContextProvider>
       </SafeAreaProvider>
       <ExpoStatusBar style="light" />
-      {/* </SafeAreaView> */}
-      {/* </SafeArea> */}
     </>
   );
 };
