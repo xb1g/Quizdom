@@ -1,4 +1,5 @@
 // import * as firebase from "firebase";
+import { onSnapshot, doc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signOut,
@@ -14,6 +15,15 @@ export const logoutRequest = () => signOut(auth);
 
 export const registerRequest = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
+
+export const getUserInfo = (uid) => {
+  return onSnapshot(doc(db, "users", uid), (u) => {
+    console.log(u.data());
+    // u.data() && setUserInfo(u.data());
+    const userInfo = u.data();
+    console.log(userInfo);
+  });
+};
 
 // export const resetPasswordRequest = (email) =>
 //   auth().sendPasswordResetEmail(email);

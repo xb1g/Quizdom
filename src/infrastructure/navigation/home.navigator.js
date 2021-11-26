@@ -1,4 +1,5 @@
 import React from "react";
+import { View, Platform } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
@@ -11,75 +12,64 @@ import { AddButton } from "../../features/home/components/buttons/add-button.com
 import { SettingButton } from "../../features/home/components/buttons/setting-button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 import { MapNavigator } from "./map.navigation";
+import { StatusBar } from "expo-status-bar";
 
 const HomeStack = createStackNavigator();
 
 export const HomeNavigator = ({ navigation }) => {
   return (
-    <HomeStack.Navigator
-      initialRouteName="HomeScreen"
-      screenOptions={{
-        // headerShown: false,
-        // ...TransitionPresets.ModalPresentationIOS,
-        ...TransitionPresets.SlideFromRightIOS,
-      }}
-    >
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          title: "Quizdom ",
-          headerTitleStyle: {
-            alignSelf: "center",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "Airstrike",
-            marginTop: -20,
-            fontSize: 45,
-          },
-          // headerLeft: () => <Ionicons name="settings" />,
-          headerRight: () => <SettingButton navigation={navigation} />,
-          // headerLeft: () => <AddButton navigation={navigation} />,
-          headerLeft: () => <AddButton navigation={navigation} />,
-
-          headerStyle: {
-            backgroundColor: "white",
-            borderBottomRightRadius: 30,
-            borderBottomLeftRadius: 30,
-            // height: 80,
-            ...shadow.shadow2,
-          },
+    <>
+      <HomeStack.Navigator
+        initialRouteName="HomeScreen"
+        screenOptions={{
+          // headerShown: false,
+          // ...TransitionPresets.ModalPresentationIOS,
+          ...TransitionPresets.SlideFromRightIOS,
         }}
-      />
-      <HomeStack.Screen
-        name="MapScreen"
-        component={MapScreen}
-        navigation={navigation}
-        options={{
-          headerShown: false,
-        }}
-        //   title: "Quizdom ",
-        //   headerTitleStyle: {
-        //     alignSelf: "center",
-        //     alignItems: "center",
-        //     justifyContent: "center",
-        //     fontFamily: "Airstrike",
-        //     marginTop: -20,
-        //     fontSize: 45,
-        //   },
-        //   // headerLeft: () => <Ionicons name="settings" />,
-        //   headerRight: () => <SettingButton navigation={navigation} />,
-        //   // headerLeft: () => <AddButton navigation={navigation} />,
-        //   headerLeft: () => <AddButton navigation={navigation} />,
-
-        //   headerStyle: {
-        //     backgroundColor: "white",
-        //     borderBottomRightRadius: 30,
-        //     borderBottomLeftRadius: 30,
-        //     ...shadow.shadow2,
-        //   },
-        // }}
-      />
-    </HomeStack.Navigator>
+      >
+        <HomeStack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            title: "Quizdom ",
+            headerTitleStyle: {
+              alignSelf: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "Airstrike",
+              marginTop: Platform.OS === "ios" ? -20 : -10,
+              fontSize: 45,
+              color: "#fff",
+            },
+            cardStyle: {
+              // backgroundColor: "red",
+            },
+            headerRight: () => <SettingButton navigation={navigation} />,
+            headerLeft: () => <AddButton navigation={navigation} />,
+            headerTransparent: true,
+            headerBackground: () => (
+              <View
+                style={{
+                  height: Platform.OS === "ios" ? 100 : 120,
+                  backgroundColor: "rgba(26, 26, 26, 1)",
+                  borderBottomRightRadius: 30,
+                  borderBottomLeftRadius: 30,
+                  ...shadow.shadow2,
+                }}
+              ></View>
+            ),
+          }}
+        />
+        <HomeStack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          navigation={navigation}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </HomeStack.Navigator>
+      <StatusBar style="dark" />
+    </>
   );
 };

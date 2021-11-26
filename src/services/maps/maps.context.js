@@ -1,18 +1,24 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 
+// import { getAuth } from "firebase/auth";
 import { db } from "../../../firebase-config";
 import { collection, doc, onSnapshot, setDoc } from "firebase/firestore";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const MapsContext = createContext();
 export const MapsContextProvider = ({ children }) => {
-  const { currentUser } = firebase.auth();
+  // const { currentUser } = firebase.auth();
+  const { user } = useContext(AuthenticationContext);
   const [maps, setMaps] = useState([]);
   useEffect(() => {
-    console.log(currentUser);
-    // onSnapshot(doc(db, "maps", user.uid), (u) => {
-    //   setMaps(u.data());
-    // });
+    console.log(user);
+    onSnapshot(doc(db, "maps", user.uid), (u) => {
+      console.log(u.data());
+      setMaps(u.data());
+    });
   }, []);
 
-  return <MapsContext.Provider value={{}}>{children}</MapsContext.Provider>;
+  return (
+    <MapsContext.Provider value={{ maps }}>{children}</MapsContext.Provider>
+  );
 };
