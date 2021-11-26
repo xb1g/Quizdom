@@ -21,7 +21,7 @@ class User_data{
         this.map_decor=map_decor
         this.map_1m=[this.milestons,this.exp,this.level]
     }
-    user_profile_info(this,friend,achievement_pg,about_me,theme,questions_data,profile_pic,map_pg,subject_like,fav_badge){
+    user_profile_info(this,friend,achievement_pg,about_me,theme,questions_data,profile_pic,map_pg,subject_like,fav_badge,frame,banner){
         this.friend=friend
         this.achievement_pg=achievement_pg
         this.about_me=about_me
@@ -31,6 +31,8 @@ class User_data{
         this.map_pg=map_pg
         this.subject_like=subject_like
         this.fav_badge=fav_badge
+        this.frame=frame
+        this.banner=banner
     }
     plan_info(this,name_plan,map_in_p){
         this.name_plan=name_plan
