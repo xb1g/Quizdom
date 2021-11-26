@@ -5620,6 +5620,11 @@ react-native-paper@^4.9.2:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.3.1"
 
+react-native-pie-chart@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-pie-chart/-/react-native-pie-chart-2.0.2.tgz#c88c2fbe49d9253064e520c5493efb94ca4f864a"
+  integrity sha512-pMsbR35r4it5i3Ck/tL7pWvYKy9VO7EZfQNhR+Nfvo3qQHJ1ZHdpO8QYS4/HZcHG5kbAG8x+679jpvR9nubsFw==
+
 react-native-really-awesome-button@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-native-really-awesome-button/-/react-native-really-awesome-button-1.6.0.tgz#71700f960aa6d419058beff177c7b6cf18694ef7"

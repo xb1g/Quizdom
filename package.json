@@ -29,6 +29,7 @@
     "react-native-ionicons": "^4.x",
     "react-native-keyboard-accessory": "^0.1.15",
     "react-native-paper": "^4.9.2",
+    "react-native-pie-chart": "^2.0.2",
     "react-native-really-awesome-button": "^1.6.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
