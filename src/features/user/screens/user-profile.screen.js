@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { View, Image, Button, TouchableOpacity } from "react-native";
+import { View, Image, Button, TouchableOpacity, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 
@@ -9,6 +9,7 @@ import { Text } from "../../../components/typography/text.component";
 // import { Row } from "../../../components/utility/row.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { shadow } from "../../../components/shadow/shadow.styles";
 import styled from "styled-components/native";
 import { BackButton, BackgroundColor } from "../components/user-profile.styles";
 import { db, storage } from "../../../../firebase-config";
@@ -42,6 +43,11 @@ const Back = styled.View`
   margin: 10px;
 `;
 export const UserProfileScreen = ({ navigation }) => {
+  const [about, setAbout] = React.useState("");
+  const [color, setColor] = React.useState("");
+  const [editingColor, setEditingColor] = React.useState(false);
+  const [editingAbout, setEditingAbout] = React.useState(false);
+
   const { userInfo, user } = useContext(AuthenticationContext);
 
   let openImagePickerAsync = async () => {
@@ -93,6 +99,27 @@ export const UserProfileScreen = ({ navigation }) => {
                 height: 150,
               }}
             />
+            {!editingColor && (
+              <IconButton
+                icon="pencil"
+                color="white"
+                size={20}
+                style={{
+                  position: "absolute",
+                  top: 40,
+                  right: 20,
+                  zIndex: 10,
+                  width: 35,
+                  height: 35,
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  borderRadius: 50,
+                  ...shadow.shadow2,
+                }}
+                onPress={() => {
+                  // navigation.navigate("PickColor");
+                }}
+              />
+            )}
             <TouchableOpacity
               onPress={openImagePickerAsync}
               style={{
@@ -122,6 +149,22 @@ export const UserProfileScreen = ({ navigation }) => {
                     : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
                 }}
               />
+              <IconButton
+                icon="camera"
+                color="white"
+                size={20}
+                style={{
+                  position: "absolute",
+                  top: -12,
+                  left: 70,
+                  zIndex: 10,
+                  width: 35,
+                  height: 35,
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  borderRadius: 50,
+                  ...shadow.shadow2,
+                }}
+              />
             </TouchableOpacity>
             <H1
               variant="label"
@@ -146,15 +189,41 @@ export const UserProfileScreen = ({ navigation }) => {
           >
             <Row>
               <H1 variant="label">About </H1>
-              <IconButton
-                icon="pencil"
-                size={20}
-                color="white"
-                onPress={() => {}}
-              />
+              {!editingAbout ? (
+                <IconButton
+                  icon="pencil"
+                  size={20}
+                  color="white"
+                  onPress={() => {
+                    setEditingAbout(true);
+                  }}
+                />
+              ) : (
+                <IconButton
+                  icon="check"
+                  size={20}
+                  color="white"
+                  onPress={() => {
+                    setEditingAbout(false);
+                    const docRef = doc(db, "users", user.uid);
+                    updateDoc(docRef, {
+                      about: about,
+                    });
+                  }}
+                />
+              )}
             </Row>
             <Back>
-              <Text>fasaadfs</Text>
+              {editingAbout ? (
+                <TextInput
+                  value={about}
+                  multiline={true}
+                  onChangeText={setAbout}
+                  maxLength={200}
+                />
+              ) : (
+                <H2>{userInfo.about}</H2>
+              )}
             </Back>
             <H1 variant="label">Friends</H1>
             <H1 variant="label">Achievements</H1>
