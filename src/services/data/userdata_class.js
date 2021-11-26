@@ -12,7 +12,7 @@ class User_data{
         this.lastname=String(this.lastname);
         this.username=String(this.username);
     }
-    map_info(this,milestones,exp,level,current_theme,achievement,map_decor,map_1m){
+    map_info(this,milestones,exp,level,current_theme,achievement,map_decor){
         this.milestones=milestones
         this.exp=exp
         this.level=level
@@ -21,7 +21,7 @@ class User_data{
         this.map_decor=map_decor
         this.map_1m=[this.milestons,this.exp,this.level]
     }
-    user_profile_info(this,friend,achievement_pg,about_me,theme,questions_data,profile_pic,map_pg,subject_like){
+    user_profile_info(this,friend,achievement_pg,about_me,theme,questions_data,profile_pic,map_pg,subject_like,fav_badge){
         this.friend=friend
         this.achievement_pg=achievement_pg
         this.about_me=about_me
@@ -30,6 +30,7 @@ class User_data{
         this.profile_pic=profile_pic
         this.map_pg=map_pg
         this.subject_like=subject_like
+        this.fav_badge=fav_badge
     }
     plan_info(this,name_plan,map_in_p){
         this.name_plan=name_plan
