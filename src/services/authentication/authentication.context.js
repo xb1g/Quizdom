@@ -119,22 +119,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     logoutRequest();
   };
 
-  // const onUpdateInfo = (info) => {
-  //   setIsLoading(true);
-  //   const userRef = db.collection("users").doc(user.uid);
-  //   userRef
-  //     .update({ ...user, info })
-  //     .then(() => {
-  //       setIsLoading(false);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //       setIsLoading(false);
-  //     });
-
-  //   setIsLoading(false);
-  // };
-
   return (
     <AuthenticationContext.Provider
       value={{

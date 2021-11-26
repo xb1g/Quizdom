@@ -23,7 +23,7 @@ const UserIcon = styled(Avatar.Icon)`
   margin: 10px;
 `;
 
-const Row = styled(View)`
+const RowStretch = styled(View)`
   /* flex: 1; */
   flex-direction: row;
   /* align-self: auto; */
@@ -104,7 +104,7 @@ export const UserScreen = ({ navigation }) => {
         </TouchableOpacity>
         <List.Section>
           <ItemContainer style={{ ...shadow.shadow2 }}>
-            <Row>
+            <RowStretch>
               <BigUserItem
                 icon="trophy"
                 title="Achievement"
@@ -115,10 +115,10 @@ export const UserScreen = ({ navigation }) => {
                 title="Leaderboard"
                 onPress={() => navigation.navigate("LeaderboardScreen")}
               />
-            </Row>
+            </RowStretch>
             {/* <Line /> */}
             <Spacer />
-            <Row>
+            <RowStretch>
               <BigUserItem
                 icon="people-outline"
                 title="Friends"
@@ -129,7 +129,7 @@ export const UserScreen = ({ navigation }) => {
                 title="Announcement"
                 onPress={() => navigation.navigate("AnnouncementScreen")}
               />
-            </Row>
+            </RowStretch>
           </ItemContainer>
           {/* </View> */}
         </List.Section>

@@ -69,7 +69,7 @@ export const MapScreen = ({ route, navigation }) => {
         <ScrollView
           style={{
             flex: 1,
-            backgroundColor: "#62ff62",
+            backgroundColor: "#004100",
           }}
         >
           <TouchableOpacity

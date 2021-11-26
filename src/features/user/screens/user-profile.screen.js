@@ -19,29 +19,34 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { ScrollView } from "react-native-gesture-handler";
 import { IconButton } from "react-native-paper";
+import { FriendList } from "../components/friend-list.component";
+import { AchievementList } from "../components/achievement-list.component";
+import { H1, H2, Row, Back } from "../components/user-profile.styles";
+// import { AchievementList } from "../components/achievement.component";
 
-const H1 = styled(Text)`
-  color: #fff;
-  font-size: 30px;
-`;
+// const H1 = styled(Text)`
+//   color: #fff;
+//   font-size: 30px;
+// `;
 
-const H2 = styled(Text)`
-  color: #fff;
-  font-size: 15px;
-`;
+// const H2 = styled(Text)`
+//   color: #fff;
+//   font-size: 15px;
+// `;
 
-const Row = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
+// const Row = styled.View`
+//   flex-direction: row;
+//   align-items: center;
+// `;
 
-const Back = styled.View`
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  padding: 10px;
-  height: 100px;
-  margin: 10px;
-`;
+// const Back = styled.View`
+//   background-color: rgba(255, 255, 255, 0.5);
+//   border-radius: 10px;
+//   padding: 10px;
+//   height: 100px;
+//   margin: 10px;
+// `;
+
 export const UserProfileScreen = ({ navigation }) => {
   const [about, setAbout] = React.useState("");
   const [color, setColor] = React.useState("");
@@ -225,8 +230,13 @@ export const UserProfileScreen = ({ navigation }) => {
                 <H2>{userInfo.about}</H2>
               )}
             </Back>
-            <H1 variant="label">Friends</H1>
+            <Row>
+              <H1 variant="label">Friends - </H1>
+              <H2>{userInfo.friends}</H2>
+            </Row>
+            <FriendList friends={userInfo.friends} navigation={navigation} />
             <H1 variant="label">Achievements</H1>
+            <AchievementList achievements={userInfo.achievements} />
             <H1 variant="label">Questions</H1>
           </View>
         </View>
