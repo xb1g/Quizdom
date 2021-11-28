@@ -1,3 +1,14 @@
+import React, { useState, useEffect, createContext } from "react";
+
+import { db, auth } from "../../../firebase-config";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  onSnapshot,
+} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 class User_data{
     constructor(email,password,name,lastname,username,year_of_birth){
         this.email=email;
