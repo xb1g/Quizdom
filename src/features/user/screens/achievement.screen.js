@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Image, View } from "react-native";
+import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ScrollView } from "react-native-gesture-handler";
 import { BackButton } from "../components/user-profile.styles";
@@ -102,36 +102,54 @@ export const AchievementScreen = ({ navigation }) => {
       </View>
       <BackButton navigation={navigation} />
       {/* <ScrollView> */}
-      <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 30 }}>
         <FlatList
-          contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
-          style={
-            {
-              // alignSelf: "center",
-              // flex: 1,
-              // height: "100%",
-            }
-          }
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "flex-end",
+            // padding: 10,
+            // margin: 10,
+          }}
+          style={{
+            alignSelf: "center",
+            // padding: 10,
+            // alignItems: "center",
+            // flex: 1,
+            height: "100%",
+          }}
           data={Achievements}
           numColumns={3}
           renderItem={({ item }) => {
             return (
-              <View
-                style={{
-                  flex: 1,
-                  padding: 10,
-                  zIndex: -10,
-                }}
-              >
-                <Image
-                  source={{ uri: item.image }}
+              <TouchableOpacity>
+                <View
                   style={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: 50,
+                    padding: 10,
                   }}
-                />
-              </View>
+                >
+                  <View
+                    style={{
+                      // flex: 1,
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      borderRadius: 10,
+
+                      padding: 15,
+                      zIndex: -10,
+                    }}
+                  >
+                    <Image
+                      source={{ uri: item.image }}
+                      style={{
+                        width: 80,
+                        // padding: 20,
+                        // flex: 1,
+                        height: 80,
+                        borderRadius: 50,
+                      }}
+                    />
+                  </View>
+                </View>
+              </TouchableOpacity>
             );
           }}
           // keyExtractor={() => {}}
