@@ -32,7 +32,8 @@ export const AuthenticationContextProvider = ({ children }) => {
       if (usr) {
         console.log("got user", usr.uid);
         setUser(usr);
-        onSnapshot(doc(db, "users", usr.uid), (u) => {
+        const docRef = doc(db, "users", usr.uid);
+        onSnapshot(docRef, (u) => {
           console.log(u.data());
           const userInfo = u.data();
           console.log(userInfo);
@@ -129,8 +130,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         onRegister,
         onLogout,
         userInfo,
-        // firstTimeUser,
-        // onUpdateInfo,
       }}
     >
       {children}

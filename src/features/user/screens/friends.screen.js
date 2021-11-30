@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
-  Text,
   Image,
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
+import { BackButton } from "../components/user-profile.styles";
+import { Text } from "../../../components/typography/text.component";
 import { FlatList } from "react-native-gesture-handler";
 import { Searchbar } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
+import { shadow } from "../../../components/shadow/shadow.styles";
 
 const FriendImage = styled(Image)`
   margin: 10px;
@@ -29,18 +31,56 @@ const FriendContainer = styled.View`
   padding: 10px;
 `;
 export const FriendsScreen = ({ navigation }) => {
+  const [search, setSearch] = useState("");
   const { userInfo } = useContext(AuthenticationContext);
   return (
     <View>
-      <Text>Friends</Text>
+      <View
+        style={{
+          marginTop: 50,
+          marginLeft: "auto",
+          paddingRight: 20,
+        }}
+      >
+        <Text variant="label" style={{ color: "white", fontSize: 40 }}>
+          {"Friends" + " "}
+        </Text>
+      </View>
+      <BackButton navigation={navigation} />
       <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Searchbar />
+      <View style={{ marginHorizontal: 20 }}>
+        <Searchbar
+          style={{
+            backgroundColor: "#343c42",
+            borderRadius: 20,
+            padding: 10,
+            ...shadow.shadow2,
+            color: "#fff",
+          }}
+          inputStyle={{
+            color: "white",
+          }}
+          iconColor="white"
+          placeholderTextColor="#b9b9b9"
+          placeholder="Search a username"
+          onChangeText={(text) => setSearch(text)}
+          value={search}
+        />
+      </View>
+
       <FlatList
+        contentContainerStyle={{}}
+        style={{
+          height: "100%",
+        }}
         data={userInfo.friends}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
+              style={{
+                marginVertical: 5,
+                marginHorizontal: 10,
+              }}
               onPress={() => {
                 navigation.navigate("AchievementScreen");
               }}
@@ -48,15 +88,12 @@ export const FriendsScreen = ({ navigation }) => {
               <FriendContainer>
                 <FriendImage
                   source={{
-                    uri: "https://reactnative.dev/img/tiny_logo.png",
+                    uri: item.image,
                   }}
                 />
                 <Text>{item.username}</Text>
                 <TouchableOpacity
                   style={{
-                    // alignSelf: "flex-end",
-                    // justifyContent: "flex-end",
-                    // justifySelf: "flex-end",
                     marginLeft: "auto",
                     borderRadius: 100,
                     padding: 10,

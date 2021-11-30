@@ -22,6 +22,7 @@ import { IconButton } from "react-native-paper";
 import { FriendList } from "../components/friend-list.component";
 import { AchievementList } from "../components/achievement-list.component";
 import { H1, H2, Row, Back } from "../components/user-profile.styles";
+import { QuestionsList } from "../components/questions-list.component";
 // import { AchievementList } from "../components/achievement.component";
 
 // const H1 = styled(Text)`
@@ -232,12 +233,13 @@ export const UserProfileScreen = ({ navigation }) => {
             </Back>
             <Row>
               <H1 variant="label">Friends - </H1>
-              <H2>{userInfo.friends}</H2>
+              {/* <H2>{userInfo.friends}</H2> */}
             </Row>
             <FriendList friends={userInfo.friends} navigation={navigation} />
             <H1 variant="label">Achievements</H1>
             <AchievementList achievements={userInfo.achievements} />
             <H1 variant="label">Questions</H1>
+            <QuestionsList questions={userInfo.questions} />
           </View>
         </View>
       </ScrollView>
