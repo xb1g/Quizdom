@@ -69,10 +69,18 @@ export const FriendsScreen = ({ navigation }) => {
       </View>
 
       <FlatList
+        contentContainerStyle={{}}
+        style={{
+          height: "100%",
+        }}
         data={userInfo.friends}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
+              style={{
+                marginVertical: 5,
+                marginHorizontal: 10,
+              }}
               onPress={() => {
                 navigation.navigate("AchievementScreen");
               }}

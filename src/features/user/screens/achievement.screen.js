@@ -107,14 +107,9 @@ export const AchievementScreen = ({ navigation }) => {
           contentContainerStyle={{
             alignItems: "center",
             justifyContent: "flex-end",
-            // padding: 10,
-            // margin: 10,
           }}
           style={{
             alignSelf: "center",
-            // padding: 10,
-            // alignItems: "center",
-            // flex: 1,
             height: "100%",
           }}
           data={Achievements}
