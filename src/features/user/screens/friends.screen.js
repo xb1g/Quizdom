@@ -89,7 +89,6 @@ export const FriendsScreen = ({ navigation }) => {
         style={{
           marginBottom: 10,
           marginLeft: "auto",
-          //   paddingRight: 20,
         }}
       >
         <Text variant="label" style={{ color: "white", fontSize: 60 }}>
@@ -97,7 +96,6 @@ export const FriendsScreen = ({ navigation }) => {
         </Text>
       </View>
       <BackButton navigation={navigation} />
-      {/* <Spacer size="extraLarge" /> */}
       <View style={{ marginHorizontal: 20 }}>
         <Searchbar
           style={{
@@ -133,7 +131,9 @@ export const FriendsScreen = ({ navigation }) => {
                 marginHorizontal: 10,
               }}
               onPress={() => {
-                navigation.navigate("AchievementScreen");
+                navigation.navigate("FriendProfile", {
+                  user: item,
+                });
               }}
             >
               <FriendContainer>
@@ -148,6 +148,8 @@ export const FriendsScreen = ({ navigation }) => {
                     marginLeft: "auto",
                     borderRadius: 100,
                     padding: 10,
+                    width: 41,
+                    // height: 50,
                     backgroundColor: "red",
                   }}
                 >
