@@ -18,6 +18,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { db } from "../../../../firebase-config";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { SafeTop } from "../../../components/utility/safe-area.component";
 
 const FriendImage = styled(Image)`
   margin: 10px;
@@ -83,11 +84,12 @@ export const FriendsScreen = ({ navigation }) => {
 
   return (
     <View>
+      <SafeTop />
       <View
         style={{
-          marginTop: 50,
+          marginBottom: 10,
           marginLeft: "auto",
-          paddingRight: 20,
+          //   paddingRight: 20,
         }}
       >
         <Text variant="label" style={{ color: "white", fontSize: 60 }}>
@@ -95,7 +97,7 @@ export const FriendsScreen = ({ navigation }) => {
         </Text>
       </View>
       <BackButton navigation={navigation} />
-      <Spacer size="extraLarge" />
+      {/* <Spacer size="extraLarge" /> */}
       <View style={{ marginHorizontal: 20 }}>
         <Searchbar
           style={{

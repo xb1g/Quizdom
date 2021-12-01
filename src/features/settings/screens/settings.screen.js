@@ -1,11 +1,45 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { List } from "react-native-paper";
+import styled from "styled-components/native";
 import { SafeTop } from "../../../components/utility/safe-area.component";
+import { BackButton } from "../../../components/button/back-button.component";
+import { Text } from "../../../components/typography/text.component";
 
-export function SettingsScreen() {
+const SettingsItem = styled(List.Item)`
+  padding: ${(props) => props.theme.space[3]};
+`;
+
+export function SettingsScreen({ navigation }) {
   return (
-    <>
-      <SafeTop></SafeTop>
-    </>
+    <SafeTop>
+      {/* <SafeTop /> */}
+      <BackButton navigation={navigation} />
+      <Text
+        variant="label"
+        style={{ color: "white", fontSize: 60, marginLeft: "auto" }}
+      >
+        {"Settings" + " "}
+      </Text>
+      <ScrollView>
+        <SafeTop>
+          <SettingsItem
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.068)",
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
+            titleStyle={{
+              color: "white",
+            }}
+            title="something"
+            left={(props) => <List.Icon {...props} icon="folder" />}
+            onPress={() => {
+              console.log("pressed");
+            }}
+          />
+        </SafeTop>
+      </ScrollView>
+    </SafeTop>
   );
 }
