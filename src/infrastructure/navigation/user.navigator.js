@@ -13,6 +13,7 @@ import { EditUserInfoScreen } from "../../features/user-info/screens/user-info.s
 import { UserProfileScreen } from "../../features/user/screens/user-profile.screen";
 import { StatsScreen } from "../../features/user/screens/stats.screen";
 import { FriendProfileScreen } from "../../features/user/screens/friend-profile.screen";
+import { SettingsScreen } from "../../features/settings/screens/settings.screen";
 // import { UserInfoContextProvider } from "../../services/user-info/user-info.context";
 
 const UserStack = createStackNavigator();
@@ -88,6 +89,17 @@ export const UserNavigator = ({ route, navigation }) => {
           },
         }}
       />
+      <UserStack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+
       <UserStack.Screen
         name="StatsScreen"
         component={StatsScreen}

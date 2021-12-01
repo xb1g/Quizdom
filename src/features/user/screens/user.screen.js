@@ -140,13 +140,13 @@ export const UserScreen = ({ navigation }) => {
             <UserItem
               icon="settings-outline"
               title="Settings"
-              onPress={() => navigation.navigate("SettingScreen")}
+              onPress={() => navigation.navigate("SettingsScreen")}
             />
             <Line />
             <UserItem
               icon="help-outline"
               title="Help"
-              onPress={() => navigation.navigate("SettingScreen")}
+              onPress={() => navigation.navigate("SettingsScreen")}
             />
           </ItemContainer>
         </List.Section>
