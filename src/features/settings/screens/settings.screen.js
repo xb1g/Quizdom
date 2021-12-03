@@ -6,6 +6,7 @@ import { SafeTop } from "../../../components/utility/safe-area.component";
 import { BackButton } from "../../../components/button/back-button.component";
 import { Text } from "../../../components/typography/text.component";
 import { Slider } from "@miblanchard/react-native-slider";
+import { View, Switch, StyleSheet } from "react-native";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -18,7 +19,16 @@ const SettingsItem = styled(List.Item)`
 
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
-  const [volumeValue, setVolumeValue] = useState(100);
+  const [
+    volumeValue,
+    setVolumeValue,
+    sfxVolumeValue,
+    setSfxVolumeValue,
+    voiceVolumeValue,
+    setVoiceVolumeValue,
+  ] = useState(100);
+  const [isEnabled, setIsEnabled] = useState(False);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <>
       <BackButton navigation={navigation} />
@@ -45,14 +55,18 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
           />
+          <Text>Music volume : {volumeValue}</Text>
           <Slider
             minimumValue={0}
             maximumValue={100}
-            step={100}
+            minimumTrackTintColor="#ffaadd"
+            maximumTrackTintColor="#38b6ff"
+            thumbTintColor="#fde78e"
+            step={1}
             value={volumeValue}
             onValueChange={(value) => setVolumeValue(value)}
           />
-          <Text>Value: {volumeValue}</Text>
+
           <SettingsItem
             titleStyle={{
               color: "white",
@@ -63,6 +77,16 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
           />
+          <Text>Do not disturb mode</Text>
+          {/* <View>
+            <Switch
+              trackColor={{ false: "#ffaadd", true: "#38b6ff" }}
+              thumbColor={isEnabled ? "#fde78e" : "#fde78e"}
+              backgroundColor="#d9d9d9"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+          </View> */}
           <SettingsItem
             titleStyle={{
               color: "white",
