@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { List } from "react-native-paper";
 import styled, { useTheme } from "styled-components/native";
 import { SafeTop } from "../../../components/utility/safe-area.component";
 import { BackButton } from "../../../components/button/back-button.component";
 import { Text } from "../../../components/typography/text.component";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -17,6 +18,7 @@ const SettingsItem = styled(List.Item)`
 
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
+  const [volumeValue, setVolumeValue] = useState(100);
   return (
     <>
       <BackButton navigation={navigation} />
@@ -42,8 +44,14 @@ export function SettingsScreen({ navigation }) {
             onPress={() => {
               console.log("pressed");
             }}
-            description="Music"
           />
+          <Slider
+            minimumValue={0}
+            maximumValue={100}
+            value={volumeValue}
+            onValueChange={(value) => setVolumeValue(value)}
+          />
+          <Text>Value: {volumeValue}</Text>
           <SettingsItem
             titleStyle={{
               color: "white",
@@ -52,21 +60,6 @@ export function SettingsScreen({ navigation }) {
             left={(props) => <List.Icon {...props} icon="bell" />}
             onPress={() => {
               console.log("pressed");
-              /*<TouchableOpacity
-                    style={{
-                      marginLeft: "auto",
-                      borderRadius: 100,
-                      padding: 10,
-                      width: 41,
-                      // height: 50,
-                      backgroundColor: "#ffffff7f",
-                    }}
-                  >
-                    <Ionicons
-                      name="notifications"
-                      size={20}
-                    />
-              </TouchableOpacity>*/
             }}
           />
           <SettingsItem
