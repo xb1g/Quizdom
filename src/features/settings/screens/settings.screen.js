@@ -43,12 +43,6 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
             description="Music"
-              <Slider
-                maximumValue={100}
-                minimumValue={0}
-                step={1}
-                value='initial value'
-              />
           />
           <SettingsItem
             titleStyle={{
