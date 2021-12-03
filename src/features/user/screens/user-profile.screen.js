@@ -19,33 +19,10 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { ScrollView } from "react-native-gesture-handler";
 import { IconButton } from "react-native-paper";
-import { FriendList } from "../components/friend-list.component";
-import { AchievementList } from "../components/achievement-list.component";
+import { FriendList } from "../components/friend/friend-list.component";
+import { AchievementList } from "../components/achievements/achievement-list.component";
 import { H1, H2, Row, Back } from "../components/user-profile.styles";
-// import { AchievementList } from "../components/achievement.component";
-
-// const H1 = styled(Text)`
-//   color: #fff;
-//   font-size: 30px;
-// `;
-
-// const H2 = styled(Text)`
-//   color: #fff;
-//   font-size: 15px;
-// `;
-
-// const Row = styled.View`
-//   flex-direction: row;
-//   align-items: center;
-// `;
-
-// const Back = styled.View`
-//   background-color: rgba(255, 255, 255, 0.5);
-//   border-radius: 10px;
-//   padding: 10px;
-//   height: 100px;
-//   margin: 10px;
-// `;
+import { QuestionsList } from "../components/questions-list.component";
 
 export const UserProfileScreen = ({ navigation }) => {
   const [about, setAbout] = React.useState("");
@@ -96,7 +73,7 @@ export const UserProfileScreen = ({ navigation }) => {
       <BackButton navigation={navigation} />
       <ScrollView>
         <View style={{ flex: 1 }}>
-          <Row style={{ backgroundColor: "red" }}>
+          <Row style={{ backgroundColor: userInfo.color }}>
             <LinearGradient
               colors={["transparent", "rgba(0,0,0,0.7)"]}
               style={{
@@ -148,11 +125,13 @@ export const UserProfileScreen = ({ navigation }) => {
                   height: 100,
                   borderRadius: 50,
                 }}
-                source={{
-                  uri: userInfo.profileImage
-                    ? userInfo.profileImage
-                    : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
-                }}
+                source={
+                  userInfo.profileImage
+                    ? {
+                        uri: userInfo.profileImage,
+                      }
+                    : require("../../../../assets/no_user_picture.png")
+                }
               />
               <IconButton
                 icon="camera"
@@ -232,12 +211,13 @@ export const UserProfileScreen = ({ navigation }) => {
             </Back>
             <Row>
               <H1 variant="label">Friends - </H1>
-              <H2>{userInfo.friends}</H2>
+              {/* <H2>{userInfo.friends}</H2> */}
             </Row>
             <FriendList friends={userInfo.friends} navigation={navigation} />
             <H1 variant="label">Achievements</H1>
             <AchievementList achievements={userInfo.achievements} />
             <H1 variant="label">Questions</H1>
+            <QuestionsList questions={userInfo.questions} />
           </View>
         </View>
       </ScrollView>

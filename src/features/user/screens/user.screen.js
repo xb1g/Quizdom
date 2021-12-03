@@ -24,19 +24,15 @@ const UserIcon = styled(Avatar.Icon)`
 `;
 
 const RowStretch = styled(View)`
-  /* flex: 1; */
   flex-direction: row;
-  /* align-self: auto; */
   align-items: stretch;
-  /* justify-content: space-between; */
-  /* justify-content: stretch; */
   justify-content: space-evenly;
   /* justify-content: space-between; */
 `;
 
 const Container = styled.View`
   margin: ${(props) => props.theme.space[3]};
-  padding: ${(props) => props.theme.space[2]};
+  padding: ${(props) => props.theme.space[1]};
   flex-direction: row;
   align-items: center;
   background-color: #3d3d3d;
@@ -90,15 +86,17 @@ export const UserScreen = ({ navigation }) => {
                 marginTop: 20,
                 marginBottom: 20,
               }}
-              source={{
-                uri: userInfo.profileImage
-                  ? userInfo.profileImage
-                  : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
-              }}
+              source={
+                userInfo.profileImage
+                  ? {
+                      uri: userInfo.profileImage,
+                    }
+                  : require("../../../../assets/no_user_picture.png")
+              }
             />
             <Spacer />
             <Text variant="label" style={{ color: "white", fontSize: 25 }}>
-              {userInfo.username}
+              {userInfo.username + " "}
             </Text>
           </Container>
         </TouchableOpacity>
@@ -125,9 +123,9 @@ export const UserScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate("FriendsScreen")}
               />
               <BigUserItem
-                icon="person"
-                title="Announcement"
-                onPress={() => navigation.navigate("AnnouncementScreen")}
+                icon="bar-chart"
+                title="Stats"
+                onPress={() => navigation.navigate("StatsScreen")}
               />
             </RowStretch>
           </ItemContainer>
@@ -136,15 +134,21 @@ export const UserScreen = ({ navigation }) => {
         <List.Section>
           <ItemContainer style={{ ...shadow.shadow1 }}>
             <UserItem
+              icon="notifications-outline"
+              title="Announcement"
+              onPress={() => navigation.navigate("AnnouncementScreen")}
+            />
+            <Line />
+            <UserItem
               icon="settings-outline"
               title="Settings"
-              onPress={() => navigation.navigate("SettingScreen")}
+              onPress={() => navigation.navigate("SettingsScreen")}
             />
             <Line />
             <UserItem
               icon="help-outline"
               title="Help"
-              onPress={() => navigation.navigate("SettingScreen")}
+              onPress={() => navigation.navigate("SettingsScreen")}
             />
           </ItemContainer>
         </List.Section>

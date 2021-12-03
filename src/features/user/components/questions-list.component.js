@@ -3,10 +3,15 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { shadow } from "../../../components/shadow/shadow.styles";
 
-export const FriendList = ({ friends, navigation }) => {
-  friends = [
+export const QuestionsList = ({ questions, navigation }) => {
+  questions = [
     {
       id: 1,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "John Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -15,6 +20,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 2,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -23,6 +33,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 3,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "John Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -31,6 +46,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 4,
+      title: "sadsdasd's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "unanswered",
+
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -39,6 +59,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 5,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -47,6 +72,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 6,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -55,6 +85,11 @@ export const FriendList = ({ friends, navigation }) => {
     },
     {
       id: 7,
+      title: "what's this",
+      tags: ["math", "c++"],
+      description: "how to sleep in c++",
+      status: "answered",
+
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -65,47 +100,41 @@ export const FriendList = ({ friends, navigation }) => {
   return (
     <View
       style={{
-        // height: 100,
-        backgroundColor: "rgba(255,255,255,0.5)",
+        backgroundColor: "#ffffff24",
         borderRadius: 10,
-        // borderBottomLeftRadius: 50,
         margin: 10,
       }}
     >
       <FlatList
-        data={friends}
-        horizontal={true}
+        data={questions}
+        // horizontal={true}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("FriendProfile", {
-                  friend: item,
+                navigation.navigate("Question", {
+                  question: item,
                 });
               }}
               style={{
-                backgroundColor: item.color,
-                borderRadius: 100,
+                backgroundColor: "#ffffff",
+
+                borderBottomColor:
+                  item.status === "answered" ? "#6fffff" : "#ffaded",
+                borderBottomWidth: 10,
+                borderRadius: 10,
                 margin: 5,
                 padding: 5,
               }}
             >
               <View
-                style={{
-                  //   padding: 5,
-                  //   backgroundColor: "#636363",
-                  borderRadius: 50,
-                }}
+                style={
+                  {
+                    //   borderRadius: 50,
+                  }
+                }
               >
-                <Image
-                  source={{ uri: item.avatar }}
-                  style={{
-                    ...shadow.shadow2,
-                    width: 70,
-                    height: 70,
-                    borderRadius: 100,
-                  }}
-                />
+                <Text>{item.title}</Text>
               </View>
             </TouchableOpacity>
           </>

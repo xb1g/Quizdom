@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { Text } from "../../../components/typography/text.component";
+import { Text } from "../../../../components/typography/text.component";
 
 const Container = styled.View`
   background-color: aliceblue;

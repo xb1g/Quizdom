@@ -32,10 +32,11 @@ export const AuthenticationContextProvider = ({ children }) => {
       if (usr) {
         console.log("got user", usr.uid);
         setUser(usr);
-        onSnapshot(doc(db, "users", usr.uid), (u) => {
-          console.log(u.data());
+        const docRef = doc(db, "users", usr.uid);
+        onSnapshot(docRef, (u) => {
+          // console.log(u.data());
           const userInfo = u.data();
-          console.log(userInfo);
+          // console.log(userInfo);
           setUserInfo(userInfo);
         });
         setError(null);
@@ -53,7 +54,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     setIsLoading(true);
     loginRequest(email, password)
       .then((u) => {
-        console.log(u);
+        // console.log(u);
         setUser(u);
         setError(null);
         setIsLoading(false);
@@ -75,21 +76,21 @@ export const AuthenticationContextProvider = ({ children }) => {
     registerRequest(email, password)
       .then((u) => {
         // console.log("objec userInfo t", userInfo);
-        console.log("USERRRR");
-        console.log(u.user);
-        console.log(":UINFOOOOOOOOOOOOOOOO");
-        console.log(userInfo);
+        // console.log("USERRRR");
+        // console.log(u.user);
+        // console.log(":UINFOOOOOOOOOOOOOOOO");
+        // console.log(userInfo);
         u.displayName = userInfo.username;
         const newUser = { ...u.user, userInfo };
-        console.log("uidddddddddddddddddddddddddddddddddddddd");
+        // console.log("uidddddddddddddddddddddddddddddddddddddd");
         const uid = newUser.uid;
         setUser(newUser);
         //cant use immediantely
-        console.log("objecNEWUSERidt===", uid);
-        console.log(uid);
+        // console.log("objecNEWUSERidt===", uid);
+        // console.log(uid);
         setError(null);
         const docRef = doc(db, "users", uid);
-        console.log(docRef);
+        // console.log(docRef);
         const payload = {
           email,
           ...userInfo,
@@ -129,8 +130,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         onRegister,
         onLogout,
         userInfo,
-        // firstTimeUser,
-        // onUpdateInfo,
       }}
     >
       {children}

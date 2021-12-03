@@ -11,6 +11,9 @@ import { LeaderboardScreen } from "../../features/user/screens/leaderboard.scree
 import { FriendsScreen } from "../../features/user/screens/friends.screen";
 import { EditUserInfoScreen } from "../../features/user-info/screens/user-info.screen";
 import { UserProfileScreen } from "../../features/user/screens/user-profile.screen";
+import { StatsScreen } from "../../features/user/screens/stats.screen";
+import { FriendProfileScreen } from "../../features/user/screens/friend-profile.screen";
+import { SettingsScreen } from "../../features/settings/screens/settings.screen";
 // import { UserInfoContextProvider } from "../../services/user-info/user-info.context";
 
 const UserStack = createStackNavigator();
@@ -29,6 +32,16 @@ export const UserNavigator = ({ route, navigation }) => {
       <UserStack.Screen
         name="UserScreen"
         component={UserScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+      <UserStack.Screen
+        name="FriendProfile"
+        component={FriendProfileScreen}
         options={{
           headerShown: false,
           cardStyle: {
@@ -69,6 +82,27 @@ export const UserNavigator = ({ route, navigation }) => {
       <UserStack.Screen
         name="LeaderboardScreen"
         component={LeaderboardScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+      <UserStack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+
+      <UserStack.Screen
+        name="StatsScreen"
+        component={StatsScreen}
         options={{
           headerShown: false,
           cardStyle: {
