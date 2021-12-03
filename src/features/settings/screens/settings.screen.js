@@ -32,7 +32,28 @@ export function SettingsScreen({ navigation }) {
             titleStyle={{
               color: "white",
             }}
-            title="something"
+            title="Audio setting"
+            left={(props) => <List.Icon {...props} icon="folder" />}
+            onPress={() => {
+              console.log("pressed");
+            }}
+            title="Notification setting"
+            left={(props) => <List.Icon {...props} icon="folder" />}
+            onPress={() => {
+              console.log("pressed");
+            }}
+            title="Email and Password setting"
+            left={(props) => <List.Icon {...props} icon="folder" />}
+            onPress={() => {
+              console.log("pressed");
+            }}
+            
+            title="Sign out"
+            left={(props) => <List.Icon {...props} icon="folder" />}
+            onPress={() => {
+              console.log("pressed");
+            }}
+            title="Term of service and Privacy policy"
             left={(props) => <List.Icon {...props} icon="folder" />}
             onPress={() => {
               console.log("pressed");
