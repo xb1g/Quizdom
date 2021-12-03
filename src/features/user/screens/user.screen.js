@@ -86,11 +86,13 @@ export const UserScreen = ({ navigation }) => {
                 marginTop: 20,
                 marginBottom: 20,
               }}
-              source={{
-                uri: userInfo.profileImage
-                  ? userInfo.profileImage
-                  : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
-              }}
+              source={
+                userInfo.profileImage
+                  ? {
+                      uri: userInfo.profileImage,
+                    }
+                  : require("../../../../assets/no_user_picture.png")
+              }
             />
             <Spacer />
             <Text variant="label" style={{ color: "white", fontSize: 25 }}>

@@ -125,11 +125,13 @@ export const UserProfileScreen = ({ navigation }) => {
                   height: 100,
                   borderRadius: 50,
                 }}
-                source={{
-                  uri: userInfo.profileImage
-                    ? userInfo.profileImage
-                    : "https://lh3.googleusercontent.com/proxy/vKUZkXJMxkpQKS7CtuvjgOz-QfbIK71pNCDwOp0qbQT2geOhElt1ffrAoitKHCA_PfEpP6f3Z6tgXM6wlHbY3yPPlfja9oBgUHBC",
-                }}
+                source={
+                  userInfo.profileImage
+                    ? {
+                        uri: userInfo.profileImage,
+                      }
+                    : require("../../../../assets/no_user_picture.png")
+                }
               />
               <IconButton
                 icon="camera"
