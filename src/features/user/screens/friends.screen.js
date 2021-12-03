@@ -5,9 +5,12 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
-import { BackButton } from "../components/user-profile.styles";
+import { BackButton } from "../../../components/button/back-button.component";
 import { Text } from "../../../components/typography/text.component";
 import { FlatList } from "react-native-gesture-handler";
 import { Searchbar } from "react-native-paper";
@@ -22,8 +25,8 @@ import { SafeTop } from "../../../components/utility/safe-area.component";
 
 const FriendImage = styled(Image)`
   margin: 10px;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50px;
 `;
 
@@ -31,9 +34,9 @@ const FriendContainer = styled.View`
   flex-direction: row;
   /* justify-content: flex-end; */
   align-items: center;
-  border-radius: 20px;
-  background-color: white;
-  padding: 10px;
+  border-radius: 25px;
+  background-color: #313136;
+  /* padding: 5px; */
 `;
 
 export const FriendsScreen = ({ navigation }) => {
@@ -41,6 +44,7 @@ export const FriendsScreen = ({ navigation }) => {
   const [allUser, setAllUser] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
   const { userInfo } = useContext(AuthenticationContext);
+  const insets = useSafeAreaInsets();
 
   const getAllUser = async () => {
     const data = await getDocs(collection(db, "users"));
@@ -49,7 +53,7 @@ export const FriendsScreen = ({ navigation }) => {
     data.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
       const user = doc.data();
-      user.id = doc.id;
+      user.uid = doc.id;
       userArray.push(user);
     });
     console.log(userArray);
@@ -82,8 +86,23 @@ export const FriendsScreen = ({ navigation }) => {
     }
   };
 
+  const isFriend = (user) => {
+    const friends = userInfo.friends;
+    console.log("friends");
+    console.log(friends);
+    if (friends) {
+      friends.forEach((friend) => {
+        if (friend.uid === user.uid) {
+          return true;
+        }
+      });
+    }
+    return false;
+  };
+
   return (
     <View>
+      <BackButton navigation={navigation} />
       <SafeTop />
       <View
         style={{
@@ -95,7 +114,6 @@ export const FriendsScreen = ({ navigation }) => {
           {"Friends" + " "}
         </Text>
       </View>
-      <BackButton navigation={navigation} />
       <View style={{ marginHorizontal: 20 }}>
         <Searchbar
           style={{
@@ -123,43 +141,58 @@ export const FriendsScreen = ({ navigation }) => {
           height: "100%",
         }}
         data={search === "" ? userInfo.friends : filteredUser}
-        renderItem={({ item }) => (
-          <>
-            <TouchableOpacity
-              style={{
-                marginVertical: 5,
-                marginHorizontal: 10,
-              }}
-              onPress={() => {
-                navigation.navigate("FriendProfile", {
-                  user: item,
-                });
-              }}
-            >
-              <FriendContainer>
-                <FriendImage
-                  source={{
-                    uri: item.profileImage,
-                  }}
-                />
-                <Text>{item.username}</Text>
-                <TouchableOpacity
-                  style={{
-                    marginLeft: "auto",
-                    borderRadius: 100,
-                    padding: 10,
-                    width: 41,
-                    // height: 50,
-                    backgroundColor: "red",
-                  }}
-                >
-                  <Ionicons name="person-remove-outline" size={20} />
-                </TouchableOpacity>
-              </FriendContainer>
-            </TouchableOpacity>
-          </>
-        )}
         keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          const alreadyFriend = isFriend(item);
+          return (
+            <>
+              <TouchableOpacity
+                style={{
+                  marginVertical: 5,
+                  marginHorizontal: 10,
+                }}
+                onPress={() => {
+                  navigation.navigate("FriendProfile", {
+                    user: item,
+                    alreadyFriends: alreadyFriend,
+                  });
+                }}
+              >
+                <FriendContainer style={{ ...shadow.shadow1 }}>
+                  <FriendImage
+                    source={
+                      item.profileImage
+                        ? { uri: item.profileImage }
+                        : require("../../../../assets/no_user_picture.png")
+                    }
+                  />
+                  <Text
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    {item.username}
+                  </Text>
+                  <TouchableOpacity
+                    style={{
+                      marginLeft: "auto",
+                      borderRadius: 100,
+                      padding: 10,
+                      width: 41,
+                      // height: 50,
+                      backgroundColor: "#ffffff7f",
+                    }}
+                  >
+                    <Ionicons
+                      name={alreadyFriend ? "person-remove-outline" : "add"}
+                      size={20}
+                    />
+                  </TouchableOpacity>
+                </FriendContainer>
+              </TouchableOpacity>
+            </>
+          );
+        }}
       />
     </View>
   );

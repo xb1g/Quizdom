@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, FlatList, Image } from "react-native";
-import { shadow } from "../../../components/shadow/shadow.styles";
+import { shadow } from "../../../../components/shadow/shadow.styles";
 
 export const AchievementList = ({ achievements }) => {
   achievements = [

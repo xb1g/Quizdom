@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { shadow } from "../../../components/shadow/shadow.styles";
+import { shadow } from "../../../../components/shadow/shadow.styles";
 
 export const FriendList = ({ friends, navigation }) => {
   // friends = [

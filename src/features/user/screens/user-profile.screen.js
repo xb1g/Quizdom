@@ -19,34 +19,10 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { ScrollView } from "react-native-gesture-handler";
 import { IconButton } from "react-native-paper";
-import { FriendList } from "../components/friend-list.component";
-import { AchievementList } from "../components/achievement-list.component";
+import { FriendList } from "../components/friend/friend-list.component";
+import { AchievementList } from "../components/achievements/achievement-list.component";
 import { H1, H2, Row, Back } from "../components/user-profile.styles";
 import { QuestionsList } from "../components/questions-list.component";
-// import { AchievementList } from "../components/achievement.component";
-
-// const H1 = styled(Text)`
-//   color: #fff;
-//   font-size: 30px;
-// `;
-
-// const H2 = styled(Text)`
-//   color: #fff;
-//   font-size: 15px;
-// `;
-
-// const Row = styled.View`
-//   flex-direction: row;
-//   align-items: center;
-// `;
-
-// const Back = styled.View`
-//   background-color: rgba(255, 255, 255, 0.5);
-//   border-radius: 10px;
-//   padding: 10px;
-//   height: 100px;
-//   margin: 10px;
-// `;
 
 export const UserProfileScreen = ({ navigation }) => {
   const [about, setAbout] = React.useState("");
@@ -97,7 +73,7 @@ export const UserProfileScreen = ({ navigation }) => {
       <BackButton navigation={navigation} />
       <ScrollView>
         <View style={{ flex: 1 }}>
-          <Row style={{ backgroundColor: "red" }}>
+          <Row style={{ backgroundColor: userInfo.color }}>
             <LinearGradient
               colors={["transparent", "rgba(0,0,0,0.7)"]}
               style={{
