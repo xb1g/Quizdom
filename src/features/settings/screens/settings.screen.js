@@ -41,6 +41,21 @@ export function SettingsScreen({ navigation }) {
             left={(props) => <List.Icon {...props} icon="folder" />}
             onPress={() => {
               console.log("pressed");
+              /*<TouchableOpacity
+                    style={{
+                      marginLeft: "auto",
+                      borderRadius: 100,
+                      padding: 10,
+                      width: 41,
+                      // height: 50,
+                      backgroundColor: "#ffffff7f",
+                    }}
+                  >
+                    <Ionicons
+                      name="notifications"
+                      size={20}
+                    />
+              </TouchableOpacity>*/
             }}
             title="Email and Password setting"
             left={(props) => <List.Icon {...props} icon="folder" />}
@@ -54,7 +69,7 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
             title="Term of service and Privacy policy"
-            left={(props) => <List.Icon {...props} icon="folder" />}
+            left={(props) => <List.Icon {...props} icon="mail" />}
             onPress={() => {
               console.log("pressed");
             }}
