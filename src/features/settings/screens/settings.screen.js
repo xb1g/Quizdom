@@ -32,7 +32,7 @@ export function SettingsScreen({ navigation }) {
             titleStyle={{
               color: "white",
             }}
-            title="something"
+            title="Audio setting"
             left={(props) => <List.Icon {...props} icon="folder" />}
             onPress={() => {
               console.log("pressed");
