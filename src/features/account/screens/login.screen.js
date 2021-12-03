@@ -17,12 +17,16 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Center = styled.View``;
 
+const StyledAccountBackground = styled(AccountBackground)`
+  background-color: black;
+`;
+
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
-    <AccountBackground>
+    <StyledAccountBackground>
       <BackButton navigation={navigation} />
       <Container>
         {error && (
@@ -30,7 +34,6 @@ export const LoginScreen = ({ navigation }) => {
             <Text variant="error">{error}</Text>
           </Spacer>
         )}
-
         <Center>
           <AuthInput
             label="Email"
@@ -77,6 +80,6 @@ export const LoginScreen = ({ navigation }) => {
       >
         Back
       </AuthButton> */}
-    </AccountBackground>
+    </StyledAccountBackground>
   );
 };
