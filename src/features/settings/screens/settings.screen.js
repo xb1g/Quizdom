@@ -30,7 +30,7 @@ export function SettingsScreen({ navigation }) {
         <ScrollView>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.bg.primary,
+              backgroundColor: theme.colors.bg.primary  ,
               borderRadius: 10,
               marginHorizontal: 10,
             }}

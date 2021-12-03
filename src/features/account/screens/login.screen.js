@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
-import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
+import styled, { useTheme } from "styled-components/native";
 
 import {
   AccountBackground,
   AccountCover,
   Container,
+  TContainer,
   AuthInput,
   BackButton,
   AuthButton,
@@ -17,18 +18,15 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Center = styled.View``;
 
-const StyledAccountBackground = styled(AccountBackground)`
-  background-color: black;
-`;
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
-    <StyledAccountBackground>
+    <AccountBackground>
       <BackButton navigation={navigation} />
-      <Container>
+      <TContainer>
         {error && (
           <Spacer position="bottom" size="medium">
             <Text variant="error">{error}</Text>
@@ -68,7 +66,7 @@ export const LoginScreen = ({ navigation }) => {
             <ActivityIndicator animating={true} color={Colors.blue100} />
           )}
         </Center>
-      </Container>
+      </TContainer>
       {/* <Spacer size="large" />
       <Spacer size="large" />
       <AuthButton
@@ -80,6 +78,6 @@ export const LoginScreen = ({ navigation }) => {
       >
         Back
       </AuthButton> */}
-    </StyledAccountBackground>
+    </AccountBackground>
   );
 };

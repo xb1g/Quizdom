@@ -9,7 +9,7 @@ export const AccountBackground = styled.ImageBackground.attrs({
   // source: require("../../../../assets/splash.png"),
 })`
   flex: 1;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.bg.primary};
   justify-content: center;
 `;
 
@@ -30,11 +30,25 @@ export const Container = styled.View`
   align-self: center;
 `;
 
+export const TContainer = styled.View`
+  padding: ${(props) => props.theme.space[4]};
+  margin-top: ${(props) => props.theme.space[4]};
+  align-items: center;
+  align-self: center;
+  top: 20%;
+`;
+
 export const AuthButton = styled(AwesomeButtonC).attrs({
   textFontFamily: "Airstrike",
   textSize: 20,
   // backgroundDarker: "#ff5a5f",
   borderRadius: 10,
+  activityColor: "#ffffff",
+  backgroundActive: "#ff66c4",
+  backgroundColor: "#ffaadd",
+  backgroundDarker: "#ffffff",
+  backgroundShadow: "#ffffff",
+  textColor: "#ffffff",
 })`
   align-self: center;
 `;

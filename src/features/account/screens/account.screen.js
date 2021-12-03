@@ -8,6 +8,7 @@ import {
   AccountBackground,
   AccountCover,
   Container,
+  TContainer,
   AuthButton,
   AuthIconButton,
 } from "../components/account.styles";
@@ -17,23 +18,47 @@ import { Icon } from "../../../components/icon/icon.component";
 
 const LogoText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 70px;
+  font-size: 35px;
   position: absolute;
-  top: 15%;
+  top: 45%;
   align-self: center;
+  color: #ffffff;
+`;
+
+const DescText = styled.Text`
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  align-self: center;
+  color: ${(props) => props.theme.colors.accent.primary};
+`;
+
+const LogoImage = styled(Image)`
+  position: absolute;
+  top: 25%;
+  align-self: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+  border-color: ${(props) => props.theme.colors.accent.primary};
+  border-width: 10px;
 `;
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
+      <LogoImage
+              source={require("../../../../assets/chandy.png")}
+            />
       <LogoText>Quizdom </LogoText>
-      <Container>
+      <DescText>Let's go adventure togheter.</DescText>
+      <TContainer>
         <AuthButton
           type="primary"
           size="large"
           onPress={() => navigation.navigate("Login")}
         >
-          Login
+          Sign In
         </AuthButton>
         <Spacer size="large" />
         <AuthButton
@@ -43,8 +68,10 @@ export const AccountScreen = ({ navigation }) => {
         >
           Register
         </AuthButton>
+        {/*
         <Spacer size="large" />
         <Spacer size="large" />
+        
         <View
           style={{
             borderBottomColor: "black",
@@ -52,8 +79,11 @@ export const AccountScreen = ({ navigation }) => {
             alignSelf: "stretch",
           }}
         />
-
+        
+        
         <Spacer size="large" />
+        */}
+        {/*
         <View style={{ flexDirection: "row" }}>
           <AuthIconButton
             size="large"
@@ -74,8 +104,10 @@ export const AccountScreen = ({ navigation }) => {
               source={require("../../../../assets/login-icons/apple.png")}
             />
           </AuthIconButton>
+        
         </View>
-      </Container>
+        */}
+      </TContainer>
     </AccountBackground>
   );
 };

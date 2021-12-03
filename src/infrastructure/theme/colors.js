@@ -25,4 +25,18 @@ export const colors = {
     error: "#D0421B",
     success: "#138000",
   },
+  accent: {
+    zerary: "#a6a6a6",
+    zerarym: "#d9d9d9",
+    primary: "#fcab40",
+    primarym: "#fde78e",
+    secondary: "#ff66c4",
+    secondarym: "#ffaadd",
+    tertiary: "#004aad",
+    tertiarym: "#38b6ff",
+    quaternary: "#a359a0",
+    quaternarym: "#cb6ce6",
+    quinary: "#77b800",
+    quinarym: "#7ed957",
+  },
 };
