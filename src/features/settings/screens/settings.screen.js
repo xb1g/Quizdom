@@ -18,17 +18,16 @@ const SettingsItem = styled(List.Item)`
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
   return (
-    <SafeTop>
-      {/* <SafeTop /> */}
+    <>
       <BackButton navigation={navigation} />
-      <Text
-        variant="label"
-        style={{ color: "white", fontSize: 60, marginLeft: "auto" }}
-      >
-        {"Settings" + " "}
-      </Text>
-      <ScrollView>
-        <SafeTop>
+      <SafeTop>
+        <Text
+          variant="label"
+          style={{ color: "white", fontSize: 60, marginLeft: "auto" }}
+        >
+          {"Settings" + " "}
+        </Text>
+        <ScrollView>
           <SettingsItem
             style={{
               backgroundColor: theme.colors.bg.primary,
@@ -72,8 +71,8 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
           />
-        </SafeTop>
-      </ScrollView>
-    </SafeTop>
+        </ScrollView>
+      </SafeTop>
+    </>
   );
 }
