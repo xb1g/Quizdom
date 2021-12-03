@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { Text } from "../../../components/typography/text.component";
 import {
   View,
-  Text,
   Image,
   TouchableOpacity,
   TouchableHighlight,
@@ -17,22 +17,48 @@ const FriendImage = styled(Image)`
   margin: 10px;
   height: 50px;
   width: 50px;
+  border-radius: 80px;
+  /*background-color: orange;*/
+  overflow: hidden ;
+  border-width: 2px;
+  border-color: orange;
   border-radius: 50px;
 `;
 
 const FriendContainer = styled.View`
-  flex-direction: row;
+  flex-direction: column;
   /* justify-content: flex-end; */
   align-items: center;
   border-radius: 20px;
-  background-color: white;
+  /*background-color: white;*/
+  padding: 10px;
+  margin: 10px;
+  width: 80px;
+`;
+
+const FriendText = styled(Text)`
+  color: pink;
+  text-align: center;
+  font-weight: bold;
+`;
+
+const PageHead = styled(Text)`
+  color: white;
+  text-align: right;
+  font-size: 40px;
   padding: 10px;
 `;
+
 export const FriendsScreen = ({ navigation }) => {
   const { userInfo } = useContext(AuthenticationContext);
   return (
-    <View>
-      <Text>Friends</Text>
+    <View
+        style={{
+          marginTop: 50,
+        }}
+      >
+      <PageHead></PageHead>
+      <PageHead variant="label">Friends</PageHead>
       <Spacer size="extraLarge" />
       <Spacer size="extraLarge" />
       <Searchbar />
@@ -51,7 +77,7 @@ export const FriendsScreen = ({ navigation }) => {
                     uri: "https://reactnative.dev/img/tiny_logo.png",
                   }}
                 />
-                <Text>{item.username}</Text>
+                <FriendText>{item.username}</FriendText>
                 <TouchableOpacity
                   style={{
                     // alignSelf: "flex-end",
@@ -70,7 +96,9 @@ export const FriendsScreen = ({ navigation }) => {
           </>
         )}
         keyExtractor={(item) => item.id}
+        numColumns={4}
       />
     </View>
+    
   );
 };
