@@ -48,6 +48,7 @@ export function SettingsScreen({ navigation }) {
           <Slider
             minimumValue={0}
             maximumValue={100}
+            step={100}
             value={volumeValue}
             onValueChange={(value) => setVolumeValue(value)}
           />
