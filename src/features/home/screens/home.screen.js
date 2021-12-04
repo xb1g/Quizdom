@@ -8,7 +8,10 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
-import { SafeArea } from "../../../components/utility/safe-area.component";
+import {
+  SafeArea,
+  SafeTop,
+} from "../../../components/utility/safe-area.component";
 import { Today } from "../components/today/today.component";
 import { Maps } from "../components/maps.component";
 import { ScrollView } from "react-native-gesture-handler";
@@ -30,24 +33,27 @@ export const HomeScreen = ({ navigation }) => {
   // const [maps, setMaps] = React.useState([]);
   const maps = [
     {
-      title: "Sets",
+      title: "Set",
+      navigateName: "SetScreen",
       id: 1,
       progress: "3/10",
       isStarted: true,
       isPaused: false,
       image: require("../../../../assets/maps-image/setsmapimg.png"),
     },
-    {
-      title: "exponential",
-      id: 2,
-      progress: "0/7",
-      isStarted: false,
-      isPaused: false,
-      image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
-    },
+    // {
+    //   title: "exponential",
+    //   id: 2,
+    //   progress: "0/7",
+    //   isStarted: false,
+    //   isPaused: false,
+    //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
+    // },
   ];
   return (
     <>
+      <SafeTop />
+      <SafeTop />
       <ScrollView>
         <Button onPress={onLogout}>Logout</Button>
         <Heading>Today</Heading>
@@ -55,6 +61,7 @@ export const HomeScreen = ({ navigation }) => {
         <Today style={shadow} navigation={navigation} />
         <Heading>Maps</Heading>
         <Maps maps={maps} navigation={navigation} />
+        <ScrollView></ScrollView>
       </ScrollView>
       <StatusBar style="light" />
     </>

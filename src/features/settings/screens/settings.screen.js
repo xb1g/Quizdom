@@ -5,6 +5,7 @@ import styled, { useTheme } from "styled-components/native";
 import { SafeTop } from "../../../components/utility/safe-area.component";
 import { BackButton } from "../../../components/button/back-button.component";
 import { Text } from "../../../components/typography/text.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -21,6 +22,7 @@ export function SettingsScreen({ navigation }) {
     <>
       <BackButton navigation={navigation} />
       <SafeTop>
+        <Spacer />
         <Text
           variant="label"
           style={{ color: "white", fontSize: 60, marginLeft: "auto" }}
