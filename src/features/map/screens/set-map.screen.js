@@ -8,6 +8,7 @@ import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../components/typography/text.component";
 import { BackButton } from "../../../components/button/back-button.component";
+import Pie from "react-native-pie";
 
 export const SetMapScreen = ({ navigation }) => {
   return (
@@ -27,7 +28,20 @@ export const SetMapScreen = ({ navigation }) => {
             navigation.navigate("QuizNavigator", { moduleName: "set-basic" })
           }
         >
-          <Ionicons name="ios-pin" size={50} color="black" />
+          <>
+            <Ionicons name="ios-pin" size={50} color="black" />
+            <Pie
+              radius={80}
+              innerRadius={75}
+              sections={[
+                {
+                  percentage: 60,
+                  color: "#f00",
+                },
+              ]}
+              backgroundColor="#ddd"
+            />
+          </>
         </TouchableOpacity>
       </ScrollView>
     </>
