@@ -178,6 +178,5 @@ const stylestxt = StyleSheet.create({
     marginBottom: 10,
     alignItems: "stretch",
     justifyContent: "center",
-    color: "#ffffff",
   },
 });
