@@ -19,15 +19,7 @@ const SettingsItem = styled(List.Item)`
 
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
-  const [
-    volumeValue,
-    setVolumeValue,
-    sfxVolumeValue,
-    setSfxVolumeValue,
-    voiceVolumeValue,
-    setVoiceVolumeValue,
-  ] = useState(100);
-  const [isEnabled, setIsEnabled] = useState(False);
+  const [volumeValue, setVolumeValue] = useState(100);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <>
@@ -66,7 +58,6 @@ export function SettingsScreen({ navigation }) {
             value={volumeValue}
             onValueChange={(value) => setVolumeValue(value)}
           />
-
           <SettingsItem
             titleStyle={{
               color: "white",
@@ -77,16 +68,6 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
           />
-          <Text>Do not disturb mode</Text>
-          {/* <View>
-            <Switch
-              trackColor={{ false: "#ffaadd", true: "#38b6ff" }}
-              thumbColor={isEnabled ? "#fde78e" : "#fde78e"}
-              backgroundColor="#d9d9d9"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-          </View> */}
           <SettingsItem
             titleStyle={{
               color: "white",
