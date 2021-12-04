@@ -20,7 +20,10 @@ const SettingsItem = styled(List.Item)`
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
   const [volumeValue, setVolumeValue] = useState(100);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [musicValue, setMusicValue] = useState(100);
+  const [sfxValue, setSfxValue] = useState(100);
+  const [voiceValue, setVoiceValue] = useState(100);
+  const [switchValue, setSwitchValue] = useState(1);
   return (
     <>
       <BackButton navigation={navigation} />
@@ -47,7 +50,7 @@ export function SettingsScreen({ navigation }) {
               console.log("pressed");
             }}
           />
-          <Text>Music volume : {volumeValue}</Text>
+          <Text>Master volume : {volumeValue}</Text>
           <Slider
             minimumValue={0}
             maximumValue={100}
@@ -57,6 +60,43 @@ export function SettingsScreen({ navigation }) {
             step={1}
             value={volumeValue}
             onValueChange={(value) => setVolumeValue(value)}
+            //onValueChange={(value) => console.log({ volumeValue })}
+          />
+          <Text>Music : {musicValue}</Text>
+          <Slider
+            minimumValue={0}
+            maximumValue={100}
+            minimumTrackTintColor="#ffaadd"
+            maximumTrackTintColor="#38b6ff"
+            thumbTintColor="#fde78e"
+            step={1}
+            value={musicValue}
+            onValueChange={(value) => setMusicValue(value)}
+            //onValueChange={(value) => console.log({ musicValue })}
+          />
+          <Text>Sound effects : {sfxValue}</Text>
+          <Slider
+            minimumValue={0}
+            maximumValue={100}
+            minimumTrackTintColor="#ffaadd"
+            maximumTrackTintColor="#38b6ff"
+            thumbTintColor="#fde78e"
+            step={1}
+            value={sfxValue}
+            onValueChange={(value) => setSfxValue(value)}
+            //onValueChange={(value) => console.log({ sfxValue })}
+          />
+          <Text>Chandy's voice : {voiceValue}</Text>
+          <Slider
+            minimumValue={0}
+            maximumValue={100}
+            minimumTrackTintColor="#ffaadd"
+            maximumTrackTintColor="#38b6ff"
+            thumbTintColor="#fde78e"
+            step={1}
+            value={voiceValue}
+            onValueChange={(value) => setVoiceValue(value)}
+            //onValueChange={(value) => console.log({ voiceValue })}
           />
           <SettingsItem
             titleStyle={{
@@ -67,6 +107,12 @@ export function SettingsScreen({ navigation }) {
             onPress={() => {
               console.log("pressed");
             }}
+          />
+          <Text>Do not disturb</Text>
+          <Switch
+            value={switchValue}
+            onValueChange={(value) => setSwitchValue(value)}
+            onValueChange={(value) => setSwitchValue(value)}
           />
           <SettingsItem
             titleStyle={{
