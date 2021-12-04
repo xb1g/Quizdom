@@ -74,9 +74,7 @@ export const Maps = ({ maps, navigation }) => {
                     flex: 1,
                   }}
                   onPress={() => {
-                    navigation.navigate("MapScreen", {
-                      map: item,
-                    });
+                    navigation.navigate("SetMapScreen");
                   }}
                 >
                   {/* <View

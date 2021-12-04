@@ -26,22 +26,26 @@ export const CommunityNavigator = ({ navigation }) => {
       }}
     >
       <CommunityStack.Screen
-        name="PlannerScreen"
+        name="CommunityMainScreen"
         component={CommunityScreen}
         options={{
           title: "Community ",
           headerTitleStyle: {
-            marginLeft: Platform.OS === "android" ? 0 : -50,
+            marginLeft: Platform.OS === "android" ? 0 : 0,
             marginTop: -10,
             alignSelf: "flex-start",
-            fontSize: 50,
+            fontSize: 40,
+            width: 500,
             justifyContent: "flex-start",
             fontFamily: "Airstrike",
-            color: "black",
+            color: "white",
           },
           headerRight: () => (
             <View
               style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
                 marginRight: 20,
                 marginBottom: 10,
                 backgroundColor: theme.colors.brand.primary,
@@ -50,7 +54,48 @@ export const CommunityNavigator = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Ionicons name="ios-search" size={30} color="black" />
+              <Ionicons name="ios-search" size={30} color="#fff" />
+            </View>
+          ),
+          headerStyle: {
+            backgroundColor: theme.colors.bg.primary,
+            borderBottomRightRadius: 30,
+            borderBottomLeftRadius: 30,
+            height: 60 + insets.top,
+            ...shadow.shadow2,
+          },
+        }}
+      />
+      <CommunityStack.Screen
+        name="AddPostScreen"
+        component={CommunityScreen}
+        options={{
+          title: "Community ",
+          headerTitleStyle: {
+            marginLeft: Platform.OS === "android" ? 0 : 0,
+            marginTop: -10,
+            alignSelf: "flex-start",
+            fontSize: 40,
+            width: 500,
+            justifyContent: "flex-start",
+            fontFamily: "Airstrike",
+            color: "white",
+          },
+          headerRight: () => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                marginRight: 20,
+                marginBottom: 10,
+                backgroundColor: theme.colors.brand.primary,
+                padding: 10,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons name="ios-search" size={30} color="#fff" />
             </View>
           ),
           headerStyle: {
