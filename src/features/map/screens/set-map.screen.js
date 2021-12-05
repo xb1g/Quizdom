@@ -8,7 +8,8 @@ import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../components/typography/text.component";
 import { BackButton } from "../../../components/button/back-button.component";
-import Pie from "react-native-pie";
+// import Pie from "react-native-pie";
+import CircularProgress from "react-native-circular-progress-indicator";
 
 export const SetMapScreen = ({ navigation }) => {
   return (
@@ -20,28 +21,31 @@ export const SetMapScreen = ({ navigation }) => {
             position: "absolute",
             backgroundColor: "#4b0000",
             top: 150,
-            left: 20,
+            left: 100,
             width: 50,
             height: 50,
+            justifyContent: "center",
+            alignItems: "center",
           }}
           onPress={() =>
             navigation.navigate("QuizNavigator", { moduleName: "set-basic" })
           }
         >
-          <>
-            <Ionicons name="ios-pin" size={50} color="black" />
-            <Pie
-              radius={80}
-              innerRadius={75}
-              sections={[
-                {
-                  percentage: 60,
-                  color: "#f00",
-                },
-              ]}
-              backgroundColor="#ddd"
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {/* <Ionicons name="ios-pin" size={50} color="black" /> */}
+            <CircularProgress
+              activeStrokeColor={"#2465FD"}
+              activeStrokeSecondaryColor={"#C25AFF"}
+              activeStrokeWidth={20}
+              value={25}
+              radius={60}
             />
-          </>
+          </View>
         </TouchableOpacity>
       </ScrollView>
     </>
