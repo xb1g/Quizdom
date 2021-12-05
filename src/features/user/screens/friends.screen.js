@@ -22,6 +22,7 @@ import { shadow } from "../../../components/shadow/shadow.styles";
 import { db } from "../../../../firebase-config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { SafeTop } from "../../../components/utility/safe-area.component";
+import HeaderText from "../../../components/utility/header-text.component";
 
 const FriendImage = styled(Image)`
   margin: 10px;
@@ -104,16 +105,7 @@ export const FriendsScreen = ({ navigation }) => {
     <View>
       <BackButton navigation={navigation} />
       <SafeTop />
-      <View
-        style={{
-          marginBottom: 10,
-          marginLeft: "auto",
-        }}
-      >
-        <Text variant="label" style={{ color: "white", fontSize: 60 }}>
-          {"Friends" + " "}
-        </Text>
-      </View>
+      <HeaderText title="Friends" />
       <View style={{ marginHorizontal: 20 }}>
         <Searchbar
           style={{
