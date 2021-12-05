@@ -39,21 +39,25 @@ export function SettingsScreen({ navigation }) {
         <ScrollView>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.bg.primary,
+              backgroundColor: theme.colors.brand.secondary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Audio setting"
             left={(props) => <List.Icon {...props} icon="volume-high" />}
+            right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
           />
           <View style={stylestxt.container}>
-            <Text>Master volume : {volumeValue}</Text>
+            <Text style={{ color: "white" }}>
+              Master volume : {volumeValue}
+            </Text>
           </View>
           <View style={styles.container}>
             <Slider
@@ -69,7 +73,7 @@ export function SettingsScreen({ navigation }) {
             />
           </View>
           <View style={stylestxt.container}>
-            <Text>Music : {musicValue}</Text>
+            <Text style={{ color: "white" }}>Music : {musicValue}</Text>
           </View>
           <View style={styles.container}>
             <Slider
@@ -85,7 +89,7 @@ export function SettingsScreen({ navigation }) {
             />
           </View>
           <View style={stylestxt.container}>
-            <Text>Sound effects : {sfxValue}</Text>
+            <Text style={{ color: "white" }}>Sound effects : {sfxValue}</Text>
           </View>
           <View style={styles.container}>
             <Slider
@@ -101,7 +105,9 @@ export function SettingsScreen({ navigation }) {
             />
           </View>
           <View style={stylestxt.container}>
-            <Text>Chandy's voice : {voiceValue}</Text>
+            <Text style={{ color: "white" }}>
+              Chandy's voice : {voiceValue}
+            </Text>
           </View>
           <View style={styles.container}>
             <Slider
@@ -117,17 +123,24 @@ export function SettingsScreen({ navigation }) {
             />
           </View>
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Notification setting"
             left={(props) => <List.Icon {...props} icon="bell" />}
+            right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
           />
           <View style={stylestxt.container}>
-            <Text>Do not disturb</Text>
+            <Text style={{ color: "white" }}>Do not disturb</Text>
           </View>
           <View style={styles.container}>
             <Switch
@@ -137,8 +150,14 @@ export function SettingsScreen({ navigation }) {
             />
           </View>
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Email and Password setting"
             left={(props) => <List.Icon {...props} icon="wrench" />}
@@ -147,8 +166,14 @@ export function SettingsScreen({ navigation }) {
             }}
           />
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Term of service and Privacy policy"
             left={(props) => <List.Icon {...props} icon="mail" />}
@@ -166,6 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 50,
     marginRight: 50,
+    marginBottom: 10,
     alignItems: "stretch",
     justifyContent: "center",
   },
