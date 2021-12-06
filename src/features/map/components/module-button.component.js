@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
 
 export function ModuleButton({
   color,
@@ -8,6 +9,7 @@ export function ModuleButton({
   style,
   moduleName,
   navigation,
+  onPress,
 }) {
   return (
     <TouchableOpacity
@@ -23,17 +25,17 @@ export function ModuleButton({
         alignItems: "center",
         ...style,
       }}
-      onPress={() =>
-        navigation.navigate("QuizNavigator", { moduleName: moduleName })
-      }
+      onPress={onPress}
     >
-      {/* <CircularProgress
-              activeStrokeColor={"#2465FD"}
-              activeStrokeSecondaryColor={"#C25AFF"}
-              activeStrokeWidth={20}
-              value={25}
-              radius={60}
-            /> */}
+      <CircularProgressWithChild
+        activeStrokeColor={"#2465FD"}
+        activeStrokeSecondaryColor={"#C25AFF"}
+        activeStrokeWidth={20}
+        value={25}
+        radius={60}
+      >
+        <View></View>
+      </CircularProgressWithChild>
     </TouchableOpacity>
   );
 }

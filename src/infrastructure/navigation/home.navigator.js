@@ -88,33 +88,25 @@ export const HomeNavigator = ({ navigation, route }) => {
             headerShown: false,
           }}
         />
-        <HomeStack.Screen
-          name="QuizNavigator"
-          component={QuizNavigator}
-          options={{
-            headerShown: false,
-            presentation: "modal",
-            gestureResponseDistance: 500,
-            cardStyle: {
-              backgroundColor: "red",
-              height: 300,
-            },
-            style: {
-              width: 300,
-              height: 300,
-            },
-            ...TransitionPresets.ModalTransition,
-          }}
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: true,
-            gestureDirection: "horizontal",
-            cardStyle: {
-              backgroundColor: "red",
-              height: 300,
-            },
-          }}
-        />
+        <HomeStack.Group
+          screenOptions={
+            {
+              // presentation: "transparentModal",
+              // ...TransitionPresets.ModalSlideFromBottomIOS,
+            }
+          }
+        >
+          <HomeStack.Screen
+            name="QuizNavigator"
+            component={QuizNavigator}
+            options={{
+              headerShown: false,
+              gestureResponseDistance: 500,
+              // ...TransitionPresets.ModalTransition,
+              ...TransitionPresets.ModalPresentationIOS,
+            }}
+          />
+        </HomeStack.Group>
       </HomeStack.Navigator>
       <StatusBar style="auto" />
     </>

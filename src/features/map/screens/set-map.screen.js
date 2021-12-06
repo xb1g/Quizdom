@@ -9,15 +9,20 @@ import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../components/typography/text.component";
 import { BackButton } from "../../../components/button/back-button.component";
 // import Pie from "react-native-pie";
-import CircularProgress from "react-native-circular-progress-indicator";
 import { ModuleButton } from "../components/module-button.component";
 import { useTheme } from "styled-components";
 import { HeaderText } from "../../../components/utility/header-text.component";
+// import { ModulePopup } from "../../quiz/screens/module-popup.screen";
+import { ModulePopup } from "../components/module-popup.component";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { shadow } from "../../../components/shadow/shadow.styles";
 
 export const SetMapScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   const theme = useTheme();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+  const [popupShown, setPopupShown] = React.useState(null);
   console.log(theme);
   return (
     <View style={{ flexGrow: 1 }}>
@@ -29,7 +34,7 @@ export const SetMapScreen = ({ navigation }) => {
 
       <ScrollView
         // style={{ backgroundColor: "#432", flexGrow: 1 }}
-        contentContainerStyle={{ flexGrow: 1, backgroundColor: "#241d16" }}
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
         <View style={{ flexGrow: 1, height: windowHeight * 2 }} />
@@ -38,12 +43,22 @@ export const SetMapScreen = ({ navigation }) => {
           color={theme.colors.brand.primary}
           top={windowHeight * 0.1}
           left={windowWidth * 0.1}
+          onPress={() => {
+            setPopupShown("module1");
+            console.log("asdas");
+            console.log(popupShown);
+          }}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.3}
           left={windowWidth * 0.3}
+          onPress={() => {
+            setPopupShown("module2");
+            console.log("asdas");
+            console.log(popupShown);
+          }}
         />
         <ModuleButton
           navigation={navigation}
@@ -71,6 +86,17 @@ export const SetMapScreen = ({ navigation }) => {
         />
         {/* </View> */}
       </ScrollView>
+      {popupShown && (
+        <View
+          style={{
+            position: "absolute",
+            bottom: insets.bottom,
+            ...shadow.shadow2,
+          }}
+        >
+          <ModulePopup moduleName={popupShown} navigation={navigation} />
+        </View>
+      )}
     </View>
   );
 };
