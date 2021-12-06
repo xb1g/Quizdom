@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Text } from "../../../components/typography/text.component";
+//import { Text } from "../../../components/typography/text.component";
 import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { KeyboardAvoidingView } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 
 import {
   AccountBackground,
@@ -19,6 +20,22 @@ import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Center = styled.View``;
+
+const DescText = styled.Text`
+  font-size: 20px;
+  position: absolute;
+  top: 25%;
+  align-self: center;
+  color: ${(props) => props.theme.colors.accent.primary};
+`;
+
+const TContainer = styled.View`
+  padding: ${(props) => props.theme.space[4]};
+  margin-top: ${(props) => props.theme.space[4]};
+  align-items: center;
+  align-self: center;
+  top: 0%;
+`;
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -40,13 +57,15 @@ export const RegisterScreen = ({ navigation }) => {
             page ? setPage(false) : navigation.goBack();
           }}
         />
-        <Container>
+        <DescText>Create your account.</DescText>
+        <TContainer>
           {error && (
             <Spacer position="bottom" size="medium">
               <Text variant="error">{error}</Text>
             </Spacer>
           )}
           {!page ? (
+          
             <Center>
               <AuthInput
                 label="Email"
@@ -158,7 +177,7 @@ export const RegisterScreen = ({ navigation }) => {
               </AuthButton>
             </Center>
           )}
-        </Container>
+        </TContainer>
       </AccountBackground>
     </KeyboardAvoidingView>
   );

@@ -79,6 +79,10 @@ export const BackButton = ({ navigation, onPress }) => {
       style={{
         position: "absolute",
         top: "5%",
+        left: "-5%",
+        backgroundColor: "#ffffff",
+        borderColor: "#ffffff",
+        borderRadius: 20,
       }}
       onPress={
         onPress
@@ -90,10 +94,10 @@ export const BackButton = ({ navigation, onPress }) => {
     >
       <Text
         style={{
-          fontSize: 150,
+          fontSize: 75,
           fontFamily: "Airstrike",
         }}
-      >{`< `}</Text>
+      >{`  <  `}</Text>
     </TouchableOpacity>
   );
 };
