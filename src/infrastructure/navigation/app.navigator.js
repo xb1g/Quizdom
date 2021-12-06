@@ -1,14 +1,8 @@
 import React, { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import styled from "styled-components";
-
-// import { CommunityScreen } from "../../features/community/screens/community.screen";
-
 import { PlannerNavigator } from "./planner.navigator";
-import { SafeArea } from "../../components/utility/safe-area.component";
-import { shadow } from "../../components/shadow/shadow.styles";
 
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { View } from "react-native";

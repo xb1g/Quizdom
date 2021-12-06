@@ -91,10 +91,28 @@ export const HomeNavigator = ({ navigation, route }) => {
         <HomeStack.Screen
           name="QuizNavigator"
           component={QuizNavigator}
-          navigation={navigation}
           options={{
             headerShown: false,
-            ...TransitionPresets.ModalPresentationIOS,
+            presentation: "modal",
+            gestureResponseDistance: 500,
+            cardStyle: {
+              backgroundColor: "red",
+              height: 300,
+            },
+            style: {
+              width: 300,
+              height: 300,
+            },
+            ...TransitionPresets.ModalTransition,
+          }}
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: true,
+            gestureDirection: "horizontal",
+            cardStyle: {
+              backgroundColor: "red",
+              height: 300,
+            },
           }}
         />
       </HomeStack.Navigator>

@@ -14,16 +14,28 @@ export function QuizNavigator({ navigation }) {
     <QuizStack.Navigator
       screenOptions={{
         headerShown: false,
-        ...TransitionPresets.ModalPresentationIOS,
+        // ...TransitionPresets.ModalPresentationIOS,
       }}
     >
       <QuizStack.Group
-        screenOptions={{
-          ...TransitionPresets.ModalPresentationIOS,
-        }}
+        screenOptions={
+          {
+            // ...TransitionPresets.ModalPresentationIOS,
+          }
+        }
       >
-        <QuizStack.Screen name="ModulePopup" component={ModulePopupScreen} />
-        <QuizStack.Screen name="ResourceScreen" component={ResourceScreen} />
+        <QuizStack.Screen
+          name="ModulePopup"
+          component={ModulePopupScreen}
+          options={{
+            cardStyle: {
+              width: 200,
+              height: 200,
+            },
+            // gestureResponseDistance: 200,
+          }}
+        />
+        <QuizStack.Screen name="Resource" component={ResourceScreen} />
       </QuizStack.Group>
     </QuizStack.Navigator>
   );
