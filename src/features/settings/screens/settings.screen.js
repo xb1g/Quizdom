@@ -5,6 +5,7 @@ import styled, { useTheme } from "styled-components/native";
 import { SafeTop } from "../../../components/utility/safe-area.component";
 import { BackButton } from "../../../components/button/back-button.component";
 import { Text } from "../../../components/typography/text.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
 import { Slider } from "@miblanchard/react-native-slider";
 import { View, Switch, StyleSheet } from "react-native";
 
@@ -19,20 +20,16 @@ const SettingsItem = styled(List.Item)`
 
 export function SettingsScreen({ navigation }) {
   const theme = useTheme();
-  const [
-    volumeValue,
-    setVolumeValue,
-    sfxVolumeValue,
-    setSfxVolumeValue,
-    voiceVolumeValue,
-    setVoiceVolumeValue,
-  ] = useState(100);
-  const [isEnabled, setIsEnabled] = useState(False);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [volumeValue, setVolumeValue] = useState(100);
+  const [musicValue, setMusicValue] = useState(100);
+  const [sfxValue, setSfxValue] = useState(100);
+  const [voiceValue, setVoiceValue] = useState(100);
+  const [switchValue, setSwitchValue] = useState(1);
   return (
     <>
       <BackButton navigation={navigation} />
       <SafeTop>
+        <Spacer />
         <Text
           variant="label"
           style={{ color: "white", fontSize: 60, marginLeft: "auto" }}
@@ -42,54 +39,125 @@ export function SettingsScreen({ navigation }) {
         <ScrollView>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.bg.primary  ,
+              backgroundColor: theme.colors.brand.secondary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Audio setting"
             left={(props) => <List.Icon {...props} icon="volume-high" />}
+            right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
           />
-          <Text>Music volume : {volumeValue}</Text>
-          <Slider
-            minimumValue={0}
-            maximumValue={100}
-            minimumTrackTintColor="#ffaadd"
-            maximumTrackTintColor="#38b6ff"
-            thumbTintColor="#fde78e"
-            step={1}
-            value={volumeValue}
-            onValueChange={(value) => setVolumeValue(value)}
-          />
-
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>
+              Master volume : {volumeValue}
+            </Text>
+          </View>
+          <View style={styles.container}>
+            <Slider
+              minimumValue={0}
+              maximumValue={100}
+              minimumTrackTintColor="#ffaadd"
+              maximumTrackTintColor="#38b6ff"
+              thumbTintColor="#fde78e"
+              step={1}
+              value={volumeValue}
+              onValueChange={(value) => setVolumeValue(value)}
+              //onValueChange={(value) => console.log({ volumeValue })}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Music : {musicValue}</Text>
+          </View>
+          <View style={styles.container}>
+            <Slider
+              minimumValue={0}
+              maximumValue={100}
+              minimumTrackTintColor="#ffaadd"
+              maximumTrackTintColor="#38b6ff"
+              thumbTintColor="#fde78e"
+              step={1}
+              value={musicValue}
+              onValueChange={(value) => setMusicValue(value)}
+              //onValueChange={(value) => console.log({ musicValue })}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Sound effects : {sfxValue}</Text>
+          </View>
+          <View style={styles.container}>
+            <Slider
+              minimumValue={0}
+              maximumValue={100}
+              minimumTrackTintColor="#ffaadd"
+              maximumTrackTintColor="#38b6ff"
+              thumbTintColor="#fde78e"
+              step={1}
+              value={sfxValue}
+              onValueChange={(value) => setSfxValue(value)}
+              //onValueChange={(value) => console.log({ sfxValue })}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>
+              Chandy's voice : {voiceValue}
+            </Text>
+          </View>
+          <View style={styles.container}>
+            <Slider
+              minimumValue={0}
+              maximumValue={100}
+              minimumTrackTintColor="#ffaadd"
+              maximumTrackTintColor="#38b6ff"
+              thumbTintColor="#fde78e"
+              step={1}
+              value={voiceValue}
+              onValueChange={(value) => setVoiceValue(value)}
+              //onValueChange={(value) => console.log({ voiceValue })}
+            />
+          </View>
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Notification setting"
             left={(props) => <List.Icon {...props} icon="bell" />}
+            right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
           />
-          <Text>Do not disturb mode</Text>
-          {/* <View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Do not disturb</Text>
+          </View>
+          <View style={styles.container}>
             <Switch
-              trackColor={{ false: "#ffaadd", true: "#38b6ff" }}
-              thumbColor={isEnabled ? "#fde78e" : "#fde78e"}
-              backgroundColor="#d9d9d9"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              value={switchValue}
+              thumbColor="#fde78e"
+              onValueChange={(value) => setSwitchValue(value)}
             />
-          </View> */}
+          </View>
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
+              fontSize: "18",
             }}
             title="Email and Password setting"
             left={(props) => <List.Icon {...props} icon="wrench" />}
@@ -98,18 +166,14 @@ export function SettingsScreen({ navigation }) {
             }}
           />
           <SettingsItem
+            style={{
+              backgroundColor: theme.colors.brand.secondary,
+              borderRadius: 10,
+              marginHorizontal: 10,
+            }}
             titleStyle={{
               color: "white",
-            }}
-            title="Sign out"
-            left={(props) => <List.Icon {...props} icon="logout" />}
-            onPress={() => {
-              console.log("pressed");
-            }}
-          />
-          <SettingsItem
-            titleStyle={{
-              color: "white",
+              fontSize: "18",
             }}
             title="Term of service and Privacy policy"
             left={(props) => <List.Icon {...props} icon="mail" />}
@@ -122,3 +186,23 @@ export function SettingsScreen({ navigation }) {
     </>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 50,
+    marginRight: 50,
+    marginBottom: 10,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+});
+const stylestxt = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 50,
+    marginRight: 50,
+    marginBottom: 10,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+});

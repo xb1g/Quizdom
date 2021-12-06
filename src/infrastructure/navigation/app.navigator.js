@@ -1,14 +1,8 @@
 import React, { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import styled from "styled-components";
-
-// import { CommunityScreen } from "../../features/community/screens/community.screen";
-
 import { PlannerNavigator } from "./planner.navigator";
-import { SafeArea } from "../../components/utility/safe-area.component";
-import { shadow } from "../../components/shadow/shadow.styles";
 
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { View } from "react-native";
@@ -19,6 +13,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { UserNavigator } from "./user.navigator";
 import { MapsContextProvider } from "../../services/maps/maps.context";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => ({
@@ -54,17 +49,15 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = styled(Tab.Navigator)``;
 
 export const AppNavigator = () => {
+  const tabHiddenRoutes = ["Group", "Map"];
+
   return (
     <>
-      {/* <SafeArea> */}
       <SafeAreaProvider>
         <MapsContextProvider>
-          {/* <MapsContextProvider> */}
-          {/* <PlansContextProvider> */}
           <Tab.Navigator
             initialRouteName="Home"
             screenOptions={createScreenOptions}
-            // options={{ headerShown: false }}
           >
             <Tab.Screen
               name="Planner"
@@ -75,7 +68,9 @@ export const AppNavigator = () => {
             <Tab.Screen
               name="Home"
               component={HomeNavigator}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+              }}
             />
             <Tab.Screen
               name="Community"
@@ -88,13 +83,9 @@ export const AppNavigator = () => {
               options={{ headerShown: false }}
             />
           </Tab.Navigator>
-          {/* </PlansContextProvider> */}
-          {/* </MapsContextProvider> */}
         </MapsContextProvider>
       </SafeAreaProvider>
       <ExpoStatusBar style="light" />
-      {/* </SafeAreaView> */}
-      {/* </SafeArea> */}
     </>
   );
 };

@@ -6,7 +6,7 @@ import {
 import { Button } from "../../features/planner/components/button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 
-import { MapScreen } from "../../features/map/screens/map.screen";
+import { SetMapScreen } from "../../features/map/screens/set-map.screen";
 const MapStack = createStackNavigator();
 
 export const MapNavigator = ({ navigation }) => {
@@ -22,28 +22,13 @@ export const MapNavigator = ({ navigation }) => {
     >
       <MapStack.Screen
         name="ViewMapScreen"
-        component={MapScreen}
+        component={SetMapScreen}
         options={{
           headerShown: false,
+          tabBarStyle: {
+            display: "none",
+          },
         }}
-      />
-      <MapStack.Screen
-        name="ModuleInfoScreen"
-        component={MapScreen}
-        options={
-          {
-            // gestureResponseDistance: 400,
-          }
-        }
-      />
-      <MapStack.Screen
-        name="QuizScreen"
-        component={MapScreen}
-        options={
-          {
-            //   gestureResponseDistance: 400,
-          }
-        }
       />
     </MapStack.Navigator>
   );

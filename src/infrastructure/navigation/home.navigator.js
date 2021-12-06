@@ -1,31 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
 import { HomeScreen } from "../../features/home/screens/home.screen";
-import { MapScreen } from "../../features/map/screens/map.screen";
+import { SetMapScreen } from "../../features/map/screens/set-map.screen";
 import { Ionicons } from "@expo/vector-icons";
 
 import { AddButton } from "../../features/home/components/buttons/add-button.component";
 import { SettingButton } from "../../features/home/components/buttons/setting-button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 import { MapNavigator } from "./map.navigation";
+import { QuizNavigator } from "./quiz.navigation.js";
 import { StatusBar } from "expo-status-bar";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const HomeStack = createStackNavigator();
 
-export const HomeNavigator = ({ navigation }) => {
+export const HomeNavigator = ({ navigation, route }) => {
+  useEffect(() => {
+    console.log(getFocusedRouteNameFromRoute(route));
+  }, [route]);
+  const tabHiddenRoutes = ["SetMapScreen", "QuizNavigator"];
+  React.useLayoutEffect(() => {
+    if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+      navigation.setOptions({ tabBarStyle: { display: "none" } });
+    } else {
+      navigation.setOptions({
+        tabBarStyle: {
+          backgroundColor: "#2b2b2b",
+          bottom: 0,
+          borderTopColor: "transparent",
+          overflow: "hidden",
+        },
+      });
+    }
+  }, [navigation, route]);
   return (
     <>
       <HomeStack.Navigator
         initialRouteName="HomeScreen"
-        screenOptions={{
-          // headerShown: false,
-          // ...TransitionPresets.ModalPresentationIOS,
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
+        screenOptions={
+          {
+            // ...TransitionPresets.SlideFromRightIOS,
+          }
+        }
       >
         <HomeStack.Screen
           name="HomeScreen"
@@ -61,15 +81,42 @@ export const HomeNavigator = ({ navigation }) => {
           }}
         />
         <HomeStack.Screen
-          name="MapScreen"
-          component={MapScreen}
+          name="SetMapScreen"
+          component={SetMapScreen}
           navigation={navigation}
           options={{
             headerShown: false,
           }}
         />
+        <HomeStack.Screen
+          name="QuizNavigator"
+          component={QuizNavigator}
+          options={{
+            headerShown: false,
+            presentation: "modal",
+            gestureResponseDistance: 500,
+            cardStyle: {
+              backgroundColor: "red",
+              height: 300,
+            },
+            style: {
+              width: 300,
+              height: 300,
+            },
+            ...TransitionPresets.ModalTransition,
+          }}
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: true,
+            gestureDirection: "horizontal",
+            cardStyle: {
+              backgroundColor: "red",
+              height: 300,
+            },
+          }}
+        />
       </HomeStack.Navigator>
-      <StatusBar style="dark" />
+      <StatusBar style="auto" />
     </>
   );
 };
