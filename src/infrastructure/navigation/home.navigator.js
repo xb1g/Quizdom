@@ -103,7 +103,7 @@ export const HomeNavigator = ({ navigation, route }) => {
               headerShown: false,
               gestureResponseDistance: 500,
               // ...TransitionPresets.ModalTransition,
-              ...TransitionPresets.ModalPresentationIOS,
+              ...TransitionPresets.SlideFromRightIOS,
             }}
           />
         </HomeStack.Group>
