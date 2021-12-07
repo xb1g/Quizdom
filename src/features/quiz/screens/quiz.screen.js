@@ -2,15 +2,14 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import styled from "styled-components/native";
+import { SafeTop } from "../../../components/utility/safe-area.component";
+import { Choice } from "../components/quiz.component";
 
-const Choice = styled(TouchableOpacity)`
-  background-color: ${(props) => props.theme.colors.accent.secondary};
+const NextButton = styled(TouchableOpacity)`
   padding: 10px;
+  background-color: aliceblue;
   border-radius: 10px;
-  margin: 10px;
 `;
-
-const NextButton = styled(TouchableOpacity)``;
 
 export function QuizScreen({ route, navigation }) {
   const quiz = [
@@ -101,38 +100,60 @@ export function QuizScreen({ route, navigation }) {
     },
   ];
   const [page, setPage] = React.useState(0);
+  const [selectedAnswer, setSelectedAnswer] = React.useState(null);
   const [correct, setCorrect] = React.useState(0);
 
   return (
-    <View>
-      <Text>Quiz</Text>
-      <Text>Quiz</Text>
+    <SafeTop>
+      {page != 5 ? (
+        <View>
+          <Text>Quiz</Text>
+          <View>
+            <Text>{page + 1}</Text>
+          </View>
 
-      <View>
-        <Text>{page + 1}</Text>
-      </View>
+          <Text>{quiz[page].question}</Text>
+          <Choice
+            choiceNumber={1}
+            question={quiz[page].answer1}
+            setSelectedChoice={setSelectedAnswer}
+          />
+          <Choice
+            choiceNumber={2}
+            question={quiz[page].answer2}
+            setSelectedChoice={setSelectedAnswer}
+          />
+          <Choice
+            choiceNumber={3}
+            question={quiz[page].answer3}
+            setSelectedChoice={setSelectedAnswer}
+          />
+          <Choice
+            choiceNumber={4}
+            question={quiz[page].answer4}
+            setSelectedChoice={setSelectedAnswer}
+          />
 
-      <Text>{quiz[page].question}</Text>
-      <Choice>
-        <Text>{quiz[page].answer1}</Text>
-      </Choice>
-      <Choice>
-        <Text>{quiz[page].answer2}</Text>
-      </Choice>
-      <Choice>
-        <Text>{quiz[page].answer3}</Text>
-      </Choice>
-      <Choice>
-        <Text>{quiz[page].answer4}</Text>
-      </Choice>
-      <NextButton
-        onPress={() => {
-          setPage(page + 1);
-          // setCorrect(correct + 1);
-        }}
-      >
-        <Text>Next</Text>
-      </NextButton>
-    </View>
+          <NextButton
+            onPress={() => {
+              setPage(page + 1);
+              // setCorrect(correct + 1);
+            }}
+          >
+            <Text>Next</Text>
+          </NextButton>
+        </View>
+      ) : (
+        <View>
+          <Text>You have completed the quiz.</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SetMapScreen")}>
+            <Text>Go to MAP</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Resource")}>
+            <Text>again</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </SafeTop>
   );
 }
