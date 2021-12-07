@@ -15,6 +15,7 @@ import {
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Icon } from "../../../components/icon/icon.component";
+import { Logo } from "../../../../assets/logo";
 
 const LogoText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -26,6 +27,7 @@ const LogoText = styled.Text`
 `;
 
 const DescText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.body};
   font-size: 20px;
   position: absolute;
   top: 50%;
@@ -47,11 +49,28 @@ const LogoImage = styled(Image)`
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
-      <LogoImage
-              source={require("../../../../assets/chandy.png")}
-            />
+      <View
+        style={{
+          // backgroundColor: "#232",
+          alignContent: "center",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Logo />
+      </View>
+
+      {/* <LogoImage source={require("../../../../assets/chandy.png")} /> */}
+
+      {/* <Image source={require("../../../../assets/logo2.png")} /> */}
       <LogoText>Quizdom </LogoText>
-      <DescText>Let's go adventure togheter.</DescText>
+      <DescText>Let's adventure together.</DescText>
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
       <TContainer>
         <AuthButton
           type="primary"

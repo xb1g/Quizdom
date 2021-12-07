@@ -2,17 +2,19 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const ModulePopupScreen = () => {
+export const ModulePopup = () => {
   const route = useRoute();
   const navigation = useNavigation();
   console.log(route);
   return (
     <View
-      style={{
-        height: 300,
-        width: 300,
-        backgroundColor: "red",
-      }}
+      style={
+        {
+          // height: 300,
+          // width: 300,
+          // backgroundColor: "red",
+        }
+      }
     >
       {/* <Text>{route.params.caption}</Text> */}
       <Text>sdfsdf</Text>

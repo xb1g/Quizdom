@@ -35,7 +35,7 @@ export const TContainer = styled.View`
   margin-top: ${(props) => props.theme.space[4]};
   align-items: center;
   align-self: center;
-  top: 20%;
+  /* top: 20%; */
 `;
 
 export const AuthButton = styled(AwesomeButtonC).attrs({
