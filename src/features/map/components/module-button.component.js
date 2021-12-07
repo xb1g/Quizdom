@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
+import { MapsContext } from "../../../services/maps/maps.context";
 
 export function ModuleButton({
   color,
@@ -9,8 +10,8 @@ export function ModuleButton({
   style,
   moduleName,
   navigation,
-  onPress,
 }) {
+  const { setSelectedModule } = useContext(MapsContext);
   return (
     <TouchableOpacity
       style={{
@@ -25,7 +26,10 @@ export function ModuleButton({
         alignItems: "center",
         ...style,
       }}
-      onPress={onPress}
+      onPress={() => {
+        setSelectedModule(moduleName);
+        navigation.navigate("Module");
+      }}
     >
       <CircularProgressWithChild
         activeStrokeColor={"#2465FD"}
