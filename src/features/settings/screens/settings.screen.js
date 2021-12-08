@@ -10,12 +10,8 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { View, Switch, StyleSheet } from "react-native";
 
 const SettingsItem = styled(List.Item)`
-  padding: ${(props) => props.theme.space[3]};
-  background-color: ${(props) => props.theme.colors.bg.primary};
-  border-radius: 10px;
+  margin-top: ${(props) => props.theme.space[3]};
   margin-bottom: ${(props) => props.theme.space[3]};
-  margin-left: ${(props) => props.theme.space[3]};
-  margin-right: ${(props) => props.theme.space[3]};
 `;
 
 export function SettingsScreen({ navigation }) {
@@ -24,7 +20,11 @@ export function SettingsScreen({ navigation }) {
   const [musicValue, setMusicValue] = useState(100);
   const [sfxValue, setSfxValue] = useState(100);
   const [voiceValue, setVoiceValue] = useState(100);
-  const [switchValue, setSwitchValue] = useState(1);
+  const [switchValue, setSwitchValue] = useState(true);
+  const [remindValue, setRemindValue] = useState(true);
+  const [qValue, setQValue] = useState(true);
+  const [aValue, setAValue] = useState(true);
+  const [communityValue, setCommunityValue] = useState(true);
   return (
     <>
       <BackButton navigation={navigation} />
@@ -39,7 +39,7 @@ export function SettingsScreen({ navigation }) {
         <ScrollView>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.brand.secondary,
+              backgroundColor: theme.colors.bg.primary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
@@ -49,7 +49,7 @@ export function SettingsScreen({ navigation }) {
             }}
             title="Audio setting"
             left={(props) => <List.Icon {...props} icon="volume-high" />}
-            right={(props) => <List.Icon {...props} icon="arrow-down" />}
+            //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
@@ -124,7 +124,7 @@ export function SettingsScreen({ navigation }) {
           </View>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.brand.secondary,
+              backgroundColor: theme.colors.bg.primary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
@@ -134,7 +134,7 @@ export function SettingsScreen({ navigation }) {
             }}
             title="Notification setting"
             left={(props) => <List.Icon {...props} icon="bell" />}
-            right={(props) => <List.Icon {...props} icon="arrow-down" />}
+            //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
@@ -149,9 +149,49 @@ export function SettingsScreen({ navigation }) {
               onValueChange={(value) => setSwitchValue(value)}
             />
           </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Chandy's remind</Text>
+          </View>
+          <View style={styles.container}>
+            <Switch
+              value={remindValue}
+              thumbColor="#fde78e"
+              onValueChange={(value) => setRemindValue(value)}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Community message</Text>
+          </View>
+          <View style={styles.container}>
+            <Switch
+              value={communityValue}
+              thumbColor="#fde78e"
+              onValueChange={(value) => setCommunityValue(value)}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>New question</Text>
+          </View>
+          <View style={styles.container}>
+            <Switch
+              value={qValue}
+              thumbColor="#fde78e"
+              onValueChange={(value) => setQValue(value)}
+            />
+          </View>
+          <View style={stylestxt.container}>
+            <Text style={{ color: "white" }}>Reply answer</Text>
+          </View>
+          <View style={styles.container}>
+            <Switch
+              value={aValue}
+              thumbColor="#fde78e"
+              onValueChange={(value) => setAValue(value)}
+            />
+          </View>
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.brand.secondary,
+              backgroundColor: theme.colors.bg.primary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
@@ -167,7 +207,7 @@ export function SettingsScreen({ navigation }) {
           />
           <SettingsItem
             style={{
-              backgroundColor: theme.colors.brand.secondary,
+              backgroundColor: theme.colors.bg.primary,
               borderRadius: 10,
               marginHorizontal: 10,
             }}
@@ -206,3 +246,12 @@ const stylestxt = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const SettingsItem1 = styled(List.Item)`
+  padding: ${(props) => props.theme.space[3]};
+  background-color: ${(props) => props.theme.colors.bg.primary};
+  border-radius: 10px;
+  margin-bottom: ${(props) => props.theme.space[3]};
+  margin-left: ${(props) => props.theme.space[3]};
+  margin-right: ${(props) => props.theme.space[3]};
+`;
