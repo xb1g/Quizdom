@@ -1,6 +1,13 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
+// import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
+const CircularProgressWithChild = () => {
+  return (
+    <View>
+      <Text>CircularProgressWithChild</Text>
+    </View>
+  );
+};
 
 export function ModuleButton({
   color,
@@ -34,7 +41,8 @@ export function ModuleButton({
         value={25}
         radius={60}
       >
-        <View></View>
+        {/* <View></View> */}
+        {/* <Text style={{ fontSize: 20, color: "white" }}>{moduleName}</Text> */}
       </CircularProgressWithChild>
     </TouchableOpacity>
   );

@@ -15,6 +15,7 @@ import { MapNavigator } from "./map.navigation";
 import { QuizNavigator } from "./quiz.navigation.js";
 import { StatusBar } from "expo-status-bar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 const HomeStack = createStackNavigator();
 
@@ -82,6 +83,8 @@ export const HomeNavigator = ({ navigation, route }) => {
         />
         <HomeStack.Screen
           name="SetMapScreen"
+          // component={() => null}
+          // component={InequalitiesMapScreen}
           component={SetMapScreen}
           navigation={navigation}
           options={{

@@ -77,13 +77,6 @@ export const Maps = ({ maps, navigation }) => {
                     navigation.navigate("SetMapScreen");
                   }}
                 >
-                  {/* <View
-                  style={{
-                    flex: 1,
-                    borderRadius: 20,
-                    // padding: 10,
-                  }}
-                > */}
                   <LinearGradient
                     colors={["rgba(0,0,0,0.8)", "transparent"]}
                     style={{
