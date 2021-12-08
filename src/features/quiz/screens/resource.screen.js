@@ -37,9 +37,7 @@ export function ResourceScreen({ navigation }) {
       <Text>{selectedModule}</Text>
       <Text>{selectedModule}</Text>
       <TouchableOpacity onPress={() => navigation.navigate("Quiz")}>
-        <Text>Go to Quiz</Text>
-        <Text>Go to Quiz</Text>
-        <Text>Go to Quiz</Text>
+        <Text>Start Quiz</Text>
       </TouchableOpacity>
     </View>
   );
