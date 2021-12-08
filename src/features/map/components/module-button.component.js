@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-// import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
-const CircularProgressWithChild = () => {
-  return (
-    <View>
-      <Text>CircularProgressWithChild</Text>
-    </View>
-  );
-};
+import { CircularProgressWithChild } from "react-native-circular-progress-indicator";
+// const CircularProgressWithChild = () => {
+//   return (
+//     <View>
+//       <Text>CircularProgressWithChild</Text>
+//     </View>
+//   );
+// };
 
 export function ModuleButton({
   color,

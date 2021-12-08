@@ -23,7 +23,6 @@ import { ModulePopup } from "../components/module-popup.component";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ModuleButton } from "../components/module-button.component";
-import CircularProgress from "react-native-circular-progress-indicator";
 import { CircularProgress } from "../../../components/visualization/circular-progress.component";
 
 export const SetMapScreen = ({ navigation }) => {
@@ -35,7 +34,6 @@ export const SetMapScreen = ({ navigation }) => {
   console.log(theme);
   return (
     <View style={{ flexGrow: 1 }}>
-      <CircularProgress value={58} />
       <BackButton navigation={navigation} />
       <HeaderText
         title={`Set Map`}
@@ -47,6 +45,7 @@ export const SetMapScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
+        <CircularProgress value={58} />
         <View style={{ flexGrow: 1, height: windowHeight * 2 }} />
         <ModuleButton
           navigation={navigation}
