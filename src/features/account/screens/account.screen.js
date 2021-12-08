@@ -11,67 +11,27 @@ import {
   TContainer,
   AuthButton,
   AuthIconButton,
+  DescText,
+  LogoText,
+  AuthLogo,
 } from "../components/account.styles";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Icon } from "../../../components/icon/icon.component";
 import { Logo } from "../../../../assets/logo";
 
-const LogoText = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 35px;
-  position: absolute;
-  top: 45%;
-  align-self: center;
-  color: #ffffff;
-`;
-
-const DescText = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  align-self: center;
-  color: ${(props) => props.theme.colors.accent.primary};
-`;
-
-const LogoImage = styled(Image)`
-  position: absolute;
-  top: 25%;
-  align-self: center;
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
-  border-color: ${(props) => props.theme.colors.accent.primary};
-  border-width: 10px;
+const TContainerI = styled(TContainer)`
+  top:50%;
 `;
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
-      <View
-        style={{
-          // backgroundColor: "#232",
-          alignContent: "center",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Logo />
-      </View>
-
-      {/* <LogoImage source={require("../../../../assets/chandy.png")} /> */}
-
-      {/* <Image source={require("../../../../assets/logo2.png")} /> */}
+      <AuthLogo/>
       <LogoText>Quizdom </LogoText>
       <DescText>Let's adventure together.</DescText>
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <TContainer>
+
+      <TContainerI>
         <AuthButton
           type="primary"
           size="large"
@@ -87,6 +47,34 @@ export const AccountScreen = ({ navigation }) => {
         >
           Register
         </AuthButton>
+      </TContainerI>
+      
+      {/*
+      <View
+        style={{
+          // backgroundColor: "#232",
+          alignContent: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          top: "0%",
+        }}
+      
+        <Logo />
+      </View>
+      >*/}
+
+      
+
+      {/* <Image source={require("../../../../assets/logo2.png")} /> */}
+
+      
+      {/*<Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />
+      <Spacer size="extraLarge" />*/}
+      
         {/*
         <Spacer size="large" />
         <Spacer size="large" />
@@ -126,7 +114,7 @@ export const AccountScreen = ({ navigation }) => {
         
         </View>
         */}
-      </TContainer>
+      
     </AccountBackground>
   );
 };
