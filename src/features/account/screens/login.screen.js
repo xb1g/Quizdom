@@ -2,50 +2,33 @@ import React, { useState, useContext } from "react";
 //import { Text } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-paper";
 import styled, { useTheme } from "styled-components/native";
+
 import {
   AccountBackground,
   AccountCover,
   Container,
   TContainer,
+  AuthButton,
+  AuthIconButton,
+  DescText,
+  LogoText,
+  AuthLogo,
   AuthInput,
   BackButton,
-  AuthButton,
+  TouchableWithoutFeedback,
 } from "../components/account.styles";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+
+import { ImageBackground, StyleSheet, Text, View, Image, KeyboardAvoidingView } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Logo } from "../../../../assets/logo";
 
 const Center = styled.View``;
 
-const LogoText = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 35px;
-  position: absolute;
-  top: 45%;
-  align-self: center;
-  color: #ffffff;
+const TContainerII = styled(TContainer)`
+  top:50%;
 `;
-
-const DescText = styled.Text`
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  align-self: center;
-  color: ${(props) => props.theme.colors.accent.primary};
-`;
-
-const LogoImage = styled(Image)`
-  position: absolute;
-  top: 25%;
-  align-self: center;
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
-  border-color: ${(props) => props.theme.colors.accent.primary};
-  border-width: 10px;
-`;
-
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -54,12 +37,11 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <BackButton navigation={navigation} />
-      <LogoImage
-              source={require("../../../../assets/chandy.png")}
-            />
+      <AuthLogo/>
       <LogoText>Quizdom </LogoText>
-      <DescText>Let's go adventure togheter.</DescText>
-      <TContainer>
+      <DescText>Let's adventure together.</DescText>
+
+      <TContainerII>
         {error && (
           <Spacer position="bottom" size="medium">
             <Text variant="error">{error}</Text>
@@ -99,7 +81,26 @@ export const LoginScreen = ({ navigation }) => {
             <ActivityIndicator animating={true} color={Colors.blue100} />
           )}
         </Center>
-      </TContainer>
+      </TContainerII>
+      
+
+      {/*
+      <View
+        style={{
+          // backgroundColor: "#232",
+          alignContent: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          top: "0%",
+        }}
+      >
+        <Logo />
+      </View>
+      */}
+      {/*<LogoImage
+              source={require("../../../../assets/chandy.png")}
+      />*/}
+      
       {/* <Spacer size="large" />
       <Spacer size="large" />
       <AuthButton
