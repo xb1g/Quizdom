@@ -10,25 +10,36 @@ export function ResourceScreen({ navigation }) {
     <View style={{ flex: 1, backgroundColor: "#432" }}>
       <BackButton navigation={navigation} />
       {/* <HeaderText title="Resource" /> */}
-      <Text>Study Resources</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
-      <Text>https://www.google.co.th/?hl=th</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>Resource and things</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
+      <Text>{selectedModule}</Text>
       <Text>{selectedModule}</Text>
       <TouchableOpacity onPress={() => navigation.navigate("Quiz")}>
-        <Text>Start Quiz</Text>
+        <Text>Go to Quiz</Text>
+        <Text>Go to Quiz</Text>
+        <Text>Go to Quiz</Text>
       </TouchableOpacity>
     </View>
   );
