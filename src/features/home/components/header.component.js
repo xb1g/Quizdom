@@ -12,10 +12,10 @@ const Container = styled.View`
   ${StatusBar.currentHeight
     ? `padding-top: ${StatusBar.currentHeight}px`
     : `padding-top: 10px`};
-  shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.3;
-  shadow-radius: 5px;
+  //shadow-color: #000;
+  //shadow-offset: 0px 2px;
+  //shadow-opacity: 0.3;
+  //shadow-radius: 5px;
   z-index: 1;
   justify-content: center;
   flex-direction: row;

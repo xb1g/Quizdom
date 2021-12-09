@@ -110,7 +110,7 @@ export const RegisterScreen = ({ navigation }) => {
                   next
                 </AuthButton>
               ) : (
-                <ActivityIndicator animating={true} color={Colors.blue100} />
+                <ActivityIndicator animating={true} color= "#7ed957" />
               )}
             </Center>
           ) : (
