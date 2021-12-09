@@ -79,8 +79,9 @@ export function ResourceScreen({ navigation }) {
             <QuizStartItem
               style={{
                 backgroundColor: "#ffc8ff",
-                borderRadius: 20,
                 marginLeft: 225,
+                paddingRight: 10,
+                borderRadius: 20,
                 marginTop: 20,
                 marginBottom: 50,
               }}
