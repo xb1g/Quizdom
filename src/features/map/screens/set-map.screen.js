@@ -37,13 +37,9 @@ export const SetMapScreen = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
-      <HeaderText
-        title={`Set Map`}
-        // style={{ position: "absolute", backgroundColor: "transparent" }}
-      />
+      <HeaderText title={`Set `} />
 
       <ScrollView
-        // style={{ backgroundColor: "#432", flexGrow: 1 }}
         contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
