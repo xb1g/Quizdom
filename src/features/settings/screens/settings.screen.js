@@ -49,7 +49,7 @@ export function SettingsScreen({ navigation }) {
             }}
             title="Audio setting"
             left={(props) => <List.Icon {...props} icon="volume-high" />}
-            right={(props) => <List.Icon {...props} icon="arrow-down" />}
+            //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}
@@ -134,7 +134,7 @@ export function SettingsScreen({ navigation }) {
             }}
             title="Notification setting"
             left={(props) => <List.Icon {...props} icon="bell" />}
-            right={(props) => <List.Icon {...props} icon="arrow-down" />}
+            //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
               console.log("pressed");
             }}

@@ -10,6 +10,8 @@ export const MapsContextProvider = ({ children }) => {
   // const { currentUser } = firebase.auth();
   const { user } = useContext(AuthenticationContext);
   const [maps, setMaps] = useState([]);
+  const [selectedModule, setSelectedModule] = useState(null);
+
   useEffect(() => {
     console.log(user);
     onSnapshot(doc(db, "maps", user.uid), (u) => {
@@ -19,6 +21,8 @@ export const MapsContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <MapsContext.Provider value={{ maps }}>{children}</MapsContext.Provider>
+    <MapsContext.Provider value={{ maps, selectedModule, setSelectedModule }}>
+      {children}
+    </MapsContext.Provider>
   );
 };

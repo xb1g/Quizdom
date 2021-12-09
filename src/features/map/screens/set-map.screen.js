@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Image,
   View,
@@ -23,19 +23,19 @@ import { ModulePopup } from "../components/module-popup.component";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ModuleButton } from "../components/module-button.component";
-import CircularProgress from "react-native-circular-progress-indicator";
 import { CircularProgress } from "../../../components/visualization/circular-progress.component";
+import { MapsContext } from "../../../services/maps/maps.context";
 
 export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-  const [popupShown, setPopupShown] = React.useState(null);
+  // const [popupShown, setPopupShown] = React.useState(null);
+  const { selectedModule, setSelectedModule } = useContext(MapsContext);
   console.log(theme);
   return (
     <View style={{ flexGrow: 1 }}>
-      <CircularProgress value={58} />
       <BackButton navigation={navigation} />
       <HeaderText
         title={`Set Map`}
@@ -47,28 +47,20 @@ export const SetMapScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
+        <CircularProgress value={58} />
         <View style={{ flexGrow: 1, height: windowHeight * 2 }} />
         <ModuleButton
-          navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.1}
           left={windowWidth * 0.1}
-          onPress={() => {
-            setPopupShown("module1");
-            console.log("asdas");
-            console.log(popupShown);
-          }}
+          moduleName={"BASICCC"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.3}
           left={windowWidth * 0.3}
-          onPress={() => {
-            setPopupShown("module2");
-            console.log("asdas");
-            console.log(popupShown);
-          }}
+          moduleName={"union"}
         />
         <ModuleButton
           navigation={navigation}
@@ -96,7 +88,7 @@ export const SetMapScreen = ({ navigation }) => {
         />
         {/* </View> */}
       </ScrollView>
-      {popupShown && (
+      {selectedModule && (
         <View
           style={{
             position: "absolute",
@@ -104,7 +96,25 @@ export const SetMapScreen = ({ navigation }) => {
             ...shadow.shadow2,
           }}
         >
-          <ModulePopup moduleName={popupShown} navigation={navigation} />
+          <TouchableOpacity
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 20,
+              zIndex: 10,
+            }}
+            onPress={() => setSelectedModule(null)}
+          >
+            <Text
+              variant="label"
+              style={{
+                fontSize: 40,
+              }}
+            >
+              {"x "}
+            </Text>
+          </TouchableOpacity>
+          <ModulePopup moduleName={selectedModule} navigation={navigation} />
         </View>
       )}
     </View>

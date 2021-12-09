@@ -16,7 +16,7 @@ export function QuizNavigator({ navigation }) {
       screenOptions={{
         headerShown: false,
         // presentation: "transparentModal",
-        ...TransitionPresets.ModalPresentationIOS,
+        // ...TransitionPresets.ModalPresentationIOS,
       }}
     >
       <QuizStack.Screen name="Resource" component={ResourceScreen} />
