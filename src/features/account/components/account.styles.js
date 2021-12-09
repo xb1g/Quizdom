@@ -110,7 +110,7 @@ export const BackButton = ({ navigation, onPress }) => {
         left: "-5%",
         backgroundColor: "#ffffff",
         borderColor: "#ffffff",
-        borderRadius: 20,
+        borderRadius: 15,
       }}
       onPress={
         onPress
@@ -122,7 +122,7 @@ export const BackButton = ({ navigation, onPress }) => {
     >
       <Text
         style={{
-          fontSize: 75,
+          fontSize: 60,
           fontFamily: "Airstrike",
         }}
       >{`  <  `}</Text>
