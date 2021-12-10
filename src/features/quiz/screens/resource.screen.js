@@ -27,7 +27,7 @@ const QuizStartItem = styled(TouchableOpacity)`
   margin-left: auto;
 `;
 _handleResource = () => {
-  Linking.openURL("https://www.google.co.th/?hl=th");
+  Linking.openURL("https://www.youtube.com/watch?v=CjIJm_beh5M");
 };
 export function ResourceScreen({ navigation }) {
   const theme = useTheme();
@@ -53,7 +53,7 @@ export function ResourceScreen({ navigation }) {
             color: theme.colors.brand.primary,
             fontSize: 20,
           }}
-          title={"https://www.google.co.th/?hl=th"}
+          title={"https://www.youtube.com/watch?v=CjIJm_beh5M"}
           onPress={this._handleResource}
         />
       </View>
