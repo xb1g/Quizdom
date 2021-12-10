@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import styled from "styled-components";
@@ -15,8 +15,15 @@ import { MapsContextProvider } from "../../services/maps/maps.context";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
+import { useTheme } from "styled-components/native";
+
+
 const Icon = styled.Image``;
-const createScreenOptions = ({ route }) => ({
+const createScreenOptions = ({ route }) => {
+  const theme = useTheme();
+  useEffect(()=>{console.log(theme)},[])
+  //console.log(theme)
+  return({
   tabBarIcon: ({ focused, color, size }) => {
     let iconName;
     if (route.name === "Planner") {
@@ -33,16 +40,16 @@ const createScreenOptions = ({ route }) => ({
     return <Ionicons name={iconName} size={size + 7} color={color} />;
   },
   tabBarStyle: {
-    backgroundColor: "#2b2b2b",
+    backgroundColor:theme.colors.accent.quinary, //for home screen go to home navigator
     bottom: 0,
     borderTopColor: "transparent",
     overflow: "hidden",
   },
 
   tabBarActiveTintColor: "#fbbcff",
-  tabBarInactiveTintColor: "gray",
+  tabBarInactiveTintColor: "#d9d9d9",
   tabBarShowLabel: false,
-});
+})};
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +57,7 @@ const TabNavigator = styled(Tab.Navigator)``;
 
 export const AppNavigator = () => {
   const tabHiddenRoutes = ["Group", "Map"];
-
+  const theme = useTheme();
   return (
     <>
       <SafeAreaProvider>

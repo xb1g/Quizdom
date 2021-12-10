@@ -30,7 +30,7 @@ export const HomeNavigator = ({ navigation, route }) => {
     } else {
       navigation.setOptions({
         tabBarStyle: {
-          backgroundColor: "#2b2b2b",
+          backgroundColor: "#77b800", // for home screen exception
           bottom: 0,
           borderTopColor: "transparent",
           overflow: "hidden",
@@ -58,7 +58,7 @@ export const HomeNavigator = ({ navigation, route }) => {
               alignItems: "center",
               justifyContent: "center",
               fontFamily: "Airstrike",
-              marginTop: Platform.OS === "ios" ? -20 : -10,
+              marginTop: Platform.OS === "ios" ? -20 : 0, //Margin was -10
               fontSize: 45,
               color: "#fff",
             },
@@ -71,10 +71,10 @@ export const HomeNavigator = ({ navigation, route }) => {
             headerBackground: () => (
               <View
                 style={{
-                  height: Platform.OS === "ios" ? 100 : 120,
-                  backgroundColor: "rgba(26, 26, 26, 1)",
-                  borderBottomRightRadius: 30,
-                  borderBottomLeftRadius: 30,
+                  height: Platform.OS === "ios" ? 100 : 85, //was 120 Android
+                  backgroundColor: "#77b800",
+                  //borderBottomRightRadius: 30,
+                  //borderBottomLeftRadius: 30,
                   ...shadow.shadow2,
                 }}
               ></View>
