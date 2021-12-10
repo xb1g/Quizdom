@@ -62,7 +62,7 @@ export const HomeNavigator = ({ navigation, route }) => {
               alignItems: "center",
               justifyContent: "center",
               fontFamily: "Airstrike",
-              marginTop: Platform.OS === "ios" ? -20 : 0, //Margin was -10
+              // marginTop: Platform.OS === "ios" ? -20 : 0, //Margin was -10
               fontSize: 45,
               color: "#fff",
             },
@@ -77,9 +77,9 @@ export const HomeNavigator = ({ navigation, route }) => {
               <View
                 style={{
                   height: Platform.OS === "ios" ? 100 : 85, //was 120 Android
-                  backgroundColor: theme.colors.accent.quinary,//coloradded
-                  //borderBottomRightRadius: 30,
-                  //borderBottomLeftRadius: 30,
+                  backgroundColor: theme.colors.accent.quinary, //coloradded
+                  // borderBottomRightRadius: 30,
+                  // borderBottomLeftRadius: 30,
                   ...shadow.shadow2,
                 }}
               ></View>
