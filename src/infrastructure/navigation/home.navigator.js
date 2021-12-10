@@ -103,7 +103,6 @@ export const HomeNavigator = ({ navigation, route }) => {
             name="QuizNavigator"
             component={QuizNavigator}
             options={{
-              gestureEnabled: false,
               headerShown: false,
               gestureResponseDistance: 500,
               // ...TransitionPresets.ModalTransition,

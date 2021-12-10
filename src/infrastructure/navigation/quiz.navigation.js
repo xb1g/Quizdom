@@ -20,13 +20,7 @@ export function QuizNavigator({ navigation }) {
       }}
     >
       <QuizStack.Screen name="Resource" component={ResourceScreen} />
-      <QuizStack.Screen
-        name="Quiz"
-        component={QuizScreen}
-        options={{
-          gestureEnabled: false,
-        }}
-      />
+      <QuizStack.Screen name="Quiz" component={QuizScreen} />
     </QuizStack.Navigator>
   );
 }

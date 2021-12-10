@@ -17,6 +17,7 @@ import { MapsContext } from "../../../services/maps/maps.context";
 
 export function ModulePopup({ moduleName, navigation }) {
   const insets = useSafeAreaInsets();
+  const { selectedModule } = useContext(MapsContext);
   return (
     <View
       style={{
@@ -36,7 +37,7 @@ export function ModulePopup({ moduleName, navigation }) {
           //   marginBottom: "auto",
         }}
       >
-        {moduleName}
+        {selectedModule}
       </Text>
       <CircularProgress
         value={60}
