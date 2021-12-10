@@ -68,7 +68,7 @@ export const HomeScreen = ({ navigation }) => {
       <Spacer size="large" />
       <Spacer size="large" />
       <ScrollView>
-        {/*
+          {/*
         <Button onPress={onLogout}>Logout</Button>
         */}
         <HeaderText style={{backgroundColor:theme.colors.accent.tertiarym}}>      Today    </HeaderText>

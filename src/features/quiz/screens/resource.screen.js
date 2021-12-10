@@ -26,7 +26,9 @@ const QuizStartItem = styled(TouchableOpacity)`
   margin: ${(props) => props.theme.space[3]};
   margin-left: auto;
 `;
-
+_handleResource = () => {
+  Linking.openURL("https://www.youtube.com/watch?v=CjIJm_beh5M");
+};
 export function ResourceScreen({ navigation }) {
   const theme = useTheme();
   const { selectedModule } = useContext(MapsContext);
@@ -51,7 +53,9 @@ export function ResourceScreen({ navigation }) {
             color: theme.colors.brand.primary,
             fontSize: 20,
           }}
-          title={"https://www.google.co.th/?hl=th"}
+          title={"React native crud"}
+          left={(props) => <List.Icon {...props} icon="play" />}
+          onPress={this._handleResource}
         />
       </View>
       <View style={{ flex: 0, backgroundColor: "#393939" }}>

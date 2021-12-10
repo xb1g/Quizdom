@@ -16,6 +16,7 @@ export function ModuleButton({
   left,
   style,
   moduleName,
+  value,
   navigation,
   onPress,
 }) {
@@ -40,7 +41,7 @@ export function ModuleButton({
         activeStrokeColor={"#467dff"}
         activeStrokeSecondaryColor={"#b535ff"}
         activeStrokeWidth={20}
-        value={25}
+        value={value}
         radius={60}
       >
         {/* <View></View> */}
