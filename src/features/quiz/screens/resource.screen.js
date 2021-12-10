@@ -33,9 +33,8 @@ export function ResourceScreen({ navigation }) {
   return (
     <>
       <SafeTop>
-        <Spacer />
+        <BackButton navigation={navigation} />
         <View style={{ flex: 1, backgroundColor: "#393939" }}>
-          <BackButton navigation={navigation} />
           <View /*style={styles.container}*/>
             <Text
               variant="label"
@@ -68,7 +67,7 @@ export function ResourceScreen({ navigation }) {
             style={{
               color: "#ffffff",
               marginBottom: 20,
-              fontsize: 25,
+              fontSize: 25,
               marginLeft: 20,
             }}
           >
@@ -89,10 +88,8 @@ export function ResourceScreen({ navigation }) {
                 color: "white",
                 fontSize: 28,
               }}
-              title={"Start" + " " + "Quiz" + " " + ">"}
-              onPress={() => {
-                console.log("Quiz Begin");
-              }}
+              title="QUZIZ"
+              onPress={() => navigation.navigate("Quiz")}
             />
           </TouchableOpacity>
         </View>
@@ -100,12 +97,3 @@ export function ResourceScreen({ navigation }) {
     </>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 10,
-    marginTop: 10,
-    alignItems: "stretch",
-    justifyContent: "center",
-  },
-});
