@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Alert, Pressable, Modal } from "react-native";
 import styled from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
 import { SafeTop } from "../../../components/utility/safe-area.component";
@@ -128,12 +128,33 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [checked, setChecked] = React.useState(false);
   const [score, setScore] = React.useState(0);
   const [correct, setCorrect] = React.useState(null);
+  const [showModal, setShowModal] = React.useState(false);
+  const [finished, setFinished] = React.useState(false);
 
-  // useEffect(() => {
-  //   console.log(selectedChoice);
-  //   quiz[page].correct_answer === selectedChoice && setCorrect(true);
-  //   console.log(selectedChoice);
-  // }, [checked]);
+  // useEffect(
+  //   () =>
+  //     navigation.addListener("beforeRemove", (e) => {
+  //       // Prevent default behavior of leaving the screen
+  //       e.preventDefault();
+
+  //       // Prompt the user before leaving the screen
+  //       Alert.alert(
+  //         "Discard changes?",
+  //         "You have unsaved changes. Are you sure to discard them and leave the screen?",
+  //         [
+  //           { text: "Don't leave", style: "cancel", onPress: () => {} },
+  //           {
+  //             text: "Discard",
+  //             style: "destructive",
+  //             // If the user confirmed, then we dispatch the action we blocked earlier
+  //             // This will continue the action that had triggered the removal of the screen
+  //             onPress: () => navigation.dispatch(e.data.action),
+  //           },
+  //         ]
+  //       );
+  //     }),
+  //   [navigation]
+  // );
 
   const onCheck = () => {
     console.log("Checking");
@@ -154,8 +175,32 @@ export function QuizScreen({ route, navigation, quiz }) {
     setCorrect(null);
   };
 
+  const onExit = () => {
+    if (!finished) setShowModal(true);
+    console.log("ONEXIT");
+    // navigation.goBack();
+  };
+
   return (
     <SafeTop>
+      <Button onPress={onExit}>
+        <Text>exit</Text>
+      </Button>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setShowModal(!showModal);
+        }}
+      >
+        <View>
+          <View>
+            <Text>Hello World!</Text>
+          </View>
+        </View>
+      </Modal>
       {page < 5 ? (
         <View style={{ padding: 10 }}>
           <Text>Quiz</Text>
