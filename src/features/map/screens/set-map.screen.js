@@ -49,38 +49,63 @@ export const SetMapScreen = ({ navigation }) => {
           color={theme.colors.brand.primary}
           top={windowHeight * 0.1}
           left={windowWidth * 0.1}
-          moduleName={"BASICCC"}
+          moduleName={"Basic of set"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.3}
           left={windowWidth * 0.3}
-          moduleName={"union"}
+          moduleName={"Subset and Powerset"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.5}
           left={windowWidth * 0.5}
+          moduleName={"Set types"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.secondary}
           top={windowHeight * 0.7}
           left={windowWidth * 0.4}
+          moduleName={"Equality"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.secondary}
           top={windowHeight * 0.9}
           left={windowWidth * 0.4}
+          moduleName={"Notation"}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.secondary}
           top={windowHeight * 1.1}
           left={windowWidth * 0.4}
+          moduleName={"Set operation"}
+        />
+        <ModuleButton
+          navigation={navigation}
+          color={theme.colors.brand.secondary}
+          top={windowHeight * 1.3}
+          left={windowWidth * 0.2}
+          moduleName={"Venn Euler diagram"}
+        />
+        <ModuleButton
+          navigation={navigation}
+          color={theme.colors.brand.secondary}
+          top={windowHeight * 1.5}
+          left={windowWidth * 0.4}
+          moduleName={"Advance set"}
+        />
+        <ModuleButton
+          navigation={navigation}
+          color={theme.colors.brand.secondary}
+          top={windowHeight * 1.7}
+          left={windowWidth * 0.1}
+          moduleName={"Test"}
         />
         {/* </View> */}
       </ScrollView>
