@@ -53,7 +53,8 @@ export function ResourceScreen({ navigation }) {
             color: theme.colors.brand.primary,
             fontSize: 20,
           }}
-          title={"https://www.youtube.com/watch?v=CjIJm_beh5M"}
+          title={"React native crud"}
+          left={(props) => <List.Icon {...props} icon="play" />}
           onPress={this._handleResource}
         />
       </View>
