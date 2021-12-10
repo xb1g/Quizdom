@@ -26,6 +26,8 @@ import {
   HomeBackground,
 } from "../components/home.styles";
 
+import { Spacer } from "../../../components/spacer/spacer.component";
+
 const Heading = styled.Text`
   font-size: 60px;
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -59,9 +61,8 @@ export const HomeScreen = ({ navigation }) => {
     <HomeBackground>
       <SafeTop />
       <SafeTop />
-      <SafeTop />
-      <SafeTop />
-      <SafeTop />
+      <Spacer size="large" />
+      <Spacer size="large" />
       <ScrollView>
         {/*
         <Button onPress={onLogout}>Logout</Button>

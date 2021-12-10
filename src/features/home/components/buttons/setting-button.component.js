@@ -8,7 +8,7 @@ export const SettingButton = ({ navigation }) => {
       style={{
         flexDirection: "row",
         paddingRight: 25,
-        marginTop: -20,
+        //marginTop: -20,
         marginRight: 10,
       }}
       onPress={() => {
