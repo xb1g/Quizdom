@@ -19,6 +19,10 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 import { useTheme } from "styled-components/native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const HomeStack = createStackNavigator();
 
@@ -28,6 +32,7 @@ export const HomeNavigator = ({ navigation, route }) => {
   }, [route]);
   const tabHiddenRoutes = ["SetMapScreen", "QuizNavigator"];
   const theme = useTheme();
+  const inset = useSafeAreaInsets();
   React.useLayoutEffect(() => {
     if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
       navigation.setOptions({ tabBarStyle: { display: "none" } });
@@ -56,14 +61,14 @@ export const HomeNavigator = ({ navigation, route }) => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: "Quizdom ",
+            title: "      Quizdom ",
             headerTitleStyle: {
               alignSelf: "center",
               alignItems: "center",
               justifyContent: "center",
               fontFamily: "Airstrike",
-              marginTop: Platform.OS === "ios" ? -20 : 0, //Margin was -10
-              fontSize: 45,
+              marginTop: Platform.OS === "ios" ? -20+inset.top : 0+inset.top, //Margin was -10
+              fontSize: 47,
               color: "#fff",
             },
             cardStyle: {
@@ -76,7 +81,7 @@ export const HomeNavigator = ({ navigation, route }) => {
             headerBackground: () => (
               <View
                 style={{
-                  height: Platform.OS === "ios" ? 100 : 85, //was 120 Android
+                  height: Platform.OS === "ios" ? 100+inset.top : 85+inset.top, //was 120 Android
                   backgroundColor: theme.colors.accent.quinary,//coloradded
                   //borderBottomRightRadius: 30,
                   //borderBottomLeftRadius: 30,

@@ -22,12 +22,12 @@ const MapContainer = styled.View`
 `;
 
 const MapCardContainer = styled.View`
-  background-color: #fff;
+  {/*background-color: #fff;*/}
   border-radius: 30px;
   margin-horizontal: 20px;
   margin-bottom: 20px;
   width: 150px;
-  height: 250px;
+  height: 170px;
   margin-horizontal: 10px;
 `;
 
@@ -45,15 +45,6 @@ export const Maps = ({ maps, navigation }) => {
               <Text
                 variant="label"
                 style={{
-                  marginLeft: 10,
-                  fontSize: 20,
-                }}
-              >
-                {item.title}
-              </Text>
-              <Text
-                variant="label"
-                style={{
                   position: "absolute",
                   top: 30,
                   left: 20,
@@ -66,7 +57,7 @@ export const Maps = ({ maps, navigation }) => {
               </Text>
               <MapCardContainer
                 style={{
-                  ...shadow.shadow1,
+                  //...shadow.shadow1,
                 }}
               >
                 <TouchableOpacity
@@ -77,30 +68,43 @@ export const Maps = ({ maps, navigation }) => {
                     navigation.navigate("SetMapScreen");
                   }}
                 >
+                  {/*
                   <LinearGradient
                     colors={["rgba(0,0,0,0.8)", "transparent"]}
                     style={{
                       width: 150,
-                      height: 250,
+                      height: 150,
                       position: "absolute",
                       zIndex: 8,
                       borderRadius: 30,
                     }}
                   />
+                  */}
                   <View
                     style={{
                       width: 150,
-                      height: 250,
+                      height: 150,
                     }}
                   >
                     <Image
                       source={item.image}
                       style={{
                         width: 150,
-                        height: 250,
+                        height: 150,
                         borderRadius: 30,
                       }}
                     />
+                    <Text
+                      variant="label"
+                      style={{
+                          marginTop: 10,
+                          fontSize: 25,
+                          color: "#ffffff",
+                          alignSelf: "center",
+                      }}
+                    >
+                      {item.title}
+                    </Text>
                   </View>
 
                   {/* </LinearGradient> */}

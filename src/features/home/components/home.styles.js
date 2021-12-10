@@ -36,13 +36,14 @@ export const TContainer = styled.View`
 
 export const HeaderText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 35px;
+  font-size: 40px;
   color: #ffffff;
   margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  background-color: #ffaa00;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
+  margin-right: auto;
+  left: -10%;
 `;
 
 export const DescText = styled.Text`

@@ -25,6 +25,7 @@ import {
   HeaderText,
   HomeBackground,
 } from "../components/home.styles";
+import { useTheme } from "styled-components/native";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
@@ -57,19 +58,22 @@ export const HomeScreen = ({ navigation }) => {
     //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
     // },
   ];
+  const theme = useTheme();
   return (
     <HomeBackground>
       <SafeTop />
       <SafeTop />
+      <SafeTop />
+      <Spacer size="large" />
       <Spacer size="large" />
       <Spacer size="large" />
       <ScrollView>
         {/*
         <Button onPress={onLogout}>Logout</Button>
         */}
-        <HeaderText>Today</HeaderText>
+        <HeaderText style={{backgroundColor:theme.colors.accent.tertiarym}}>      Today    </HeaderText>
         <Today style={shadow} navigation={navigation} />
-        <Heading>Maps</Heading>
+        <HeaderText style={{backgroundColor:theme.colors.accent.quaternarym}}>       Maps     </HeaderText>
         <Maps maps={maps} navigation={navigation} />
         <ScrollView></ScrollView>
       </ScrollView>
