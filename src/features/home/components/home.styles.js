@@ -40,6 +40,9 @@ export const HeaderText = styled.Text`
   color: #ffffff;
   margin-left: 20px;
   margin-top: 10px;
+  margin-bottom: 5px;
+  background-color: #ffaa00;
+  border-radius: 10px;
 `;
 
 export const DescText = styled.Text`

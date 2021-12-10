@@ -20,7 +20,7 @@ import { useTheme } from "styled-components/native";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => {
-  const theme = useTheme();
+  const theme = useTheme();//theme
   useEffect(()=>{console.log(theme)},[])
   //console.log(theme)
   return({
