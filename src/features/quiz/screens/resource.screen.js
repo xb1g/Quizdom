@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Linking } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { BackButton } from "../../../components/button/back-button.component";
 //import { HeaderText } from "../../../components/utility/header-text.component";
@@ -60,6 +60,7 @@ export function ResourceScreen({ navigation }) {
               fontSize: 20,
             }}
             title={"https://www.google.co.th/?hl=th"}
+            onPress={this.resourceLink()}
           />
         </View>
         <View style={{ flex: 0, backgroundColor: "#393939" }}>
@@ -97,3 +98,6 @@ export function ResourceScreen({ navigation }) {
     </>
   );
 }
+resourceLink=()=>{
+  Linking.openURL("https://www.google.co.th/?hl=th");
+};
