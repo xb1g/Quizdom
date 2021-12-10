@@ -26,7 +26,9 @@ const QuizStartItem = styled(TouchableOpacity)`
   margin: ${(props) => props.theme.space[3]};
   margin-left: auto;
 `;
-
+_handleResource = () => {
+  Linking.openURL("https://www.google.co.th/?hl=th");
+};
 export function ResourceScreen({ navigation }) {
   const theme = useTheme();
   const { selectedModule } = useContext(MapsContext);
@@ -52,6 +54,7 @@ export function ResourceScreen({ navigation }) {
             fontSize: 20,
           }}
           title={"https://www.google.co.th/?hl=th"}
+          onPress={this._handleResource}
         />
       </View>
       <View style={{ flex: 0, backgroundColor: "#393939" }}>
