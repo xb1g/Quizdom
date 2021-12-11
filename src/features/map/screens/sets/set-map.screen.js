@@ -64,7 +64,7 @@ export const SetMapScreen = ({ navigation }) => {
           color={theme.colors.brand.primary}
           top={windowHeight * 0.5}
           left={windowWidth * 0.5}
-          moduleName={"Set types"}
+          moduleName={"Set Types"}
           id={3}
         />
         <ModuleButton

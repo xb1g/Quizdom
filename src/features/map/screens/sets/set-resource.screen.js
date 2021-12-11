@@ -13,15 +13,21 @@ import { HeaderText } from "../../../../components/utility/header-text.component
 import { ResourceContext } from "../../../../services/resource/resource.context";
 import { setResource } from "../../../../services/data/math/sets";
 import { FlatList } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 
 // import { resourceData } from "../../../services/data/math/sets/sets.json";
 
+const Column = styled.View`
+  flex-direction: column;
+`;
+
 const ResourceItem = styled(List.Item)`
-  padding: ${(props) => props.theme.space[3]};
+  padding: ${(props) => props.theme.space[2]};
   background-color: ${(props) => props.theme.colors.bg.secondary};
   margin-left: ${(props) => props.theme.space[3]};
   margin-right: ${(props) => props.theme.space[3]};
 `;
+
 const QuizStartItem = styled(TouchableOpacity)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.brand.primary};
@@ -38,9 +44,6 @@ export function SetResourceScreen({ navigation }) {
   useEffect(() => {
     console.log("resourace");
     console.log(selectedModule.moduleName);
-
-    console.log(setResource[selectedModule.moduleName][1]);
-
     setResourceData(setResource[selectedModule.moduleName][1]);
   }, [selectedModule]);
   return (
@@ -61,30 +64,61 @@ export function SetResourceScreen({ navigation }) {
         <Spacer size={30} />
         <View
           style={{
-            margin: 30,
-            backgroundColor: "#b4b4b4",
-            padding: 10,
+            margin: 20,
+            marginTop: 100,
+            backgroundColor: "#fff",
             borderRadius: 20,
           }}
         >
           <FlatList
             data={resourceData}
             renderItem={({ item }) => (
-              <ResourceItem
-                title={item.title}
-                description={item.description}
-                left={(props) => (
-                  <List.Icon
-                    {...props}
-                    icon={item.type === "video" ? "play-circle" : "book"}
-                  />
-                )}
-                onPress={() => {
-                  Linking.openURL(item.link);
-                }}
-              />
+              <>
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(item.link);
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      margin: 10,
+                      marginTop: 10,
+                      padding: 10,
+                      alignItems: "center",
+                    }}
+                  >
+                    {item.type === "video" ? (
+                      <Ionicons
+                        name="play-circle-outline"
+                        size={28}
+                        color={theme.colors.accent.quaternary}
+                      />
+                    ) : (
+                      <Ionicons
+                        name="reader"
+                        size={28}
+                        color={theme.colors.accent.secondary}
+                      />
+                    )}
+                    <Spacer position={"left"} size="medium" />
+                    <Spacer position={"left"} size="medium" />
+                    <Column>
+                      <Text>{item.title}</Text>
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          color: "#555555",
+                        }}
+                      >
+                        {item.description}
+                      </Text>
+                    </Column>
+                  </View>
+                </TouchableOpacity>
+              </>
             )}
-            keyExtractor={(item) => item.title}
+            keyExtractor={(item) => item.title + item.link[0]}
           />
           <Spacer size={theme.space[3]} />
         </View>

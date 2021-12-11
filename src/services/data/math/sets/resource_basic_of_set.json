@@ -2,21 +2,21 @@
   "1": [
     {
       "type": "video",
-      "title": "basic",
-      "author": "MIT",
+      "title": "Sets Basics - Introduction | Don't Memorise",
+      "author": "Don't Memorise",
       "description": "Learn the basic",
-      "link": "https://www.youtube.com/watch?v=_Kv965pA-j8"
+      "link": "https://www.youtube.com/watch?v=fes92vSBTg4"
     },
     {
       "type": "article",
-      "title": "basic",
-      "author": "MIT",
+      "title": "Sets",
+      "author": "CUEMATH",
       "description": "Basic description",
-      "link": "https://www.youtube.com/watch?v=_Kv965pA-j8"
+      "link": "https://www.cuemath.com/algebra/sets/"
     },
     {
       "type": "video",
-      "title": "basic",
+      "title": "Rick",
       "author": "MIT",
       "description": "Initial of set",
       "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
