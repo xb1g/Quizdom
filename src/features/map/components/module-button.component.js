@@ -17,6 +17,7 @@ export function ModuleButton({
   style,
   moduleName,
   value,
+  id,
   navigation,
   onPress,
 }) {
@@ -39,7 +40,7 @@ export function ModuleButton({
         alignItems: "center",
         ...style,
       }}
-      onPress={() => setSelectedModule(moduleName)}
+      onPress={() => setSelectedModule(module)}
     >
       <CircularProgressWithChild
         activeStrokeColor={"#467dff"}

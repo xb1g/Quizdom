@@ -1,23 +1,12 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { View } from "react-native";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-
-import {
-  SafeArea,
-  SafeTop,
-} from "../../../components/utility/safe-area.component";
 import { Today } from "../components/today/today.component";
 import { Maps } from "../components/maps.component";
 import { ScrollView } from "react-native-gesture-handler";
 
-import { MapsContext } from "../../../services/maps/maps.context";
-import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
 
@@ -30,12 +19,12 @@ import { useTheme } from "styled-components/native";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
-const Heading = styled.Text`
-  font-size: 60px;
-  font-family: ${({ theme }) => theme.fonts.heading};
-  margin-left: 20px;
-  margin-top: 10px;
-`;
+// const Heading = styled.Text`
+//   font-size: 60px;
+//   font-family: ${({ theme }) => theme.fonts.heading};
+//   margin-left: 20px;
+//   margin-top: 10px;
+// `;
 export const HomeScreen = ({ navigation }) => {
   // const { maps } = useContext(MapsContext);
   const { onLogout } = useContext(AuthenticationContext);

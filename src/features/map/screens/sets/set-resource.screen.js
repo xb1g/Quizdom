@@ -34,14 +34,14 @@ export function SetResourceScreen({ navigation }) {
   const theme = useTheme();
   const { selectedModule } = useContext(MapsContext);
   const [resourceData, setResourceData] = React.useState([]);
-  const { resource } = useContext(ResourceContext);
+  // const { resource } = useContext(ResourceContext);
   useEffect(() => {
     console.log("resourace");
-    console.log(selectedModule);
+    console.log(selectedModule.moduleName);
 
-    console.log(setResource[selectedModule][1]);
+    console.log(setResource[selectedModule.moduleName][1]);
 
-    setResourceData(setResource[selectedModule][1]);
+    setResourceData(setResource[selectedModule.moduleName][1]);
   }, [selectedModule]);
   return (
     <View
@@ -56,7 +56,7 @@ export function SetResourceScreen({ navigation }) {
           variant="label"
           style={{ color: "white", fontSize: 40, marginLeft: "auto" }}
         >
-          {selectedModule + " "}
+          {selectedModule.moduleName + " "}
         </Text>
         <Spacer size={30} />
         <View

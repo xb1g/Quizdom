@@ -143,7 +143,10 @@ export const SetMapScreen = ({ navigation }) => {
               {"x "}
             </Text>
           </TouchableOpacity>
-          <ModulePopup moduleName={selectedModule} navigation={navigation} />
+          <ModulePopup
+            moduleName={selectedModule.moduleName}
+            navigation={navigation}
+          />
         </View>
       )}
     </View>
