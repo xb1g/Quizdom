@@ -7,6 +7,7 @@ import { Today } from "../components/today/today.component";
 import { Maps } from "../components/maps.component";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
 
@@ -60,9 +61,9 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
-        {/*
+
         <Button onPress={onLogout}>Logout</Button>
-        */}
+
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.tertiarym }}
         >
