@@ -22,8 +22,9 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { StatusBar } from "expo-status-bar";
 
 import {
-  HeaderText,
+  TitleText,
   HomeBackground,
+  TitleContainer,
 } from "../components/home.styles";
 import { useTheme } from "styled-components/native";
 
@@ -61,19 +62,29 @@ export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   return (
     <HomeBackground>
-      <SafeTop />
-      <SafeTop />
-      <SafeTop />
-      <Spacer size="large" />
-      <Spacer size="large" />
-      <Spacer size="large" />
+      {/* <SafeTop /> */}
       <ScrollView>
-          {/*
+        <Spacer size="large" />
+        <Spacer size="large" />
+        <Spacer size="large" />
+        <Spacer size="large" />
+        <Spacer size="large" />
+        <Spacer size="large" />
+        <Spacer size="large" />
+        {/*
         <Button onPress={onLogout}>Logout</Button>
         */}
-        <HeaderText style={{backgroundColor:theme.colors.accent.tertiarym}}>      Today    </HeaderText>
+        <TitleContainer
+          style={{ backgroundColor: theme.colors.accent.tertiarym }}
+        >
+          <TitleText>{" Today "}</TitleText>
+        </TitleContainer>
         <Today style={shadow} navigation={navigation} />
-        <HeaderText style={{backgroundColor:theme.colors.accent.quaternarym}}>       Maps     </HeaderText>
+        <TitleContainer
+          style={{ backgroundColor: theme.colors.accent.quaternarym }}
+        >
+          <TitleText>{" maps "}</TitleText>
+        </TitleContainer>
         <Maps maps={maps} navigation={navigation} />
         <ScrollView></ScrollView>
       </ScrollView>

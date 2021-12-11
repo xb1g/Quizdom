@@ -11,6 +11,8 @@ import styled, { useTheme } from "styled-components/native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { HeaderText } from "../../../components/utility/header-text.component";
 
+// import { resourceData } from "../../../services/data/math/sets/sets.json";
+
 const ResourceItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.bg.secondary};
@@ -26,12 +28,12 @@ const QuizStartItem = styled(TouchableOpacity)`
   margin: ${(props) => props.theme.space[3]};
   margin-left: auto;
 `;
-_handleResource = () => {
-  Linking.openURL("https://www.youtube.com/watch?v=CjIJm_beh5M");
-};
+
 export function ResourceScreen({ navigation }) {
   const theme = useTheme();
   const { selectedModule } = useContext(MapsContext);
+  const resource = require(`../../../services/data/math/sets/sets.json`);
+  console.log(resource.basic);
   return (
     <View
       style={{
@@ -39,30 +41,34 @@ export function ResourceScreen({ navigation }) {
         backgroundColor: theme.colors.bg.primary,
       }}
     >
-      <HeaderText
+      {/* <HeaderText
         title={selectedModule}
         style={{
           color: "#245",
         }}
-      />
+      /> */}
       <BackButton navigation={navigation} />
-      <SafeTop />
-      <View style={{ flex: 1, marginTop: 50 }}>
-        <ResourceItem
-          titleStyle={{
-            color: theme.colors.brand.primary,
-            fontSize: 20,
-          }}
-          title={"React native crud"}
-          left={(props) => <List.Icon {...props} icon="play" />}
-          onPress={this._handleResource}
-        />
-      </View>
-      <View style={{ flex: 0, backgroundColor: "#393939" }}>
-        <QuizStartItem onPress={() => navigation.navigate("Quiz")}>
-          <Text>QUIZ</Text>
-        </QuizStartItem>
-      </View>
+      <SafeTop>
+        <Text>{selectedModule}</Text>
+        <View style={{ flex: 1, marginTop: 50, backgroundColor: "#233" }}>
+          <ResourceItem
+            titleStyle={{
+              color: theme.colors.brand.primary,
+              fontSize: 20,
+            }}
+            title={"React native crud"}
+            left={(props) => <List.Icon {...props} icon="play" />}
+            onPress={() =>
+              Linking.openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+            }
+          />
+        </View>
+        <View style={{ flex: 0, backgroundColor: "#393939" }}>
+          <QuizStartItem onPress={() => navigation.navigate("Quiz")}>
+            <Text>QUIZ</Text>
+          </QuizStartItem>
+        </View>
+      </SafeTop>
     </View>
   );
 }

@@ -14,14 +14,14 @@ export const SettingButton = ({ navigation }) => {
       style={{
         flexDirection: "row",
         paddingRight: 25,
-        marginTop: inset.top,
-        marginRight: 10,
+        marginTop: -inset.top * 0.25,
+        // marginRight: 10,
       }}
       onPress={() => {
-        navigation.navigate("Settings");
+        navigation.navigate("UserProfileScreen");
       }}
     >
-      <Ionicons name="settings" size={40} />
+      <Ionicons name="ios-person-circle-outline" size={35} color={"#fff"} />
     </TouchableOpacity>
   );
 };
