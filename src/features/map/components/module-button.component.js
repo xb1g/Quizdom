@@ -21,6 +21,10 @@ export function ModuleButton({
   onPress,
 }) {
   const { setSelectedModule } = useContext(MapsContext);
+  const module = {
+    moduleName,
+    id,
+  };
   return (
     <TouchableOpacity
       style={{
@@ -43,10 +47,7 @@ export function ModuleButton({
         activeStrokeWidth={20}
         value={value}
         radius={60}
-      >
-        {/* <View></View> */}
-        {/* <Text style={{ fontSize: 20, color: "white" }}>{moduleName}</Text> */}
-      </CircularProgressWithChild>
+      ></CircularProgressWithChild>
     </TouchableOpacity>
   );
 }

@@ -5,7 +5,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { HomeScreen } from "../../features/home/screens/home.screen";
-import { SetMapScreen } from "../../features/map/screens/set-map.screen";
+import { SetMapScreen } from "../../features/map/screens/sets/set-map.screen";
 import { Ionicons } from "@expo/vector-icons";
 
 import { AddButton } from "../../features/home/components/buttons/add-button.component";
