@@ -75,7 +75,7 @@ export const HomeScreen = ({ navigation }) => {
           <TitleText>{" maps "}</TitleText>
         </TitleContainer>
         <Maps maps={maps} navigation={navigation} />
-        <ScrollView></ScrollView>
+        {/* <ScrollView></ScrollView> */}
       </ScrollView>
       <StatusBar style="light" />
     </HomeBackground>
