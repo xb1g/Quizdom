@@ -266,26 +266,38 @@ export function QuizScreen({ route, navigation, quiz }) {
       </Modal>
       {page < 5 ? (
         <View style={{ padding: 10 }}>
-          <TouchableOpacity onPress={onExit}>
+          <TouchableOpacity
+            onPress={onExit}
+            style={
+              {
+                // marginLeft: "auto",
+              }
+            }
+          >
             <Text>QUIT</Text>
           </TouchableOpacity>
-          <View>
-            <Text variant="label" style={{ fontSize: 60 }}>
-              #{page + 1}
-            </Text>
-          </View>
-          <TouchableOpacity onPress={onNext} style={{ backgroundColor: "red" }}>
-            <Text
-              variant="label"
-              style={{
-                fontSize: 30,
-              }}
+          <Row style={{ justifyContent: "center" }}>
+            <View>
+              <Text variant="label" style={{ fontSize: 60 }}>
+                #{page + 1}
+              </Text>
+            </View>
+            <TouchableOpacity
+              onPress={onNext}
+              style={{ backgroundColor: "red", marginLeft: "auto" }}
             >
-              {">>"}
-            </Text>
-          </TouchableOpacity>
+              <Text
+                variant="label"
+                style={{
+                  fontSize: 60,
+                }}
+              >
+                {">>"}
+              </Text>
+            </TouchableOpacity>
+          </Row>
           <Text>Quiz</Text>
-          <Text variant="label" style={{ fontSize: 70 }}>
+          <Text variant="label" style={{ fontSize: 30 }}>
             score: {score}
           </Text>
 
@@ -323,7 +335,7 @@ export function QuizScreen({ route, navigation, quiz }) {
           </Choice>
           <Explain answer={4} page={page} quiz={quiz[page]} checked={checked} />
 
-          <Button onPress={onCheck}>Check plsssss</Button>
+          {!checked && <Button onPress={onCheck}>Check plsssss</Button>}
         </View>
       ) : (
         <View>
