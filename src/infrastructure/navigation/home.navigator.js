@@ -20,10 +20,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 import { useTheme } from "styled-components/native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
 
 const HomeStack = createStackNavigator();
 

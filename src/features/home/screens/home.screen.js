@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import styled from "styled-components/native";
 import { View } from "react-native";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
@@ -62,8 +61,6 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
 
-        <Button onPress={onLogout}>Logout</Button>
-
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.tertiarym }}
         >
@@ -77,6 +74,7 @@ export const HomeScreen = ({ navigation }) => {
         </TitleContainer>
         <Maps maps={maps} navigation={navigation} />
         {/* <ScrollView></ScrollView> */}
+        <Button onPress={onLogout}>Logout</Button>
       </ScrollView>
       <StatusBar style="light" />
     </HomeBackground>
