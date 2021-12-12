@@ -70,56 +70,62 @@ export function SetResourceScreen({ navigation }) {
             borderRadius: 20,
           }}
         >
-          <FlatList
-            data={resourceData}
-            renderItem={({ item }) => (
-              <>
-                <TouchableOpacity
-                  onPress={() => {
-                    Linking.openURL(item.link);
-                  }}
-                >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      margin: 10,
-                      marginTop: 10,
-                      padding: 10,
-                      alignItems: "center",
+          {resourceData ? (
+            <FlatList
+              data={resourceData}
+              renderItem={({ item }) => (
+                <>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Linking.openURL(item.link);
                     }}
                   >
-                    {item.type === "video" ? (
-                      <Ionicons
-                        name="play-circle-outline"
-                        size={28}
-                        color={theme.colors.accent.quaternary}
-                      />
-                    ) : (
-                      <Ionicons
-                        name="reader"
-                        size={28}
-                        color={theme.colors.accent.secondary}
-                      />
-                    )}
-                    <Spacer position={"left"} size="medium" />
-                    <Spacer position={"left"} size="medium" />
-                    <Column>
-                      <Text>{item.title}</Text>
-                      <Text
-                        style={{
-                          fontSize: 14,
-                          color: "#555555",
-                        }}
-                      >
-                        {item.description}
-                      </Text>
-                    </Column>
-                  </View>
-                </TouchableOpacity>
-              </>
-            )}
-            keyExtractor={(item) => item.title + item.link[0]}
-          />
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        margin: 10,
+                        marginTop: 10,
+                        padding: 10,
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.type === "video" ? (
+                        <Ionicons
+                          name="play-circle-outline"
+                          size={28}
+                          color={theme.colors.accent.quaternary}
+                        />
+                      ) : (
+                        <Ionicons
+                          name="reader"
+                          size={28}
+                          color={theme.colors.accent.secondary}
+                        />
+                      )}
+                      <Spacer position={"left"} size="medium" />
+                      <Spacer position={"left"} size="medium" />
+                      <Column>
+                        <Text>{item.title}</Text>
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            color: "#555555",
+                          }}
+                        >
+                          {item.description}
+                        </Text>
+                      </Column>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+              keyExtractor={(item) => item.title + item.link[0]}
+            />
+          ) : (
+            <View>
+              <Text>No Resource</Text>
+            </View>
+          )}
           <Spacer size={theme.space[3]} />
         </View>
         <View style={{ flex: 0, backgroundColor: "#393939" }}>
