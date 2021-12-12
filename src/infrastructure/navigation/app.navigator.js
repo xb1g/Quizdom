@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import styled from "styled-components";
@@ -15,34 +15,44 @@ import { MapsContextProvider } from "../../services/maps/maps.context";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
-const Icon = styled.Image``;
-const createScreenOptions = ({ route }) => ({
-  tabBarIcon: ({ focused, color, size }) => {
-    let iconName;
-    if (route.name === "Planner") {
-      iconName = focused ? "ios-calendar" : "ios-calendar-outline";
-    } else if (route.name === "Home") {
-      iconName = focused ? "ios-home" : "ios-home-outline";
-    } else if (route.name === "Community") {
-      iconName = focused ? "ios-people-circle" : "ios-people-circle-outline";
-    } else if (route.name === "User") {
-      iconName = focused ? "ios-person-circle" : "ios-person-circle-outline";
-    }
-    // You can return any component that you like here!
-    // own icon later
-    return <Ionicons name={iconName} size={size + 7} color={color} />;
-  },
-  tabBarStyle: {
-    backgroundColor: "#2b2b2b",
-    bottom: 0,
-    borderTopColor: "transparent",
-    overflow: "hidden",
-  },
+import { useTheme } from "styled-components/native";
+import { ResourceContextProvider } from "../../services/resource/resource.context";
 
-  tabBarActiveTintColor: "#fbbcff",
-  tabBarInactiveTintColor: "gray",
-  tabBarShowLabel: false,
-});
+const Icon = styled.Image``;
+const createScreenOptions = ({ route }) => {
+  const theme = useTheme(); //theme
+  useEffect(() => {
+    console.log(theme);
+  }, []);
+  //console.log(theme)
+  return {
+    tabBarIcon: ({ focused, color, size }) => {
+      let iconName;
+      if (route.name === "Planner") {
+        iconName = focused ? "ios-calendar" : "ios-calendar-outline";
+      } else if (route.name === "Home") {
+        iconName = focused ? "ios-home" : "ios-home-outline";
+      } else if (route.name === "Community") {
+        iconName = focused ? "ios-people-circle" : "ios-people-circle-outline";
+      } else if (route.name === "User") {
+        iconName = focused ? "ios-person-circle" : "ios-person-circle-outline";
+      }
+      // You can return any component that you like here!
+      // own icon later
+      return <Ionicons name={iconName} size={size + 7} color={color} />;
+    },
+    tabBarStyle: {
+      backgroundColor: theme.colors.accent.quinary, //for home screen go to home navigator
+      bottom: 0,
+      borderTopColor: "transparent",
+      overflow: "hidden",
+    },
+
+    tabBarActiveTintColor: "#fbbcff",
+    tabBarInactiveTintColor: "#d9d9d9",
+    tabBarShowLabel: false,
+  };
+};
 
 const Tab = createBottomTabNavigator();
 
@@ -50,39 +60,41 @@ const TabNavigator = styled(Tab.Navigator)``;
 
 export const AppNavigator = () => {
   const tabHiddenRoutes = ["Group", "Map"];
-
+  const theme = useTheme();
   return (
     <>
       <SafeAreaProvider>
         <MapsContextProvider>
-          <Tab.Navigator
-            initialRouteName="Home"
-            screenOptions={createScreenOptions}
-          >
-            <Tab.Screen
-              name="Planner"
-              component={PlannerNavigator}
-              // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="Home"
-              component={HomeNavigator}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Tab.Screen
-              name="Community"
-              component={CommunityNavigator}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="User"
-              component={UserNavigator}
-              options={{ headerShown: false }}
-            />
-          </Tab.Navigator>
+          <ResourceContextProvider>
+            <Tab.Navigator
+              initialRouteName="Home"
+              screenOptions={createScreenOptions}
+            >
+              <Tab.Screen
+                name="Planner"
+                component={PlannerNavigator}
+                // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+                options={{ headerShown: false }}
+              />
+              <Tab.Screen
+                name="Home"
+                component={HomeNavigator}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Tab.Screen
+                name="Community"
+                component={CommunityNavigator}
+                options={{ headerShown: false }}
+              />
+              <Tab.Screen
+                name="User"
+                component={UserNavigator}
+                options={{ headerShown: false }}
+              />
+            </Tab.Navigator>
+          </ResourceContextProvider>
         </MapsContextProvider>
       </SafeAreaProvider>
       <ExpoStatusBar style="light" />

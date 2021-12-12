@@ -2,10 +2,15 @@ import React from "react";
 
 import styled from "styled-components/native";
 import { TextInput, Text } from "react-native-paper";
-import { Button, Platform, TouchableOpacity, Image, KeyboardAvoidingView } from "react-native";
+import {
+  Button,
+  Platform,
+  TouchableOpacity,
+  Image,
+  KeyboardAvoidingView,
+} from "react-native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Logo } from "../../../../assets/logo";
-
 
 export const HomeBackground = styled.ImageBackground.attrs({
   // source: require("../../../../assets/splash.png"),
@@ -14,7 +19,6 @@ export const HomeBackground = styled.ImageBackground.attrs({
   background-color: ${(props) => props.theme.colors.bg.primary};
   justify-content: center;
 `;
-
 
 export const Container = styled.View`
   padding: ${(props) => props.theme.space[4]};
@@ -25,21 +29,25 @@ export const Container = styled.View`
   align-self: center;
 `;
 
-export const TContainer = styled.View`
-  position: absolute;
-  padding: ${(props) => props.theme.space[4]};
-  margin-top: ${(props) => props.theme.space[4]};
-  align-items: center;
-  align-self: center;
+export const TitleContainer = styled.View`
+  font-size: 40px;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: auto;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   /* top: 20%; */
 `;
 
-export const HeaderText = styled.Text`
+export const TitleText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 35px;
+  padding: ${(props) => props.theme.space[1]};
+  font-size: 40px;
   color: #ffffff;
-  margin-left: 20px;
-  margin-top: 10px;
+  /* left: -10%; */
 `;
 
 export const DescText = styled.Text`

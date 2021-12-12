@@ -16,10 +16,16 @@ export function ModuleButton({
   left,
   style,
   moduleName,
+  value,
+  id,
   navigation,
   onPress,
 }) {
   const { setSelectedModule } = useContext(MapsContext);
+  const module = {
+    moduleName,
+    id,
+  };
   return (
     <TouchableOpacity
       style={{
@@ -34,18 +40,15 @@ export function ModuleButton({
         alignItems: "center",
         ...style,
       }}
-      onPress={() => setSelectedModule(moduleName)}
+      onPress={() => setSelectedModule(module)}
     >
       <CircularProgressWithChild
         activeStrokeColor={"#467dff"}
         activeStrokeSecondaryColor={"#b535ff"}
         activeStrokeWidth={20}
-        value={25}
+        value={value}
         radius={60}
-      >
-        {/* <View></View> */}
-        {/* <Text style={{ fontSize: 20, color: "white" }}>{moduleName}</Text> */}
-      </CircularProgressWithChild>
+      ></CircularProgressWithChild>
     </TouchableOpacity>
   );
 }

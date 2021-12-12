@@ -6,7 +6,7 @@ import {
 import { Button } from "../../features/planner/components/button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 
-import { SetMapScreen } from "../../features/map/screens/set-map.screen";
+import { SetMapScreen } from "../../features/map/screens/sets/set-map.screen";
 const MapStack = createStackNavigator();
 
 export const MapNavigator = ({ navigation }) => {

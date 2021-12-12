@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { View, Platform } from "react-native";
+import { View, Platform, Text } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
 import { HomeScreen } from "../../features/home/screens/home.screen";
-import { SetMapScreen } from "../../features/map/screens/set-map.screen";
+import { SetMapScreen } from "../../features/map/screens/sets/set-map.screen";
 import { Ionicons } from "@expo/vector-icons";
 
 import { AddButton } from "../../features/home/components/buttons/add-button.component";
 import { SettingButton } from "../../features/home/components/buttons/setting-button.component";
+//import { ProfileButton } from "../../features/home/components/buttons/profile-button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 import { MapNavigator } from "./map.navigation";
 import { QuizNavigator } from "./quiz.navigation.js";
@@ -17,6 +18,12 @@ import { StatusBar } from "expo-status-bar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
+
+import { useTheme } from "styled-components/native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const HomeStack = createStackNavigator();
 
@@ -26,13 +33,15 @@ export const HomeNavigator = ({ navigation, route }) => {
     console.log(getFocusedRouteNameFromRoute(route));
   }, [route]);
   const tabHiddenRoutes = ["SetMapScreen", "QuizNavigator"];
+  const theme = useTheme();
+  const inset = useSafeAreaInsets();
   React.useLayoutEffect(() => {
     if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
       navigation.setOptions({ tabBarStyle: { display: "none" } });
     } else {
       navigation.setOptions({
         tabBarStyle: {
-          backgroundColor: "#2b2b2b",
+          backgroundColor: theme.colors.accent.quinary, // for home screen exception
           bottom: 0,
           borderTopColor: "transparent",
           overflow: "hidden",
@@ -54,33 +63,49 @@ export const HomeNavigator = ({ navigation, route }) => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: "Quizdom ",
-            headerTitleStyle: {
-              alignSelf: "center",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "Airstrike",
-              marginTop: Platform.OS === "ios" ? -20 : -10,
-              fontSize: 45,
-              color: "#fff",
-            },
-            cardStyle: {
-              // backgroundColor: "red",
-            },
+            title: "",
+            // headerTitleStyle: {
+            //   backgroundColor: "red",
+            //   alignSelf: "center",
+            //   alignItems: "center",
+            //   justifyContent: "center",
+            //   fontFamily: "Airstrike",
+            //   marginTop: inset.top + Platform.OS === "ios" ? -20 : -10,
+            //   fontSize: 47,
+            //   color: "#fff",
+            // },
+            // cardStyle: {
+            //   // backgroundColor: "red",
+            // },
+            //Fix Later headerRight: () => <ProfileButton navigation={navigation} />,
             headerRight: () => <SettingButton navigation={navigation} />,
-            headerLeft: () => <AddButton navigation={navigation} />,
+            //headerLeft: () => <AddButton navigation={navigation} />,
             headerTransparent: true,
             headerBackground: () => (
               <View
                 style={{
                   height:
-                    Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top,
-                  backgroundColor: "rgba(26, 26, 26, 1)",
-                  borderBottomRightRadius: 30,
-                  borderBottomLeftRadius: 30,
+                    Platform.OS === "ios" ? 50 + inset.top : 50 + inset.top, //was 120 Android
+                  backgroundColor: theme.colors.accent.quinary, //coloradded
+                  // borderBottomRightRadius: 30,
+                  // borderBottomLeftRadius: 30,
                   ...shadow.shadow2,
                 }}
-              ></View>
+              >
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "Airstrike",
+                    marginTop: inset.top - 5,
+                    fontSize: 47,
+                    color: "#fff",
+                  }}
+                >
+                  {"Quizdom" + " "}
+                </Text>
+              </View>
             ),
           }}
         />

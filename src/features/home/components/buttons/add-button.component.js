@@ -10,7 +10,7 @@ export const AddButton = ({ navigation }) => {
       style={{
         flexDirection: "row",
         paddingLeft: 25,
-        marginTop: -20,
+        //marginTop: -20,
         marginRight: 10,
       }}
       onPress={() => {

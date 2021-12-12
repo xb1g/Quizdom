@@ -10,7 +10,7 @@ export function HeaderText({ title, color }) {
       variant="label"
       style={{
         position: "absolute",
-        top: insets.top + 10,
+        top: insets.top,
         right: 10,
         color: color || "white",
         fontSize: 60,

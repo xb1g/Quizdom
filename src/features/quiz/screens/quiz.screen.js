@@ -4,20 +4,31 @@ import styled from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
 import { SafeTop } from "../../../components/utility/safe-area.component";
 import { Button } from "react-native-paper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Row } from "../../../components/utility/row.component";
 
 const ChoiceButton = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.accent.primary};
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   margin: 10px;
 `;
-const Choice = ({ children }) => {
+
+const Choice = ({ children, number, selectedChoice, setSelectedChoice }) => {
   return (
-    <ChoiceButton style={{ backgroundColor: "#c9eee6" }}>
+    <ChoiceButton
+      onPress={() => setSelectedChoice(number)}
+      style={
+        selectedChoice === number
+          ? { backgroundColor: "teal" }
+          : { backgroundColor: "pink" }
+      }
+    >
       {children}
     </ChoiceButton>
   );
 };
+
 const NextButton = styled(TouchableOpacity)`
   padding: 10px;
   border-radius: 10px;
@@ -125,6 +136,9 @@ export function QuizScreen({ route, navigation, quiz }) {
       skillLevel: 2,
     },
   ];
+
+  const insets = useSafeAreaInsets();
+
   const [page, setPage] = React.useState(0);
   const [selectedChoice, setSelectedChoice] = React.useState(null);
   const [checked, setChecked] = React.useState(false);
@@ -161,6 +175,7 @@ export function QuizScreen({ route, navigation, quiz }) {
   const onCheck = () => {
     console.log("Checking");
     console.log(selectedChoice);
+    console.log(quiz[page].correct_answer);
     if (selectedChoice === quiz[page].correct_answer) {
       setChecked(true);
       setScore(score + 1);
@@ -175,17 +190,15 @@ export function QuizScreen({ route, navigation, quiz }) {
     setPage(page + 1);
     setChecked(false);
     setCorrect(null);
+    setSelectedChoice(null);
   };
 
   const onExit = () => {
     if (!finished) setShowModal(true);
-    console.log("ONEXIT");
-    // navigation.goBack();
   };
 
   return (
     <SafeTop>
-      <Button onPress={onExit}>exit</Button>
       <Modal
         animationType="slide"
         transparent={true}
@@ -195,36 +208,117 @@ export function QuizScreen({ route, navigation, quiz }) {
           setShowModal(!showModal);
         }}
       >
-        <View>
-          <View>
-            <Text>Hello World!</Text>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0000009d",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: 10,
+              padding: 20,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Are you sure you want to exit?
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: 20,
+              }}
+            >
+              <Button
+                onPress={() => {
+                  setShowModal(!showModal);
+                }}
+              >
+                <Text>No</Text>
+              </Button>
+              <Button
+                onPress={() => {
+                  setShowModal(!showModal);
+                  navigation.goBack();
+                }}
+              >
+                <Text
+                  style={{
+                    color: "red",
+                  }}
+                >
+                  Yes
+                </Text>
+              </Button>
+            </View>
           </View>
         </View>
       </Modal>
       {page < 5 ? (
         <View style={{ padding: 10 }}>
+          <TouchableOpacity onPress={onExit}>
+            <Text>QUIT</Text>
+          </TouchableOpacity>
+          <View>
+            <Text variant="label" style={{ fontSize: 60 }}>
+              #{page + 1}
+            </Text>
+          </View>
+          <TouchableOpacity onPress={onNext} style={{ backgroundColor: "red" }}>
+            <Text
+              variant="label"
+              style={{
+                fontSize: 30,
+              }}
+            >
+              {">>"}
+            </Text>
+          </TouchableOpacity>
           <Text>Quiz</Text>
           <Text variant="label" style={{ fontSize: 70 }}>
             score: {score}
           </Text>
-          <View>
-            <Text>{page + 1}</Text>
-          </View>
 
           <Text>{quiz[page].question}</Text>
-          <Choice onPress={() => setSelectedChoice(1)}>
+          <Choice
+            setSelectedChoice={setSelectedChoice}
+            number={1}
+            selectedChoice={selectedChoice}
+          >
             <Text>{quiz[page].answer1}</Text>
           </Choice>
           <Explain answer={1} page={page} quiz={quiz[page]} checked={checked} />
-          <Choice onPress={() => setSelectedChoice(2)}>
+          <Choice
+            setSelectedChoice={setSelectedChoice}
+            number={2}
+            selectedChoice={selectedChoice}
+          >
             <Text>{quiz[page].answer2}</Text>
           </Choice>
           <Explain answer={2} page={page} quiz={quiz[page]} checked={checked} />
-          <Choice onPress={() => setSelectedChoice(3)}>
+          <Choice
+            setSelectedChoice={setSelectedChoice}
+            number={3}
+            selectedChoice={selectedChoice}
+          >
             <Text>{quiz[page].answer3}</Text>
           </Choice>
           <Explain answer={3} page={page} quiz={quiz[page]} checked={checked} />
-          <Choice onPress={() => setSelectedChoice(4)}>
+          <Choice
+            setSelectedChoice={setSelectedChoice}
+            number={4}
+            selectedChoice={selectedChoice}
+          >
             <Text>{quiz[page].answer4}</Text>
           </Choice>
           <Explain answer={4} page={page} quiz={quiz[page]} checked={checked} />
@@ -238,6 +332,9 @@ export function QuizScreen({ route, navigation, quiz }) {
         </View>
       ) : (
         <View>
+          <Text>Quiz finished</Text>
+          <Text>Your score is {score}</Text>
+
           <Text>FUNUSHd</Text>
           <NextButton
             onPress={() => {
