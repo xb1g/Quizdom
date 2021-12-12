@@ -24,7 +24,7 @@ export function ModulePopup({ moduleName, navigation }) {
         height: 200,
         width: Dimensions.get("window").width - 20,
         borderRadius: 30,
-        marginHorizontal: 10,
+        margin: 10,
         padding: 20,
         justifyContent: "space-between",
         ...shadow.shadow1,
