@@ -5,4 +5,10 @@ export const setResource = {
   "Basic of Set": basic_of_set,
   "Set Types": set_types,
   "Subset and Powerset": [],
+  Equality: [],
+  Notation: [],
+  "Set operation": [],
+  "Venn Euler diagram": [],
+  "Advance set": [],
+  Test: [],
 };
