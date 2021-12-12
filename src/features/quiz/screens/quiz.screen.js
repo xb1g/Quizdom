@@ -13,7 +13,9 @@ const ChoiceButton = styled(TouchableOpacity)`
 `;
 const Choice = ({ children }) => {
   return (
-    <ChoiceButton style={{ backgroundColor: "red" }}>{children}</ChoiceButton>
+    <ChoiceButton style={{ backgroundColor: "#c9eee6" }}>
+      {children}
+    </ChoiceButton>
   );
 };
 const NextButton = styled(TouchableOpacity)`
@@ -183,9 +185,7 @@ export function QuizScreen({ route, navigation, quiz }) {
 
   return (
     <SafeTop>
-      <Button onPress={onExit}>
-        <Text>exit</Text>
-      </Button>
+      <Button onPress={onExit}>exit</Button>
       <Modal
         animationType="slide"
         transparent={true}
@@ -228,11 +228,13 @@ export function QuizScreen({ route, navigation, quiz }) {
             <Text>{quiz[page].answer4}</Text>
           </Choice>
           <Explain answer={4} page={page} quiz={quiz[page]} checked={checked} />
-
-          <Button onPress={onCheck}>Check plsssss</Button>
-          <NextButton onPress={onNext}>
-            <Text>Next</Text>
-          </NextButton>
+          {!checked ? (
+            <Button onPress={onCheck}>Check plsssss</Button>
+          ) : (
+            <NextButton onPress={onNext}>
+              <Text>Next</Text>
+            </NextButton>
+          )}
         </View>
       ) : (
         <View>

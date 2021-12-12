@@ -15,11 +15,13 @@ import { MapNavigator } from "./map.navigation";
 import { QuizNavigator } from "./quiz.navigation.js";
 import { StatusBar } from "expo-status-bar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 const HomeStack = createStackNavigator();
 
 export const HomeNavigator = ({ navigation, route }) => {
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     console.log(getFocusedRouteNameFromRoute(route));
   }, [route]);
@@ -71,7 +73,8 @@ export const HomeNavigator = ({ navigation, route }) => {
             headerBackground: () => (
               <View
                 style={{
-                  height: Platform.OS === "ios" ? 100 : 120,
+                  height:
+                    Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top,
                   backgroundColor: "rgba(26, 26, 26, 1)",
                   borderBottomRightRadius: 30,
                   borderBottomLeftRadius: 30,

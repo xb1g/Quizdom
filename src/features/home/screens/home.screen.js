@@ -21,10 +21,7 @@ import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
 
-import {
-  HeaderText,
-  HomeBackground,
-} from "../components/home.styles";
+import { HeaderText, HomeBackground } from "../components/home.styles";
 
 const Heading = styled.Text`
   font-size: 60px;
@@ -57,22 +54,21 @@ export const HomeScreen = ({ navigation }) => {
   ];
   return (
     <HomeBackground>
-      <SafeTop />
-      <SafeTop />
-      <SafeTop />
-      <SafeTop />
-      <SafeTop />
-      <ScrollView>
-        {/*
+      {/* <SafeTop /> */}
+      <View style={{ marginTop: 50 }} />
+      <SafeTop>
+        <ScrollView>
+          {/*
         <Button onPress={onLogout}>Logout</Button>
         */}
-        <HeaderText>Today</HeaderText>
-        <Today style={shadow} navigation={navigation} />
-        <Heading>Maps</Heading>
-        <Maps maps={maps} navigation={navigation} />
-        <ScrollView></ScrollView>
-      </ScrollView>
-      <StatusBar style="light" />
+          <HeaderText>Today</HeaderText>
+          <Today style={shadow} navigation={navigation} />
+          <Heading>Maps</Heading>
+          <Maps maps={maps} navigation={navigation} />
+          <ScrollView></ScrollView>
+        </ScrollView>
+        <StatusBar style="light" />
+      </SafeTop>
     </HomeBackground>
   );
 };
