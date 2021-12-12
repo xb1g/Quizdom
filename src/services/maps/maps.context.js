@@ -21,13 +21,7 @@ export const MapsContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <MapsContext.Provider
-      value={{
-        maps,
-        selectedModule: selectedModule,
-        setSelectedModule: setSelectedModule,
-      }}
-    >
+    <MapsContext.Provider value={{ maps, selectedModule, setSelectedModule }}>
       {children}
     </MapsContext.Provider>
   );

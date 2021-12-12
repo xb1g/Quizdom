@@ -2,10 +2,15 @@ import React from "react";
 
 import styled from "styled-components/native";
 import { TextInput, Text } from "react-native-paper";
-import { Button, Platform, TouchableOpacity, Image, KeyboardAvoidingView } from "react-native";
+import {
+  Button,
+  Platform,
+  TouchableOpacity,
+  Image,
+  KeyboardAvoidingView,
+} from "react-native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Logo } from "../../../../assets/logo";
-
 
 export const AccountBackground = styled.ImageBackground.attrs({
   // source: require("../../../../assets/splash.png"),
@@ -14,7 +19,6 @@ export const AccountBackground = styled.ImageBackground.attrs({
   background-color: ${(props) => props.theme.colors.bg.primary};
   justify-content: center;
 `;
-
 
 export const AccountCover = styled.View`
   position: absolute;
@@ -110,7 +114,7 @@ export const BackButton = ({ navigation, onPress }) => {
         left: "-5%",
         backgroundColor: "#ffffff",
         borderColor: "#ffffff",
-        borderRadius: 20,
+        borderRadius: 15,
       }}
       onPress={
         onPress
@@ -122,7 +126,7 @@ export const BackButton = ({ navigation, onPress }) => {
     >
       <Text
         style={{
-          fontSize: 75,
+          fontSize: 60,
           fontFamily: "Airstrike",
         }}
       >{`  <  `}</Text>

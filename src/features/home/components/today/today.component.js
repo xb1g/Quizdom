@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+import { useTheme } from "styled-components/native";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -56,6 +57,7 @@ export const Today = ({
     },
   ],
 }) => {
+  const theme = useTheme();
   return (
     <TodayView style={shadow.shadow1}>
       <Carousel
@@ -68,7 +70,9 @@ export const Today = ({
             <View style={styles.container}>
               <Text
                 style={{
-                  fontSize: 22,
+                  fontSize: 25,
+                  marginLeft: 5,
+                  marginBottom: 5,
                 }}
                 numberOfLines={2}
               >
@@ -84,6 +88,7 @@ export const Today = ({
                           style={{
                             flexDirection: "row",
                             margin: 10,
+                            marginTop: 10,
                             alignItems: "center",
                           }}
                         >
@@ -177,7 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#fef",
+    backgroundColor: "#ffaadd",
     borderRadius: 20,
   },
   item: {

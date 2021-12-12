@@ -5,7 +5,8 @@ import {
 import React from "react";
 import { View, Text } from "react-native";
 import { ModulePopupScreen } from "../../features/quiz/screens/module-popup.screen";
-import { ResourceScreen } from "../../features/quiz/screens/resource.screen.js";
+import { SetResourceScreen } from "../../features/map/screens/sets/set-resource.screen";
+
 import { QuizScreen } from "../../features/quiz/screens/quiz.screen.js";
 
 const QuizStack = createStackNavigator();
@@ -17,11 +18,16 @@ export function QuizNavigator({ navigation }) {
         headerShown: false,
         // presentation: "transparentModal",
         // ...TransitionPresets.ModalPresentationIOS,
-        ...TransitionPresets.SlideFromRightIOS,
       }}
     >
-      <QuizStack.Screen name="Resource" component={ResourceScreen} />
-      <QuizStack.Screen name="Quiz" component={QuizScreen} />
+      <QuizStack.Screen name="Resource" component={SetResourceScreen} />
+      <QuizStack.Screen
+        name="Quiz"
+        component={QuizScreen}
+        options={{
+          gestureEnabled: false,
+        }}
+      />
     </QuizStack.Navigator>
   );
 }

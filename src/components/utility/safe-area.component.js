@@ -13,7 +13,24 @@ export const SafeArea = styled(SafeAreaView)`
   background-color: rgb(242, 242, 242);
 `;
 
-export const SafeTop = ({ children }) => {
+export const SafeTop = ({ children, color = "transparent", flex = 1 }) => {
   const insets = useSafeAreaInsets();
-  return <View style={{ marginTop: insets.top, flex: 1 }}>{children}</View>;
+  return (
+    <View
+      style={{ paddingTop: insets.top, flex: flex, backgroundColor: color }}
+    >
+      {children}
+    </View>
+  );
+};
+export const SafeBottom = ({ color = "transparent" }) => {
+  const insets = useSafeAreaInsets();
+  return (
+    <View
+      style={{
+        paddingBottom: insets.bottom,
+        backgroundColor: color,
+      }}
+    />
+  );
 };

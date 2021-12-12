@@ -213,7 +213,7 @@ export function SettingsScreen({ navigation }) {
             }}
             titleStyle={{
               color: "white",
-              fontSize: "18",
+              fontSize: 18,
             }}
             title="Term of service and Privacy policy"
             left={(props) => <List.Icon {...props} icon="mail" />}

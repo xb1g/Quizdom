@@ -48,6 +48,12 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
       }
     });
+    return () => {
+      // setUser(null);
+      // setUserInfo(null);
+      // setError(null);
+      // setIsLoading(false);
+    };
   }, [user]);
 
   const onLogin = (email, password) => {

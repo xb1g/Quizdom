@@ -2,20 +2,26 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+
 export const SettingButton = ({ navigation }) => {
+  const inset = useSafeAreaInsets();
   return (
     <TouchableOpacity
       style={{
         flexDirection: "row",
         paddingRight: 25,
-        marginTop: -20,
-        marginRight: 10,
+        marginTop: -inset.top * 0.25,
+        // marginRight: 10,
       }}
       onPress={() => {
-        navigation.navigate("Settings");
+        navigation.navigate("UserProfileScreen");
       }}
     >
-      <Ionicons name="settings" size={40} />
+      <Ionicons name="ios-person-circle-outline" size={35} color={"#fff"} />
     </TouchableOpacity>
   );
 };

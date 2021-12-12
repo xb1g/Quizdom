@@ -10,16 +10,28 @@ import {
   AccountBackground,
   AccountCover,
   Container,
+  TContainer,
   AuthInput,
   BackButton,
   AuthButton,
+  AuthIconButton,
+  DescText,
+  LogoText,
+  AuthLogo,
   Input,
 } from "../components/account.styles";
+
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
-const Center = styled.View``;
+const Center = styled.View`
+  top: 10%;
+`;
+
+const DescTextI = styled(DescText)`
+  top: 25%;
+`;
 
 const DescText = styled.Text`
   font-size: 20px;
@@ -57,7 +69,7 @@ export const RegisterScreen = ({ navigation }) => {
             page ? setPage(false) : navigation.goBack();
           }}
         />
-        <DescText>Create your account.</DescText>
+        <DescTextI>Create your account.</DescTextI>
         <TContainer>
           {error && (
             <Spacer position="bottom" size="medium">
@@ -65,7 +77,6 @@ export const RegisterScreen = ({ navigation }) => {
             </Spacer>
           )}
           {!page ? (
-          
             <Center>
               <AuthInput
                 label="Email"
@@ -96,6 +107,11 @@ export const RegisterScreen = ({ navigation }) => {
                 onChangeText={(text) => setRepeatedPassword(text)}
               />
               <Spacer size="large" />
+              <Spacer size="large" />
+              <Spacer size="large" />
+              <Spacer size="large" />
+              <Spacer size="large" />
+
               {!isLoading ? (
                 <AuthButton
                   type="primary"
@@ -109,12 +125,14 @@ export const RegisterScreen = ({ navigation }) => {
                   next
                 </AuthButton>
               ) : (
-                <ActivityIndicator animating={true} color={Colors.blue100} />
+                <ActivityIndicator animating={true} color="#7ed957" />
               )}
             </Center>
           ) : (
             <Center>
+              {/*
               <Text variant="label">gimme ur info!</Text>
+              */}
               <Spacer size="large" />
 
               <Input
@@ -130,7 +148,7 @@ export const RegisterScreen = ({ navigation }) => {
 
               <Input
                 label="Name"
-                placeholder="Thanawas"
+                //placeholder="Thanawas"
                 value={userInfo.name}
                 keyboardType="default"
                 textContentType="givenName"
@@ -142,7 +160,7 @@ export const RegisterScreen = ({ navigation }) => {
 
               <Input
                 label="Lastname"
-                placeholder="Sitdown"
+                //placeholder="Sitdown"
                 value={userInfo.lastname}
                 textContentType="familyName"
                 autoCapitalize="none"
@@ -153,7 +171,7 @@ export const RegisterScreen = ({ navigation }) => {
               <Spacer size="large" />
               <Input
                 label="Year of birth"
-                placeholder="2009"
+                //placeholder="yyyy"
                 maxLength={4}
                 value={userInfo.yearOfBirth}
                 keyboardType="number-pad"
