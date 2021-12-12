@@ -9,14 +9,13 @@ import {
 // import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 // import Icon from "react-native-ionicons";
 // import { Icon } from "../../../components/icon/icon.component";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../../components/typography/text.component";
 import { BackButton } from "../../../../components/button/back-button.component";
 // import Pie from "react-native-pie";
 // import { ModuleButton } from "../components/module-button.component";
-import { useTheme } from "styled-components";
 import { HeaderText } from "../../../../components/utility/header-text.component";
 // import { ModulePopup } from "../../quiz/screens/module-popup.screen";
 import { ModulePopup } from "../../components/module-popup.component";

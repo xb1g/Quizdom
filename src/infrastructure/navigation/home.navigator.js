@@ -16,17 +16,15 @@ import { MapNavigator } from "./map.navigation";
 import { QuizNavigator } from "./quiz.navigation.js";
 import { StatusBar } from "expo-status-bar";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 import { useTheme } from "styled-components/native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
 
 const HomeStack = createStackNavigator();
 
 export const HomeNavigator = ({ navigation, route }) => {
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     console.log(getFocusedRouteNameFromRoute(route));
   }, [route]);
