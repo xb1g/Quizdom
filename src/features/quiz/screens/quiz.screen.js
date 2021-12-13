@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -7,16 +7,27 @@ import {
   Modal,
   ScrollView,
   Image,
+  Dimensions,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
 import {
   SafeBottom,
   SafeTop,
 } from "../../../components/utility/safe-area.component";
-import { Button } from "react-native-paper";
+import { Button, ProgressBar } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Row } from "../../../components/utility/row.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { shadow } from "../../../components/shadow/shadow.styles";
+import { PinchGestureHandler } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 const ChoiceButton = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.accent.primary};
@@ -25,23 +36,49 @@ const ChoiceButton = styled(TouchableOpacity)`
   margin: 10px;
 `;
 
+const HintButton = ({ showHint }) => {
+  return (
+    <TouchableOpacity
+      onPress={showHint}
+      style={{
+        marginLeft: "auto",
+      }}
+    >
+      <Ionicons name="bulb" size={35} color="black" />
+    </TouchableOpacity>
+  );
+};
+
 const Choice = ({
   children,
   checked,
   number,
+  correct,
   selectedChoice,
   setSelectedChoice,
+  correctAnswer,
 }) => {
+  console.log("correct");
+  console.log(correct);
+  const color = correct ? "#6de090" : "#ff5151";
+  const borderColor = correct ? "#56ad70" : "#d184ae";
+
   return (
     <ChoiceButton
       onPress={() => {
         !checked && setSelectedChoice(number);
       }}
       style={
-        selectedChoice === number
+        checked && correctAnswer === number
           ? {
-              backgroundColor: "#e7e689",
-              borderColor: "#b6ac72",
+              backgroundColor: "#6de090",
+              borderColor: "#56ad70",
+              borderWidth: 3,
+            }
+          : selectedChoice === number
+          ? {
+              backgroundColor: !checked ? "#b1ffff" : color,
+              borderColor: !checked ? "#64a39e" : borderColor,
               borderWidth: 3,
             }
           : { backgroundColor: "pink" }
@@ -53,8 +90,9 @@ const Choice = ({
 };
 
 const ChoiceContainer = styled.View`
+  max-height: 500px;
   padding: 10px;
-  padding-bottom: 30px;
+  padding-bottom: -10px;
   margin-top: auto;
   margin-bottom: 0;
   background_color: ${(props) => props.theme.colors.accent.primary};
@@ -73,7 +111,21 @@ const Explain = ({ answer, quiz, page, checked }) => {
   return (
     <>
       {checked && (
-        <View>
+        <View
+          style={{
+            backgroundColor: "#e7e689",
+            borderRadius: 10,
+            padding: 10,
+            margin: 10,
+          }}
+        >
+          <Text
+            style={{
+              marginBottom: 10,
+            }}
+          >
+            Explaination:
+          </Text>
           <Text>{quiz[expnum]}</Text>
         </View>
       )}
@@ -81,7 +133,82 @@ const Explain = ({ answer, quiz, page, checked }) => {
   );
 };
 
+const AnimatedImage = Animated.createAnimatedComponent(Image);
+
+const Progress = () => {
+  return (
+    <>
+      <Row style={{ width: 200, alignSelf: "center", backgroundColor: "red" }}>
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+      </Row>
+    </>
+  );
+};
+
+const FocusedImage = ({ uri, width, height }) => {
+  const [aspect, setAspect] = useState(1);
+  Image.getSize(uri, (width, height) => {
+    setAspect(width / height);
+    console.log(width / height);
+  });
+
+  return (
+    <Image
+      source={{ uri }}
+      style={{
+        width: width,
+        height: width * aspect,
+        resizeMode: "contain",
+      }}
+    />
+  );
+};
+
 export function QuizScreen({ route, navigation, quiz }) {
+  const { width, height } = Dimensions.get("window");
+  const scale = useSharedValue(1);
+  const focalX = useSharedValue(0);
+  const focalY = useSharedValue(0);
+
   const [w, setW] = React.useState(200);
   const [h, setH] = React.useState(200);
   const [position, setPosition] = React.useState("relative");
@@ -91,8 +218,10 @@ export function QuizScreen({ route, navigation, quiz }) {
       question:
         "U = {1,2,3,4,5,6,7,8,9} A ={2,3,5,7} which is a subset of A' ?",
       image: "https://i.imgur.com/qkdpN.jpg",
+      tags: ["set", "subset"],
       answer1: "John",
-      answer2: " ",
+      answer2:
+        " What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?vWhat is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?vWhat is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?v",
       answer3: "{2,3} U {5,7}",
       answer4: "{1,4,9}",
       correct_answer: 4,
@@ -103,6 +232,7 @@ export function QuizScreen({ route, navigation, quiz }) {
     },
     {
       question: "What is your name?",
+      tags: ["set", "subset"],
       answer1: "John",
       answer2: "{1,2,3,4} - {1,4,7}",
       answer3: "{2,3} U {5,7}",
@@ -122,10 +252,7 @@ export function QuizScreen({ route, navigation, quiz }) {
       answer3: "{2,3} U {5,7}",
       answer4: "{1,4,9}",
       correct_answer: 4,
-      explaination1: "2, 3 and 5 are in A",
-      explaination2: "2 and 3 are in A",
-      explaination3: "All members in this set are in A",
-      explaination4: "All members in this set are not in A",
+      explaination: "2, 3 and 5 are in A",
       hint: "anything that is outside A",
       milestone: 1,
       question:
@@ -170,36 +297,19 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [correct, setCorrect] = React.useState(null);
   const [showModal, setShowModal] = React.useState(false);
   const [finished, setFinished] = React.useState(false);
+  const [correctAnswer, setCorrectAnswer] = React.useState(null);
+  const [focusImage, setFocusImage] = React.useState(null);
+  const [showHint, setShowHint] = React.useState(false);
 
-  // useEffect(
-  //   () =>
-  //     navigation.addListener("beforeRemove", (e) => {
-  //       // Prevent default behavior of leaving the screen
-  //       e.preventDefault();
-
-  //       // Prompt the user before leaving the screen
-  //       Alert.alert(
-  //         "Discard changes?",
-  //         "You have unsaved changes. Are you sure to discard them and leave the screen?",
-  //         [
-  //           { text: "Don't leave", style: "cancel", onPress: () => {} },
-  //           {
-  //             text: "Discard",
-  //             style: "destructive",
-  //             // If the user confirmed, then we dispatch the action we blocked earlier
-  //             // This will continue the action that had triggered the removal of the screen
-  //             onPress: () => navigation.dispatch(e.data.action),
-  //           },
-  //         ]
-  //       );
-  //     }),
-  //   [navigation]
-  // );
+  useEffect(() => {
+    console.log(focusImage);
+  }, [focusImage]);
 
   const onCheck = () => {
     console.log("Checking");
     console.log(selectedChoice);
     console.log(quiz[page].correct_answer);
+    setCorrectAnswer(quiz[page].correct_answer);
     if (selectedChoice === quiz[page].correct_answer) {
       setChecked(true);
       setScore(score + 1);
@@ -221,11 +331,15 @@ export function QuizScreen({ route, navigation, quiz }) {
     if (!finished) setShowModal(true);
   };
 
+  const onHint = () => {
+    setShowHint(true);
+  };
+
   return (
     <>
       <SafeTop color="#a2d1a2" flex={0} />
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={showModal}
         onRequestClose={() => {
@@ -289,6 +403,49 @@ export function QuizScreen({ route, navigation, quiz }) {
           </View>
         </View>
       </Modal>
+
+      <Modal animationType="fade" transparent={true} visible={!!focusImage}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0000009d",
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              setFocusImage(null);
+            }}
+          >
+            <FocusedImage uri={focusImage} width={width} height={height} />
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
+      <Modal animationType="fade" transparent={true} visible={showHint}>
+        <TouchableOpacity
+          onPress={() => {
+            setShowHint(false);
+          }}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0000009d",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#fff",
+              padding: 20,
+              borderRadius: 10,
+            }}
+          >
+            <Text>Hint: {quiz[page].hint}</Text>
+          </View>
+        </TouchableOpacity>
+      </Modal>
       {page < 5 ? (
         <View style={{ flex: 1 }}>
           <View
@@ -297,65 +454,70 @@ export function QuizScreen({ route, navigation, quiz }) {
               padding: 10,
               borderBottomLeftRadius: 30,
               borderBottomRightRadius: 30,
+              zIndex: 1,
             }}
           >
             <TouchableOpacity onPress={onExit}>
-              <Text>QUIT</Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#960032",
+                  // marginLeft: "auto",
+                }}
+              >
+                Exit
+              </Text>
             </TouchableOpacity>
-            <Row>
+            <Row style={{}}>
               <View>
                 <Text variant="label" style={{ fontSize: 60 }}>
                   #{page + 1 + " "}
                 </Text>
               </View>
-              <TouchableOpacity
-                onPress={onNext}
-                style={{ backgroundColor: "red", marginLeft: "auto" }}
-              >
+              <View style={{}}>
+                {/* <Progress /> */}
+                <ProgressBar
+                  progress={(page + 1) / 5}
+                  color="#960032"
+                  visible="true"
+                />
+              </View>
+              <HintButton showHint={onHint} />
+              {/* <TouchableOpacity onPress={onNext} style={{ marginLeft: "auto" }}>
                 <Text
                   variant="label"
                   style={{
-                    fontSize: 30,
+                    fontSize: 60,
                   }}
                 >
                   {">> "}
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </Row>
-            <Text variant="label" style={{ fontSize: 70 }}>
+            <Text variant="label" style={{ fontSize: 40 }}>
               score: {score}
             </Text>
           </View>
-
-          <ScrollView style={{ padding: 10 }}>
+          <ScrollView
+            style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
+          >
+            <Spacer size={"large"} />
             <Text>{quiz[page].question}</Text>
             {quiz[page].image && (
               <>
                 <TouchableOpacity
                   onPress={() => {
-                    !onFocus
-                      ? Image.getSize(quiz[page].image, (width, height) => {
-                          setW(width);
-                          setH(height);
-                          setPosition("absolute");
-                          setOnFocus(true);
-                        })
-                      : () => {
-                          setOnFocus(false);
-                          setPosition("relative");
-                          setW(200);
-                          setH(200);
-                        };
+                    console.log("WDAD");
+                    setFocusImage(quiz[page].image);
                   }}
                 >
                   <Image
                     source={{ uri: quiz[page].image }}
+                    defaultSource={require("../../../../assets/icon.png")}
                     style={{
                       width: w,
                       height: h,
-                      position: position,
-                      top: 0,
-                      left: 0,
+                      // position: position,
                       alignSelf: "center",
                       borderRadius: 20,
                     }}
@@ -363,49 +525,92 @@ export function QuizScreen({ route, navigation, quiz }) {
                 </TouchableOpacity>
               </>
             )}
+            <Spacer size={"extraLarge"} />
           </ScrollView>
           <ChoiceContainer>
-            <Choice
-              setSelectedChoice={setSelectedChoice}
-              number={1}
-              selectedChoice={selectedChoice}
-              checked={checked}
-            >
-              <Text>{quiz[page].answer1}</Text>
-            </Choice>
-            <Choice
-              setSelectedChoice={setSelectedChoice}
-              number={2}
-              selectedChoice={selectedChoice}
-              checked={checked}
-            >
-              <Text>{quiz[page].answer2}</Text>
-            </Choice>
-            <Choice
-              setSelectedChoice={setSelectedChoice}
-              number={3}
-              selectedChoice={selectedChoice}
-              checked={checked}
-            >
-              <Text>{quiz[page].answer3}</Text>
-            </Choice>
-            <Choice
-              setSelectedChoice={setSelectedChoice}
-              number={4}
-              selectedChoice={selectedChoice}
-              checked={checked}
-            >
-              <Text>{quiz[page].answer4}</Text>
-            </Choice>
-            <Explain page={page} quiz={quiz[page]} checked={checked} />
-            {!checked ? (
-              <Button onPress={onCheck}>Check plsssss</Button>
-            ) : (
-              <NextButton onPress={onNext}>
-                <Text>Next</Text>
-              </NextButton>
-            )}
+            <ScrollView>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={1}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer1}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={2}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer2}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={3}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer3}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={4}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer4}</Text>
+              </Choice>
+              <Explain page={page} quiz={quiz[page]} checked={checked} />
+              <Spacer size={"extraLarge"} />
+              <Spacer size={"extraLarge"} />
+              <Spacer size={"medium"} />
+            </ScrollView>
           </ChoiceContainer>
+          {!checked && selectedChoice && (
+            <Button
+              onPress={onCheck}
+              style={{
+                position: "absolute",
+                bottom: insets.bottom,
+                paddingHorizontal: 30,
+                backgroundColor: "#ffdfe9",
+                borderRadius: 15,
+                margin: "auto",
+                alignSelf: "center",
+                zIndex: 1,
+                ...shadow.shadow1,
+              }}
+            >
+              Check
+            </Button>
+          )}
+          {checked && (
+            <Button
+              onPress={onNext}
+              style={{
+                position: "absolute",
+                bottom: insets.bottom,
+                paddingHorizontal: 30,
+                backgroundColor: "#ffdfe9",
+                borderRadius: 15,
+                margin: "auto",
+                alignSelf: "center",
+                zIndex: 1,
+                ...shadow.shadow1,
+              }}
+            >
+              Next
+            </Button>
+          )}
         </View>
       ) : (
         <View>
