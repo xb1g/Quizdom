@@ -33,21 +33,21 @@ const DescTextI = styled(DescText)`
   top: 25%;
 `;
 
-const DescText = styled.Text`
-  font-size: 20px;
-  position: absolute;
-  top: 25%;
-  align-self: center;
-  color: ${(props) => props.theme.colors.accent.primary};
-`;
+// const DescText = styled.Text`
+//   font-size: 20px;
+//   position: absolute;
+//   top: 25%;
+//   align-self: center;
+//   color: ${(props) => props.theme.colors.accent.primary};
+// `;
 
-const TContainer = styled.View`
-  padding: ${(props) => props.theme.space[4]};
-  margin-top: ${(props) => props.theme.space[4]};
-  align-items: center;
-  align-self: center;
-  top: 0%;
-`;
+// const TContainer = styled.View`
+//   padding: ${(props) => props.theme.space[4]};
+//   margin-top: ${(props) => props.theme.space[4]};
+//   align-items: center;
+//   align-self: center;
+//   top: 0%;
+// `;
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
