@@ -2,6 +2,7 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ChoiceButton } from "./quiz.style";
+import { Ionicons } from "@expo/vector-icons";
 
 export const Choice = ({
   children,

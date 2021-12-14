@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Image } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { BackButton } from "../../../components/button/back-button.component";
 import { SafeTop } from "../../../components/utility/safe-area.component";
@@ -13,19 +13,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AddFriendButton } from "../components/friend/add-friend-button.component";
 
 export function FriendProfileScreen({ route, navigation, alreadyFriends }) {
-  // console.log(route);
   const { user } = route.params;
   const insets = useSafeAreaInsets();
-  // useEffect(() => {
-  //   if (user.uid) {
-  //     const docRef = doc(db, "users", user.uid);
-  //     onSnapshot(docRef, (doc) => {
-  //       console.log(doc.data());
-  //     });
-  //   }
-  // }, [user]);
-
-  // console.log(user);
   return (
     <>
       <LinearGradient
@@ -38,18 +27,12 @@ export function FriendProfileScreen({ route, navigation, alreadyFriends }) {
           position: "absolute",
         }}
       />
-      {alreadyFriends ? (
+      {/* {alreadyFriends ? (
         <UnFriendButton user={user} navigation={navigation} />
       ) : (
-        // <View
-        //   style={{
-        //     // position: "absolute",
-        //     top: 50,
-        //   }}
-        // >
         <AddFriendButton user={user} navigation={navigation} />
         // </View>
-      )}
+      )} */}
 
       <BackButton insets={insets} navigation={navigation} />
       <SafeTop style={{ flex: 1 }}>
