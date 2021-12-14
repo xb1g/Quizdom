@@ -14,7 +14,6 @@ import {
 } from "@react-navigation/stack";
 import { List } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
-import { AddPlanScreen } from "../../../features/planner/screens/add-plan.screen";
 import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ScrollView } from "react-native-gesture-handler";
@@ -26,7 +25,6 @@ const PlanningItem = styled(List.Item)`
   margin-right: ${(props) => props.theme.space[3]};
   margin-left: ${(props) => props.theme.space[3]};
 `;
-
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   return (
@@ -44,56 +42,125 @@ export const PlannerScreen = ({ navigation }) => {
       >
         {"Plan" + " "}
       </Text>
-      <ScrollView>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#393939",
-          }}
-        >
-          <Row>
-            <View style={{ marginTop: 30, marginLeft: 30 }}>
-              <TouchableHighlight
-                style={{
-                  borderRadius:
-                    Math.round(
-                      Dimensions.get("window").width +
-                        Dimensions.get("window").height
-                    ) / 2,
-                  width: Dimensions.get("window").width * 0.2,
-                  height: Dimensions.get("window").width * 0.2,
-                  backgroundColor: "#ffc8ff",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                underlayColor="#ff66c4"
-                onPress={() => {
-                  console.log("pressed sets plan");
-                }}
-              >
-                <Text style={{ fontSize: 36, color: "white" }}> {"Sets"} </Text>
-              </TouchableHighlight>
-            </View>
+      <View
+        style={{
+          backgroundColor: "#393939",
+          flex: 1,
+        }}
+      >
+        <ScrollView>
+          <View
+            style={{
+              backgroundColor: "#393939",
+            }}
+          >
+            <Row>
+              <View style={{ marginTop: 30, marginLeft: 30 }}>
+                <TouchableHighlight
+                  style={{
+                    borderRadius:
+                      Math.round(
+                        Dimensions.get("window").width +
+                          Dimensions.get("window").height
+                      ) / 2,
+                    width: Dimensions.get("window").width * 0.3,
+                    height: Dimensions.get("window").width * 0.3,
+                    backgroundColor: "#ffc8ff",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  underlayColor="#ff66c4"
+                  onPress={() => {
+                    console.log("pressed sets plan");
+                  }}
+                >
+                  <Text style={{ fontSize: 36, color: "white" }}>
+                    {" "}
+                    {"Sets"}{" "}
+                  </Text>
+                </TouchableHighlight>
+              </View>
 
-            <View>
-              <PlanningItem
-                style={{
-                  marginTop: 30,
-                  marginHorizontal: 30,
-                  backgroundColor: "#ffc8ff",
-                  borderRadius: 40,
-                }}
-                titleStyle={{
-                  color: "white",
-                  fontSize: "20",
-                  paddingLeft: 1,
-                }}
-                title="Start studying : 17/11/21"
-              />
-            </View>
-          </Row>
-        </View>
-      </ScrollView>
+              <View>
+                <PlanningItem
+                  style={{
+                    marginTop: 50,
+                    marginHorizontal: 30,
+                    backgroundColor: "#ffc8ff",
+                    borderRadius:
+                      (Dimensions.get("window").width +
+                        Dimensions.get("window").height) /
+                      2,
+                    width: Dimensions.get("window").width * 0.55,
+                    height: Dimensions.get("window").width * 0.2,
+                  }}
+                  titleStyle={{
+                    color: "white",
+                    fontSize: 18,
+                    paddingLeft: 5,
+                    paddingTop: 16,
+                  }}
+                  title="Start studying : 17/11/21"
+                />
+              </View>
+            </Row>
+          </View>
+          <View
+            style={{
+              backgroundColor: "#393939",
+            }}
+          >
+            <Row>
+              <View style={{ marginTop: 30, marginLeft: 30 }}>
+                <TouchableHighlight
+                  style={{
+                    borderRadius:
+                      Math.round(
+                        Dimensions.get("window").width +
+                          Dimensions.get("window").height
+                      ) / 2,
+                    width: Dimensions.get("window").width * 0.3,
+                    height: Dimensions.get("window").width * 0.3,
+                    backgroundColor: "#a359a0",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  underlayColor="#cb6ce6"
+                  onPress={() => {
+                    console.log("pressed logic plan");
+                  }}
+                >
+                  <Text style={{ fontSize: 36, color: "white" }}>
+                    {"Logic"}
+                  </Text>
+                </TouchableHighlight>
+              </View>
+              <View>
+                <PlanningItem
+                  style={{
+                    marginTop: 50,
+                    marginHorizontal: 30,
+                    backgroundColor: "#a359a0",
+                    borderRadius:
+                      (Dimensions.get("window").width +
+                        Dimensions.get("window").height) /
+                      2,
+                    width: Dimensions.get("window").width * 0.55,
+                    height: Dimensions.get("window").width * 0.2,
+                  }}
+                  titleStyle={{
+                    color: "white",
+                    fontSize: 18,
+                    paddingLeft: 5,
+                    paddingTop: 16,
+                  }}
+                  title="Start studying : 20/11/21"
+                />
+              </View>
+            </Row>
+          </View>
+        </ScrollView>
+      </View>
     </>
   );
 };
