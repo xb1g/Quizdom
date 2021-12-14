@@ -83,3 +83,52 @@ export const HintButton = ({ showHint }) => {
     </TouchableOpacity>
   );
 };
+
+export const Progress = () => {
+  return (
+    <>
+      <Row style={{ width: 200, alignSelf: "center", backgroundColor: "red" }}>
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+        <View
+          style={{
+            width: 40,
+            height: 10,
+            backgroundColor: "#e7e689",
+            borderRadius: 5,
+          }}
+        />
+      </Row>
+    </>
+  );
+};

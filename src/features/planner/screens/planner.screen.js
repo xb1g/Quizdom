@@ -14,14 +14,11 @@ import {
 } from "@react-navigation/stack";
 import { List } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
-import { PlannerScreen } from "../../../features/planner/screens/planner.screen";
 import { AddPlanScreen } from "../../../features/planner/screens/add-plan.screen";
 import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
-
-const PlannerStack = createStackNavigator();
 
 const PlanningItem = styled(List.Item)`
   margin-top: ${(props) => props.theme.space[3]};
@@ -29,7 +26,8 @@ const PlanningItem = styled(List.Item)`
   margin-right: ${(props) => props.theme.space[3]};
   margin-left: ${(props) => props.theme.space[3]};
 `;
-export const PlannerNavigator = ({ navigation }) => {
+
+export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   return (
     <>

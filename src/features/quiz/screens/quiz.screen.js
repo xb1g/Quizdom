@@ -29,74 +29,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { Choice, Explain, HintButton } from "../components/quiz.component";
-
-const ChoiceContainer = styled.View`
-  max-height: 500px;
-  padding: 10px;
-  padding-bottom: -10px;
-  margin-top: auto;
-  margin-bottom: 0;
-  background_color: ${(props) => props.theme.colors.accent.primary};
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
-`;
-
-const NextButton = styled(TouchableOpacity)`
-  padding: 10px;
-  border-radius: 10px;
-  background-color: ${(props) => props.theme.colors.brand.secondary};
-`;
-
+import { ChoiceContainer, NextButton } from "../components/quiz.style";
 const AnimatedImage = Animated.createAnimatedComponent(Image);
-
-const Progress = () => {
-  return (
-    <>
-      <Row style={{ width: 200, alignSelf: "center", backgroundColor: "red" }}>
-        <View
-          style={{
-            width: 40,
-            height: 10,
-            backgroundColor: "#e7e689",
-            borderRadius: 5,
-          }}
-        />
-        <View
-          style={{
-            width: 40,
-            height: 10,
-            backgroundColor: "#e7e689",
-            borderRadius: 5,
-          }}
-        />
-        <View
-          style={{
-            width: 40,
-            height: 10,
-            backgroundColor: "#e7e689",
-            borderRadius: 5,
-          }}
-        />
-        <View
-          style={{
-            width: 40,
-            height: 10,
-            backgroundColor: "#e7e689",
-            borderRadius: 5,
-          }}
-        />
-        <View
-          style={{
-            width: 40,
-            height: 10,
-            backgroundColor: "#e7e689",
-            borderRadius: 5,
-          }}
-        />
-      </Row>
-    </>
-  );
-};
 
 const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
@@ -135,7 +69,7 @@ export function QuizScreen({ route, navigation, quiz }) {
       tags: ["set", "subset"],
       answer1: "John",
       answer2:
-        " What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?vWhat is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?vWhat is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?v",
+        " What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?W?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?v",
       answer3: "{2,3} U {5,7}",
       answer4: "{1,4,9}",
       correct_answer: 4,
@@ -213,6 +147,7 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [correctAnswer, setCorrectAnswer] = React.useState(null);
   const [focusImage, setFocusImage] = React.useState(null);
   const [showHint, setShowHint] = React.useState(false);
+  const [metaData, setMetaData] = React.useState(null);
 
   useEffect(() => {
     console.log(focusImage);
@@ -532,6 +467,9 @@ export function QuizScreen({ route, navigation, quiz }) {
           <Text>Quiz finished</Text>
           <Text>Your score is {score}</Text>
 
+          <Text>FUNUSHd</Text>
+          <Text>FUNUSHd</Text>
+          <Text>FUNUSHd</Text>
           <Text>FUNUSHd</Text>
           <NextButton
             onPress={() => {
