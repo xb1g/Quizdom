@@ -28,66 +28,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-
-const ChoiceButton = styled(TouchableOpacity)`
-  background-color: ${(props) => props.theme.colors.accent.primary};
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px;
-`;
-
-const HintButton = ({ showHint }) => {
-  return (
-    <TouchableOpacity
-      onPress={showHint}
-      style={{
-        marginLeft: "auto",
-      }}
-    >
-      <Ionicons name="bulb" size={35} color="black" />
-    </TouchableOpacity>
-  );
-};
-
-const Choice = ({
-  children,
-  checked,
-  number,
-  correct,
-  selectedChoice,
-  setSelectedChoice,
-  correctAnswer,
-}) => {
-  console.log("correct");
-  console.log(correct);
-  const color = correct ? "#6de090" : "#ff5151";
-  const borderColor = correct ? "#56ad70" : "#d184ae";
-
-  return (
-    <ChoiceButton
-      onPress={() => {
-        !checked && setSelectedChoice(number);
-      }}
-      style={
-        checked && correctAnswer === number
-          ? {
-              backgroundColor: "#6de090",
-              borderColor: "#56ad70",
-              borderWidth: 3,
-            }
-          : selectedChoice === number
-          ? {
-              backgroundColor: !checked ? "#b1ffff" : color,
-              borderColor: !checked ? "#64a39e" : borderColor,
-              borderWidth: 3,
-            }
-          : { backgroundColor: "pink" }
-      }
-    >
-      {children}
-    </ChoiceButton>
-  );
-};
+import { Choice, Explain, HintButton } from "../components/quiz.component";
 
 const ChoiceContainer = styled.View`
   max-height: 500px;
@@ -105,33 +46,6 @@ const NextButton = styled(TouchableOpacity)`
   border-radius: 10px;
   background-color: ${(props) => props.theme.colors.brand.secondary};
 `;
-
-const Explain = ({ answer, quiz, page, checked }) => {
-  const expnum = "explaination";
-  return (
-    <>
-      {checked && (
-        <View
-          style={{
-            backgroundColor: "#e7e689",
-            borderRadius: 10,
-            padding: 10,
-            margin: 10,
-          }}
-        >
-          <Text
-            style={{
-              marginBottom: 10,
-            }}
-          >
-            Explaination:
-          </Text>
-          <Text>{quiz[expnum]}</Text>
-        </View>
-      )}
-    </>
-  );
-};
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
@@ -289,7 +203,6 @@ export function QuizScreen({ route, navigation, quiz }) {
   ];
 
   const insets = useSafeAreaInsets();
-
   const [page, setPage] = React.useState(0);
   const [selectedChoice, setSelectedChoice] = React.useState(null);
   const [checked, setChecked] = React.useState(false);
@@ -423,31 +336,33 @@ export function QuizScreen({ route, navigation, quiz }) {
         </View>
       </Modal>
 
-      <Modal animationType="fade" transparent={true} visible={showHint}>
-        <TouchableOpacity
-          onPress={() => {
-            setShowHint(false);
-          }}
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#0000009d",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "#fff",
-              padding: 20,
-              borderRadius: 10,
-            }}
-          >
-            <Text>Hint: {quiz[page].hint}</Text>
-          </View>
-        </TouchableOpacity>
-      </Modal>
       {page < 5 ? (
         <View style={{ flex: 1 }}>
+          {
+            <Modal animationType="fade" transparent={true} visible={showHint}>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowHint(false);
+                }}
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#0000009d",
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#fff",
+                    padding: 20,
+                    borderRadius: 10,
+                  }}
+                >
+                  <Text>Hint: {quiz[page].hint}</Text>
+                </View>
+              </TouchableOpacity>
+            </Modal>
+          }
           <View
             style={{
               backgroundColor: "#a2d1a2",
