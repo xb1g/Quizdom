@@ -19,6 +19,7 @@ import { AddPlanScreen } from "../../features/planner/screens/add-plan.screen";
 import { Button } from "../../features/planner/components/button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 import { ScrollView } from "react-native-gesture-handler";
+import { Row } from "../../components/utility/row.component";
 
 const PlannerStack = createStackNavigator();
 
@@ -52,41 +53,47 @@ export const PlannerNavigator = ({ navigation }) => {
             backgroundColor: "#393939",
           }}
         >
-          <View style={{ marginTop: 30, marginHorizontal: 50 }}>
-            <TouchableHighlight
-              style={{
-                borderRadius:
-                  Math.round(
-                    Dimensions.get("window").width +
-                      Dimensions.get("window").height
-                  ) / 2,
-                width: Dimensions.get("window").width * 0.2,
-                height: Dimensions.get("window").width * 0.2,
-                backgroundColor: "#ffc8ff",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              underlayColor="#ff66c4"
-              onPress={() => {
-                console.log("pressed sets plan");
-              }}
-            >
-              <Text style={{ fontSize: 36, color: "white" }}> {"Sets"} </Text>
-            </TouchableHighlight>
-          </View>
+          <Row>
+            <View style={{ marginTop: 30, marginLeft: 30 }}>
+              <TouchableHighlight
+                style={{
+                  borderRadius:
+                    Math.round(
+                      Dimensions.get("window").width +
+                        Dimensions.get("window").height
+                    ) / 2,
+                  width: Dimensions.get("window").width * 0.2,
+                  height: Dimensions.get("window").width * 0.2,
+                  backgroundColor: "#ffc8ff",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                underlayColor="#ff66c4"
+                onPress={() => {
+                  console.log("pressed sets plan");
+                }}
+              >
+                <Text style={{ fontSize: 36, color: "white" }}> {"Sets"} </Text>
+              </TouchableHighlight>
+            </View>
 
-          <PlanningItem
-            style={{
-              marginHorizontal: 30,
-              backgroundColor: "#ffc8ff",
-              borderRadius: 30,
-            }}
-            titleStyle={{
-              color: "white",
-              fontSize: "20",
-            }}
-            title="Start studying : 17/11/21"
-          />
+            <View>
+              <PlanningItem
+                style={{
+                  marginTop: 30,
+                  marginHorizontal: 30,
+                  backgroundColor: "#ffc8ff",
+                  borderRadius: 40,
+                }}
+                titleStyle={{
+                  color: "white",
+                  fontSize: "20",
+                  paddingLeft: 1,
+                }}
+                title="Start studying : 17/11/21"
+              />
+            </View>
+          </Row>
         </View>
       </ScrollView>
     </>
