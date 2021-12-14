@@ -66,7 +66,7 @@ export const PlannerNavigator = ({ navigation }) => {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              underlayColor="#ffffff"
+              underlayColor="#ff66c4"
               onPress={() => {
                 console.log("pressed sets plan");
               }}
