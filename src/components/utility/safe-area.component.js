@@ -17,7 +17,12 @@ export const SafeTop = ({ children, color = "transparent", flex = 1 }) => {
   const insets = useSafeAreaInsets();
   return (
     <View
-      style={{ paddingTop: insets.top, flex: flex, backgroundColor: color }}
+      style={{
+        zIndex: 10,
+        paddingTop: insets.top,
+        flex: flex,
+        backgroundColor: color,
+      }}
     >
       {children}
     </View>

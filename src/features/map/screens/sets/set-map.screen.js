@@ -41,7 +41,7 @@ export const SetMapScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
-        <CircularProgress value={58} />
+        {/* <CircularProgress value={58} /> */}
         <View style={{ flexGrow: 1, height: windowHeight * 2 }} />
         <ModuleButton
           color={theme.colors.brand.primary}
@@ -49,11 +49,13 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.1}
           moduleName={"Basic of Set"}
           id={1}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
           top={windowHeight * 0.3}
+          value={20}
           left={windowWidth * 0.3}
           moduleName={"Subset and Powerset"}
           id={2}
@@ -61,6 +63,7 @@ export const SetMapScreen = ({ navigation }) => {
         <ModuleButton
           navigation={navigation}
           color={theme.colors.brand.primary}
+          value={20}
           top={windowHeight * 0.5}
           left={windowWidth * 0.5}
           moduleName={"Set Types"}
@@ -73,6 +76,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.4}
           moduleName={"Equality"}
           id={4}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
@@ -81,6 +85,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.4}
           moduleName={"Notation"}
           id={5}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
@@ -89,6 +94,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.4}
           moduleName={"Set operation"}
           id={6}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
@@ -97,6 +103,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.2}
           moduleName={"Venn Euler diagram"}
           id={7}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
@@ -105,6 +112,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.4}
           moduleName={"Advance set"}
           id={8}
+          value={20}
         />
         <ModuleButton
           navigation={navigation}
@@ -113,6 +121,7 @@ export const SetMapScreen = ({ navigation }) => {
           left={windowWidth * 0.1}
           moduleName={"Test"}
           id={9}
+          value={20}
         />
         {/* </View> */}
       </ScrollView>
