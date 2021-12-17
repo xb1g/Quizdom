@@ -10,18 +10,22 @@ export const MapsContextProvider = ({ children }) => {
   // const { currentUser } = firebase.auth();
   const { user } = useContext(AuthenticationContext);
   const [selectedModule, setSelectedModule] = useState(null);
-  const [maps, setMaps] = useState([]);
+  const [mapData, setMapData] = useState([]);
 
+  const mapCollection = collection(db, "Users", user.uid, "Maps");
   useEffect(() => {
-    console.log(user);
-    onSnapshot(doc(db, "maps", user.uid), (u) => {
+    console.log("MAp");
+    onSnapshot(doc(db, "map", user.uid), (u) => {
+      console.log("MAODATA");
       console.log(u.data());
-      setMaps(u.data());
+      setMapData(u.data());
     });
   }, []);
 
   return (
-    <MapsContext.Provider value={{ maps, selectedModule, setSelectedModule }}>
+    <MapsContext.Provider
+      value={{ mapData, selectedModule, setSelectedModule }}
+    >
       {children}
     </MapsContext.Provider>
   );
