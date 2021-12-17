@@ -30,8 +30,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { Choice, Explain, HintButton } from "../components/quiz.component";
 import { ChoiceContainer, NextButton } from "../components/quiz.style";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 const AnimatedImage = Animated.createAnimatedComponent(Image);
-
 const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
   Image.getSize(uri, (width, height) => {
@@ -152,7 +153,16 @@ export function QuizScreen({ route, navigation, quiz }) {
   useEffect(() => {
     console.log(focusImage);
   }, [focusImage]);
-
+  useEffect(() => {
+    onSnapshot(collection(db, "quiz_sets"), () => {
+      console.log("Download succeed");
+    });
+  });
+  useEffect(() => {
+    if (finished) {
+      navigation.navigate("QuizFinish");
+    }
+  }, [finished]);
   const onCheck = () => {
     console.log("Checking");
     console.log(selectedChoice);
@@ -173,6 +183,9 @@ export function QuizScreen({ route, navigation, quiz }) {
     setChecked(false);
     setCorrect(null);
     setSelectedChoice(null);
+    if (page == 4) {
+      setFinished(true);
+    }
   };
 
   const onExit = () => {
@@ -491,9 +504,4 @@ export function QuizScreen({ route, navigation, quiz }) {
       {/* <SafeBottom color /> */}
     </>
   );
-}
-export default function Quiz() {
-  useEffect(() => {
-    onSnapshot(collection(db, "quiz_sets"), () => {});
-  });
 }
