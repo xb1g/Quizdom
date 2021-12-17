@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Image, TouchableOpacity, Dimensions } from "react-native";
+import { Text } from "../../../components/typography/text.component";
 import CircularProgress, {
   CircularProgressWithChild,
 } from "react-native-circular-progress-indicator";
@@ -28,11 +29,12 @@ export function ModuleButton({
   translateY,
 }) {
   const { setSelectedModule } = useContext(MapsContext);
+  const [onFocus, setOnFocus] = useState(false);
   const module = {
     moduleName,
     id,
   };
-  const { height } = Dimensions.get("window");
+  const { height, width } = Dimensions.get("window");
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       Math.abs(translateY.value - top),
@@ -65,11 +67,13 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          translateY.value = top;
-          console.log(top, translateY.valueP);
+          // translateY.value = top;
+          setSelectedModule(module);
+          // console.log(top, translateY.value);
+          // setOnFocus(true);
         }}
       >
-        <CircularProgress
+        <CircularProgressWithChild
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={20}
@@ -77,7 +81,25 @@ export function ModuleButton({
           value={Math.random() * 100}
           radius={60}
           showProgressValue={false}
-        ></CircularProgress>
+        >
+          <View
+            style={{
+              position: "absolute",
+              left: left < width / 2 ? 120 : -90,
+              top: 20,
+              zIndex: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              {moduleName}
+            </Text>
+          </View>
+        </CircularProgressWithChild>
       </TouchableOpacity>
     </Animated.View>
   );

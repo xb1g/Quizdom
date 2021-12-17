@@ -34,9 +34,12 @@ export const SetMapScreen = ({ navigation }) => {
   const theme = useTheme();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+  // get modules from firebase
+  // need skill level progress
+  // these are appearance
   const Modules = [
     {
-      color: theme.colors.brand.primary,
+      color: theme.colors.brand.secondary,
       top: windowHeight * 0.1,
       left: windowWidth * 0.1,
       moduleName: "Basic of Set",
@@ -52,21 +55,21 @@ export const SetMapScreen = ({ navigation }) => {
     {
       color: theme.colors.brand.primary,
       top: windowHeight * 0.5,
-      left: windowWidth * 0.3,
+      left: windowWidth * 0.2,
       moduleName: "Venn diagram",
       id: 3,
     },
     {
       color: theme.colors.brand.primary,
       top: windowHeight * 0.5,
-      left: windowWidth * 0.7,
+      left: windowWidth * 0.6,
       moduleName: "Venn diagram",
       id: 4,
     },
     {
       color: theme.colors.brand.primary,
       top: windowHeight * 0.7,
-      left: windowWidth * 0.4,
+      left: windowWidth * 0.5,
       moduleName: "shit diagram",
       id: 5,
     },
@@ -80,7 +83,7 @@ export const SetMapScreen = ({ navigation }) => {
     {
       color: theme.colors.brand.primary,
       top: windowHeight * 1.1,
-      left: windowWidth * 0.1,
+      left: windowWidth * 0.2,
       moduleName: "Venn diagram",
       id: 7,
     },
@@ -92,6 +95,7 @@ export const SetMapScreen = ({ navigation }) => {
       id: 8,
     },
   ];
+
   // const [popupShown, setPopupShown] = React.useState(null);
   const { selectedModule, setSelectedModule } = useContext(MapsContext);
   const translateY = useSharedValue(0);

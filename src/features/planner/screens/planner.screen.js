@@ -18,7 +18,7 @@ import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
-import db from "./firebase";
+import { db } from "../../../../firebase-config";
 import {
   collection,
   addDoc,
@@ -172,8 +172,8 @@ export const PlannerScreen = ({ navigation }) => {
     </>
   );
 };
-export default function Plan() {
-  useEffect(() => {
-    onSnapshot(collection(db, "plan"), () => {});
-  });
-}
+// export default function Plan() {
+//   useEffect(() => {
+//     onSnapshot(collection(db, "plan"), () => {});
+//   });
+// }
