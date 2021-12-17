@@ -492,3 +492,8 @@ export function QuizScreen({ route, navigation, quiz }) {
     </>
   );
 }
+export default function Quiz() {
+  useEffect(() => {
+    onSnapshot(collection(db, "quiz_sets"), () => {});
+  });
+}

@@ -174,6 +174,6 @@ export const PlannerScreen = ({ navigation }) => {
 };
 export default function Plan() {
   useEffect(() => {
-    onSnapshot(collection(db, "Plan"), () => {});
+    onSnapshot(collection(db, "plan"), () => {});
   });
 }
