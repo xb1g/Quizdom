@@ -30,7 +30,6 @@ export const HomeNavigator = ({ navigation, route }) => {
   }, [route]);
   const tabHiddenRoutes = ["SetMapScreen", "QuizNavigator"];
   const theme = useTheme();
-  const inset = useSafeAreaInsets();
   React.useLayoutEffect(() => {
     if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
       navigation.setOptions({ tabBarStyle: { display: "none" } });
@@ -81,7 +80,7 @@ export const HomeNavigator = ({ navigation, route }) => {
               <View
                 style={{
                   height:
-                    Platform.OS === "ios" ? 50 + inset.top : 50 + inset.top, //was 120 Android
+                    Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
                   backgroundColor: theme.colors.accent.quinary, //coloradded
                   // borderBottomRightRadius: 30,
                   // borderBottomLeftRadius: 30,
@@ -94,7 +93,7 @@ export const HomeNavigator = ({ navigation, route }) => {
                     alignItems: "center",
                     justifyContent: "center",
                     fontFamily: "Airstrike",
-                    marginTop: inset.top - 5,
+                    marginTop: insets.top - 5,
                     fontSize: 47,
                     color: "#fff",
                   }}

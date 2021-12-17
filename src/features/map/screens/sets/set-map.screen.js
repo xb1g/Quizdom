@@ -24,107 +24,108 @@ import { shadow } from "../../../../components/shadow/shadow.styles";
 import { ModuleButton } from "../../components/module-button.component";
 import { CircularProgress } from "../../../../components/visualization/circular-progress.component";
 import { MapsContext } from "../../../../services/maps/maps.context";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 
 export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+  const Modules = [
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.1,
+      left: windowWidth * 0.1,
+      moduleName: "Basic of Set",
+      id: 1,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.3,
+      left: windowWidth * 0.3,
+      moduleName: "Venn diagram",
+      id: 2,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.5,
+      left: windowWidth * 0.3,
+      moduleName: "Venn diagram",
+      id: 3,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.5,
+      left: windowWidth * 0.7,
+      moduleName: "Venn diagram",
+      id: 4,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.7,
+      left: windowWidth * 0.4,
+      moduleName: "shit diagram",
+      id: 5,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 0.9,
+      left: windowWidth * 0.3,
+      moduleName: "Venn diagram",
+      id: 6,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 1.1,
+      left: windowWidth * 0.1,
+      moduleName: "Venn diagram",
+      id: 7,
+    },
+    {
+      color: theme.colors.brand.primary,
+      top: windowHeight * 1.3,
+      left: windowWidth * 0.3,
+      moduleName: "Venn diagram",
+      id: 8,
+    },
+  ];
   // const [popupShown, setPopupShown] = React.useState(null);
   const { selectedModule, setSelectedModule } = useContext(MapsContext);
+  const translateY = useSharedValue(0);
+
+  const handleScroll = useAnimatedScrollHandler((event) => {
+    translateY.value = event.contentOffset.y;
+  });
+
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
       <HeaderText title={`Set `} />
 
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1, backgroundColor: "#8f4700" }}
+      <Animated.ScrollView
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        contentContainerStyle={{ backgroundColor: "#8f4700" }}
       >
         {/* <View> */}
         {/* <CircularProgress value={58} /> */}
-        <View style={{ flexGrow: 1, height: windowHeight * 2 }} />
-        <ModuleButton
-          color={theme.colors.brand.primary}
-          top={windowHeight * 0.1}
-          left={windowWidth * 0.1}
-          moduleName={"Basic of Set"}
-          id={1}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.primary}
-          top={windowHeight * 0.3}
-          value={20}
-          left={windowWidth * 0.3}
-          moduleName={"Subset and Powerset"}
-          id={2}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.primary}
-          value={20}
-          top={windowHeight * 0.5}
-          left={windowWidth * 0.5}
-          moduleName={"Set Types"}
-          id={3}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 0.7}
-          left={windowWidth * 0.4}
-          moduleName={"Equality"}
-          id={4}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 0.9}
-          left={windowWidth * 0.4}
-          moduleName={"Notation"}
-          id={5}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 1.1}
-          left={windowWidth * 0.4}
-          moduleName={"Set operation"}
-          id={6}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 1.3}
-          left={windowWidth * 0.2}
-          moduleName={"Venn Euler diagram"}
-          id={7}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 1.5}
-          left={windowWidth * 0.4}
-          moduleName={"Advance set"}
-          id={8}
-          value={20}
-        />
-        <ModuleButton
-          navigation={navigation}
-          color={theme.colors.brand.secondary}
-          top={windowHeight * 1.7}
-          left={windowWidth * 0.1}
-          moduleName={"Test"}
-          id={9}
-          value={20}
-        />
+        <View style={{ height: windowHeight * 1.8 }} />
+        {Modules.map((module) => (
+          <ModuleButton
+            key={module.id}
+            color={module.color}
+            top={module.top}
+            left={module.left}
+            moduleName={module.moduleName}
+            translateY={translateY}
+          />
+        ))}
+
         {/* </View> */}
-      </ScrollView>
+      </Animated.ScrollView>
       {selectedModule && (
         <View
           style={{
