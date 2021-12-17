@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -18,6 +18,14 @@ import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
+import db from "./firebase";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  onSnapshot,
+} from "firebase/firestore";
 
 const PlanningItem = styled(List.Item)`
   margin-top: ${(props) => props.theme.space[3]};
@@ -164,3 +172,8 @@ export const PlannerScreen = ({ navigation }) => {
     </>
   );
 };
+export default function Plan() {
+  useEffect(() => {
+    onSnapshot(collection(db, "Plan"), () => {});
+  });
+}
