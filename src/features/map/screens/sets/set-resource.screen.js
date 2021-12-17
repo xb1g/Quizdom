@@ -4,7 +4,7 @@ import { Text } from "../../../../components/typography/text.component";
 import { BackButton } from "../../../../components/button/back-button.component";
 //import { HeaderText } from "../../../components/utility/header-text.component";
 import { MapsContext } from "../../../../services/maps/maps.context";
-import { List } from "react-native-paper";
+import { Button, List } from "react-native-paper";
 import { Spacer } from "../../../../components/spacer/spacer.component";
 import { SafeTop } from "../../../../components/utility/safe-area.component";
 import styled, { useTheme } from "styled-components/native";
@@ -19,13 +19,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Column = styled.View`
   flex-direction: column;
-`;
-
-const ResourceItem = styled(List.Item)`
-  padding: ${(props) => props.theme.space[2]};
-  background-color: ${(props) => props.theme.colors.bg.secondary};
-  margin-left: ${(props) => props.theme.space[3]};
-  margin-right: ${(props) => props.theme.space[3]};
 `;
 
 const QuizStartItem = styled(TouchableOpacity)`
@@ -46,6 +39,7 @@ export function SetResourceScreen({ navigation }) {
     console.log(selectedModule.moduleName);
     setResourceData(setResource[selectedModule.moduleName][1]);
   }, [selectedModule]);
+
   return (
     <View
       style={{
@@ -54,6 +48,17 @@ export function SetResourceScreen({ navigation }) {
       }}
     >
       <BackButton navigation={navigation} />
+      {/* <Button
+        icon="arrow-back"
+        mode="contained"
+        onPress={() => navigation.goBack()}
+      >
+        Back Back Back Back
+        Back Back Back Back
+        Back Back Back Back
+        Back Back Back Back
+        Back Back Back Back
+      </Button> */}
       <SafeTop>
         <Text
           variant="label"

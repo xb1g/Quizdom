@@ -81,22 +81,12 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
     registerRequest(email, password)
       .then((u) => {
-        // console.log("objec userInfo t", userInfo);
-        // console.log("USERRRR");
-        // console.log(u.user);
-        // console.log(":UINFOOOOOOOOOOOOOOOO");
-        // console.log(userInfo);
         u.displayName = userInfo.username;
         const newUser = { ...u.user, userInfo };
-        // console.log("uidddddddddddddddddddddddddddddddddddddd");
         const uid = newUser.uid;
         setUser(newUser);
-        //cant use immediantely
-        // console.log("objecNEWUSERidt===", uid);
-        // console.log(uid);
         setError(null);
         const docRef = doc(db, "users", uid);
-        // console.log(docRef);
         const payload = {
           email,
           ...userInfo,
