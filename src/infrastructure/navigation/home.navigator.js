@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 import { useTheme } from "styled-components/native";
+import { SET_MAP_NAVIGATION_NAME } from "../constants/navigation";
 
 const HomeStack = createStackNavigator();
 
@@ -105,7 +106,7 @@ export const HomeNavigator = ({ navigation, route }) => {
           }}
         />
         <HomeStack.Screen
-          name="SetMapScreen"
+          name={SET_MAP_NAVIGATION_NAME}
           // component={() => null}
           // component={InequalitiesMapScreen}
           component={SetMapScreen}

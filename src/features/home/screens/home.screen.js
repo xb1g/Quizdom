@@ -23,6 +23,7 @@ import Animated, {
   withRepeat,
   useAnimatedGestureHandler,
 } from "react-native-reanimated";
+import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 
 const SIZE = 100;
 
@@ -85,8 +86,8 @@ export const HomeScreen = ({ navigation }) => {
   const { onLogout } = useContext(AuthenticationContext);
   const maps = [
     {
-      title: "Set",
-      navigateName: "SetScreen",
+      name: "sets",
+      navigateName: SET_MAP_NAVIGATION_NAME,
       id: 1,
       progress: "3/10",
       isStarted: true,

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, TouchableOpacity, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Card } from "react-native-paper";
 import { FlatList } from "react-native-gesture-handler";
 import styled from "styled-components";
 import { LinearGradient } from "expo-linear-gradient";
-
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
+import { MapsContext } from "../../../services/maps/maps.context";
 
 const MapContainer = styled.View`
   background-color: #fff;
@@ -22,7 +22,6 @@ const MapContainer = styled.View`
 `;
 
 const MapCardContainer = styled.View`
-  {/*background-color: #fff;*/}
   border-radius: 30px;
   margin-horizontal: 20px;
   margin-bottom: 20px;
@@ -32,6 +31,7 @@ const MapCardContainer = styled.View`
 `;
 
 export const Maps = ({ maps, navigation }) => {
+  const { setMapName } = useContext(MapsContext);
   return (
     <>
       <FlatList
@@ -56,16 +56,21 @@ export const Maps = ({ maps, navigation }) => {
                 {item.progress + " "}
               </Text>
               <MapCardContainer
-                style={{
-                  //...shadow.shadow1,
-                }}
+                style={
+                  {
+                    //...shadow.shadow1,
+                  }
+                }
               >
                 <TouchableOpacity
                   style={{
                     flex: 1,
                   }}
                   onPress={() => {
-                    navigation.navigate("SetMapScreen");
+                    setMapName(item.name);
+                    // console.log("NAME");
+                    // console.log(item);
+                    navigation.navigate(item.navigateName);
                   }}
                 >
                   {/*
@@ -97,10 +102,10 @@ export const Maps = ({ maps, navigation }) => {
                     <Text
                       variant="label"
                       style={{
-                          marginTop: 10,
-                          fontSize: 25,
-                          color: "#ffffff",
-                          alignSelf: "center",
+                        marginTop: 10,
+                        fontSize: 25,
+                        color: "#ffffff",
+                        alignSelf: "center",
                       }}
                     >
                       {item.title}

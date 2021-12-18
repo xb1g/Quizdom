@@ -153,11 +153,12 @@ export function QuizScreen({ route, navigation, quiz }) {
   useEffect(() => {
     console.log(focusImage);
   }, [focusImage]);
-  useEffect(() => {
-    onSnapshot(collection(db, "quiz_sets"), () => {
-      console.log("Download succeed");
-    });
-  });
+
+  // useEffect(() => {
+  //   onSnapshot(collection(db, "quiz_sets"), () => {
+  //     console.log("Download succeed");
+  //   });
+  // });
   useEffect(() => {
     if (finished) {
       navigation.navigate("QuizFinish");

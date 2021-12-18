@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Image,
   View,
@@ -34,67 +34,70 @@ export const SetMapScreen = ({ navigation }) => {
   const theme = useTheme();
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+
+  // const [modules, setModules] = useState([]);
+  const { mapData, mapName, modulesData } = useContext(MapsContext);
   // get modules from firebase
   // need skill level progress
   // these are appearance
-  const Modules = [
-    {
-      color: theme.colors.brand.secondary,
-      top: windowHeight * 0.1,
-      left: windowWidth * 0.1,
-      moduleName: "Basic of Set",
-      id: 1,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 0.3,
-      left: windowWidth * 0.3,
-      moduleName: "Venn diagram",
-      id: 2,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 0.5,
-      left: windowWidth * 0.2,
-      moduleName: "Venn diagram",
-      id: 3,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 0.5,
-      left: windowWidth * 0.6,
-      moduleName: "Venn diagram",
-      id: 4,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 0.7,
-      left: windowWidth * 0.5,
-      moduleName: "shit diagram",
-      id: 5,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 0.9,
-      left: windowWidth * 0.3,
-      moduleName: "Venn diagram",
-      id: 6,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 1.1,
-      left: windowWidth * 0.2,
-      moduleName: "Venn diagram",
-      id: 7,
-    },
-    {
-      color: theme.colors.brand.primary,
-      top: windowHeight * 1.3,
-      left: windowWidth * 0.3,
-      moduleName: "Venn diagram",
-      id: 8,
-    },
-  ];
+  // const Modules = [
+  //   {
+  //     color: theme.colors.brand.secondary,
+  //     top: windowHeight * 0.1,
+  //     left: windowWidth * 0.1,
+  //     moduleName: "Basic of Set",
+  //     id: 1,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 0.3,
+  //     left: windowWidth * 0.3,
+  //     moduleName: "Venn diagram",
+  //     id: 2,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 0.5,
+  //     left: windowWidth * 0.2,
+  //     moduleName: "Venn diagram",
+  //     id: 3,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 0.5,
+  //     left: windowWidth * 0.6,
+  //     moduleName: "Venn diagram",
+  //     id: 4,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 0.7,
+  //     left: windowWidth * 0.5,
+  //     moduleName: "shit diagram",
+  //     id: 5,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 0.9,
+  //     left: windowWidth * 0.3,
+  //     moduleName: "Venn diagram",
+  //     id: 6,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 1.1,
+  //     left: windowWidth * 0.2,
+  //     moduleName: "Venn diagram",
+  //     id: 7,
+  //   },
+  //   {
+  //     color: theme.colors.brand.primary,
+  //     top: windowHeight * 1.3,
+  //     left: windowWidth * 0.3,
+  //     moduleName: "Venn diagram",
+  //     id: 8,
+  //   },
+  // ];
 
   // const [popupShown, setPopupShown] = React.useState(null);
   const { selectedModule, setSelectedModule } = useContext(MapsContext);
@@ -107,7 +110,7 @@ export const SetMapScreen = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
-      <HeaderText title={`Set `} />
+      <HeaderText title={`${mapName}`} />
 
       <Animated.ScrollView
         onScroll={handleScroll}
@@ -117,14 +120,15 @@ export const SetMapScreen = ({ navigation }) => {
         {/* <View> */}
         {/* <CircularProgress value={58} /> */}
         <View style={{ height: windowHeight * 1.8 }} />
-        {Modules.map((module) => (
+        {modulesData.map((module) => (
           <ModuleButton
-            key={module.id}
-            color={module.color}
-            top={module.top}
-            left={module.left}
-            moduleName={module.moduleName}
+            // name={module.name}
+            // id={module.id}
+            // key={module.name + module.id}
+            // color={module.color}
+            // position={module.position}
             translateY={translateY}
+            {...module}
           />
         ))}
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import CircularProgress, {
@@ -20,21 +20,29 @@ import { MapsContext } from "../../../services/maps/maps.context";
 
 export function ModuleButton({
   color,
-  top,
-  left,
+  position,
+  completedAt,
+  latestAt,
+  startedAt,
+  reviewAt,
+  name,
   style,
-  moduleName,
   value,
   id,
   translateY,
 }) {
+  const { height, width } = Dimensions.get("window");
+  const top = position.top * height;
+  const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
+  useEffect(() => {}, []);
+
   const module = {
-    moduleName,
+    name,
     id,
   };
-  const { height, width } = Dimensions.get("window");
+
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       Math.abs(translateY.value - top),
@@ -67,39 +75,51 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          // translateY.value = top;
+          console.log(latestAt.seconds / 60 / 60);
+          console.log(reviewAt.seconds / 60 / 60);
+          //print the time between reviewAt and latestAt in hours
+          console.log("ASDS", (reviewAt.seconds - latestAt.seconds) / 60 / 60);
+          const nowAt = new Date().getTime() / 1000;
+          console.log(nowAt / 60 / 60 - latestAt.seconds / 60 / 60);
+          console.log(
+            (reviewAt.seconds - Math.round(new Date().getTime() / 1000)) /
+              (reviewAt.seconds - latestAt.seconds)
+          );
           setSelectedModule(module);
           // console.log(top, translateY.value);
           // setOnFocus(true);
         }}
       >
-        <CircularProgressWithChild
+        <CircularProgress
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={20}
           inActiveStrokeWidth={20}
-          value={Math.random() * 100}
+          value={
+            (reviewAt.seconds / 60 -
+              Math.round(new Date().getTime() / 1000 / 60)) /
+            (reviewAt.seconds / 60 - latestAt.seconds / 60)
+          }
           radius={60}
-          showProgressValue={false}
+          showProgressValue={true}
+        />
+        <View
+          style={{
+            position: "absolute",
+            left: left < width / 2 ? 120 : -90,
+            top: 20,
+            zIndex: 10,
+          }}
         >
-          <View
+          <Text
             style={{
-              position: "absolute",
-              left: left < width / 2 ? 120 : -90,
-              top: 20,
-              zIndex: 10,
+              fontSize: 20,
+              color: "white",
             }}
           >
-            <Text
-              style={{
-                fontSize: 20,
-                color: "white",
-              }}
-            >
-              {moduleName}
-            </Text>
-          </View>
-        </CircularProgressWithChild>
+            {name}
+          </Text>
+        </View>
       </TouchableOpacity>
     </Animated.View>
   );
