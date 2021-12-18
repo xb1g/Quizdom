@@ -18,6 +18,7 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 import { ResourceContextProvider } from "../../services/resource/resource.context";
 import { ModulesContextProvider } from "../../services/modules/modules.context";
+import { QuizContextProvider } from "../../services/quiz/quiz.context";
 
 const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => {
@@ -67,36 +68,38 @@ export const AppNavigator = () => {
       <SafeAreaProvider>
         <MapsContextProvider>
           <ModulesContextProvider>
-            <ResourceContextProvider>
-              <Tab.Navigator
-                initialRouteName="Home"
-                screenOptions={createScreenOptions}
-              >
-                <Tab.Screen
-                  name="Planner"
-                  component={PlannerNavigator}
-                  // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-                  options={{ headerShown: false }}
-                />
-                <Tab.Screen
-                  name="Home"
-                  component={HomeNavigator}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Tab.Screen
-                  name="Community"
-                  component={CommunityNavigator}
-                  options={{ headerShown: false }}
-                />
-                <Tab.Screen
-                  name="User"
-                  component={UserNavigator}
-                  options={{ headerShown: false }}
-                />
-              </Tab.Navigator>
-            </ResourceContextProvider>
+            <QuizContextProvider>
+              <ResourceContextProvider>
+                <Tab.Navigator
+                  initialRouteName="Home"
+                  screenOptions={createScreenOptions}
+                >
+                  <Tab.Screen
+                    name="Planner"
+                    component={PlannerNavigator}
+                    // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+                    options={{ headerShown: false }}
+                  />
+                  <Tab.Screen
+                    name="Home"
+                    component={HomeNavigator}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Tab.Screen
+                    name="Community"
+                    component={CommunityNavigator}
+                    options={{ headerShown: false }}
+                  />
+                  <Tab.Screen
+                    name="User"
+                    component={UserNavigator}
+                    options={{ headerShown: false }}
+                  />
+                </Tab.Navigator>
+              </ResourceContextProvider>
+            </QuizContextProvider>
           </ModulesContextProvider>
         </MapsContextProvider>
       </SafeAreaProvider>

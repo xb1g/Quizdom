@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -32,6 +32,7 @@ import { Choice, Explain, HintButton } from "../components/quiz.component";
 import { ChoiceContainer, NextButton } from "../components/quiz.style";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
+import { QuizContext } from "../../../services/quiz/quiz.context";
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
@@ -141,7 +142,7 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [page, setPage] = React.useState(0);
   const [selectedChoice, setSelectedChoice] = React.useState(null);
   const [checked, setChecked] = React.useState(false);
-  const [score, setScore] = React.useState(0);
+  //const [score, setScore] = React.useState(0);
   const [correct, setCorrect] = React.useState(null);
   const [showModal, setShowModal] = React.useState(false);
   const [finished, setFinished] = React.useState(false);
@@ -178,7 +179,7 @@ export function QuizScreen({ route, navigation, quiz }) {
       setCorrect(false);
     }
   };
-
+  const { score, setScore } = useContext(QuizContext);
   const onNext = () => {
     setPage(page + 1);
     setChecked(false);
