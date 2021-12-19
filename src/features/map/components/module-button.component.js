@@ -107,7 +107,7 @@ export function ModuleButton({
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={25}
           inActiveStrokeWidth={20}
-          value={progress > 0 ? progress : 70}
+          value={progress > 0 ? progress : 0}
           radius={60}
           showProgressValue={true}
           circleBackgroundColor={"#76ffc6"}
