@@ -33,55 +33,55 @@ const handleRotation = (progress) => {
 };
 
 export const HomeScreen = ({ navigation }) => {
-  const progress = useSharedValue(1);
-  const scale = useSharedValue(1);
+  // const progress = useSharedValue(1);
+  // const scale = useSharedValue(1);
 
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
+  // const translateX = useSharedValue(0);
+  // const translateY = useSharedValue(0);
 
-  const panGestureEvent = useAnimatedGestureHandler({
-    onStart: (event, context) => {
-      context.translateX = translateX.value;
-      context.translateY = translateY.value;
-    },
-    onActive: (event, context) => {
-      translateX.value = event.translationX + context.translateX;
-      translateY.value = event.translationY + context.translateY;
-    },
-    onEnd: (event) => {
-      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2);
-      if (distance < 100) {
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-      }
-    },
-  });
+  // const panGestureEvent = useAnimatedGestureHandler({
+  //   onStart: (event, context) => {
+  //     context.translateX = translateX.value;
+  //     context.translateY = translateY.value;
+  //   },
+  //   onActive: (event, context) => {
+  //     translateX.value = event.translationX + context.translateX;
+  //     translateY.value = event.translationY + context.translateY;
+  //   },
+  //   onEnd: (event) => {
+  //     const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2);
+  //     if (distance < 100) {
+  //       translateX.value = withSpring(0);
+  //       translateY.value = withSpring(0);
+  //     }
+  //   },
+  // });
 
-  const rStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: translateX.value,
-        },
-        {
-          translateY: translateY.value,
-        },
-      ],
-    };
-  });
+  // const rStyle = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [
+  //       {
+  //         translateX: translateX.value,
+  //       },
+  //       {
+  //         translateY: translateY.value,
+  //       },
+  //     ],
+  //   };
+  // });
 
-  const reanimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: progress.value,
-      transform: [{ scale: scale.value }, { rotate: handleRotation(progress) }],
-      borderRadius: progress.value * SIZE,
-    };
-  }, []);
+  // const reanimatedStyle = useAnimatedStyle(() => {
+  //   return {
+  //     opacity: progress.value,
+  //     transform: [{ scale: scale.value }, { rotate: handleRotation(progress) }],
+  //     borderRadius: progress.value * SIZE,
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    progress.value = withRepeat(withSpring(0.3), -1);
-    scale.value = withRepeat(withSpring(2), -1, true);
-  }, []);
+  // useEffect(() => {
+  //   progress.value = withRepeat(withSpring(0.3), -1);
+  //   scale.value = withRepeat(withSpring(2), -1, true);
+  // }, []);
 
   const { onLogout } = useContext(AuthenticationContext);
   const maps = [

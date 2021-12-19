@@ -36,11 +36,19 @@ export function ModuleButton({
   const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(100);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("asdas");
-    }, 5000);
+      const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
+      const nowAt = new Date().getTime() / 1000;
+      const nowHrs = nowAt / 60 / 60;
+      const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
+      // console.log(limitHrs, passedHrs);
+      // console.log("S", (passedHrs / limitHrs) * 100);
+      setProgress(100 - (passedHrs / limitHrs) * 100);
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const module = {
@@ -80,16 +88,15 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          console.log(latestAt.seconds / 60 / 60);
-          console.log(reviewAt.seconds / 60 / 60);
-          //print the time between reviewAt and latestAt in hours
-          console.log("ASDS", (reviewAt.seconds - latestAt.seconds) / 60 / 60);
-          const nowAt = new Date().getTime() / 1000;
-          console.log(nowAt / 60 / 60 - latestAt.seconds / 60 / 60);
+          console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
+          // print the time difference between now and latest in hours
           console.log(
-            (reviewAt.seconds - Math.round(new Date().getTime() / 1000)) /
-              (reviewAt.seconds - latestAt.seconds)
+            "PASSES",
+            (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
           );
+          //print the time between reviewAt and latestAt in hours
+
+          console.log(progress);
           setSelectedModule(module);
           // console.log(top, translateY.value);
           // setOnFocus(true);

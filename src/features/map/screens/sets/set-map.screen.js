@@ -161,7 +161,7 @@ export const SetMapScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <ModulePopup
-            moduleName={selectedModule.moduleName}
+            moduleName={selectedModule.name}
             navigation={navigation}
           />
         </View>

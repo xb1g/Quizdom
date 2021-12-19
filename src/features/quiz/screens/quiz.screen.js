@@ -139,17 +139,17 @@ export function QuizScreen({ route, navigation, quiz }) {
   ];
 
   const insets = useSafeAreaInsets();
-  const [page, setPage] = React.useState(0);
-  const [selectedChoice, setSelectedChoice] = React.useState(null);
-  const [checked, setChecked] = React.useState(false);
-  //const [score, setScore] = React.useState(0);
-  const [correct, setCorrect] = React.useState(null);
-  const [showModal, setShowModal] = React.useState(false);
-  const [finished, setFinished] = React.useState(false);
-  const [correctAnswer, setCorrectAnswer] = React.useState(null);
-  const [focusImage, setFocusImage] = React.useState(null);
-  const [showHint, setShowHint] = React.useState(false);
-  const [metaData, setMetaData] = React.useState(null);
+  const [page, setPage] = useState(0);
+  const [selectedChoice, setSelectedChoice] = useState(null);
+  const [checked, setChecked] = useState(false);
+  //const [score, setScore] = useState(0);
+  const [correct, setCorrect] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [focusImage, setFocusImage] = useState(null);
+  const [showHint, setShowHint] = useState(false);
+  const [metaData, setMetaData] = useState(null);
 
   useEffect(() => {
     console.log(focusImage);
