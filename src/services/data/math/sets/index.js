@@ -2,9 +2,8 @@ import basic_of_set from "./resource_basic_of_set.json";
 import set_types from "./resource_set_types.json";
 import intro_to_sets from "./resorce_1_intro_to_set.json";
 
-export const setResource = {
-  "Basic of Set": basic_of_set,
-  "Intro to Sets": intro_to_sets,
+export const setsResources = {
+  "Intro to sets": intro_to_sets,
   "Set Types": set_types,
   "Subset and Powerset": [],
 };

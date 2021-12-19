@@ -11,7 +11,7 @@ import styled, { useTheme } from "styled-components/native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { HeaderText } from "../../../../components/utility/header-text.component";
 import { ResourceContext } from "../../../../services/resource/resource.context";
-import { setResource } from "../../../../services/data/math/sets";
+import { setsResources } from "../../../../services/data/math/sets";
 import { FlatList } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,6 +19,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Column = styled.View`
   flex-direction: column;
+  max-width: 90%;
 `;
 
 const QuizStartItem = styled(TouchableOpacity)`
@@ -36,8 +37,9 @@ export function SetResourceScreen({ navigation }) {
   // const { resource } = useContext(ResourceContext);
   useEffect(() => {
     console.log("resourace");
-    console.log(selectedModule.moduleName);
-    setResourceData(setResource[selectedModule.moduleName][1]);
+    console.log(selectedModule.name);
+    console.log(setsResources[selectedModule.name]);
+    setResourceData(setsResources[selectedModule.name][1]);
   }, [selectedModule]);
 
   return (
@@ -48,23 +50,24 @@ export function SetResourceScreen({ navigation }) {
       }}
     >
       <BackButton navigation={navigation} />
-      {/* <Button
-        icon="arrow-back"
-        mode="contained"
-        onPress={() => navigation.goBack()}
-      >
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-      </Button> */}
       <SafeTop>
+        <Spacer
+          position={"left"}
+          style={{
+            marginLeft: 300,
+          }}
+        />
         <Text
           variant="label"
-          style={{ color: "white", fontSize: 40, marginLeft: "auto" }}
+          style={{
+            color: "white",
+            fontSize: 40,
+            marginLeft: "auto",
+            maxWidth: "90%",
+          }}
+          numberOfLines={5}
         >
-          {selectedModule.moduleName + " "}
+          {selectedModule.name + " "}
         </Text>
         <Spacer size={30} />
         <View
@@ -110,7 +113,7 @@ export function SetResourceScreen({ navigation }) {
                       <Spacer position={"left"} size="medium" />
                       <Spacer position={"left"} size="medium" />
                       <Column>
-                        <Text>{item.title}</Text>
+                        <Text numberOfLines={2}>{item.title}</Text>
                         <Text
                           style={{
                             fontSize: 14,
