@@ -36,7 +36,12 @@ export function ModuleButton({
   const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
-  useEffect(() => {}, []);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("asdas");
+    }, 5000);
+  }, []);
 
   const module = {
     name,
@@ -95,11 +100,7 @@ export function ModuleButton({
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={20}
           inActiveStrokeWidth={20}
-          value={
-            (reviewAt.seconds / 60 -
-              Math.round(new Date().getTime() / 1000 / 60)) /
-            (reviewAt.seconds / 60 - latestAt.seconds / 60)
-          }
+          value={progress}
           radius={60}
           showProgressValue={true}
         />
