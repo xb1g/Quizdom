@@ -36,7 +36,7 @@ export function ModuleButton({
   const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
-  const [progress, setProgress] = useState(100);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -105,11 +105,12 @@ export function ModuleButton({
         <CircularProgress
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
-          activeStrokeWidth={20}
+          activeStrokeWidth={25}
           inActiveStrokeWidth={20}
-          value={progress}
+          value={progress > 0 ? progress : 70}
           radius={60}
           showProgressValue={true}
+          circleBackgroundColor={"#76ffc6"}
         />
         <View
           style={{

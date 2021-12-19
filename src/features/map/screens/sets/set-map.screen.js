@@ -124,9 +124,9 @@ export const SetMapScreen = ({ navigation }) => {
           <ModuleButton
             // name={module.name}
             // id={module.id}
-            // key={module.name + module.id}
             // color={module.color}
             // position={module.position}
+            key={module.name + module.id}
             translateY={translateY}
             {...module}
           />
@@ -145,7 +145,7 @@ export const SetMapScreen = ({ navigation }) => {
           <TouchableOpacity
             style={{
               position: "absolute",
-              top: 10,
+              top: 20,
               right: 20,
               zIndex: 10,
             }}
@@ -160,10 +160,7 @@ export const SetMapScreen = ({ navigation }) => {
               {"x "}
             </Text>
           </TouchableOpacity>
-          <ModulePopup
-            moduleName={selectedModule.name}
-            navigation={navigation}
-          />
+          <ModulePopup module={selectedModule} navigation={navigation} />
         </View>
       )}
     </View>
