@@ -16,7 +16,7 @@ import {
   SafeBottom,
   SafeTop,
 } from "../../../components/utility/safe-area.component";
-import { ProgressBar } from "react-native-paper";
+import { ProgressBar, Button as ButtonNative } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Row } from "../../../components/utility/row.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -65,6 +65,7 @@ const Button = ({ onPress, children, bottom }) => {
     </TouchableOpacity>
   );
 };
+
 const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
   Image.getSize(uri, (width, height) => {
@@ -90,10 +91,10 @@ export function QuizScreen({ route, navigation, quiz }) {
   const focalX = useSharedValue(0);
   const focalY = useSharedValue(0);
 
-  const [w, setW] = React.useState(200);
-  const [h, setH] = React.useState(200);
-  const [position, setPosition] = React.useState("relative");
-  const [onFocus, setOnFocus] = React.useState(false);
+  const [w, setW] = useState(200);
+  const [h, setH] = useState(200);
+  const [position, setPosition] = useState("relative");
+  const [onFocus, setOnFocus] = useState(false);
   quiz = [
     {
       question:
@@ -173,7 +174,6 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [page, setPage] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [checked, setChecked] = useState(false);
-  //const [score, setScore] = useState(0);
   const [correct, setCorrect] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [finished, setFinished] = useState(false);
@@ -181,6 +181,8 @@ export function QuizScreen({ route, navigation, quiz }) {
   const [focusImage, setFocusImage] = useState(null);
   const [showHint, setShowHint] = useState(false);
   const [metaData, setMetaData] = useState(null);
+
+  const { score, setScore } = useContext(QuizContext);
 
   useEffect(() => {
     console.log(focusImage);
@@ -211,7 +213,7 @@ export function QuizScreen({ route, navigation, quiz }) {
       setCorrect(false);
     }
   };
-  const { score, setScore } = useContext(QuizContext);
+
   const onNext = () => {
     setPage(page + 1);
     setChecked(false);
@@ -275,14 +277,14 @@ export function QuizScreen({ route, navigation, quiz }) {
                 marginTop: 20,
               }}
             >
-              <Button
+              <ButtonNative
                 onPress={() => {
                   setShowModal(!showModal);
                 }}
               >
                 <Text>No</Text>
-              </Button>
-              <Button
+              </ButtonNative>
+              <ButtonNative
                 onPress={() => {
                   setShowModal(!showModal);
                   navigation.goBack();
@@ -295,7 +297,7 @@ export function QuizScreen({ route, navigation, quiz }) {
                 >
                   Yes
                 </Text>
-              </Button>
+              </ButtonNative>
             </View>
           </View>
         </View>
@@ -353,6 +355,7 @@ export function QuizScreen({ route, navigation, quiz }) {
               padding: 10,
               borderBottomLeftRadius: 30,
               borderBottomRightRadius: 30,
+              paddingBottom: 20,
               zIndex: 1,
             }}
           >
@@ -374,7 +377,6 @@ export function QuizScreen({ route, navigation, quiz }) {
                 </Text>
               </View>
               <View style={{}}>
-                {/* <Progress /> */}
                 <ProgressBar
                   progress={(page + 1) / 5}
                   color="#960032"
@@ -382,16 +384,6 @@ export function QuizScreen({ route, navigation, quiz }) {
                 />
               </View>
               <HintButton showHint={onHint} />
-              {/* <TouchableOpacity onPress={onNext} style={{ marginLeft: "auto" }}>
-                <Text
-                  variant="label"
-                  style={{
-                    fontSize: 60,
-                  }}
-                >
-                  {">> "}
-                </Text>
-              </TouchableOpacity> */}
             </Row>
             <Text variant="label" style={{ fontSize: 40 }}>
               score: {score}

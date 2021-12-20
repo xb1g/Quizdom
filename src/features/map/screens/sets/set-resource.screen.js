@@ -59,6 +59,7 @@ export function SetResourceScreen({ navigation }) {
         />
         <Text
           variant="label"
+          adjustsFontSizeToFit
           style={{
             color: "white",
             fontSize: 40,

@@ -30,13 +30,14 @@ export function ModuleButton({
   value,
   id,
   translateY,
+  progress,
 }) {
   const { height, width } = Dimensions.get("window");
   const top = position.top * height;
   const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [timeProgress, setTimeProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +47,7 @@ export function ModuleButton({
       const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
       // console.log(limitHrs, passedHrs);
       // console.log("S", (passedHrs / limitHrs) * 100);
-      setProgress(100 - (passedHrs / limitHrs) * 100);
+      setTimeProgress(100 - (passedHrs / limitHrs) * 100);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -92,26 +93,38 @@ export function ModuleButton({
           // print the time difference between now and latest in hours
           console.log(
             "PASSES",
+            progress,
             (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
           );
           //print the time between reviewAt and latestAt in hours
 
-          console.log(progress);
+          console.log(timeProgress);
           setSelectedModule(module);
           // console.log(top, translateY.value);
           // setOnFocus(true);
         }}
       >
-        <CircularProgress
+        <CircularProgressWithChild
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={25}
           inActiveStrokeWidth={20}
-          value={progress > 0 ? progress : 0}
+          value={timeProgress > 0 ? timeProgress : 0}
           radius={60}
-          showProgressValue={true}
+          showProgressValue={false}
           circleBackgroundColor={"#76ffc6"}
-        />
+        >
+          <Text
+            variant="label"
+            style={{
+              fontSize: 36,
+              marginLeft: 5,
+              zIndex: 100,
+            }}
+          >
+            {progress + " "}
+          </Text>
+        </CircularProgressWithChild>
         <View
           style={{
             position: "absolute",
