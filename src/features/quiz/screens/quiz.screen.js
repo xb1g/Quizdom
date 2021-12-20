@@ -16,7 +16,7 @@ import {
   SafeBottom,
   SafeTop,
 } from "../../../components/utility/safe-area.component";
-import { Button, ProgressBar } from "react-native-paper";
+import { ProgressBar } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Row } from "../../../components/utility/row.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -33,7 +33,38 @@ import { ChoiceContainer, NextButton } from "../components/quiz.style";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { QuizContext } from "../../../services/quiz/quiz.context";
+
 const AnimatedImage = Animated.createAnimatedComponent(Image);
+
+const Button = ({ onPress, children, bottom }) => {
+  const [pressed, setPressed] = useState(false);
+
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        position: "absolute",
+        paddingHorizontal: 30,
+        padding: 10,
+        bottom: bottom,
+        backgroundColor: "#ffdfe9",
+        borderRadius: 10,
+        margin: "auto",
+        alignSelf: "center",
+        zIndex: 1,
+        ...shadow.shadow1,
+      }}
+    >
+      <Text
+        style={{ fontSize: 20 }}
+        variant="label"
+        color={pressed ? "#FFFFFF" : "#470000"}
+      >
+        {children}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
   Image.getSize(uri, (width, height) => {
@@ -160,11 +191,12 @@ export function QuizScreen({ route, navigation, quiz }) {
   //     console.log("Download succeed");
   //   });
   // });
-  useEffect(() => {
-    if (finished) {
-      navigation.navigate("QuizFinish");
-    }
-  }, [finished]);
+  // useEffect(() => {
+  //   if (finished) {
+  //     navigation.navigate("QuizFinish");
+  //   }
+  // }, [finished]);
+
   const onCheck = () => {
     console.log("Checking");
     console.log(selectedChoice);
@@ -186,7 +218,9 @@ export function QuizScreen({ route, navigation, quiz }) {
     setCorrect(null);
     setSelectedChoice(null);
     if (page == 4) {
-      setFinished(true);
+      // setFinished(true);
+      // save data
+      navigation.navigate("QuizFinish");
     }
   };
 
@@ -441,65 +475,19 @@ export function QuizScreen({ route, navigation, quiz }) {
             </ScrollView>
           </ChoiceContainer>
           {!checked && selectedChoice && (
-            <Button
-              onPress={onCheck}
-              style={{
-                position: "absolute",
-                bottom: insets.bottom,
-                paddingHorizontal: 30,
-                backgroundColor: "#ffdfe9",
-                borderRadius: 15,
-                margin: "auto",
-                alignSelf: "center",
-                zIndex: 1,
-                ...shadow.shadow1,
-              }}
-            >
+            <Button onPress={onCheck} bottom={insets.bottom}>
               Check
             </Button>
           )}
           {checked && (
-            <Button
-              onPress={onNext}
-              style={{
-                position: "absolute",
-                bottom: insets.bottom,
-                paddingHorizontal: 30,
-                backgroundColor: "#ffdfe9",
-                borderRadius: 15,
-                margin: "auto",
-                alignSelf: "center",
-                zIndex: 1,
-                ...shadow.shadow1,
-              }}
-            >
+            <Button onPress={onNext} bottom={insets.bottom}>
               Next
             </Button>
           )}
         </View>
       ) : (
         <View>
-          <Text>Quiz finished</Text>
-          <Text>Your score is {score}</Text>
-
-          <Text>FUNUSHd</Text>
-          <Text>FUNUSHd</Text>
-          <Text>FUNUSHd</Text>
-          <Text>FUNUSHd</Text>
-          <NextButton
-            onPress={() => {
-              navigation.navigate("Resource");
-            }}
-          >
-            <Text>Resource</Text>
-          </NextButton>
-          <NextButton
-            onPress={() => {
-              navigation.navigate("SetMapScreen");
-            }}
-          >
-            <Text>map</Text>
-          </NextButton>
+          <Text>loading</Text>
         </View>
       )}
       {/* </SafeTop> */}

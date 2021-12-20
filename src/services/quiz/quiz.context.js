@@ -11,6 +11,10 @@ export const QuizContextProvider = ({ children }) => {
   const [quizData, setQuizData] = useState([]);
   const [score, setScore] = useState(0);
 
+  useEffect(() => {
+    // save latest at
+  }, [quizData]);
+
   const quizCollection = collection(db, "quiz_sets");
   //   useEffect(() => {
   //     console.log("Quiz");
