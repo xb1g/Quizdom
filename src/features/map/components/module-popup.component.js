@@ -6,6 +6,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
 import { MapsContext } from "../../../services/maps/maps.context";
+import moment from "moment";
+import { Row } from "../../../components/utility/row.component";
 
 // const CircularProgress = () => {
 //   return (
@@ -15,9 +17,11 @@ import { MapsContext } from "../../../services/maps/maps.context";
 //   );
 // };
 
-export function ModulePopup({ moduleName, navigation }) {
-  console.log(moduleName);
+export function ModulePopup({ module, navigation }) {
+  const { mapData, mapName, modulesData } = useContext(MapsContext);
+  const currentModule = modulesData[module.id];
   const insets = useSafeAreaInsets();
+  console.log();
   return (
     <View
       style={{
@@ -31,23 +35,58 @@ export function ModulePopup({ moduleName, navigation }) {
         ...shadow.shadow1,
       }}
     >
-      <Text
-        style={{
-          fontSize: 20,
-        }}
-      >
-        {moduleName}
-      </Text>
-      <CircularProgress
-        value={60}
-        activeStrokeColor={"#2465FD"}
-        activeStrokeSecondaryColor={"#C25AFF"}
-        activeStrokeWidth={20}
-        inActiveStrokeColor="#3c005f"
-        inActiveStrokeWidth={20}
-        textColor="red"
-        showProgressValue={false}
-      />
+      <Row>
+        <Row
+          style={{
+            marginTop: -10,
+            alignItems: "flex-end",
+          }}
+        >
+          <Text
+            variant={"label"}
+            style={{
+              fontSize: 56,
+              color: "#000000",
+            }}
+          >
+            {currentModule.progress + " "}
+          </Text>
+          <Text
+            variant={"label"}
+            style={{
+              position: "absolute",
+              top: 2,
+              left: 2,
+              zIndex: -1,
+              fontSize: 56,
+              color: "#6af5ff",
+            }}
+          >
+            {currentModule.progress + " "}
+          </Text>
+          <Text
+            variant={"label"}
+            style={{
+              marginLeft: -20,
+              marginBottom: -5,
+              fontSize: 26,
+            }}
+          >
+            {"/10 "}
+          </Text>
+        </Row>
+        <Text
+          style={{
+            fontSize: 22,
+            marginLeft: -36,
+          }}
+        >
+          {module.name}
+        </Text>
+      </Row>
+      <Text>To quiz</Text>
+      <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
+
       <TouchableOpacity
         onPress={() => navigation.navigate("QuizNavigator")}
         style={{

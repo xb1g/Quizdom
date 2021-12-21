@@ -11,7 +11,7 @@ import styled, { useTheme } from "styled-components/native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { HeaderText } from "../../../../components/utility/header-text.component";
 import { ResourceContext } from "../../../../services/resource/resource.context";
-import { setResource } from "../../../../services/data/math/sets";
+import { setsResources } from "../../../../services/data/math/sets";
 import { FlatList } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,6 +19,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Column = styled.View`
   flex-direction: column;
+  max-width: 90%;
 `;
 
 const QuizStartItem = styled(TouchableOpacity)`
@@ -33,11 +34,14 @@ export function SetResourceScreen({ navigation }) {
   const theme = useTheme();
   const { selectedModule } = useContext(MapsContext);
   const [resourceData, setResourceData] = React.useState([]);
+  const [resourceAdditional, setResourceAdditional] = React.useState([]);
   // const { resource } = useContext(ResourceContext);
   useEffect(() => {
     console.log("resourace");
-    console.log(selectedModule.moduleName);
-    setResourceData(setResource[selectedModule.moduleName][1]);
+    console.log(selectedModule.name);
+    console.log(setsResources[selectedModule.name]);
+    setResourceData(setsResources[selectedModule.name]["important"]);
+    setResourceAdditional(setsResources[selectedModule.name]["additional"]);
   }, [selectedModule]);
 
   return (
@@ -48,29 +52,43 @@ export function SetResourceScreen({ navigation }) {
       }}
     >
       <BackButton navigation={navigation} />
-      {/* <Button
-        icon="arrow-back"
-        mode="contained"
-        onPress={() => navigation.goBack()}
-      >
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-        Back Back Back Back
-      </Button> */}
       <SafeTop>
+        <Spacer
+          position={"left"}
+          style={{
+            marginLeft: 300,
+          }}
+        />
         <Text
           variant="label"
-          style={{ color: "white", fontSize: 40, marginLeft: "auto" }}
+          adjustsFontSizeToFit
+          style={{
+            color: "white",
+            fontSize: 40,
+            marginLeft: "auto",
+            maxWidth: "90%",
+          }}
+          numberOfLines={5}
         >
-          {selectedModule.moduleName + " "}
+          {selectedModule.name + " "}
         </Text>
         <Spacer size={30} />
+        <View style={{ flex: 0, backgroundColor: "#393939", marginTop: 50 }}>
+          <Text
+            style={{
+              fontSize: 28,
+              color: "#D0421B",
+              paddingLeft: 30,
+              paddingTop: 20,
+            }}
+          >
+            Important
+          </Text>
+        </View>
         <View
           style={{
             margin: 20,
-            marginTop: 100,
+            marginTop: 10,
             backgroundColor: "#fff",
             borderRadius: 20,
           }}
@@ -110,7 +128,83 @@ export function SetResourceScreen({ navigation }) {
                       <Spacer position={"left"} size="medium" />
                       <Spacer position={"left"} size="medium" />
                       <Column>
-                        <Text>{item.title}</Text>
+                        <Text numberOfLines={2}>{item.title}</Text>
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            color: "#555555",
+                          }}
+                        >
+                          {item.description}
+                        </Text>
+                      </Column>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+              keyExtractor={(item) => item.title + item.link[0]}
+            />
+          ) : (
+            <View>
+              <Text>No Resource</Text>
+            </View>
+          )}
+        </View>
+        <View style={{ flex: 0, backgroundColor: "#393939" }}>
+          <Text
+            style={{
+              fontSize: 28,
+              color: "#138000",
+              paddingLeft: 30,
+            }}
+          >
+            Additional
+          </Text>
+        </View>
+        <View
+          style={{
+            margin: 20,
+            marginTop: 10,
+            backgroundColor: "#fff",
+            borderRadius: 20,
+          }}
+        >
+          {resourceAdditional ? (
+            <FlatList
+              data={resourceAdditional}
+              renderItem={({ item }) => (
+                <>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Linking.openURL(item.link);
+                    }}
+                  >
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        margin: 10,
+                        marginTop: 10,
+                        padding: 10,
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.type === "video" ? (
+                        <Ionicons
+                          name="play-circle-outline"
+                          size={28}
+                          color={theme.colors.accent.quaternary}
+                        />
+                      ) : (
+                        <Ionicons
+                          name="reader"
+                          size={28}
+                          color={theme.colors.accent.secondary}
+                        />
+                      )}
+                      <Spacer position={"left"} size="medium" />
+                      <Spacer position={"left"} size="medium" />
+                      <Column>
+                        <Text numberOfLines={2}>{item.title}</Text>
                         <Text
                           style={{
                             fontSize: 14,

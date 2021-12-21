@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import CircularProgress, {
@@ -20,21 +20,43 @@ import { MapsContext } from "../../../services/maps/maps.context";
 
 export function ModuleButton({
   color,
-  top,
-  left,
+  position,
+  completedAt,
+  latestAt,
+  startedAt,
+  reviewAt,
+  name,
   style,
-  moduleName,
   value,
   id,
   translateY,
+  progress,
 }) {
+  const { height, width } = Dimensions.get("window");
+  const top = position.top * height;
+  const left = position.left * width;
   const { setSelectedModule } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
+  const [timeProgress, setTimeProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
+      const nowAt = new Date().getTime() / 1000;
+      const nowHrs = nowAt / 60 / 60;
+      const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
+      // console.log(limitHrs, passedHrs);
+      // console.log("S", (passedHrs / limitHrs) * 100);
+      setTimeProgress(100 - (passedHrs / limitHrs) * 100);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const module = {
-    moduleName,
+    name,
     id,
   };
-  const { height, width } = Dimensions.get("window");
+
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       Math.abs(translateY.value - top),
@@ -67,7 +89,16 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          // translateY.value = top;
+          console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
+          // print the time difference between now and latest in hours
+          console.log(
+            "PASSES",
+            progress,
+            (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
+          );
+          //print the time between reviewAt and latestAt in hours
+
+          console.log(timeProgress);
           setSelectedModule(module);
           // console.log(top, translateY.value);
           // setOnFocus(true);
@@ -76,30 +107,41 @@ export function ModuleButton({
         <CircularProgressWithChild
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
-          activeStrokeWidth={20}
+          activeStrokeWidth={25}
           inActiveStrokeWidth={20}
-          value={Math.random() * 100}
+          value={timeProgress > 0 ? timeProgress : 0}
           radius={60}
           showProgressValue={false}
+          circleBackgroundColor={"#76ffc6"}
         >
-          <View
+          <Text
+            variant="label"
             style={{
-              position: "absolute",
-              left: left < width / 2 ? 120 : -90,
-              top: 20,
-              zIndex: 10,
+              fontSize: 36,
+              marginLeft: 5,
+              zIndex: 100,
             }}
           >
-            <Text
-              style={{
-                fontSize: 20,
-                color: "white",
-              }}
-            >
-              {moduleName}
-            </Text>
-          </View>
+            {progress + " "}
+          </Text>
         </CircularProgressWithChild>
+        <View
+          style={{
+            position: "absolute",
+            left: left < width / 2 ? 120 : -90,
+            top: 20,
+            zIndex: 10,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              color: "white",
+            }}
+          >
+            {name}
+          </Text>
+        </View>
       </TouchableOpacity>
     </Animated.View>
   );

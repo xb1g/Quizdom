@@ -23,6 +23,9 @@ import Animated, {
   withRepeat,
   useAnimatedGestureHandler,
 } from "react-native-reanimated";
+import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 
 const SIZE = 100;
 
@@ -32,61 +35,12 @@ const handleRotation = (progress) => {
 };
 
 export const HomeScreen = ({ navigation }) => {
-  const progress = useSharedValue(1);
-  const scale = useSharedValue(1);
-
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-
-  const panGestureEvent = useAnimatedGestureHandler({
-    onStart: (event, context) => {
-      context.translateX = translateX.value;
-      context.translateY = translateY.value;
-    },
-    onActive: (event, context) => {
-      translateX.value = event.translationX + context.translateX;
-      translateY.value = event.translationY + context.translateY;
-    },
-    onEnd: (event) => {
-      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2);
-      if (distance < 100) {
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-      }
-    },
-  });
-
-  const rStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: translateX.value,
-        },
-        {
-          translateY: translateY.value,
-        },
-      ],
-    };
-  });
-
-  const reanimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: progress.value,
-      transform: [{ scale: scale.value }, { rotate: handleRotation(progress) }],
-      borderRadius: progress.value * SIZE,
-    };
-  }, []);
-
-  useEffect(() => {
-    progress.value = withRepeat(withSpring(0.3), -1);
-    scale.value = withRepeat(withSpring(2), -1, true);
-  }, []);
-
+  const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
   const maps = [
     {
-      title: "Set",
-      navigateName: "SetScreen",
+      name: "sets",
+      navigateName: SET_MAP_NAVIGATION_NAME,
       id: 1,
       progress: "3/10",
       isStarted: true,
@@ -102,7 +56,9 @@ export const HomeScreen = ({ navigation }) => {
     //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
     // },
   ];
-  const theme = useTheme();
+  let counter = 0;
+
+  useEffect(() => {}, []);
   return (
     <HomeBackground>
       {/* <SafeTop /> */}
@@ -120,6 +76,38 @@ export const HomeScreen = ({ navigation }) => {
         >
           <TitleText>{" Today "}</TitleText>
         </TitleContainer>
+        <Button
+          onPress={() => {
+            const quizRef = doc(
+              db,
+              "quiz_sets",
+              "Intro to sets",
+              "level1",
+              String(counter)
+            );
+            setDoc(quizRef, {
+              question:
+                "U = {1,2,3,4,5,6,7,8,9} A ={2,3,5,7} which is a subset of A' ?",
+              image: "https://i.imgur.com/qkdpN.jpg",
+              tags: ["set", "subset"],
+              answer1: "John",
+              answer2:
+                " What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?W?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?v",
+              answer3: "{2,3} U {5,7}",
+              answer4: "{1,4,9}",
+              correct_answer: 4,
+              explaination: "2, 3 and 5 are in A",
+              hint: "anything that is outside A",
+              milestone: 1,
+              skillLevel: 2,
+            })
+              .then(console.log("success"))
+              .catch(console.log("error"));
+            counter++;
+          }}
+        >
+          add quiz
+        </Button>
         {/* <PanGestureHandler onGestureEvent={panGestureEvent}>
           <Animated.View
             style={[

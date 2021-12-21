@@ -10,13 +10,15 @@ export const ModulesContext = createContext();
 export const ModulesContextProvider = ({ children }) => {
   const [modules, setModules] = useState(null);
   const { user } = useContext(AuthenticationContext);
+
   useEffect(() => {
     const docRef = doc(db, "Questions", user.uid);
     onSnapshot(docRef, (doc) => {
       console.log("MODO");
       console.log(doc.data());
     });
-  });
+  }, []);
+
   return (
     <ModulesContext.Provider value={{ modules }}>
       {children}
