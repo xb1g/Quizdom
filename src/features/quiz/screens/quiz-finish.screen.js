@@ -7,6 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
 import { QuizContext } from "../../../services/quiz/quiz.context";
 import { SafeTop } from "../../../components/utility/safe-area.component";
+import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 
 export const QuizFinishScreen = ({ navigation }) => {
   const theme = useTheme();
@@ -37,9 +38,23 @@ export const QuizFinishScreen = ({ navigation }) => {
         <View style={{ marginTop: 30, marginHorizontal: 50 }}>
           {/* <ProgressBar progress={scorepg} color="#a359a0" /> */}
         </View>
-        <Button onPress={() => navigation.navigate("Resource")}>
-          <Text style={{ color: "white" }}>Go to Resources</Text>
-        </Button>
+
+        <Row>
+          <Button
+            onPress={() => {
+              navigation.navigate("Resource");
+            }}
+          >
+            Resource
+          </Button>
+          <Button
+            onPress={() => {
+              navigation.navigate(SET_MAP_NAVIGATION_NAME);
+            }}
+          >
+            Map
+          </Button>
+        </Row>
       </View>
     </>
   );
