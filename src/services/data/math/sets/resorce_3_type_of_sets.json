@@ -1,74 +1,36 @@
 {
     "1": [
       {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
+        "type": "video",
+        "title": "Types of set.",
+        "author": "Escol Emmanuel",
+        "time": "9 minutes",
+        "description": "Different types of sets.",
         "link": "https://www.youtube.com/watch?v=VBzlvKP-2yI"
       },
       {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
+        "type": "video",
+        "title": "Types of set 2.",
+        "author": "ExamSolutions",
+        "time": "8 minutes",
+        "description": "Different types of sets again.",
+        "link": "https://www.youtube.com/watch?v=WL46UtTPr_c"
       },
       {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
+        "type": "video",
+        "title": "Universal set",
+        "author": "Dont Memorise",
+        "time": "4 minutes",
+        "description": "Universal set.",
+        "link": "https://www.youtube.com/watch?v=8innwDI1bv8"
       },
       {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
-      },
-      {
-        "type": "",
-        "title": "",
-        "author": "",
-        "description": "",
-        "link": ""
+        "type": "video",
+        "title": "Null set",
+        "author": "Dont Memorise",
+        "time": "3 minutes",
+        "description": "Null set or empty set.",
+        "link": "https://www.youtube.com/watch?v=BhFgcf0VSYc"
       }
     ]
   }
