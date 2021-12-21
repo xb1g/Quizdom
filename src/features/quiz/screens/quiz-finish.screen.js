@@ -6,6 +6,7 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
 import { QuizContext } from "../../../services/quiz/quiz.context";
+import { SafeTop } from "../../../components/utility/safe-area.component";
 
 const QuizFinishItem = styled(List.Item)`
   margin-top: ${(props) => props.theme.space[3]};
@@ -20,6 +21,7 @@ export const QuizFinishScreen = ({ navigation }) => {
   var scorepg = (score * 20) / 100;
   return (
     <>
+      <SafeTop flex={0} color={theme.colors.accent.secondary} />
       <Text
         variant="label"
         style={{
