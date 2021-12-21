@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import styled, { useTheme } from "styled-components/native";
-import { List } from "react-native-paper";
+import { Button, List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
 import { QuizContext } from "../../../services/quiz/quiz.context";
 import { SafeTop } from "../../../components/utility/safe-area.component";
+import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 
 const QuizFinishItem = styled(List.Item)`
   margin-top: ${(props) => props.theme.space[3]};
@@ -59,6 +60,22 @@ export const QuizFinishScreen = ({ navigation }) => {
           }}
           title="Well done!"
         />
+        <Row>
+          <Button
+            onPress={() => {
+              navigation.navigate("Resource");
+            }}
+          >
+            Resource
+          </Button>
+          <Button
+            onPress={() => {
+              navigation.navigate(SET_MAP_NAVIGATION_NAME);
+            }}
+          >
+            Map
+          </Button>
+        </Row>
       </View>
     </>
   );
