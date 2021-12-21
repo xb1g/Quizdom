@@ -165,6 +165,9 @@ export function QuizScreen({ route, navigation }) {
       <>
         <SafeTop>
           <ActivityIndicator size="large" style={{}} />
+          <ButtonNative onPress={() => navigation.navigate("QuizFinish")}>
+            skip
+          </ButtonNative>
         </SafeTop>
       </>
     );
