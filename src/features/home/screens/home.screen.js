@@ -56,7 +56,7 @@ export const HomeScreen = ({ navigation }) => {
     //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
     // },
   ];
-  let counter = 2;
+  let counter = 0;
 
   useEffect(() => {}, []);
   return (

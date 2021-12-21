@@ -86,16 +86,7 @@ export function ModulePopup({ module, navigation }) {
       </Row>
       <Text>To quiz</Text>
       <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
-      {/* <CircularProgress
-        value={60}
-        activeStrokeColor={"#2465FD"}
-        activeStrokeSecondaryColor={"#C25AFF"}
-        activeStrokeWidth={20}
-        inActiveStrokeColor="#3c005f"
-        inActiveStrokeWidth={20}
-        textColor="red"
-        showProgressValue={false}
-      /> */}
+
       <TouchableOpacity
         onPress={() => navigation.navigate("QuizNavigator")}
         style={{
