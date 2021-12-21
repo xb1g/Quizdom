@@ -9,13 +9,6 @@ import { QuizContext } from "../../../services/quiz/quiz.context";
 import { SafeTop } from "../../../components/utility/safe-area.component";
 import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 
-const QuizFinishItem = styled(List.Item)`
-  margin-top: ${(props) => props.theme.space[3]};
-  margin-bottom: ${(props) => props.theme.space[3]};
-  margin-right: ${(props) => props.theme.space[3]};
-  margin-left: ${(props) => props.theme.space[3]};
-`;
-
 export const QuizFinishScreen = ({ navigation }) => {
   const theme = useTheme();
   const { score } = useContext(QuizContext);
@@ -38,28 +31,14 @@ export const QuizFinishScreen = ({ navigation }) => {
       </Text>
       <View
         style={{
+          flex: 1,
           backgroundColor: "#393939",
         }}
       >
         <View style={{ marginTop: 30, marginHorizontal: 50 }}>
           {/* <ProgressBar progress={scorepg} color="#a359a0" /> */}
         </View>
-        <QuizFinishItem
-          style={{
-            marginTop: 50,
-            marginHorizontal: 50,
-            backgroundColor: "#ffffff",
-            borderRadius: 50,
-          }}
-          titleStyle={{
-            color: "#ffaadd",
-            fontSize: 20,
-            paddingHorizontal: 20,
-            paddingTop: 20,
-            paddingBottom: 20,
-          }}
-          title="Well done!"
-        />
+
         <Row>
           <Button
             onPress={() => {
