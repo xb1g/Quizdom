@@ -8,19 +8,17 @@ export const setsResources = {
   "Subset and Powerset": [],
 };
 
-export const MapTemplate = {
-  sets: [
-    {
-      id: 0,
-      name: "Intro to Sets",
-      startedAt: "",
-      completedAt: "",
-      progress: 0,
-      latestAt: "",
-      position: {
-        top: 0.1,
-        left: 0.1,
-      },
+export const setsMapTemplate = [
+  {
+    id: 0,
+    name: "Intro to Sets",
+    startedAt: "",
+    completedAt: "",
+    progress: 0,
+    latestAt: "",
+    position: {
+      top: 0.1,
+      left: 0.1,
     },
-  ],
-};
+  },
+];

@@ -71,7 +71,7 @@ const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
   Image.getSize(uri, (width, height) => {
     setAspect(width / height);
-    console.log(width / height);
+    // console.log(width / height);
   });
 
   return (
@@ -107,23 +107,20 @@ export function QuizScreen({ route, navigation }) {
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [focusImage, setFocusImage] = useState(null);
   const [showHint, setShowHint] = useState(false);
-  const { score, setScore, metaData, setMetaData, loaded, quiz } =
+  const [correctArray, setCorrectArray] = useState([]);
+  const [hintArray, setHintArray] = useState([]);
+  const { score, setScore, setMetaData, loaded, quiz } =
     useContext(QuizContext);
+
+  useEffect(() => {
+    if (quiz) {
+      // console.log(quiz);
+    }
+  }, [quiz]);
 
   useEffect(() => {
     console.log(focusImage);
   }, [focusImage]);
-
-  // useEffect(() => {
-  //   onSnapshot(collection(db, "quiz_sets"), () => {
-  //     console.log("Download succeed");
-  //   });
-  // });
-  // useEffect(() => {
-  //   if (finished) {
-  //     navigation.navigate("QuizFinish");
-  //   }
-  // }, [finished]);
 
   const onCheck = () => {
     console.log("Checking");
@@ -134,9 +131,11 @@ export function QuizScreen({ route, navigation }) {
       setChecked(true);
       setScore(score + 1);
       setCorrect(true);
+      setCorrectArray([...correctArray, true]);
     } else {
       setChecked(true);
       setCorrect(false);
+      setCorrectArray([...correctArray, false]);
     }
   };
 
@@ -148,6 +147,13 @@ export function QuizScreen({ route, navigation }) {
     if (page == 4) {
       // setFinished(true);
       // save data
+      setMetaData({
+        score: score,
+        correctArray: correctArray,
+        finished: true,
+        usedHint: hintArray,
+        finishedAt: new Date(),
+      });
       navigation.navigate("QuizFinish");
     }
   };
@@ -157,6 +163,7 @@ export function QuizScreen({ route, navigation }) {
   };
 
   const onHint = () => {
+    setHintArray([...hintArray, page]);
     setShowHint(true);
   };
 
@@ -165,264 +172,262 @@ export function QuizScreen({ route, navigation }) {
       <>
         <SafeTop>
           <ActivityIndicator size="large" style={{}} />
-          <ButtonNative onPress={() => navigation.navigate("QuizFinish")}>
+          {/* <ButtonNative onPress={() => navigation.navigate("QuizFinish")}>
             skip
-          </ButtonNative>
+          </ButtonNative> */}
         </SafeTop>
       </>
     );
   }
-
   return (
     <>
-      <View>
-        <SafeTop color="#a2d1a2" flex={0} />
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={showModal}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setShowModal(!showModal);
+      <SafeTop color="#a2d1a2" flex={0} />
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setShowModal(!showModal);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0000009d",
           }}
         >
           <View
             style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#0000009d",
+              backgroundColor: "#fff",
+              borderRadius: 10,
+              padding: 20,
             }}
           >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Are you sure you want to exit?
+            </Text>
             <View
               style={{
-                backgroundColor: "#fff",
-                borderRadius: 10,
-                padding: 20,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: 20,
               }}
             >
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  textAlign: "center",
+              <ButtonNative
+                onPress={() => {
+                  setShowModal(!showModal);
                 }}
               >
-                Are you sure you want to exit?
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  marginTop: 20,
+                <Text>No</Text>
+              </ButtonNative>
+              <ButtonNative
+                onPress={() => {
+                  setShowModal(!showModal);
+                  navigation.goBack();
                 }}
               >
-                <ButtonNative
-                  onPress={() => {
-                    setShowModal(!showModal);
-                  }}
-                >
-                  <Text>No</Text>
-                </ButtonNative>
-                <ButtonNative
-                  onPress={() => {
-                    setShowModal(!showModal);
-                    navigation.goBack();
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "red",
-                    }}
-                  >
-                    Yes
-                  </Text>
-                </ButtonNative>
-              </View>
-            </View>
-          </View>
-        </Modal>
-
-        <Modal animationType="fade" transparent={true} visible={!!focusImage}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#0000009d",
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                setFocusImage(null);
-              }}
-            >
-              <FocusedImage uri={focusImage} width={width} height={height} />
-            </TouchableOpacity>
-          </View>
-        </Modal>
-
-        {page < 5 ? (
-          <View style={{ flex: 1 }}>
-            {
-              <Modal animationType="fade" transparent={true} visible={showHint}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setShowHint(false);
-                  }}
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#0000009d",
-                  }}
-                >
-                  <View
-                    style={{
-                      backgroundColor: "#fff",
-                      padding: 20,
-                      borderRadius: 10,
-                    }}
-                  >
-                    <Text>Hint: {quiz[page].hint}</Text>
-                  </View>
-                </TouchableOpacity>
-              </Modal>
-            }
-            <View
-              style={{
-                backgroundColor: "#a2d1a2",
-                padding: 10,
-                borderBottomLeftRadius: 30,
-                borderBottomRightRadius: 30,
-                paddingBottom: 20,
-                zIndex: 1,
-              }}
-            >
-              <TouchableOpacity onPress={onExit}>
                 <Text
                   style={{
-                    fontSize: 16,
-                    color: "#960032",
-                    // marginLeft: "auto",
+                    color: "red",
                   }}
                 >
-                  Exit
+                  Yes
                 </Text>
-              </TouchableOpacity>
-              <Row style={{}}>
-                <View>
-                  <Text variant="label" style={{ fontSize: 60 }}>
-                    #{page + 1 + " "}
-                  </Text>
-                </View>
-                <View style={{}}>
-                  <ProgressBar
-                    progress={(page + 1) / 5}
-                    color="#960032"
-                    visible="true"
-                  />
-                </View>
-                <HintButton showHint={onHint} />
-              </Row>
-              <Text variant="label" style={{ fontSize: 40 }}>
-                score: {score}
-              </Text>
+              </ButtonNative>
             </View>
-            <ScrollView
-              style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
-            >
-              <Spacer size={"large"} />
-              <Text>{quiz[page].question}</Text>
-              {quiz[page].image && (
-                <>
-                  <TouchableOpacity
-                    onPress={() => {
-                      console.log("WDAD");
-                      setFocusImage(quiz[page].image);
+          </View>
+        </View>
+      </Modal>
+
+      <Modal animationType="fade" transparent={true} visible={!!focusImage}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0000009d",
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              setFocusImage(null);
+            }}
+          >
+            <FocusedImage uri={focusImage} width={width} height={height} />
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
+      {page < 5 ? (
+        <View style={{ flex: 1 }}>
+          {
+            <Modal animationType="fade" transparent={true} visible={showHint}>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowHint(false);
+                }}
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#0000009d",
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#fff",
+                    padding: 20,
+                    borderRadius: 10,
+                  }}
+                >
+                  <Text>Hint: {quiz[page].hint}</Text>
+                </View>
+              </TouchableOpacity>
+            </Modal>
+          }
+          <View
+            style={{
+              backgroundColor: "#a2d1a2",
+              padding: 10,
+              borderBottomLeftRadius: 30,
+              borderBottomRightRadius: 30,
+              paddingBottom: 20,
+              zIndex: 1,
+            }}
+          >
+            <TouchableOpacity onPress={onExit}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#960032",
+                  // marginLeft: "auto",
+                }}
+              >
+                Exit
+              </Text>
+            </TouchableOpacity>
+            <Row>
+              <View>
+                <Text variant="label" style={{ fontSize: 60 }}>
+                  #{page + 1 + " "}
+                </Text>
+              </View>
+              <View style={{}}>
+                <ProgressBar
+                  progress={(page + 1) / 5}
+                  color="#960032"
+                  visible="true"
+                />
+              </View>
+              <HintButton showHint={onHint} />
+            </Row>
+            <Text variant="label" style={{ fontSize: 40 }}>
+              score: {score}
+            </Text>
+          </View>
+          <ScrollView
+            style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
+          >
+            <Spacer size={"large"} />
+            <Text>{quiz[page].question}</Text>
+            {quiz[page].image && (
+              <>
+                <TouchableOpacity
+                  onPress={() => {
+                    // console.log("WDAD");
+                    setFocusImage(quiz[page].image);
+                  }}
+                >
+                  <Image
+                    source={{ uri: quiz[page].image }}
+                    defaultSource={require("../../../../assets/icon.png")}
+                    style={{
+                      width: w,
+                      height: h,
+                      // position: position,
+                      alignSelf: "center",
+                      borderRadius: 20,
                     }}
-                  >
-                    <Image
-                      source={{ uri: quiz[page].image }}
-                      defaultSource={require("../../../../assets/icon.png")}
-                      style={{
-                        width: w,
-                        height: h,
-                        // position: position,
-                        alignSelf: "center",
-                        borderRadius: 20,
-                      }}
-                    />
-                  </TouchableOpacity>
-                </>
-              )}
+                  />
+                </TouchableOpacity>
+              </>
+            )}
+            <Spacer size={"extraLarge"} />
+          </ScrollView>
+          <ChoiceContainer>
+            <ScrollView>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={1}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer1}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={2}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer2}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={3}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer3}</Text>
+              </Choice>
+              <Choice
+                setSelectedChoice={setSelectedChoice}
+                number={4}
+                selectedChoice={selectedChoice}
+                checked={checked}
+                correct={correct}
+                correctAnswer={correctAnswer}
+              >
+                <Text>{quiz[page].answer4}</Text>
+              </Choice>
+              <Explain page={page} quiz={quiz[page]} checked={checked} />
               <Spacer size={"extraLarge"} />
+              <Spacer size={"extraLarge"} />
+              <Spacer size={"medium"} />
             </ScrollView>
-            <ChoiceContainer>
-              <ScrollView>
-                <Choice
-                  setSelectedChoice={setSelectedChoice}
-                  number={1}
-                  selectedChoice={selectedChoice}
-                  checked={checked}
-                  correct={correct}
-                  correctAnswer={correctAnswer}
-                >
-                  <Text>{quiz[page].answer1}</Text>
-                </Choice>
-                <Choice
-                  setSelectedChoice={setSelectedChoice}
-                  number={2}
-                  selectedChoice={selectedChoice}
-                  checked={checked}
-                  correct={correct}
-                  correctAnswer={correctAnswer}
-                >
-                  <Text>{quiz[page].answer2}</Text>
-                </Choice>
-                <Choice
-                  setSelectedChoice={setSelectedChoice}
-                  number={3}
-                  selectedChoice={selectedChoice}
-                  checked={checked}
-                  correct={correct}
-                  correctAnswer={correctAnswer}
-                >
-                  <Text>{quiz[page].answer3}</Text>
-                </Choice>
-                <Choice
-                  setSelectedChoice={setSelectedChoice}
-                  number={4}
-                  selectedChoice={selectedChoice}
-                  checked={checked}
-                  correct={correct}
-                  correctAnswer={correctAnswer}
-                >
-                  <Text>{quiz[page].answer4}</Text>
-                </Choice>
-                <Explain page={page} quiz={quiz[page]} checked={checked} />
-                <Spacer size={"extraLarge"} />
-                <Spacer size={"extraLarge"} />
-                <Spacer size={"medium"} />
-              </ScrollView>
-            </ChoiceContainer>
-            {!checked && selectedChoice && (
-              <Button onPress={onCheck} bottom={insets.bottom}>
-                Check
-              </Button>
-            )}
-            {checked && (
-              <Button onPress={onNext} bottom={insets.bottom}>
-                Next
-              </Button>
-            )}
-          </View>
-        ) : (
-          <View>
-            <Text>loading</Text>
-          </View>
-        )}
-      </View>
+          </ChoiceContainer>
+          {!checked && selectedChoice && (
+            <Button onPress={onCheck} bottom={insets.bottom}>
+              Check
+            </Button>
+          )}
+          {checked && (
+            <Button onPress={onNext} bottom={insets.bottom}>
+              Next
+            </Button>
+          )}
+        </View>
+      ) : (
+        <View>
+          <Text>loading</Text>
+        </View>
+      )}
     </>
   );
 }

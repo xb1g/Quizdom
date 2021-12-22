@@ -55,22 +55,14 @@ export const SetMapScreen = ({ navigation }) => {
         scrollEventThrottle={16}
         contentContainerStyle={{ backgroundColor: "#8f4700" }}
       >
-        {/* <View> */}
-        {/* <CircularProgress value={58} /> */}
         <View style={{ height: windowHeight * 1.8 }} />
         {modulesData.map((module) => (
           <ModuleButton
-            // name={module.name}
-            // id={module.id}
-            // color={module.color}
-            // position={module.position}
-            key={module.name + module.id}
+            key={module.name + String(module.id)}
             translateY={translateY}
             {...module}
           />
         ))}
-
-        {/* </View> */}
       </Animated.ScrollView>
       {selectedModule && (
         <View

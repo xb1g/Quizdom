@@ -39,7 +39,7 @@ export const Maps = ({ maps, navigation }) => {
         data={maps}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
-          item.key = item.id + item.name;
+          item.key = String(item.id) + item.name;
           return (
             <Row>
               <Text
