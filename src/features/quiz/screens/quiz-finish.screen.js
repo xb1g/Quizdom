@@ -56,6 +56,7 @@ export const QuizFinishScreen = ({ navigation }) => {
           </Button>
         </Row>
       </View>
+      <View style={{ backgroundColor: "#393939" }}></View>
     </>
   );
 };
