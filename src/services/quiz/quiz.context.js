@@ -8,9 +8,11 @@ import {
   documentId,
   getDoc,
   getDocs,
+  increment,
   onSnapshot,
   query,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { AuthenticationContext } from "../authentication/authentication.context";
@@ -30,9 +32,15 @@ export const QuizContextProvider = ({ children }) => {
   useEffect(() => {
     if (selectedModule) {
       console.log(mapName);
-      const ids = Array.from({ length: 5 }, () =>
-        String(Math.floor(Math.random() * 10))
-      );
+      const ar = [];
+      const ids = Array.from({ length: 5 }, () => {
+        let ran = Math.round(Math.random() * 10);
+        while (ar.includes(ran)) {
+          ran = Math.round(Math.random() * 10);
+        }
+        ar.push(ran);
+        return String(ran);
+      });
       setQuizIds(ids);
       console.log("IDS");
       console.log(ids);
@@ -57,11 +65,12 @@ export const QuizContextProvider = ({ children }) => {
 
   useEffect(() => {
     // check if passed
+    console.log("PROCESSING");
     console.log(metaData);
-    if (metaData.length > 0) {
-      const passed = metaData.score >= 4;
-      if (passed) {
+    if (metaData) {
+      if (metaData.score >= 4) {
         // get time  + up level
+        console.log("PASSED");
         const moduleRef = doc(
           db,
           "users",
@@ -71,7 +80,15 @@ export const QuizContextProvider = ({ children }) => {
           "modules",
           selectedModule.name
         );
-        // updateDoc(moduleRef, {});
+        updateDoc(moduleRef, {
+          latestAt: metaData.finishedAt,
+          reviewAt:
+            metaData.finishedAt +
+            1000 * 60 * 60 * 24 * 7 * modulesData.progress,
+          progress: increment(1),
+        }).then(() => {
+          console.log("updated");
+        });
       }
     }
   }, [metaData]);

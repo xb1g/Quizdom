@@ -113,12 +113,6 @@ export function QuizScreen({ route, navigation }) {
     useContext(QuizContext);
 
   useEffect(() => {
-    if (quiz) {
-      // console.log(quiz);
-    }
-  }, [quiz]);
-
-  useEffect(() => {
     console.log(focusImage);
   }, [focusImage]);
 
@@ -154,6 +148,7 @@ export function QuizScreen({ route, navigation }) {
         usedHint: hintArray,
         finishedAt: new Date(),
       });
+
       navigation.navigate("QuizFinish");
     }
   };
