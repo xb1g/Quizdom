@@ -39,7 +39,7 @@ export const Maps = ({ maps, navigation }) => {
         data={maps}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
-          item.key = String(item.id) + item.name;
+          // item.key = String(item.id) + item.name;
           return (
             <Row>
               <Text
@@ -119,7 +119,7 @@ export const Maps = ({ maps, navigation }) => {
             </Row>
           );
         }}
-        keyExtractor={(item) => item.id + item.title}
+        keyExtractor={(item) => item.id + item.name}
       />
       {/* </MapContainer> */}
     </>
