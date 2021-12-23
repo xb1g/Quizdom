@@ -33,6 +33,7 @@ export const MapsContextProvider = ({ children }) => {
       console.log(data[0].progress);
       setMapsData(data);
     });
+
     if (mapName) {
       const modulesRef = collection(
         db,

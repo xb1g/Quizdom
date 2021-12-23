@@ -30,10 +30,10 @@ import { MapsContext } from "../../../services/maps/maps.context";
 
 const SIZE = 100;
 
-const handleRotation = (progress) => {
-  "worklet";
-  return `${progress.value * Math.PI * 2}rad`;
-};
+// const handleRotation = (progress) => {
+//   "worklet";
+//   return `${progress.value * Math.PI * 2}rad`;
+// };
 
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
@@ -55,13 +55,12 @@ export const HomeScreen = ({ navigation }) => {
     if (mapsData) {
       const mapsCopy = [];
       maps.forEach((map, index) => {
-        console.log();
-        const progress = mapsData[index].progress;
+        console.log(map, index);
+        const mapData = mapsData[map.id];
         const mapCopy = {
           ...map,
-          progress,
+          ...mapData,
         };
-
         mapsCopy.push(mapCopy);
       });
       setMaps(mapsCopy);
