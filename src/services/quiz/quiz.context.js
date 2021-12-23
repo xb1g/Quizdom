@@ -17,11 +17,13 @@ import {
 } from "firebase/firestore";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { MapsContext } from "../maps/maps.context";
+import moment from "moment";
 
 export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
-  const { selectedModule, mapName, modulesData } = useContext(MapsContext);
+  const { selectedModule, mapName, modulesData, setUpdate } =
+    useContext(MapsContext);
   const [quizData, setQuizData] = useState([]);
   const [score, setScore] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -80,13 +82,16 @@ export const QuizContextProvider = ({ children }) => {
           "modules",
           selectedModule.name
         );
+        const finished = metaData.finishedAt;
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
-          reviewAt:
-            metaData.finishedAt +
-            1000 * 60 * 60 * 24 * 7 * modulesData.progress,
+          reviewAt: new Date(
+            finished.getTime() +
+              1000 * 60 * 60 * 24 * modulesData[selectedModule.id].progress
+          ),
           progress: increment(1),
         }).then(() => {
+          setUpdate(true);
           console.log("updated");
         });
       }

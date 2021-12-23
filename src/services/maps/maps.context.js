@@ -19,6 +19,7 @@ export const MapsContextProvider = ({ children }) => {
   const [mapData, setMapData] = useState([]);
   const [mapName, setMapName] = useState("");
   const [modulesData, setModulesData] = useState([]);
+  const [update, setUpdate] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
 
@@ -51,27 +52,16 @@ export const MapsContextProvider = ({ children }) => {
           });
           setModulesData(modules);
           setLoaded(true);
+          setUpdate(false);
         })
         .catch((err) => {
           console.log(err);
           setLoaded(true);
           setError(err);
+          setUpdate(false);
         });
-
-      //   onSnapshot(mapDataRef, (u) => {
-      //     console.log("MApDATA");
-      //     console.log(u.data());
-      //     const modulesTemplate = MapTemplate[mapName];
-      //     const modules = modulesTemplate.map((module) => {
-      //       const moduleData = u.data().modules[module.id];
-      //       return { ...module, ...moduleData };
-      //     });
-      //     console.log("MODULES");
-      //     console.log(modules);
-      //     setModulesData(modules);
-      //   });
     }
-  }, [mapName]);
+  }, [mapName, update]);
 
   return (
     <MapsContext.Provider
@@ -82,6 +72,9 @@ export const MapsContextProvider = ({ children }) => {
         selectedModule,
         setSelectedModule,
         modulesData,
+        setUpdate,
+        loaded,
+        error,
       }}
     >
       {children}
