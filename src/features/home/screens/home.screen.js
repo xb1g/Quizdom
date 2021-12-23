@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
@@ -26,6 +26,7 @@ import Animated, {
 import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
+import { MapsContext } from "../../../services/maps/maps.context";
 
 const SIZE = 100;
 
@@ -37,25 +38,43 @@ const handleRotation = (progress) => {
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
-  const maps = [
+  const { mapsData } = useContext(MapsContext);
+  const [maps, setMaps] = useState([
     {
       name: "sets",
       navigateName: SET_MAP_NAVIGATION_NAME,
-      id: 1,
+      id: 0,
       progress: "3/10",
       isStarted: true,
       isPaused: false,
       image: require("../../../../assets/maps-image/setsmapimg.png"),
     },
-    // {
-    //   title: "exponential",
-    //   id: 2,
-    //   progress: "0/7",
-    //   isStarted: false,
-    //   isPaused: false,
-    //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
-    // },
-  ];
+  ]);
+
+  useEffect(() => {
+    if (mapsData) {
+      const mapsCopy = [];
+      maps.forEach((map, index) => {
+        console.log();
+        const progress = mapsData[index].progress;
+        const mapCopy = {
+          ...map,
+          progress,
+        };
+
+        mapsCopy.push(mapCopy);
+      });
+      setMaps(mapsCopy);
+    }
+  }, [mapsData]);
+  // {
+  //   title: "exponential",
+  //   id: 2,
+  //   progress: "0/7",
+  //   isStarted: false,
+  //   isPaused: false,
+  //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
+  // },
   let counter = 0;
 
   useEffect(() => {}, []);
@@ -76,7 +95,7 @@ export const HomeScreen = ({ navigation }) => {
         >
           <TitleText>{" Today "}</TitleText>
         </TitleContainer>
-        <Button
+        {/* <Button
           onPress={() => {
             const quizRef = doc(
               db,
@@ -107,7 +126,7 @@ export const HomeScreen = ({ navigation }) => {
           }}
         >
           add quiz
-        </Button>
+        </Button> */}
         {/* <PanGestureHandler onGestureEvent={panGestureEvent}>
           <Animated.View
             style={[

@@ -135,7 +135,7 @@ export function SetResourceScreen({ navigation }) {
                             color: "#555555",
                           }}
                         >
-                          {item.description}
+                          {item.time}
                         </Text>
                       </Column>
                     </View>

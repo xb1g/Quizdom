@@ -16,7 +16,7 @@ export const MapsContextProvider = ({ children }) => {
   // const { currentUser } = firebase.auth();
   const { user } = useContext(AuthenticationContext);
   const [selectedModule, setSelectedModule] = useState(null);
-  const [mapData, setMapData] = useState([]);
+  const [mapsData, setMapsData] = useState([]);
   const [mapName, setMapName] = useState("");
   const [modulesData, setModulesData] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -24,10 +24,16 @@ export const MapsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // console.log("MAaap");
-    // console.log(mapName);
+    const mapsRef = collection(db, "users", user.uid, "maps");
+    getDocs(mapsRef).then((docs) => {
+      const data = [];
+      docs.forEach((doc) => {
+        data.push(doc.data());
+      });
+      console.log(data[0].progress);
+      setMapsData(data);
+    });
     if (mapName) {
-      // setModulesData(MapTemplate[mapName]);
       const modulesRef = collection(
         db,
         "users",
@@ -68,7 +74,7 @@ export const MapsContextProvider = ({ children }) => {
       value={{
         setMapName,
         mapName,
-        mapData,
+        mapsData,
         selectedModule,
         setSelectedModule,
         modulesData,
