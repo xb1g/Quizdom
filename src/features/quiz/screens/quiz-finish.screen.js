@@ -61,7 +61,7 @@ export const QuizFinishScreen = ({ navigation }) => {
         <Row>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Resource");
+              navigation.navigate("Lessons");
             }}
           >
             <View
