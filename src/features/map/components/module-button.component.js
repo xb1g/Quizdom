@@ -21,6 +21,7 @@ import { MapsContext } from "../../../services/maps/maps.context";
 export function ModuleButton({
   color,
   position,
+  started,
   completedAt,
   latestAt,
   startedAt,
@@ -40,16 +41,18 @@ export function ModuleButton({
   const [timeProgress, setTimeProgress] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
-      const nowAt = new Date().getTime() / 1000;
-      const nowHrs = nowAt / 60 / 60;
-      const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
-      // console.log(limitHrs, passedHrs);
-      // console.log("S", (passedHrs / limitHrs) * 100);
-      setTimeProgress(100 - (passedHrs / limitHrs) * 100);
-    }, 1000);
-    return () => clearInterval(interval);
+    if (started) {
+      const interval = setInterval(() => {
+        const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
+        const nowAt = new Date().getTime() / 1000;
+        const nowHrs = nowAt / 60 / 60;
+        const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
+        // console.log(limitHrs, passedHrs);
+        // console.log("S", (passedHrs / limitHrs) * 100);
+        setTimeProgress(100 - (passedHrs / limitHrs) * 100);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const module = {
@@ -68,6 +71,12 @@ export function ModuleButton({
       transform: [{ scale }],
     };
   });
+
+  // if (!started) {
+  //   return (
+  //     <View style={{ width: 50, height: 50, backgroundColor: "#8f4700" }} />
+  //   );
+  // } else {
   return (
     <Animated.View
       style={[
@@ -96,34 +105,42 @@ export function ModuleButton({
             progress,
             (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
           );
-          //print the time between reviewAt and latestAt in hours
 
           console.log(timeProgress);
           setSelectedModule(module);
-          // console.log(top, translateY.value);
-          // setOnFocus(true);
         }}
       >
         <CircularProgressWithChild
           activeStrokeColor={"#467dff"}
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={25}
-          inActiveStrokeWidth={20}
+          inActiveStrokeWidth={25}
           value={timeProgress > 0 ? timeProgress : 0}
           radius={60}
           showProgressValue={false}
-          circleBackgroundColor={"#76ffc6"}
+          // circleBackgroundColor={"#76ffc6"}
         >
-          <Text
-            variant="label"
+          <View
             style={{
-              fontSize: 36,
-              marginLeft: 5,
-              zIndex: 100,
+              backgroundColor: "#88ecc6",
+              borderRadius: 100,
+              width: 65,
+              height: 65,
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            {progress + " "}
-          </Text>
+            <Text
+              variant="label"
+              style={{
+                fontSize: 36,
+                marginLeft: 5,
+                zIndex: 100,
+              }}
+            >
+              {progress + " "}
+            </Text>
+          </View>
         </CircularProgressWithChild>
         <View
           style={{
@@ -131,6 +148,7 @@ export function ModuleButton({
             left: left < width / 2 ? 120 : -90,
             top: 20,
             zIndex: 10,
+            width: 100,
           }}
         >
           <Text
@@ -146,3 +164,4 @@ export function ModuleButton({
     </Animated.View>
   );
 }
+// }

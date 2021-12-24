@@ -49,6 +49,8 @@ export function SetResourceScreen({ navigation }) {
       style={{
         flex: 1,
         backgroundColor: theme.colors.bg.primary,
+
+        // backgroundColor: "transparent",
       }}
     >
       <BackButton navigation={navigation} />
@@ -72,12 +74,12 @@ export function SetResourceScreen({ navigation }) {
         >
           {selectedModule.name + " "}
         </Text>
-        <Spacer size={30} />
-        <View style={{ flex: 0, backgroundColor: "#393939", marginTop: 50 }}>
+        {/* <Spacer size={30} /> */}
+        <View style={{ flex: 0, backgroundColor: "#393939", marginTop: 40 }}>
           <Text
             style={{
               fontSize: 28,
-              color: "#D0421B",
+              color: theme.colors.brand.secondary,
               paddingLeft: 30,
               paddingTop: 20,
             }}

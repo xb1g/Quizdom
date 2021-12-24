@@ -57,6 +57,8 @@ export const MapsContextProvider = ({ children }) => {
             console.log(updatedModule);
             modules.push(updatedModule);
           });
+          console.log("MOMOMO");
+          console.log(modules);
           setModulesData(modules);
           setLoaded(true);
           setUpdate(false);
@@ -69,6 +71,11 @@ export const MapsContextProvider = ({ children }) => {
         });
     }
   }, [mapName, update]);
+
+  useEffect(() => {
+    console.log("SELETED");
+    console.log(selectedModule);
+  }, [selectedModule]);
 
   return (
     <MapsContext.Provider

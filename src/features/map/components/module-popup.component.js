@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
@@ -19,7 +19,11 @@ import { Row } from "../../../components/utility/row.component";
 
 export function ModulePopup({ module, navigation }) {
   const { mapData, mapName, modulesData } = useContext(MapsContext);
-  const currentModule = modulesData[module.id];
+  useEffect(() => {
+    console.log("modulesss");
+    console.log("modulesss", modulesData);
+  }, [modulesData]);
+  const currentModule = modulesData.find((x) => x.id == module.id);
   const insets = useSafeAreaInsets();
   console.log();
   return (

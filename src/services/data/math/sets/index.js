@@ -22,7 +22,7 @@ export const setsResources = {
 export const setsMapTemplate = [
   {
     id: 0,
-    name: "Intro to Sets",
+    name: "Intro to sets",
     progress: 0,
     position: {
       top: 0.1,
@@ -35,12 +35,12 @@ export const setsMapTemplate = [
     progress: 0,
     position: {
       top: 0.3,
-      left: 0.1,
+      left: 0.3,
     },
   },
   {
     id: 2,
-    name: "Type of Sets",
+    name: "Type of sets",
     progress: 0,
     position: {
       top: 0.5,
@@ -70,7 +70,7 @@ export const setsMapTemplate = [
     name: "Subsets",
     progress: 0,
     position: {
-      top: 0.1,
+      top: 1.1,
       left: 0.3,
     },
   },
@@ -79,8 +79,8 @@ export const setsMapTemplate = [
     name: "Power Sets",
     progress: 0,
     position: {
-      top: 0.3,
-      left: 0.3,
+      top: 1.3,
+      left: 0.5,
     },
   },
   {
@@ -88,7 +88,7 @@ export const setsMapTemplate = [
     name: "Cardinality",
     progress: 0,
     position: {
-      top: 0.5,
+      top: 1.5,
       left: 0.3,
     },
   },
