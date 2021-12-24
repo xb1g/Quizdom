@@ -102,6 +102,23 @@ export const AuthenticationContextProvider = ({ children }) => {
             setIsLoading(false);
             // setError(e.toString());
           });
+        const pre_mapRef = doc(db, "users", uid, "maps", "sets");
+        const pre_modules = {
+          isStarted: false,
+          isPaused: true,
+          progress: 1,
+          modulesCount: 8,
+        };
+        setDoc(pre_mapRef, pre_modules)
+          .then(() => {
+            console.log("success to add modules!!!");
+            setIsLoading(false);
+          })
+          .catch((e) => {
+            console.log("can't create modules", e);
+            setIsLoading(false);
+            // setError(e.toString());
+          });
       })
       .catch((e) => {
         console.log("ERROR CATCHING", e);
