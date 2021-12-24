@@ -63,8 +63,8 @@ export function ModuleButton({
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       Math.abs(translateY.value - top),
-      [(height - 40) / 2 / 5, (height - 40) / 2 + 0, height - 40],
-      [0.8, 1.2, 0.8],
+      [-40, height / 2 - 250, height],
+      [0.5, 1.1, 0.5],
       Extrapolate.CLAMP
     );
     return {
