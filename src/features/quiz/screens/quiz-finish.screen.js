@@ -59,38 +59,48 @@ export const QuizFinishScreen = ({ navigation }) => {
           </Text>
         </View>
         <Row>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Resource");
+            }}
+          >
             <View
               style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                paddingHorizontal: 20,
                 marginLeft: 30,
                 backgroundColor: "#ff66c4",
                 borderRadius: 30,
               }}
             >
-              <Button
-                onPress={() => {
-                  navigation.navigate("Resource");
-                }}
+              <Text
+                style={{ color: "white", fontSize: 20, paddingHorizontal: 20 }}
               >
                 Resource
-              </Button>
+              </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(SET_MAP_NAVIGATION_NAME);
+            }}
+          >
             <View
               style={{
-                marginLeft: 30,
+                paddingTop: 20,
+                paddingBottom: 20,
+                paddingHorizontal: 20,
+                marginLeft: 60,
                 backgroundColor: "#ff66c4",
-                borderRadius: 30,
+                borderRadius: 50,
               }}
             >
-              <Button
-                onPress={() => {
-                  navigation.navigate(SET_MAP_NAVIGATION_NAME);
-                }}
+              <Text
+                style={{ color: "white", fontSize: 20, paddingHorizontal: 20 }}
               >
                 Map
-              </Button>
+              </Text>
             </View>
           </TouchableOpacity>
         </Row>
