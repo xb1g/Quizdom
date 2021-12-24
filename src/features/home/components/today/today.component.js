@@ -21,7 +21,7 @@ const TodayView = styled(View)`
   height: 300px;
   background-color: #fff;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 25px;
 `;
 
 const { width: screenWidth } = Dimensions.get("window");
@@ -133,7 +133,7 @@ export const Today = ({
                     flexGrow: 1,
                     flexShrink: 0,
                     justifyContent: "center",
-                    borderRadius: 10,
+                    borderRadius: 15,
                     marginRight: 5,
                   }}
                 >

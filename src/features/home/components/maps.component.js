@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { View, TouchableOpacity, Image } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { Card } from "react-native-paper";
 import { FlatList } from "react-native-gesture-handler";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
@@ -36,6 +34,7 @@ export const Maps = ({ maps, navigation }) => {
     <>
       <FlatList
         horizontal
+        style={{ marginHorizontal: 10 }}
         data={maps}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
@@ -46,14 +45,15 @@ export const Maps = ({ maps, navigation }) => {
                 variant="label"
                 style={{
                   position: "absolute",
-                  top: 30,
+                  top: 10,
                   left: 20,
                   color: "#fff",
                   zIndex: 1,
                   fontSize: 42,
+                  ...shadow.shadow2,
                 }}
               >
-                {item.progress + " "}
+                {item.progress + "/" + item.modulesCount + " "}
               </Text>
               <MapCardContainer
                 style={
@@ -68,8 +68,6 @@ export const Maps = ({ maps, navigation }) => {
                   }}
                   onPress={() => {
                     setMapName(item.name);
-                    // console.log("NAME");
-                    // console.log(item);
                     navigation.navigate(item.navigateName);
                   }}
                 >
@@ -102,13 +100,12 @@ export const Maps = ({ maps, navigation }) => {
                     <Text
                       variant="label"
                       style={{
-                        marginTop: 10,
                         fontSize: 25,
                         color: "#ffffff",
                         alignSelf: "center",
                       }}
                     >
-                      {item.title}
+                      {item.name}
                     </Text>
                   </View>
 

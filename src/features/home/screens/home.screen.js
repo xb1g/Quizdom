@@ -66,14 +66,6 @@ export const HomeScreen = ({ navigation }) => {
       setMaps(mapsCopy);
     }
   }, [mapsData]);
-  // {
-  //   title: "exponential",
-  //   id: 2,
-  //   progress: "0/7",
-  //   isStarted: false,
-  //   isPaused: false,
-  //   image: require("../../../../assets/maps-image/inequalitiesmapimg.png"),
-  // },
   let counter = 0;
 
   useEffect(() => {}, []);
