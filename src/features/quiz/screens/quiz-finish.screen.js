@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import styled, { useTheme } from "styled-components/native";
-import { Button, List } from "react-native-paper";
+import { Button, List, ProgressBar } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
 import { QuizContext } from "../../../services/quiz/quiz.context";
@@ -36,24 +36,40 @@ export const QuizFinishScreen = ({ navigation }) => {
         }}
       >
         <View style={{ marginTop: 30, marginHorizontal: 50 }}>
-          {/* <ProgressBar progress={scorepg} color="#a359a0" /> */}
+          <Text style={{ fontSize: 20, color: "#ffffff" }}>Your score</Text>
         </View>
-
+        <View style={{ marginTop: 30, marginHorizontal: 50 }}>
+          <ProgressBar progress={scorepg} color="#a359a0" />
+        </View>
+        <View
+          style={{
+            marginHorizontal: 30,
+            marginTop: 50,
+            borderRadius: 50,
+            backgroundColor: "#ffaadd",
+          }}
+        >
+          <Text style={{ fontSize: 28, color: "white" }}>Well done!</Text>
+        </View>
         <Row>
-          <Button
-            onPress={() => {
-              navigation.navigate("Resource");
-            }}
-          >
-            Resource
-          </Button>
-          <Button
-            onPress={() => {
-              navigation.navigate(SET_MAP_NAVIGATION_NAME);
-            }}
-          >
-            Map
-          </Button>
+          <View style={{ marginLeft: 30, backgroundColor: "#ff66c4" }}>
+            <Button
+              onPress={() => {
+                navigation.navigate("Resource");
+              }}
+            >
+              Resource
+            </Button>
+          </View>
+          <View style={{ marginLeft: 30, backgroundColor: "#ff66c4" }}>
+            <Button
+              onPress={() => {
+                navigation.navigate(SET_MAP_NAVIGATION_NAME);
+              }}
+            >
+              Map
+            </Button>
+          </View>
         </Row>
       </View>
       <View style={{ backgroundColor: "#393939" }}></View>
