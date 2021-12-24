@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import styled, { useTheme } from "styled-components/native";
 import { Button, List, ProgressBar } from "react-native-paper";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Row } from "../../../components/utility/row.component";
 import { QuizContext } from "../../../services/quiz/quiz.context";
 import { SafeTop } from "../../../components/utility/safe-area.component";
@@ -36,7 +36,9 @@ export const QuizFinishScreen = ({ navigation }) => {
         }}
       >
         <View style={{ marginTop: 30, marginHorizontal: 50 }}>
-          <Text style={{ fontSize: 20, color: "#ffffff" }}>Your score</Text>
+          <Text style={{ fontSize: 28, color: "#ffffff", paddingLeft: 50 }}>
+            Your score
+          </Text>
         </View>
         <View style={{ marginTop: 30, marginHorizontal: 50 }}>
           <ProgressBar progress={scorepg} color="#a359a0" />
@@ -47,29 +49,50 @@ export const QuizFinishScreen = ({ navigation }) => {
             marginTop: 50,
             borderRadius: 50,
             backgroundColor: "#ffaadd",
+            marginBottom: 50,
+            paddingTop: 50,
+            paddingBottom: 50,
           }}
         >
-          <Text style={{ fontSize: 28, color: "white" }}>Well done!</Text>
+          <Text style={{ fontSize: 24, color: "white", paddingLeft: 50 }}>
+            Well done!
+          </Text>
         </View>
         <Row>
-          <View style={{ marginLeft: 30, backgroundColor: "#ff66c4" }}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Resource");
+          <TouchableOpacity>
+            <View
+              style={{
+                marginLeft: 30,
+                backgroundColor: "#ff66c4",
+                borderRadius: 30,
               }}
             >
-              Resource
-            </Button>
-          </View>
-          <View style={{ marginLeft: 30, backgroundColor: "#ff66c4" }}>
-            <Button
-              onPress={() => {
-                navigation.navigate(SET_MAP_NAVIGATION_NAME);
+              <Button
+                onPress={() => {
+                  navigation.navigate("Resource");
+                }}
+              >
+                Resource
+              </Button>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View
+              style={{
+                marginLeft: 30,
+                backgroundColor: "#ff66c4",
+                borderRadius: 30,
               }}
             >
-              Map
-            </Button>
-          </View>
+              <Button
+                onPress={() => {
+                  navigation.navigate(SET_MAP_NAVIGATION_NAME);
+                }}
+              >
+                Map
+              </Button>
+            </View>
+          </TouchableOpacity>
         </Row>
       </View>
       <View style={{ backgroundColor: "#393939" }}></View>
