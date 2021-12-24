@@ -111,7 +111,9 @@ export function QuizScreen({ route, navigation }) {
   const [hintArray, setHintArray] = useState([]);
   const { score, setScore, setMetaData, loaded, quiz } =
     useContext(QuizContext);
-
+  useEffect(() => {
+    setScore(0);
+  }, []);
   useEffect(() => {
     console.log(focusImage);
   }, [focusImage]);
