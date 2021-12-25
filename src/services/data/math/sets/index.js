@@ -1,13 +1,13 @@
-import basic_of_set from "./resource_basic_of_set.json";
-import set_types from "./resource_set_types.json";
-import intro_to_sets from "./resource_1_intro_to_set.json";
-import venn_diagram from "./resource_2_venn_diagrams.json";
-import type_of_sets from "./resource_3_type_of_sets.json";
-import union_and_intersect from "./resource_4_union_and_intersect_of_set.json";
-import relative_and_absolute_complement from "./resource_5_relative_and_absolute_complement.json";
-import subsets from "./resource_6_subsets.json";
-import powersets from "./resource_7_power_sets.json";
-import cardinality from "./resource_8_cardinality.json";
+import intro_to_sets from "./resources/1_intro_to_set.json";
+import venn_diagram from "./resources/2_venn_diagrams.json";
+import type_of_sets from "./resources/3_type_of_sets.json";
+import union_and_intersect from "./resources/4_union_and_intersect_of_set.json";
+import relative_and_absolute_complement from "./resources/5_relative_and_absolute_complement.json";
+import subsets from "./resources/6_subsets.json";
+import powersets from "./resources/7_power_sets.json";
+import cardinality from "./resources/8_cardinality.json";
+
+import setsNewModulesTemplate from "./modules/sets-modules.template.json";
 export const setsResources = {
   "Intro to sets": intro_to_sets,
   "Venn diagram": venn_diagram,
@@ -93,3 +93,5 @@ export const setsMapTemplate = [
     },
   },
 ];
+
+export const setsModulesTemplate = setsNewModulesTemplate;
