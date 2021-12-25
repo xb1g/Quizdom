@@ -83,12 +83,15 @@ export const QuizContextProvider = ({ children }) => {
           selectedModule.name
         );
         const finished = metaData.finishedAt;
+        console.log("FIND REVIEW TIME");
+        const module = modulesData.find((x) => x.id == selectedModule.id);
+        const reviewTime = new Date(
+          finished.getTime() + 1000 * 60 * 60 * 24 * module.progress
+        );
+        console.log(reviewTime);
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
-          reviewAt: new Date(
-            finished.getTime() +
-              1000 * 60 * 60 * 24 * modulesData[selectedModule.id].progress
-          ),
+          reviewAt: reviewTime,
           progress: increment(1),
         }).then(() => {
           setUpdate(true);

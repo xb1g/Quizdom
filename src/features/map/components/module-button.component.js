@@ -44,6 +44,8 @@ export function ModuleButton({
     if (started) {
       const interval = setInterval(() => {
         const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
+        // console.log(reviewAt.seconds, latestAt.seconds, limitHrs);
+        // console.log(reviewAt.seconds - latestAt.seconds, "ASD");
         const nowAt = new Date().getTime() / 1000;
         const nowHrs = nowAt / 60 / 60;
         const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
@@ -63,7 +65,7 @@ export function ModuleButton({
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       Math.abs(translateY.value - top),
-      [-40, height / 2 - 250, height],
+      [-10, height / 2 - 250, height],
       [0.5, 1.1, 0.5],
       Extrapolate.CLAMP
     );

@@ -28,6 +28,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import { Button } from "react-native-paper";
 
 export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
@@ -48,6 +49,27 @@ export const SetMapScreen = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
+      {/* <Button
+        style={{
+          position: "absolute",
+          top: 100,
+          right: 0,
+          zIndex: 101,
+          backgroundColor: theme.colors.primary,
+          width: 100,
+          height: 100,
+        }}
+        onPress={() => {
+          console.log("onpress");
+          const time = new Date();
+          console.log(time, new Date(time.getTime() + 1000));
+          const module = modulesData.find((x) => x.id == selectedModule.id);
+          console.log(module);
+          console.log("onpress");
+        }}
+      >
+        assd assd assd
+      </Button> */}
       <HeaderText title={`${mapName}`} />
 
       <Animated.ScrollView
@@ -56,6 +78,7 @@ export const SetMapScreen = ({ navigation }) => {
         contentContainerStyle={{ backgroundColor: "#8f4700" }}
       >
         <View style={{ height: windowHeight * 1.8 }} />
+
         {modulesData.map((module) => (
           <ModuleButton
             key={module.name + String(module.id)}

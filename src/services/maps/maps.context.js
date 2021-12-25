@@ -35,6 +35,8 @@ export const MapsContextProvider = ({ children }) => {
     });
 
     if (mapName) {
+      console.log("MAP NAME");
+      console.log(mapName);
       const modulesRef = collection(
         db,
         "users",
@@ -50,6 +52,7 @@ export const MapsContextProvider = ({ children }) => {
           docs.forEach((doc) => {
             // console.log(doc.data());
             const module = doc.data();
+            console.log(module.id, "IS id");
             const template = setsMapTemplate[module.id];
             const updatedModule = { ...template, ...module };
             //print module
@@ -75,6 +78,9 @@ export const MapsContextProvider = ({ children }) => {
   useEffect(() => {
     console.log("SELETED");
     console.log(selectedModule);
+
+    if (selectedModule) {
+    }
   }, [selectedModule]);
 
   return (

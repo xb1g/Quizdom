@@ -38,7 +38,7 @@ const SIZE = 100;
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
-  const { mapsData } = useContext(MapsContext);
+  const { mapsData, modulesData } = useContext(MapsContext);
   const [maps, setMaps] = useState([
     {
       name: "sets",
@@ -65,6 +65,8 @@ export const HomeScreen = ({ navigation }) => {
       });
       setMaps(mapsCopy);
     }
+    console.log("moduut");
+    console.log(modulesData);
   }, [mapsData]);
   let counter = 0;
 
