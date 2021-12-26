@@ -88,9 +88,12 @@ export function ModulePopup({ module, navigation }) {
           {module.name}
         </Text>
       </Row>
-      <Text>To quiz</Text>
-      <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
-
+      {currentModule.started && (
+        <Row>
+          <Text>To quiz</Text>
+          <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
+        </Row>
+      )}
       <TouchableOpacity
         onPress={() => navigation.navigate("QuizNavigator")}
         style={{

@@ -32,11 +32,12 @@ export function ModuleButton({
   id,
   translateY,
   progress,
+  unlocked,
 }) {
   const { height, width } = Dimensions.get("window");
   const top = position.top * height;
   const left = position.left * width;
-  const { setSelectedModule } = useContext(MapsContext);
+  const { setSelectedModule, modulesData } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
   const [timeProgress, setTimeProgress] = useState(0);
 
@@ -54,18 +55,21 @@ export function ModuleButton({
         setTimeProgress(100 - (passedHrs / limitHrs) * 100);
       }, 1000);
       return () => clearInterval(interval);
+    } else {
+      console.log("not started");
     }
   }, []);
 
   const module = {
     name,
     id,
+    unlocked,
   };
 
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
-      Math.abs(translateY.value - top),
-      [-10, height / 2 - 250, height],
+      Math.abs(translateY.value - top - 80),
+      [0, height / 2 - 150, height],
       [0.5, 1.1, 0.5],
       Extrapolate.CLAMP
     );
@@ -100,6 +104,17 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
+          if (!started) {
+            console.log("make progress on db and show module");
+            const module = modulesData.find((module) => module.id === id);
+
+            if (module.unlocked) {
+              //start
+              //show modal
+            }
+            setSelectedModule(module);
+            return;
+          }
           console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
           // print the time difference between now and latest in hours
           console.log(
@@ -124,7 +139,7 @@ export function ModuleButton({
         >
           <View
             style={{
-              backgroundColor: "#88ecc6",
+              backgroundColor: unlocked ? "#71ffd0" : "grey",
               borderRadius: 100,
               width: 65,
               height: 65,

@@ -32,7 +32,7 @@ export const colors = {
     primary: "#fcab40",
     primarym: "#fde78e",
     secondary: "#ff66c4",
-    secondarym: "#ffaadd",
+    secondarym: "#ffc5e8",
     tertiary: "#004aad",
     tertiarym: "#38b6ff",
     quaternary: "#a359a0",

@@ -2,14 +2,6 @@
   "important": [
     {
       "type": "video",
-      "title": "The Importance of Set Theory",
-      "author": "Silvia Jonas",
-      "time": "5 minutes",
-      "description": "Introduction to the importance of set theory.",
-      "link": "https://www.youtube.com/watch?v=9n3QsegLU3U"
-    },
-    {
-      "type": "video",
       "title": "Sets Basics - Introduction",
       "author": "Dont Memorize",
       "time": "2 minutes",
@@ -41,6 +33,14 @@
       "time": "5 minutes",
       "description": "Set notation using set builder notation.",
       "link": "https://www.youtube.com/watch?v=O84JrsT5r1o"
+    },
+    {
+      "type": "video",
+      "title": "The Importance of Set Theory",
+      "author": "Silvia Jonas",
+      "time": "5 minutes",
+      "description": "Introduction to the importance of set theory.",
+      "link": "https://www.youtube.com/watch?v=9n3QsegLU3U"
     }
   ]
 }

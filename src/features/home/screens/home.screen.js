@@ -70,7 +70,6 @@ export const HomeScreen = ({ navigation }) => {
   }, [mapsData]);
   let counter = 0;
 
-  useEffect(() => {}, []);
   return (
     <HomeBackground>
       {/* <SafeTop /> */}

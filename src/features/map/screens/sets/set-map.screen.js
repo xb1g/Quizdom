@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
+  Modal,
 } from "react-native";
 // import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 // import Icon from "react-native-ionicons";
@@ -49,6 +50,9 @@ export const SetMapScreen = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
+      {/* <Modal transparent={true} animationType="slide" visible={false}>
+        <Text>Hello</Text>
+      </Modal> */}
       {/* <Button
         style={{
           position: "absolute",

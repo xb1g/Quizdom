@@ -22,6 +22,21 @@ const Column = styled.View`
   max-width: 90%;
 `;
 
+const ContentContainer = styled.View`
+  flex-direction: row;
+  padding: 10px;
+  margin: 10px;
+  margin-top: 10px;
+`;
+
+const Description = styled(Text)`
+  margin-top: 10px;
+  margin-left: auto;
+  padding: 10px;
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.text.inverse};
+`;
+
 const QuizStartItem = styled(TouchableOpacity)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.brand.primary};
@@ -35,6 +50,7 @@ export function SetResourceScreen({ navigation }) {
   const { selectedModule } = useContext(MapsContext);
   const [resourceData, setResourceData] = React.useState([]);
   const [resourceAdditional, setResourceAdditional] = React.useState([]);
+  const [description, setDescription] = React.useState("");
   // const { resource } = useContext(ResourceContext);
   useEffect(() => {
     console.log("resourace");
@@ -42,6 +58,7 @@ export function SetResourceScreen({ navigation }) {
     console.log(setsResources[selectedModule.name]);
     setResourceData(setsResources[selectedModule.name]["important"]);
     setResourceAdditional(setsResources[selectedModule.name]["additional"]);
+    setDescription(setsResources[selectedModule.name]["description"]);
   }, [selectedModule]);
 
   return (
@@ -49,8 +66,6 @@ export function SetResourceScreen({ navigation }) {
       style={{
         flex: 1,
         backgroundColor: theme.colors.bg.primary,
-
-        // backgroundColor: "transparent",
       }}
     >
       <BackButton navigation={navigation} />
@@ -74,6 +89,7 @@ export function SetResourceScreen({ navigation }) {
         >
           {selectedModule.name + " "}
         </Text>
+        <Description>{description}</Description>
         {/* <Spacer size={30} /> */}
         <View style={{ flex: 0, backgroundColor: "#393939", marginTop: 40 }}>
           <Text
@@ -105,15 +121,7 @@ export function SetResourceScreen({ navigation }) {
                       Linking.openURL(item.link);
                     }}
                   >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        margin: 10,
-                        marginTop: 10,
-                        padding: 10,
-                        alignItems: "center",
-                      }}
-                    >
+                    <ContentContainer>
                       {item.type === "video" ? (
                         <Ionicons
                           name="play-circle-outline"
@@ -137,19 +145,19 @@ export function SetResourceScreen({ navigation }) {
                             color: "#555555",
                           }}
                         >
-                          {item.time}
+                          {item.time + "  from  " + item.author}
                         </Text>
                       </Column>
-                    </View>
+                    </ContentContainer>
                   </TouchableOpacity>
                 </>
               )}
-              keyExtractor={(item) => item.title + item.link[0]}
+              keyExtractor={(item) => item.title + item.author}
             />
           ) : (
-            <View>
+            <ContentContainer>
               <Text>No Resource</Text>
-            </View>
+            </ContentContainer>
           )}
         </View>
         <View style={{ flex: 0, backgroundColor: "#393939" }}>
@@ -181,15 +189,7 @@ export function SetResourceScreen({ navigation }) {
                       Linking.openURL(item.link);
                     }}
                   >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        margin: 10,
-                        marginTop: 10,
-                        padding: 10,
-                        alignItems: "center",
-                      }}
-                    >
+                    <ContentContainer>
                       {item.type === "video" ? (
                         <Ionicons
                           name="play-circle-outline"
@@ -216,16 +216,16 @@ export function SetResourceScreen({ navigation }) {
                           {item.description}
                         </Text>
                       </Column>
-                    </View>
+                    </ContentContainer>
                   </TouchableOpacity>
                 </>
               )}
               keyExtractor={(item) => item.title + item.link[0]}
             />
           ) : (
-            <View>
+            <ContentContainer>
               <Text>No Resource</Text>
-            </View>
+            </ContentContainer>
           )}
           <Spacer size={theme.space[3]} />
         </View>
