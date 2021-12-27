@@ -1,0 +1,32 @@
+{
+    "1": [
+      {
+        "type": "article",
+        "title": "Venn diagrams",
+        "author": "Cuemath",
+        "description": "Venn diagrams and how to use them.",
+        "link": "https://www.cuemath.com/algebra/venn-diagram/"
+      },
+      {
+        "type": "article",
+        "title": "Venn diagrams",
+        "author": "Byjus",
+        "description": "Venn diagrams and how to use them.",
+        "link": "https://byjus.com/maths/venn-diagrams/"
+      },
+      {
+        "type": "video",
+        "title": "Using venn diagrams",
+        "author": "Math and Stats Help",
+        "description": "Using venn diagrams to illustrate sets.",
+        "link": "https://www.youtube.com/watch?v=vy8vx82xxaA&list=PLf7pK5V-tM9RU_crHBVGbC0lDnkhjAKIi&index=18"
+      },
+      {
+        "type": "video",
+        "title": "Using venn diagrams with cardinality",
+        "author": "Math and Stats Help",
+        "description": "Using venn diagrams with cardinality.",
+        "link": "https://www.youtube.com/watch?v=TYSTANN91S4&list=PLf7pK5V-tM9RU_crHBVGbC0lDnkhjAKIi&index=19"
+      }
+    ]
+  }

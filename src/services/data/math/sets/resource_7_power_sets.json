@@ -1,0 +1,28 @@
+{
+    "1": [
+      {
+        "type": "video",
+        "title": "What is a Power Set?",
+        "author": "Wrath of Math",
+        "time": "5 minutes",
+        "description": "Powersets and their cardinality.",
+        "link": "https://www.youtube.com/watch?v=0XNSBoqG-1s"
+      },
+      {
+        "type": "video",
+        "title": "Finding Power Set Examples",
+        "author": "Wrath of Math",
+        "time": "11 minutes",
+        "description": "Finding Power Sets.",
+        "link": "https://www.youtube.com/watch?v=B3L8ZzrZwzA"
+      },
+      {
+        "type": "video",
+        "title": "Subsets and Power sets",
+        "author": "TrevTutor",
+        "time": "16 minutes",
+        "description": "Subsets and Powersets including of empty sets.",
+        "link": "https://www.youtube.com/watch?v=H5D6EAezsXQ"
+      }
+    ]
+  }

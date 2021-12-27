@@ -1,0 +1,20 @@
+{
+    "1": [
+      {
+        "type": "video",
+        "title": "Sets: Union and Intersection",
+        "author": "partrickJMT",
+        "time": "6 minutes",
+        "description": "What is Union and Intersection of sets.",
+        "link": "https://www.youtube.com/watch?v=En8fI2ixepo"
+      },
+      {
+        "type": "video",
+        "title": "Intersection and union of sets",
+        "author": "Khan Academy",
+        "time": "8 minutes",
+        "description": "How to do set union and intersection.",
+        "link": "https://www.youtube.com/watch?v=jAfNg3ylZAI"
+      }
+    ]
+  }
