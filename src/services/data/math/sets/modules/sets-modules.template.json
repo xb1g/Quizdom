@@ -9,16 +9,16 @@
       "started": false
     },
     {
-      "id": 2,
-      "name": "Type of sets",
+      "id": 1,
+      "name": "Venn diagrams",
       "progress": 0,
       "latestAt": null,
       "reviewAt": null,
       "started": false
     },
     {
-      "id": 1,
-      "name": "Venn diagrams",
+      "id": 2,
+      "name": "Type of sets",
       "progress": 0,
       "latestAt": null,
       "reviewAt": null,
