@@ -1,0 +1,46 @@
+{
+  "important": [
+    {
+      "type": "video",
+      "title": "The Importance of Set Theory",
+      "author": "Silvia Jonas",
+      "time": "5 minutes",
+      "description": "Introduction to the importance of set theory.",
+      "link": "https://www.youtube.com/watch?v=9n3QsegLU3U"
+    },
+    {
+      "type": "video",
+      "title": "Sets Basics - Introduction",
+      "author": "Dont Memorize",
+      "time": "2 minutes",
+      "description": "Topics of sets.",
+      "link": "https://www.youtube.com/watch?v=fes92vSBTg4"
+    },
+    {
+      "type": "article",
+      "title": "Sets",
+      "author": "Cuemath",
+      "time": "-",
+      "description": "What are sets.",
+      "link": "https://www.cuemath.com/algebra/sets/"
+    },
+    {
+      "type": "video",
+      "title": "Writing Elements of a Set in Roster Form",
+      "author": "Math and Stats Help",
+      "time": "4 minutes",
+      "description": "Set notation in roster form.",
+      "link": "https://www.youtube.com/watch?v=7LOKT_5SVkY&list=PLf7pK5V-tM9RU_crHBVGbC0lDnkhjAKIi&index=3"
+    }
+  ],
+  "additional": [
+    {
+      "type": "video",
+      "title": "Set Builder Notation",
+      "author": "Math and Stats Help",
+      "time": "5 minutes",
+      "description": "Set notation using set builder notation.",
+      "link": "https://www.youtube.com/watch?v=O84JrsT5r1o"
+    }
+  ]
+}
