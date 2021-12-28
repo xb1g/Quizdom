@@ -24,6 +24,11 @@ export const MapsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("loaded", loaded);
+    console.log("update", update);
+  }, [update, loaded]);
+
+  useEffect(() => {
     const mapsRef = collection(db, "users", user.uid, "maps");
     getDocs(mapsRef).then((docs) => {
       const data = [];
@@ -57,11 +62,11 @@ export const MapsContextProvider = ({ children }) => {
             const updatedModule = { ...template, ...module };
             //print module
             console.log("MODULES");
-            console.log(updatedModule);
+            // console.log(updatedModule);
             modules.push(updatedModule);
           });
           console.log("MOMOMO");
-          console.log(modules);
+          // console.log(modules);
           setModulesData(modules);
           setLoaded(true);
           setUpdate(false);

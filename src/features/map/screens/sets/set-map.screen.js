@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Image,
   View,
@@ -34,57 +34,56 @@ import { Button } from "react-native-paper";
 export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
+  const { width, height } = Dimensions.get("window");
 
-  const { mapData, mapName, modulesData } = useContext(MapsContext);
+  const scrollViewRef = useRef(null);
 
-  // const [popupShown, setPopupShown] = React.useState(null);
-  const { selectedModule, setSelectedModule } = useContext(MapsContext);
+  const {
+    mapData,
+    mapName,
+    modulesData,
+    selectedModule,
+    setSelectedModule,
+    loaded,
+  } = useContext(MapsContext);
+
   const translateY = useSharedValue(0);
 
   const handleScroll = useAnimatedScrollHandler((event) => {
     translateY.value = event.contentOffset.y;
   });
 
+  const toModule = (top) => {
+    if (scrollViewRef.current !== null) {
+      scrollViewRef.current.scrollTo({
+        y: top,
+        animated: true,
+      });
+    }
+  };
+
+  useEffect(() => {
+    console.log("j");
+    toModule(250);
+  }, [loaded]);
+
   return (
     <View style={{ flexGrow: 1 }}>
       <BackButton navigation={navigation} />
-      {/* <Modal transparent={true} animationType="slide" visible={false}>
-        <Text>Hello</Text>
-      </Modal> */}
-      {/* <Button
-        style={{
-          position: "absolute",
-          top: 100,
-          right: 0,
-          zIndex: 101,
-          backgroundColor: theme.colors.primary,
-          width: 100,
-          height: 100,
-        }}
-        onPress={() => {
-          console.log("onpress");
-          const time = new Date();
-          console.log(time, new Date(time.getTime() + 1000));
-          const module = modulesData.find((x) => x.id == selectedModule.id);
-          console.log(module);
-          console.log("onpress");
-        }}
-      >
-        assd assd assd
-      </Button> */}
+
       <HeaderText title={`${mapName}`} />
 
       <Animated.ScrollView
         onScroll={handleScroll}
         scrollEventThrottle={16}
         contentContainerStyle={{ backgroundColor: "#8f4700" }}
+        ref={scrollViewRef}
       >
-        <View style={{ height: windowHeight * 1.8 }} />
+        <View style={{ height: height * 1.8 + 600 }} />
 
         {modulesData.map((module) => (
           <ModuleButton
+            scrollTo={toModule}
             key={module.name + String(module.id)}
             translateY={translateY}
             {...module}
@@ -92,33 +91,42 @@ export const SetMapScreen = ({ navigation }) => {
         ))}
       </Animated.ScrollView>
       {selectedModule && (
-        <View
+        <TouchableOpacity
           style={{
-            position: "absolute",
-            bottom: insets.bottom,
-            ...shadow.shadow2,
+            flex: 1,
+            backgroundColor: "rgba(0,0,0,0.5)",
           }}
+          onPressOut={() => setSelectedModule(null)}
         >
-          <TouchableOpacity
+          <View
             style={{
               position: "absolute",
-              top: 20,
-              right: 20,
-              zIndex: 10,
+              bottom: insets.bottom,
+              ...shadow.shadow2,
+              zIndex: 11,
             }}
-            onPress={() => setSelectedModule(null)}
           >
-            <Text
-              variant="label"
+            <TouchableOpacity
               style={{
-                fontSize: 40,
+                position: "absolute",
+                top: 20,
+                right: 20,
+                zIndex: 10,
               }}
+              onPress={() => setSelectedModule(null)}
             >
-              {"x "}
-            </Text>
-          </TouchableOpacity>
-          <ModulePopup module={selectedModule} navigation={navigation} />
-        </View>
+              <Text
+                variant="label"
+                style={{
+                  fontSize: 40,
+                }}
+              >
+                {"x "}
+              </Text>
+            </TouchableOpacity>
+            <ModulePopup module={selectedModule} navigation={navigation} />
+          </View>
+        </TouchableOpacity>
       )}
     </View>
   );

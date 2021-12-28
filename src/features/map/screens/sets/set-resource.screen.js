@@ -37,6 +37,13 @@ const Description = styled(Text)`
   color: ${(props) => props.theme.colors.text.inverse};
 `;
 
+const ItemContainer = styled.View`
+  border-radius: 20;
+  margin: 10px;
+  margin-top: 20px;
+  background-color: ${(props) => props.theme.colors.bg.inverse};
+`;
+
 const QuizStartItem = styled(TouchableOpacity)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.brand.primary};
@@ -91,7 +98,7 @@ export function SetResourceScreen({ navigation }) {
         </Text>
         <Description>{description}</Description>
         {/* <Spacer size={30} /> */}
-        <View style={{ flex: 0, backgroundColor: "#393939", marginTop: 40 }}>
+        <View>
           <Text
             style={{
               fontSize: 28,
@@ -103,14 +110,7 @@ export function SetResourceScreen({ navigation }) {
             Important
           </Text>
         </View>
-        <View
-          style={{
-            margin: 20,
-            marginTop: 10,
-            backgroundColor: "#fff",
-            borderRadius: 20,
-          }}
-        >
+        <ItemContainer>
           {resourceData ? (
             <FlatList
               data={resourceData}
@@ -159,8 +159,9 @@ export function SetResourceScreen({ navigation }) {
               <Text>No Resource</Text>
             </ContentContainer>
           )}
-        </View>
-        <View style={{ flex: 0, backgroundColor: "#393939" }}>
+        </ItemContainer>
+        <Spacer size="large" />
+        <View>
           <Text
             style={{
               fontSize: 28,
@@ -171,14 +172,7 @@ export function SetResourceScreen({ navigation }) {
             Additional
           </Text>
         </View>
-        <View
-          style={{
-            margin: 20,
-            marginTop: 10,
-            backgroundColor: "#fff",
-            borderRadius: 20,
-          }}
-        >
+        <ItemContainer>
           {resourceAdditional ? (
             <FlatList
               data={resourceAdditional}
@@ -228,8 +222,8 @@ export function SetResourceScreen({ navigation }) {
             </ContentContainer>
           )}
           <Spacer size={theme.space[3]} />
-        </View>
-        <View style={{ flex: 0, backgroundColor: "#393939" }}>
+        </ItemContainer>
+        <View>
           <QuizStartItem onPress={() => navigation.navigate("Quiz")}>
             <Text>QUIZ</Text>
           </QuizStartItem>

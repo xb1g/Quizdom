@@ -57,6 +57,7 @@ export const UserScreen = ({ navigation }) => {
   useEffect(() => {
     console.log(user);
   }, []);
+
   const onEditUserInfo = () => {
     navigation.navigate("EditUserInfoScreen");
   };
@@ -96,7 +97,7 @@ export const UserScreen = ({ navigation }) => {
             />
             <Spacer />
             <Text variant="label" style={{ color: "white", fontSize: 25 }}>
-              {userInfo.username + " "}
+              {userInfo.username + " " || "noname"}
             </Text>
           </Container>
         </TouchableOpacity>

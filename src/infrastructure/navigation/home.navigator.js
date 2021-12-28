@@ -37,7 +37,7 @@ export const HomeNavigator = ({ navigation, route }) => {
     } else {
       navigation.setOptions({
         tabBarStyle: {
-          backgroundColor: theme.colors.accent.quinary, // for home screen exception
+          backgroundColor: theme.colors.bg.secondary, // for home screen exception
           bottom: 0,
           borderTopColor: "transparent",
           overflow: "hidden",
@@ -82,7 +82,7 @@ export const HomeNavigator = ({ navigation, route }) => {
                 style={{
                   height:
                     Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
-                  backgroundColor: theme.colors.accent.quinary, //coloradded
+                  backgroundColor: theme.colors.bg.secondary, //coloradded
                   // borderBottomRightRadius: 30,
                   // borderBottomLeftRadius: 30,
                   ...shadow.shadow2,

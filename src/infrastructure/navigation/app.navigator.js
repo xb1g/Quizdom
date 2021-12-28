@@ -20,7 +20,6 @@ import { ResourceContextProvider } from "../../services/resource/resource.contex
 import { ModulesContextProvider } from "../../services/modules/modules.context";
 import { QuizContextProvider } from "../../services/quiz/quiz.context";
 
-const Icon = styled.Image``;
 const createScreenOptions = ({ route }) => {
   const theme = useTheme(); //theme
   useEffect(() => {
@@ -44,7 +43,7 @@ const createScreenOptions = ({ route }) => {
       return <Ionicons name={iconName} size={size + 7} color={color} />;
     },
     tabBarStyle: {
-      backgroundColor: theme.colors.accent.quinary, //for home screen go to home navigator
+      backgroundColor: theme.colors.bg.secondary, //for home screen go to home navigator
       bottom: 0,
       borderTopColor: "transparent",
       overflow: "hidden",

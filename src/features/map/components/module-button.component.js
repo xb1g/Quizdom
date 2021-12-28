@@ -33,6 +33,7 @@ export function ModuleButton({
   translateY,
   progress,
   unlocked,
+  scrollTo,
 }) {
   const { height, width } = Dimensions.get("window");
   const top = position.top * height;
@@ -68,8 +69,8 @@ export function ModuleButton({
 
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
-      Math.abs(translateY.value - top - 80),
-      [0, height / 2 - 150, height],
+      Math.abs(translateY.value - top - 400),
+      [0, height / 2, height],
       [0.5, 1.1, 0.5],
       Extrapolate.CLAMP
     );
@@ -89,7 +90,7 @@ export function ModuleButton({
         {
           position: "absolute",
           backgroundColor: color,
-          top: top + 40 || 150,
+          top: top + 300,
           left: left || 100,
           width: 70,
           height: 70,
@@ -104,6 +105,8 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
+          console.log(top * height);
+          scrollTo(top);
           if (!started) {
             console.log("make progress on db and show module");
             const module = modulesData.find((module) => module.id === id);

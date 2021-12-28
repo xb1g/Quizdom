@@ -34,55 +34,37 @@ export const Maps = ({ maps, navigation }) => {
     <>
       <FlatList
         horizontal
-        style={{ marginHorizontal: 10 }}
+        style={{ marginHorizontal: 0 }}
         data={maps}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
           // item.key = String(item.id) + item.name;
           return (
             <Row>
-              <Text
-                variant="label"
+              <TouchableOpacity
                 style={{
-                  position: "absolute",
-                  top: 10,
-                  left: 20,
-                  color: "#fff",
-                  zIndex: 1,
-                  fontSize: 42,
-                  ...shadow.shadow2,
+                  flex: 1,
+                }}
+                onPress={() => {
+                  setMapName(item.name);
+                  navigation.navigate(item.navigateName);
                 }}
               >
-                {item.progress + "/" + item.modulesCount + " "}
-              </Text>
-              <MapCardContainer
-                style={
-                  {
-                    //...shadow.shadow1,
-                  }
-                }
-              >
-                <TouchableOpacity
+                <Text
+                  variant="label"
                   style={{
-                    flex: 1,
-                  }}
-                  onPress={() => {
-                    setMapName(item.name);
-                    navigation.navigate(item.navigateName);
+                    position: "absolute",
+                    top: 10,
+                    left: 20,
+                    color: "#fff",
+                    zIndex: 1,
+                    fontSize: 42,
+                    ...shadow.shadow2,
                   }}
                 >
-                  {/*
-                  <LinearGradient
-                    colors={["rgba(0,0,0,0.8)", "transparent"]}
-                    style={{
-                      width: 150,
-                      height: 150,
-                      position: "absolute",
-                      zIndex: 8,
-                      borderRadius: 30,
-                    }}
-                  />
-                  */}
+                  {item.progress + "/" + item.modulesCount + " "}
+                </Text>
+                <MapCardContainer>
                   <View
                     style={{
                       width: 150,
@@ -111,8 +93,8 @@ export const Maps = ({ maps, navigation }) => {
 
                   {/* </LinearGradient> */}
                   {/* </View> */}
-                </TouchableOpacity>
-              </MapCardContainer>
+                </MapCardContainer>
+              </TouchableOpacity>
             </Row>
           );
         }}

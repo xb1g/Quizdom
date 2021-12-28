@@ -35,6 +35,8 @@ const PlanningItem = styled(List.Item)`
 `;
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
+  const { width, height } = Dimensions.get("window");
+
   return (
     <>
       <Text
@@ -66,13 +68,9 @@ export const PlannerScreen = ({ navigation }) => {
               <View style={{ marginTop: 30, marginLeft: 30 }}>
                 <TouchableHighlight
                   style={{
-                    borderRadius:
-                      Math.round(
-                        Dimensions.get("window").width +
-                          Dimensions.get("window").height
-                      ) / 2,
-                    width: Dimensions.get("window").width * 0.3,
-                    height: Dimensions.get("window").width * 0.3,
+                    borderRadius: Math.round(width + height) / 2,
+                    width: width * 0.3,
+                    height: width * 0.3,
                     backgroundColor: "#ffc8ff",
                     justifyContent: "center",
                     alignItems: "center",
@@ -82,10 +80,7 @@ export const PlannerScreen = ({ navigation }) => {
                     console.log("pressed sets plan");
                   }}
                 >
-                  <Text style={{ fontSize: 36, color: "white" }}>
-                    {" "}
-                    {"Sets"}{" "}
-                  </Text>
+                  <Text style={{ fontSize: 36, color: "white" }}>{"Sets"}</Text>
                 </TouchableHighlight>
               </View>
 

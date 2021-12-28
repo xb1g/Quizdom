@@ -34,11 +34,21 @@ export const AuthenticationContextProvider = ({ children }) => {
         setUser(usr);
         const docRef = doc(db, "users", usr.uid);
         onSnapshot(docRef, (u) => {
-          // console.log(u.data());
+          console.log("BRUHMO");
+          console.log(u.data());
           const userInfo = u.data();
-          // console.log(userInfo);
-          setUserInfo(userInfo);
-        });
+          if (userInfo) {
+            setUserInfo(userInfo);
+          }
+        })
+          .then((u) => {
+            console.log("gotasd");
+            console.log(u);
+          })
+          .catch((e) => {
+            console.log("EEEEee");
+            console.log(e);
+          });
         setError(null);
         setIsLoading(false);
       } else {
