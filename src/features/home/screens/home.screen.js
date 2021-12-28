@@ -88,57 +88,6 @@ export const HomeScreen = ({ navigation }) => {
         >
           <TitleText>{" Today "}</TitleText>
         </TitleContainer>
-        {/* <Button
-          onPress={() => {
-            const quizRef = doc(
-              db,
-              "quiz_sets",
-              "Intro to sets",
-              "level1",
-              String(counter)
-            );
-            setDoc(quizRef, {
-              question:
-                "U = {1,2,3,4,5,6,7,8,9} A ={2,3,5,7} which is a subset of A' ?",
-              image: "https://i.imgur.com/qkdpN.jpg",
-              tags: ["set", "subset"],
-              answer1: "John",
-              answer2:
-                " What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?W?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?v",
-              answer3: "{2,3} U {5,7}",
-              answer4: "{1,4,9}",
-              correct_answer: 4,
-              explaination: "2, 3 and 5 are in A",
-              hint: "anything that is outside A",
-              milestone: 1,
-              skillLevel: 2,
-            })
-              .then(console.log("success"))
-              .catch(console.log("error"));
-            counter++;
-          }}
-        >
-          add quiz
-        </Button> */}
-        {/* <PanGestureHandler onGestureEvent={panGestureEvent}>
-          <Animated.View
-            style={[
-              {
-                width: 100,
-                height: 100,
-                backgroundColor: theme.colors.accent.tertiarym,
-              },
-              rStyle,
-            ]}
-          />
-        </PanGestureHandler>
-        <Animated.View
-          style={[
-            { height: SIZE, width: SIZE, backgroundColor: "blue" },
-            reanimatedStyle,
-          ]}
-        ></Animated.View> */}
-        {/* <Text style={{ color: "white" }}>{progress.value}</Text> */}
         <Today style={shadow} navigation={navigation} />
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.quaternarym }}

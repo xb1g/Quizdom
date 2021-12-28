@@ -69,7 +69,10 @@ export const SetMapScreen = ({ navigation }) => {
 
   return (
     <View style={{ flexGrow: 1 }}>
-      <BackButton navigation={navigation} />
+      <BackButton
+        navigation={navigation}
+        onPress={() => setSelectedModule(null)}
+      />
 
       <HeaderText title={`${mapName}`} />
 
@@ -91,12 +94,11 @@ export const SetMapScreen = ({ navigation }) => {
         ))}
       </Animated.ScrollView>
       {selectedModule && (
-        <TouchableOpacity
+        <View
           style={{
             flex: 1,
-            backgroundColor: "rgba(0,0,0,0.5)",
           }}
-          onPressOut={() => setSelectedModule(null)}
+          // onPressOut={() => setSelectedModule(null)}
         >
           <View
             style={{
@@ -126,7 +128,7 @@ export const SetMapScreen = ({ navigation }) => {
             </TouchableOpacity>
             <ModulePopup module={selectedModule} navigation={navigation} />
           </View>
-        </TouchableOpacity>
+        </View>
       )}
     </View>
   );

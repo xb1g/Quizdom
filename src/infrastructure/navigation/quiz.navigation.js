@@ -4,7 +4,6 @@ import {
 } from "@react-navigation/stack";
 import React from "react";
 import { View, Text } from "react-native";
-import { ModulePopupScreen } from "../../features/quiz/screens/module-popup.screen";
 import { SetResourceScreen } from "../../features/map/screens/sets/set-resource.screen";
 import { QuizFinishScreen } from "../../features/quiz/screens/quiz-finish.screen";
 import { QuizScreen } from "../../features/quiz/screens/quiz.screen.js";

@@ -29,7 +29,7 @@ export function ModulePopup({ module, navigation }) {
   return (
     <View
       style={{
-        backgroundColor: "#fff",
+        backgroundColor: currentModule.unlocked ? "#fff" : "#cecccc",
         height: 200,
         width: Dimensions.get("window").width - 20,
         borderRadius: 30,
@@ -94,6 +94,8 @@ export function ModulePopup({ module, navigation }) {
           <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
         </Row>
       )}
+
+      {!currentModule.unlocked && <Text>Do your module first bruh</Text>}
       <TouchableOpacity
         onPress={() => navigation.navigate("QuizNavigator")}
         style={{
@@ -103,7 +105,13 @@ export function ModulePopup({ module, navigation }) {
           zIndex: 10,
         }}
       >
-        <Text variant="label" style={{ fontSize: 100 }}>
+        <Text
+          variant="label"
+          style={{
+            fontSize: 100,
+            color: currentModule.unlocked ? "#000" : "#999",
+          }}
+        >
           {">> "}
         </Text>
       </TouchableOpacity>

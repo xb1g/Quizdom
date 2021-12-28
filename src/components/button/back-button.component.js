@@ -17,7 +17,10 @@ export const BackButton = ({ onPress }) => {
         backgroundColor: "rgba(255, 255, 255, 0.137)",
         borderBottomRightRadius: 30,
       }}
-      onPress={() => navigation.goBack()}
+      onPress={() => {
+        onPress && onPress();
+        navigation.goBack();
+      }}
     >
       <Text
         style={{
