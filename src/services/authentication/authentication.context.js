@@ -1,11 +1,13 @@
 import React, { useState, useEffect, createContext } from "react";
 import { db, auth } from "../../../firebase-config";
+import { initial_data } from "../data/math/sets/modules";
 import {
   collection,
   addDoc,
   doc,
   setDoc,
   onSnapshot,
+  arrayRemove,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -111,14 +113,14 @@ export const AuthenticationContextProvider = ({ children }) => {
             setIsLoading(false);
             // setError(e.toString());
           });
-        const pre_mapRef = doc(db, "users", uid, "maps", "sets");
-        const pre_modules = {
+        const mapDataRef = doc(db, "users", uid, "maps", "sets");
+        const mapDataPayload = {
           isStarted: false,
           isPaused: true,
           progress: 1,
           modulesCount: 8,
         };
-        setDoc(pre_mapRef, pre_modules)
+        setDoc(mapDataRef, mapDataPayload)
           .then(() => {
             console.log("success to add modules!!!");
             setIsLoading(false);
@@ -128,6 +130,28 @@ export const AuthenticationContextProvider = ({ children }) => {
             setIsLoading(false);
             // setError(e.toString());
           });
+        initial_data.forEach((module) => {
+          const moduleRef = doc(
+            db,
+            "users",
+            uid,
+            "maps",
+            "sets",
+            "modules",
+            module.name
+          );
+          const modulePayload = module;
+          setDoc(moduleRef, modulePayload)
+            .then(() => {
+              console.log(module);
+              setIsLoading(false);
+            })
+            .catch((e) => {
+              console.log("can't create modules", e);
+              setIsLoading(false);
+              // setError(e.toString());
+            });
+        });
       })
       .catch((e) => {
         console.log("ERROR CATCHING", e);
