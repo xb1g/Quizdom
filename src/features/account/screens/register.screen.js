@@ -93,6 +93,7 @@ export const RegisterScreen = ({ navigation }) => {
                 value={password}
                 textContentType="password"
                 returnKeyType={"next"}
+                autoCapitalize="none"
                 secureTextEntry
                 onChangeText={(text) => setPassword(text)}
               />
@@ -103,7 +104,7 @@ export const RegisterScreen = ({ navigation }) => {
                 returnKeyType={"next"}
                 textContentType="password"
                 autoCapitalize="none"
-                secureTextEntry={true}
+                secureTextEntry
                 onChangeText={(text) => setRepeatedPassword(text)}
               />
               <Spacer size="large" />

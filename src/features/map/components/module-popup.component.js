@@ -29,7 +29,7 @@ export function ModulePopup({ module, navigation }) {
   return (
     <View
       style={{
-        backgroundColor: currentModule.unlocked ? "#fff" : "#cecccc",
+        backgroundColor: currentModule.unlocked ? "#fff" : "#aaaaaa",
         height: 200,
         width: Dimensions.get("window").width - 20,
         borderRadius: 30,

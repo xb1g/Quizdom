@@ -28,6 +28,19 @@ const MapCardContainer = styled.View`
   margin-horizontal: 10px;
 `;
 
+const MapName = styled(Text)`
+  font-size: 25px;
+  align-self: center;
+  color: #fff;
+`;
+const ProgressNumber = styled(Text)`
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  color: #fff;
+  z-index: 1;
+  font-size: 42px;
+`;
 export const Maps = ({ maps, navigation }) => {
   const { setMapName } = useContext(MapsContext);
   return (
@@ -50,27 +63,28 @@ export const Maps = ({ maps, navigation }) => {
                   navigation.navigate(item.navigateName);
                 }}
               >
-                <Text
+                <ProgressNumber
                   variant="label"
                   style={{
-                    position: "absolute",
-                    top: 10,
-                    left: 20,
-                    color: "#fff",
-                    zIndex: 1,
-                    fontSize: 42,
                     ...shadow.shadow2,
                   }}
                 >
                   {item.progress + "/" + item.modulesCount + " "}
-                </Text>
+                </ProgressNumber>
                 <MapCardContainer>
-                  <View
-                    style={{
-                      width: 150,
-                      height: 150,
-                    }}
-                  >
+                  <View>
+                    {!item.isStarted && (
+                      <LinearGradient
+                        style={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "90%",
+                          borderRadius: 25,
+                          zIndex: 1,
+                        }}
+                        colors={["#000000", "rgba(0, 0, 0, 0)"]}
+                      />
+                    )}
                     <Image
                       source={item.image}
                       style={{
@@ -79,20 +93,8 @@ export const Maps = ({ maps, navigation }) => {
                         borderRadius: 30,
                       }}
                     />
-                    <Text
-                      variant="label"
-                      style={{
-                        fontSize: 25,
-                        color: "#ffffff",
-                        alignSelf: "center",
-                      }}
-                    >
-                      {item.name}
-                    </Text>
+                    <MapName variant="label">{item.name}</MapName>
                   </View>
-
-                  {/* </LinearGradient> */}
-                  {/* </View> */}
                 </MapCardContainer>
               </TouchableOpacity>
             </Row>

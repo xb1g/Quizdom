@@ -1,0 +1,86 @@
+{
+  "1": [
+    {
+      "id": 0,
+      "name": "Intro to sets",
+      "requirement": []
+    },
+    {
+      "id": 1,
+      "name": "Venn diagrams",
+      "requirement": [
+        {
+          "id": 0,
+          "name": "Intro to sets",
+          "progress": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Type of sets",
+      "requirement": [
+        {
+          "id": 1,
+          "name": "Venn diagrams",
+          "progress": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Union and Intersect",
+      "requirement": [
+        {
+          "id": 1,
+          "name": "Venn diagrams",
+          "progress": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Complement",
+      "requirement": [
+        {
+          "id": 3,
+          "name": "Union and Intersect",
+          "progress": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Subsets",
+      "requirement": [
+        {
+          "id": 3,
+          "name": "Union and Intersect",
+          "progress": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Power sets",
+      "requirement": [
+        {
+          "id": 3,
+          "name": "Union and Intersect",
+          "progress": 1
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Cardinality",
+      "requirement": [
+        {
+          "id": 3,
+          "name": "Union and Intersect",
+          "progress": 1
+        }
+      ]
+    }
+  ]
+}

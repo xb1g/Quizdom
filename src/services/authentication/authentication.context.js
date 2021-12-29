@@ -117,7 +117,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         const mapDataPayload = {
           isStarted: false,
           isPaused: true,
-          progress: 1,
+          progress: 0,
           modulesCount: 8,
         };
         setDoc(mapDataRef, mapDataPayload)

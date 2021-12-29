@@ -46,18 +46,14 @@ export function ModuleButton({
     if (started) {
       const interval = setInterval(() => {
         const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
-        // console.log(reviewAt.seconds, latestAt.seconds, limitHrs);
-        // console.log(reviewAt.seconds - latestAt.seconds, "ASD");
         const nowAt = new Date().getTime() / 1000;
         const nowHrs = nowAt / 60 / 60;
         const passedHrs = nowHrs - latestAt.seconds / 60 / 60;
-        // console.log(limitHrs, passedHrs);
-        // console.log("S", (passedHrs / limitHrs) * 100);
         setTimeProgress(100 - (passedHrs / limitHrs) * 100);
       }, 1000);
       return () => clearInterval(interval);
     } else {
-      console.log("not started");
+      console.log("not started", module.name);
     }
   }, []);
 
@@ -108,6 +104,7 @@ export function ModuleButton({
           console.log(top * height);
           scrollTo(top);
           if (!started) {
+            console.log("NOT STARTEd");
             console.log("make progress on db and show module");
             const module = modulesData.find((module) => module.id === id);
 

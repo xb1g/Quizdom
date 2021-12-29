@@ -38,7 +38,7 @@ const Description = styled(Text)`
 `;
 
 const ItemContainer = styled.View`
-  border-radius: 20;
+  border-radius: 25px;
   margin: 10px;
   margin-top: 20px;
   background-color: ${(props) => props.theme.colors.bg.inverse};
