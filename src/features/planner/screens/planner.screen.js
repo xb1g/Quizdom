@@ -12,7 +12,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { List } from "react-native-paper";
+import { List, ProgressBar } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
@@ -65,75 +65,51 @@ export const PlannerScreen = ({ navigation }) => {
               </TouchableHighlight>
             </View>
 
-            <View>
-              <PlanningItem
+            <View
+              style={{
+                marginHorizontal: 30,
+                marginTop: 10,
+                marginBottom: 10,
+                borderRadius: 20,
+                backgroundColor: "#ffffff",
+              }}
+            >
+              <View
                 style={{
-                  marginTop: 50,
-                  marginHorizontal: 30,
-                  backgroundColor: "#ffc8ff",
-                  borderRadius:
-                    (Dimensions.get("window").width +
-                      Dimensions.get("window").height) /
-                    2,
-                  width: Dimensions.get("window").width * 0.55,
-                  height: Dimensions.get("window").width * 0.2,
-                }}
-                titleStyle={{
-                  color: "white",
-                  fontSize: 18,
-                  paddingLeft: 5,
-                  paddingTop: 16,
-                }}
-                title="Start studying : 17/11/21"
-              />
-            </View>
-          </Row>
-        </View>
-        <View>
-          <Row>
-            <View style={{ marginTop: 30, marginLeft: 30 }}>
-              <TouchableHighlight
-                style={{
-                  borderRadius:
-                    Math.round(
-                      Dimensions.get("window").width +
-                        Dimensions.get("window").height
-                    ) / 2,
-                  width: Dimensions.get("window").width * 0.3,
-                  height: Dimensions.get("window").width * 0.3,
-                  backgroundColor: "#a359a0",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                underlayColor="#cb6ce6"
-                onPress={() => {
-                  console.log("pressed logic plan");
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingHorizontal: 10,
                 }}
               >
-                <Text style={{ fontSize: 36, color: "white" }}>{"Logic"}</Text>
-              </TouchableHighlight>
-            </View>
-            <View>
-              <PlanningItem
-                style={{
-                  marginTop: 50,
-                  marginHorizontal: 30,
-                  backgroundColor: "#a359a0",
-                  borderRadius:
-                    (Dimensions.get("window").width +
-                      Dimensions.get("window").height) /
-                    2,
-                  width: Dimensions.get("window").width * 0.55,
-                  height: Dimensions.get("window").width * 0.2,
-                }}
-                titleStyle={{
-                  color: "white",
-                  fontSize: 18,
-                  paddingLeft: 5,
-                  paddingTop: 16,
-                }}
-                title="Start studying : 20/11/21"
-              />
+                <Row>
+                  <View
+                    style={{
+                      borderRadius: Math.round(width + height) / 2,
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "#ff88a8",
+                      marginRight: 20,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "white" }}>7</Text>
+                  </View>
+                  <View
+                    style={{ justifyContent: "center", alignItems: "center" }}
+                  >
+                    <Text style={{ fontSize: 15, color: "#000000" }}>
+                      Intro to sets
+                    </Text>
+                    {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
+                    <View style={{ paddingRight: 30 }}>
+                      <Text style={{ fontSize: 15, color: "#000000" }}>
+                        2/10
+                      </Text>
+                    </View>
+                  </View>
+                </Row>
+              </View>
             </View>
           </Row>
         </View>

@@ -96,7 +96,7 @@ export function SetResourceScreen({ navigation }) {
         >
           {selectedModule.name + " "}
         </Text>
-        <Description>{description}</Description>
+        {/* <Description>{description}</Description> */}
         {/* <Spacer size={30} /> */}
         <View>
           <Text
