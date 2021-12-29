@@ -96,7 +96,11 @@ export const PlannerScreen = ({ navigation }) => {
                     <Text style={{ fontSize: 15, color: "white" }}>7</Text>
                   </View>
                   <View
-                    style={{ justifyContent: "center", alignItems: "center" }}
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingRight: 30,
+                    }}
                   >
                     <Text style={{ fontSize: 15, color: "#000000" }}>
                       Intro to sets
