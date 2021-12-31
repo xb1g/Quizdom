@@ -3,62 +3,43 @@
     {
       "id": 0,
       "name": "Intro to sets",
-      "requirement": []
+      "unlocks": { "2": [1] }
     },
     {
       "id": 1,
       "name": "Venn diagrams",
-      "requirement": [
-        {
-          "id": 0,
-          "name": "Intro to sets",
-          "progress": 1
-        }
-      ]
+      "unlocks": {
+        "2": [2, 3]
+      }
     },
     {
       "id": 2,
       "name": "Type of sets",
-      "requirement": [
-        {
-          "id": 1,
-          "name": "Venn diagrams",
-          "progress": 1
-        }
-      ]
+      "unlocks": {
+        "2": [4]
+      }
     },
     {
       "id": 3,
       "name": "Union and Intersect",
-      "requirement": [
-        {
-          "id": 1,
-          "name": "Venn diagrams",
-          "progress": 3
-        }
-      ]
+      "unlocks": {
+        "2": [4]
+      }
     },
     {
       "id": 4,
       "name": "Complement",
-      "requirement": [
-        {
-          "id": 3,
-          "name": "Union and Intersect",
-          "progress": 1
-        }
-      ]
+      "unlocks": {
+        "2": [5]
+      }
     },
     {
       "id": 5,
       "name": "Subsets",
-      "requirement": [
-        {
-          "id": 3,
-          "name": "Union and Intersect",
-          "progress": 1
-        }
-      ]
+
+      "unlocks": {
+        "2": [6]
+      }
     },
     {
       "id": 6,
