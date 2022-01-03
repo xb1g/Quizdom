@@ -116,30 +116,23 @@ export function QuizScreen({ route, navigation }) {
   const [showHint, setShowHint] = useState(false);
   const [correctArray, setCorrectArray] = useState([]);
   const [hintArray, setHintArray] = useState([]);
-  const [quiz, setQuiz] = useState([]);
+  // const [quiz, setQuiz] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  const { score, setScore, setMetaData, getQuiz } = useContext(QuizContext);
+  const { score, setScore, setMetaData, quiz } = useContext(QuizContext);
 
   useEffect(() => {
     setScore(0);
-    const quizzes = getQuiz();
+    const quizzes = quiz;
     if (quizzes) {
       console.log("qez");
       console.log(quizzes);
-      setQuiz(quizzes);
       setLoaded(true);
     } else {
       console.log("no quiz");
     }
     // setQuiz(quizzes);
   }, []);
-
-  useEffect(() => {
-    if (quiz) {
-      // setLoaded(true);
-    }
-  }, [quiz]);
 
   // useEffect(() => {
   //   console.log(focusImage);

@@ -33,6 +33,7 @@ export const QuizContextProvider = ({ children }) => {
 
   const getQuiz = () => {
     if (selectedModule) {
+      console.log("gettin quiz");
       console.log(mapName);
       const ar = [];
       const ids = Array.from({ length: 5 }, () => {
@@ -62,19 +63,21 @@ export const QuizContextProvider = ({ children }) => {
 
         console.log("qzz");
         console.log(quizzes);
+        setQuiz(quizzes);
         setLoaded(true);
-        return quizzes;
+        // return quizzes;
       });
     }
-    return null;
+    // return null;
   };
 
-  // useEffect(() => {
-  //   getQuiz();
-  // }, [selectedModule]);
+  useEffect(() => {
+    getQuiz();
+  }, [selectedModule]);
 
   useEffect(() => {
     // check if passed
+    getQuiz();
     console.log("PROCESSING");
     console.log(metaData);
     if (metaData) {
@@ -107,7 +110,6 @@ export const QuizContextProvider = ({ children }) => {
           setUpdate(true);
           console.log("updated");
         });
-
         // update progress
       }
     }
@@ -124,7 +126,6 @@ export const QuizContextProvider = ({ children }) => {
         setMetaData,
         quiz,
         loaded,
-        getQuiz,
       }}
     >
       {children}
