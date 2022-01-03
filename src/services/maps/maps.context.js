@@ -81,10 +81,9 @@ export const MapsContextProvider = ({ children }) => {
   }, [mapName, update]);
 
   useEffect(() => {
-    console.log("SELETED");
-    console.log(selectedModule);
-
     if (selectedModule) {
+      console.log("SELETED");
+      console.log(selectedModule);
     }
   }, [selectedModule]);
 

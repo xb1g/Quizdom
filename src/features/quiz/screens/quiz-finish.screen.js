@@ -61,7 +61,7 @@ export const QuizFinishScreen = ({ navigation }) => {
         <Row>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Lessons");
+              navigation.navigate("Resource");
             }}
           >
             <View
@@ -71,13 +71,13 @@ export const QuizFinishScreen = ({ navigation }) => {
                 paddingHorizontal: 20,
                 marginLeft: 30,
                 backgroundColor: "#ff66c4",
-                borderRadius: 30,
+                borderRadius: 20,
               }}
             >
               <Text
                 style={{ color: "white", fontSize: 20, paddingHorizontal: 20 }}
               >
-                Resource
+                Lessons
               </Text>
             </View>
           </TouchableOpacity>

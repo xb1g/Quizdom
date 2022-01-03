@@ -36,7 +36,6 @@
     {
       "id": 5,
       "name": "Subsets",
-
       "unlocks": {
         "2": [6]
       }

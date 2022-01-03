@@ -37,6 +37,13 @@ import { QuizContext } from "../../../services/quiz/quiz.context";
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
+const CenteredContainer = styled.View`
+  flex: 1;
+  justifycontent: "center";
+  alignitems: "center";
+  backgroundcolor: "#0000009d";
+`;
+
 const Button = ({ onPress, children, bottom }) => {
   const [pressed, setPressed] = useState(false);
 
@@ -109,14 +116,34 @@ export function QuizScreen({ route, navigation }) {
   const [showHint, setShowHint] = useState(false);
   const [correctArray, setCorrectArray] = useState([]);
   const [hintArray, setHintArray] = useState([]);
-  const { score, setScore, setMetaData, loaded, quiz } =
-    useContext(QuizContext);
+  const [quiz, setQuiz] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  const { score, setScore, setMetaData, getQuiz } = useContext(QuizContext);
+
   useEffect(() => {
     setScore(0);
+    const quizzes = getQuiz();
+    if (quizzes) {
+      console.log("qez");
+      console.log(quizzes);
+      setQuiz(quizzes);
+      setLoaded(true);
+    } else {
+      console.log("no quiz");
+    }
+    // setQuiz(quizzes);
   }, []);
+
   useEffect(() => {
-    console.log(focusImage);
-  }, [focusImage]);
+    if (quiz) {
+      // setLoaded(true);
+    }
+  }, [quiz]);
+
+  // useEffect(() => {
+  //   console.log(focusImage);
+  // }, [focusImage]);
 
   const onCheck = () => {
     console.log("Checking");
@@ -169,13 +196,11 @@ export function QuizScreen({ route, navigation }) {
       <>
         <SafeTop>
           <ActivityIndicator size="large" style={{}} />
-          {/* <ButtonNative onPress={() => navigation.navigate("QuizFinish")}>
-            skip
-          </ButtonNative> */}
         </SafeTop>
       </>
     );
   }
+
   return (
     <>
       <SafeTop color="#a2d1a2" flex={0} />
@@ -189,14 +214,7 @@ export function QuizScreen({ route, navigation }) {
           setShowModal(!showModal);
         }}
       >
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#0000009d",
-          }}
-        >
+        <CenteredContainer>
           <View
             style={{
               backgroundColor: "#fff",
@@ -243,7 +261,7 @@ export function QuizScreen({ route, navigation }) {
               </ButtonNative>
             </View>
           </View>
-        </View>
+        </CenteredContainer>
       </Modal>
 
       <Modal animationType="fade" transparent={true} visible={!!focusImage}>

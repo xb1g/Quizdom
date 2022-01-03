@@ -121,8 +121,6 @@ export const Today = ({
                   alignContent: "center",
                 }}
               >
-                {/* <Pressable></Pressable> */}
-
                 <View
                   style={{
                     backgroundColor: "#26ffed",
@@ -145,7 +143,6 @@ export const Today = ({
                     </View>
                   </TouchableHighlight>
                 </View>
-
                 <View
                   style={{
                     flex: 1,

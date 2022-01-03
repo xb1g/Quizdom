@@ -31,7 +31,7 @@ export const QuizContextProvider = ({ children }) => {
   const [quiz, setQuiz] = useState([1, 2, 3, 4, 5]);
   const [quizIds, setQuizIds] = useState([]);
 
-  useEffect(() => {
+  const getQuiz = () => {
     if (selectedModule) {
       console.log(mapName);
       const ar = [];
@@ -59,11 +59,19 @@ export const QuizContextProvider = ({ children }) => {
           // console.log(doc.data());
           quizzes.push(doc.data());
         });
-        setQuiz(quizzes);
+
+        console.log("qzz");
+        console.log(quizzes);
         setLoaded(true);
+        return quizzes;
       });
     }
-  }, [selectedModule]);
+    return null;
+  };
+
+  // useEffect(() => {
+  //   getQuiz();
+  // }, [selectedModule]);
 
   useEffect(() => {
     // check if passed
@@ -82,13 +90,15 @@ export const QuizContextProvider = ({ children }) => {
           "modules",
           selectedModule.name
         );
-        const finished = metaData.finishedAt;
+
         console.log("FIND REVIEW TIME");
+        const finished = metaData.finishedAt;
         const module = modulesData.find((x) => x.id == selectedModule.id);
         const reviewTime = new Date(
           finished.getTime() + 1000 * 60 * 60 * 24 * module.progress
         );
         console.log(reviewTime);
+
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
           reviewAt: reviewTime,
@@ -97,6 +107,8 @@ export const QuizContextProvider = ({ children }) => {
           setUpdate(true);
           console.log("updated");
         });
+
+        // update progress
       }
     }
   }, [metaData]);
@@ -112,6 +124,7 @@ export const QuizContextProvider = ({ children }) => {
         setMetaData,
         quiz,
         loaded,
+        getQuiz,
       }}
     >
       {children}
