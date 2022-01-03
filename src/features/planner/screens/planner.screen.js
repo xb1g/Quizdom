@@ -64,7 +64,6 @@ export const PlannerScreen = ({ navigation }) => {
                 <Text style={{ fontSize: 36, color: "white" }}>{"Sets"}</Text>
               </TouchableHighlight>
             </View>
-
             <View
               style={{
                 marginHorizontal: 30,
@@ -113,6 +112,95 @@ export const PlannerScreen = ({ navigation }) => {
                     </View>
                   </View>
                 </Row>
+                <View style={{ marginTop: 10, marginBottom: 10 }}>
+                  <ProgressBar progress={0.2} color="#0011ad" />
+                </View>
+              </View>
+              <View
+                style={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingHorizontal: 10,
+                }}
+              >
+                <Row>
+                  <View
+                    style={{
+                      borderRadius: Math.round(width + height) / 2,
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "#ff88a8",
+                      marginRight: 20,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "white" }}>5</Text>
+                  </View>
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingRight: 30,
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "#000000" }}>
+                      Subsets
+                    </Text>
+                    {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
+                    <View style={{ paddingRight: 30 }}>
+                      <Text style={{ fontSize: 15, color: "#000000" }}>
+                        5/10
+                      </Text>
+                    </View>
+                  </View>
+                </Row>
+                <View style={{ marginTop: 10, marginBottom: 10 }}>
+                  <ProgressBar progress={0.5} color="#0011ad" />
+                </View>
+              </View>
+              <View
+                style={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingHorizontal: 10,
+                }}
+              >
+                <Row>
+                  <View
+                    style={{
+                      borderRadius: Math.round(width + height) / 2,
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "#ff88a8",
+                      marginRight: 20,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "white" }}>2</Text>
+                  </View>
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingRight: 30,
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "#000000" }}>
+                      Powersets
+                    </Text>
+                    {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
+                    <View style={{ paddingRight: 30 }}>
+                      <Text style={{ fontSize: 15, color: "#000000" }}>
+                        1/10
+                      </Text>
+                    </View>
+                  </View>
+                </Row>
+                <View style={{ marginTop: 10, marginBottom: 10 }}>
+                  <ProgressBar progress={0.1} color="#0011ad" />
+                </View>
               </View>
             </View>
           </Row>
