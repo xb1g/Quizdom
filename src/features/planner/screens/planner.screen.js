@@ -41,8 +41,7 @@ export const PlannerScreen = ({ navigation }) => {
   return (
     <>
       <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
-      <Spacer size="extraLarge" />
+      <Spacer size="medium" />
       <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
         <View>
           <Row>
