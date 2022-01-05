@@ -11,6 +11,9 @@ import { AuthenticationContextProvider } from "./src/services/authentication/aut
 import { Navigation } from "./src/infrastructure/navigation";
 import { Text } from "./src/components/typography/text.component";
 import { Spacer } from "./src/components/spacer/spacer.component";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["Setting a timer"]);
 
 export default function App() {
   const [isLoaded] = useFonts({
