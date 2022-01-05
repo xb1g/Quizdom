@@ -21,13 +21,14 @@ import { Icon } from "../../../components/icon/icon.component";
 import { Logo } from "../../../../assets/logo";
 
 const TContainerI = styled(TContainer)`
-  top:50%;
+  top: 50%;
 `;
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
-      <AuthLogo/>
+      <AuthLogo />
+
       <LogoText>Quizdom </LogoText>
       <DescText>Let's adventure together.</DescText>
 
@@ -48,7 +49,7 @@ export const AccountScreen = ({ navigation }) => {
           Register
         </AuthButton>
       </TContainerI>
-      
+
       {/*
       <View
         style={{
@@ -63,19 +64,16 @@ export const AccountScreen = ({ navigation }) => {
       </View>
       >*/}
 
-      
-
       {/* <Image source={require("../../../../assets/logo2.png")} /> */}
 
-      
       {/*<Spacer size="extraLarge" />
       <Spacer size="extraLarge" />
       <Spacer size="extraLarge" />
       <Spacer size="extraLarge" />
       <Spacer size="extraLarge" />
       <Spacer size="extraLarge" />*/}
-      
-        {/*
+
+      {/*
         <Spacer size="large" />
         <Spacer size="large" />
         
@@ -90,7 +88,7 @@ export const AccountScreen = ({ navigation }) => {
         
         <Spacer size="large" />
         */}
-        {/*
+      {/*
         <View style={{ flexDirection: "row" }}>
           <AuthIconButton
             size="large"
@@ -114,7 +112,6 @@ export const AccountScreen = ({ navigation }) => {
         
         </View>
         */}
-      
     </AccountBackground>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-//import { Text } from "../../../components/typography/text.component";
+import { Text } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-paper";
 import styled, { useTheme } from "styled-components/native";
 
@@ -14,14 +14,13 @@ import {
   LogoText,
   AuthLogo,
   AuthInput,
-  BackButton,
+  // BackButton,
   TouchableWithoutFeedback,
 } from "../components/account.styles";
-
+import { BackButton } from "../../../components/button/back-button.component";
 import {
   ImageBackground,
   StyleSheet,
-  Text,
   View,
   Image,
   KeyboardAvoidingView,
@@ -31,11 +30,13 @@ import { ActivityIndicator, Colors } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Logo } from "../../../../assets/logo";
 
-const Center = styled.View``;
-
-const TContainerII = styled(TContainer)`
-  top: 50%;
+const Center = styled.View`
+  /* top: 10%; */
 `;
+
+// const TContainerII = styled(TContainer)`
+//   top: 50%;
+// `;
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -51,16 +52,35 @@ export const LoginScreen = ({ navigation }) => {
       <AccountBackground>
         <BackButton navigation={navigation} />
         <AuthLogo />
-        <LogoText>Quizdom </LogoText>
-        <DescText>Let's adventure together.</DescText>
-
-        <TContainerII>
+        {/* <Text
+          style={{
+            fontSize: 20,
+            color: "#fff",
+            alignSelf: "center",
+            marginTop: 20,
+          }}
+        >
+          Let's adventure together
+        </Text> */}
+        {/* <DescText>Let's adventure together.</DescText> */}
+        <TContainer>
+          {/* <LogoText>Quizdom </LogoText> */}
           {error && (
             <Spacer position="bottom" size="medium">
               <Text variant="error">{error}</Text>
             </Spacer>
           )}
           <Center>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 30,
+                alignSelf: "start",
+                marginBottom: 20,
+              }}
+            >
+              Log in
+            </Text>
             <AuthInput
               label="Email"
               value={email}
@@ -74,7 +94,7 @@ export const LoginScreen = ({ navigation }) => {
               label="Password"
               value={password}
               textContentType="password"
-              secureTextEntry
+              secureTextEntry={true}
               onChangeText={(text) => setPassword(text)}
             />
             <Spacer size="large" />
@@ -94,7 +114,7 @@ export const LoginScreen = ({ navigation }) => {
               <ActivityIndicator animating={true} color="#7ed957" />
             )}
           </Center>
-        </TContainerII>
+        </TContainer>
 
         {/*
         <View

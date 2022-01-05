@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { KeyboardAvoidingView } from "react-native";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import { ImageBackground, StyleSheet, View, Image } from "react-native";
 
 import {
   AccountBackground,
@@ -12,7 +12,6 @@ import {
   Container,
   TContainer,
   AuthInput,
-  BackButton,
   AuthButton,
   AuthIconButton,
   DescText,
@@ -24,9 +23,11 @@ import {
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { BackButton } from "../../../components/button/back-button.component";
+import { Text } from "../../../components/typography/text.component";
 
 const Center = styled.View`
-  top: 10%;
+  /* top: 10%; */
 `;
 
 const DescTextI = styled(DescText)`
@@ -62,15 +63,22 @@ export const RegisterScreen = ({ navigation }) => {
       style={{ flex: 1 }}
     >
       <AccountBackground>
-        <BackButton
-          navigation={navigation}
-          onPress={() => {
-            console.log("objecsdt");
-            page ? setPage(false) : navigation.goBack();
-          }}
-        />
-        <DescTextI>Create your account.</DescTextI>
+        <BackButton navigation={navigation} />
+        <AuthLogo />
+
         <TContainer>
+          <Text
+            // variant="label"
+            style={{
+              color: "white",
+              fontSize: 30,
+              alignSelf: "start",
+              marginBottom: 20,
+            }}
+          >
+            {"Create an account"}
+          </Text>
+          {/* <DescTextI>Create your account.</DescTextI> */}
           {error && (
             <Spacer position="bottom" size="medium">
               <Text variant="error">{error}</Text>
@@ -101,16 +109,16 @@ export const RegisterScreen = ({ navigation }) => {
               <AuthInput
                 label="Repeat Password"
                 value={repeatedPassword}
-                returnKeyType={"next"}
                 textContentType="password"
+                returnKeyType={"next"}
                 autoCapitalize="none"
                 secureTextEntry
                 onChangeText={(text) => setRepeatedPassword(text)}
               />
+              {/* <Spacer size="large" />
               <Spacer size="large" />
               <Spacer size="large" />
-              <Spacer size="large" />
-              <Spacer size="large" />
+              <Spacer size="large" /> */}
               <Spacer size="large" />
 
               {!isLoading ? (
@@ -131,11 +139,6 @@ export const RegisterScreen = ({ navigation }) => {
             </Center>
           ) : (
             <Center>
-              {/*
-              <Text variant="label">gimme ur info!</Text>
-              */}
-              <Spacer size="large" />
-
               <Input
                 label="Username"
                 value={userInfo.username}
@@ -182,7 +185,7 @@ export const RegisterScreen = ({ navigation }) => {
                   setUserInfo({ ...userInfo, yearOfBirth: text })
                 }
               />
-              <Spacer size="large" />
+              {/* <Spacer size="large" /> */}
               <AuthButton
                 type="primary"
                 size="large"
@@ -194,6 +197,8 @@ export const RegisterScreen = ({ navigation }) => {
               >
                 register
               </AuthButton>
+              <Spacer size="large" />
+              <Spacer size="large" />
             </Center>
           )}
         </TContainer>

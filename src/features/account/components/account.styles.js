@@ -1,8 +1,9 @@
 import React from "react";
 
 import styled from "styled-components/native";
-import { TextInput, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 import {
+  TextInput,
   Button,
   Platform,
   TouchableOpacity,
@@ -17,7 +18,6 @@ export const AccountBackground = styled.ImageBackground.attrs({
 })`
   flex: 1;
   background-color: ${(props) => props.theme.colors.bg.primary};
-  justify-content: center;
 `;
 
 export const AccountCover = styled.View`
@@ -41,16 +41,18 @@ export const TContainer = styled.View`
   position: absolute;
   padding: ${(props) => props.theme.space[4]};
   margin-top: ${(props) => props.theme.space[4]};
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
   align-items: center;
   align-self: center;
-  /* top: 20%; */
+  top: 40%;
 `;
 
 export const LogoText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 35px;
   position: absolute;
-  top: 45%;
+  top: 40%;
   align-self: center;
   color: #ffffff;
 `;
@@ -59,16 +61,25 @@ export const DescText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 20px;
   position: absolute;
-  top: 50%;
+  top: 47%;
   align-self: center;
   color: ${(props) => props.theme.colors.accent.primary};
 `;
 
-export const AuthLogo = styled(Logo)`
-  position: absolute;
-  top: 20%;
+export const AuthLogo = styled(Image).attrs({
+  source: require("../../../../assets/logo.png"),
+})`
+  width: 200px;
+  height: 200px;
+  resize-mode: contain;
   align-self: center;
+  margin-top: 100px;
 `;
+// export const AuthLogo = styled(Logo)`
+//   position: absolute;
+//   top: 20%;
+//   align-self: center;
+// `;
 
 export const AuthButton = styled(AwesomeButtonC).attrs({
   textFontFamily: "Airstrike",
@@ -101,9 +112,26 @@ export const Input = styled(TextInput)`
   ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
 `;
 
-export const AuthInput = styled(TextInput)`
-  ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
-`;
+// export const AuthInput = styled(TextInput)`
+//   ${Platform.OS === "android" ? "width: 250px" : "width: 300px"}
+//   background-color: #fafafa;
+//   border-radius: 10px;
+//   padding: 10px;
+//   `;
+export const AuthInput = ({ label, ...props }) => {
+  return (
+    <Input
+      placeholder={label}
+      {...props}
+      style={{
+        backgroundColor: "#fafafa",
+        fontSize: 16,
+        borderRadius: 10,
+        padding: 15,
+      }}
+    />
+  );
+};
 
 export const BackButton = ({ navigation, onPress }) => {
   return (
