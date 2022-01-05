@@ -2,8 +2,6 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import "@firebase/database";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { getDocs, onSnapshot } from "firebase/firestore";
-import { db } from "../../../firebase-config";
 
 export const PlansContext = createContext();
 
@@ -30,17 +28,7 @@ export const PlansContextProvider = ({ children }) => {
       }
     });
   };
-  useEffect(() => {
-    const modulesNameRef = collection(
-      db,
-      "users",
-      user.uid,
-      "maps",
-      mapName,
-      "modules"
-    );
-    getDocs(modulesNameRef);
-  }, []);
+
   useEffect(() => {
     if (user && user.uid) {
       loadPlans(user.uid);
