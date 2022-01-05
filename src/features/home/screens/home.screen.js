@@ -56,7 +56,7 @@ export const HomeScreen = ({ navigation }) => {
     if (mapsData) {
       const mapsCopy = [];
       maps.forEach((map, index) => {
-        console.log(map, index);
+        // console.log(map, index);
         const mapData = mapsData[map.id];
         const mapCopy = {
           ...map,
@@ -66,8 +66,8 @@ export const HomeScreen = ({ navigation }) => {
       });
       setMaps(mapsCopy);
     }
-    console.log("moduut");
-    console.log(modulesData);
+    console.log("map data changed from home");
+    // console.log(modulesData);
   }, [mapsData]);
   let counter = 0;
 
