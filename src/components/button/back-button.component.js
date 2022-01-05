@@ -18,8 +18,7 @@ export const BackButton = ({ onPress }) => {
         borderBottomRightRadius: 30,
       }}
       onPress={() => {
-        onPress && onPress();
-        navigation.goBack();
+        onPress ? onPress() : navigation.goBack();
       }}
     >
       <Text
