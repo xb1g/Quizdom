@@ -63,7 +63,12 @@ export const RegisterScreen = ({ navigation }) => {
       style={{ flex: 1 }}
     >
       <AccountBackground>
-        <BackButton navigation={navigation} />
+        <BackButton
+          navigation={navigation}
+          onPress={() => {
+            page ? setPage(false) : navigation.goBack();
+          }}
+        />
         <AuthLogo />
 
         <TContainer>
@@ -72,7 +77,7 @@ export const RegisterScreen = ({ navigation }) => {
             style={{
               color: "white",
               fontSize: 30,
-              alignSelf: "start",
+              alignSelf: "flex-start",
               marginBottom: 20,
             }}
           >
@@ -139,7 +144,7 @@ export const RegisterScreen = ({ navigation }) => {
             </Center>
           ) : (
             <Center>
-              <Input
+              <AuthInput
                 label="Username"
                 value={userInfo.username}
                 keyboardType="default"
@@ -150,7 +155,7 @@ export const RegisterScreen = ({ navigation }) => {
               />
               <Spacer size="large" />
 
-              <Input
+              <AuthInput
                 label="Name"
                 //placeholder="Thanawas"
                 value={userInfo.name}
@@ -162,7 +167,7 @@ export const RegisterScreen = ({ navigation }) => {
               />
               <Spacer size="large" />
 
-              <Input
+              <AuthInput
                 label="Lastname"
                 //placeholder="Sitdown"
                 value={userInfo.lastname}
@@ -173,7 +178,7 @@ export const RegisterScreen = ({ navigation }) => {
                 }
               />
               <Spacer size="large" />
-              <Input
+              <AuthInput
                 label="Year of birth"
                 //placeholder="yyyy"
                 maxLength={4}

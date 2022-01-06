@@ -75,7 +75,7 @@ export const LoginScreen = ({ navigation }) => {
               style={{
                 color: "white",
                 fontSize: 30,
-                alignSelf: "start",
+                alignSelf: "flex-start",
                 marginBottom: 20,
               }}
             >
