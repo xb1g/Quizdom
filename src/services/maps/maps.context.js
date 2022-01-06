@@ -57,11 +57,11 @@ export const MapsContextProvider = ({ children }) => {
           docs.forEach((doc) => {
             // console.log(doc.data());
             const module = doc.data();
-            console.log(module.id, "IS id");
+            // console.log(module.id, "IS id");
             const template = setsMapTemplate[module.id];
             const updatedModule = { ...template, ...module };
             //print module
-            console.log("MODULES");
+            // console.log("MODULES");
             // console.log(updatedModule);
             modules.push(updatedModule);
           });
@@ -82,8 +82,8 @@ export const MapsContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (selectedModule) {
-      console.log("SELETED");
-      console.log(selectedModule);
+      console.log("SELEcTED", selectedModule.name);
+      // console.log(selectedModule);
     }
   }, [selectedModule]);
 

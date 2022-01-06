@@ -6,6 +6,7 @@ import {
   Dimensions,
   ScrollView,
   Modal,
+  Platform,
 } from "react-native";
 // import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 // import Icon from "react-native-ionicons";
@@ -62,10 +63,11 @@ export const SetMapScreen = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("j");
-    toModule(250);
-  }, [loaded]);
+  // useEffect(() => {
+  //   console.log("j");
+  //   console.log(height * 1.8 + 600, width);
+  //   toModule(250);
+  // }, [loaded]);
 
   return (
     <View style={{ flexGrow: 1 }}>
@@ -81,9 +83,30 @@ export const SetMapScreen = ({ navigation }) => {
         scrollEventThrottle={16}
         contentContainerStyle={{ backgroundColor: "#8f4700" }}
         ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
+        // bounces={false}
       >
-        <View style={{ height: height * 1.8 + 600 }} />
-
+        {/* {Platform.OS === "ios" && (
+          <View
+            style={{
+              backgroundColor: "red",
+              height: 500,
+              position: "absolute",
+              top: -500,
+              left: 0,
+              right: 0,
+            }}
+          />
+        )} */}
+        {/* <View style={{ height: height * 1.8 + 600 }} /> */}
+        <Image
+          source={require("./Untitled.png")}
+          style={{
+            width: width,
+            height: 2000,
+            top: -500,
+          }}
+        />
         {modulesData.map((module) => (
           <ModuleButton
             scrollTo={toModule}

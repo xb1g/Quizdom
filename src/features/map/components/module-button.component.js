@@ -53,7 +53,7 @@ export function ModuleButton({
       }, 1000);
       return () => clearInterval(interval);
     } else {
-      console.log("not started", module.name);
+      // console.log("not started", module.name);
     }
   }, []);
 
@@ -65,9 +65,9 @@ export function ModuleButton({
 
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
-      Math.abs(translateY.value - top - 400),
+      Math.abs(translateY.value - top - 200),
       [0, height / 2, height],
-      [0.5, 1.1, 0.5],
+      [0.5, 1.2, 0.5],
       Extrapolate.CLAMP
     );
     return {
@@ -86,8 +86,8 @@ export function ModuleButton({
         {
           position: "absolute",
           backgroundColor: color,
-          top: top + 300,
-          left: left || 100,
+          top: top + 100,
+          left: left,
           width: 70,
           height: 70,
           borderRadius: 50,
@@ -101,11 +101,12 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          console.log(top * height);
-          scrollTo(top);
+          console.log(top + 300);
+          console.log(left);
+          scrollTo(top - 200);
           if (!started) {
-            console.log("NOT STARTEd");
-            console.log("make progress on db and show module");
+            // console.log("NOT STARTEd");
+            // console.log("make progress on db and show module");
             const module = modulesData.find((module) => module.id === id);
 
             if (module.unlocked) {
@@ -115,15 +116,15 @@ export function ModuleButton({
             setSelectedModule(module);
             return;
           }
-          console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
+          // console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
           // print the time difference between now and latest in hours
-          console.log(
-            "PASSES",
-            progress,
-            (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
-          );
+          // console.log(
+          //   "PASSES",
+          //   progress,
+          //   (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
+          // );
 
-          console.log(timeProgress);
+          // console.log(timeProgress);
           setSelectedModule(module);
         }}
       >
