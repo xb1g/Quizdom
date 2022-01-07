@@ -159,7 +159,7 @@ export const RegisterScreen = ({ navigation }) => {
                 label="Name"
                 //placeholder="Thanawas"
                 value={userInfo.name}
-                keyboardType="default"
+                keyboardType="name"
                 textContentType="givenName"
                 onChangeText={(text) =>
                   setUserInfo({ ...userInfo, name: text })

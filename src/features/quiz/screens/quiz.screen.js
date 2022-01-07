@@ -125,8 +125,9 @@ export function QuizScreen({ route, navigation }) {
     setScore(0);
     const quizzes = quiz;
     if (quizzes) {
-      console.log("qez");
-      console.log(quizzes);
+      console.log("got qez");
+
+      // console.log(quizzes);
       setLoaded(true);
     } else {
       console.log("no quiz");
@@ -139,9 +140,9 @@ export function QuizScreen({ route, navigation }) {
   // }, [focusImage]);
 
   const onCheck = () => {
-    console.log("Checking");
-    console.log(selectedChoice);
-    console.log(quiz[page].correct_answer);
+    // console.log("Checking");
+    // console.log(selectedChoice);
+    // console.log(quiz[page].correct_answer);
     setCorrectAnswer(quiz[page].correct_answer);
     if (selectedChoice === quiz[page].correct_answer) {
       setChecked(true);
@@ -155,12 +156,9 @@ export function QuizScreen({ route, navigation }) {
     }
   };
 
-  const onNext = () => {
-    setPage(page + 1);
-    setChecked(false);
-    setCorrect(null);
-    setSelectedChoice(null);
-    if (page == 4) {
+  useEffect(() => {
+    console.log("page is", page);
+    if (page == 5) {
       // setFinished(true);
       // save data
       setMetaData({
@@ -170,9 +168,19 @@ export function QuizScreen({ route, navigation }) {
         usedHint: hintArray,
         finishedAt: new Date(),
       });
-
+      console.log("finished");
+      console.log(score, correctArray, hintArray);
       navigation.navigate("QuizFinish");
     }
+  }, [page]);
+
+  const onNext = () => {
+    setPage(page + 1);
+    setChecked(false);
+    setCorrect(null);
+    setSelectedChoice(null);
+    console.log("PAGE");
+    console.log(page);
   };
 
   const onExit = () => {
@@ -364,6 +372,7 @@ export function QuizScreen({ route, navigation }) {
                       height: h,
                       // position: position,
                       alignSelf: "center",
+                      resizeMode: "contain",
                       borderRadius: 20,
                     }}
                   />

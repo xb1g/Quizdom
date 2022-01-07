@@ -21,7 +21,7 @@ export function ModulePopup({ module, navigation }) {
   const { mapData, mapName, modulesData } = useContext(MapsContext);
   useEffect(() => {
     console.log("modulesss");
-    console.log("modulesss", modulesData);
+    // console.log("modulesss", modulesData);
   }, [modulesData]);
   const currentModule = modulesData.find((x) => x.id == module.id);
   const insets = useSafeAreaInsets();

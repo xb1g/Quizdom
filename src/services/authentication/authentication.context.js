@@ -31,12 +31,12 @@ export const AuthenticationContextProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (usr) => {
       if (usr) {
-        console.log("got user", usr.uid);
+        console.log("got user");
         setUser(usr);
         const docRef = doc(db, "users", usr.uid);
         onSnapshot(docRef, (u) => {
           console.log("BRUHMO");
-          console.log(u.data());
+          // console.log(u.data());
           const userInfo = u.data();
           if (userInfo) {
             setUserInfo(userInfo);
@@ -44,10 +44,10 @@ export const AuthenticationContextProvider = ({ children }) => {
         })
           .then((u) => {
             console.log("gotasd");
-            console.log(u);
+            // console.log(u);
           })
           .catch((e) => {
-            console.log("EEEEee");
+            console.log("EEEEeerror");
             console.log(e);
           });
         setError(null);

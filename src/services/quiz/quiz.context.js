@@ -18,6 +18,7 @@ import {
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { MapsContext } from "../maps/maps.context";
 import moment from "moment";
+import { requirements } from "../data/math/sets/modules";
 
 export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
@@ -45,8 +46,8 @@ export const QuizContextProvider = ({ children }) => {
         return String(ran);
       });
       setQuizIds(ids);
-      console.log("IDS");
-      console.log(ids);
+      // console.log("IDS");
+      // console.log(ids);
       const quizColRef = collection(
         db,
         `quiz_${mapName}`,
@@ -62,7 +63,6 @@ export const QuizContextProvider = ({ children }) => {
         });
 
         console.log("qzz");
-        console.log(quizzes);
         setQuiz(quizzes);
         setLoaded(true);
         // return quizzes;
@@ -81,7 +81,30 @@ export const QuizContextProvider = ({ children }) => {
     console.log("PROCESSING");
     console.log(metaData);
     if (metaData) {
+      // if progress == 1 set started to firebase
       if (metaData.score >= 4) {
+        const module = modulesData.find((x) => x.id == selectedModule.id);
+        // if progress is in requirement, unlocks
+        console.log(requirements[selectedModule.id]);
+        const unlocks = requirements[selectedModule.id].unlocks;
+        if (unlocks[module.progress + 1]) {
+          unlocks[module.progress + 1].forEach((x) => {
+            console.log("unlocking");
+            console.log(x);
+            const moduleRef = doc(
+              db,
+              "users",
+              user.uid,
+              "maps",
+              mapName,
+              "modules",
+              modulesData.find((y) => y.id == x).name
+            );
+            updateDoc(moduleRef, {
+              unlocked: true,
+            });
+          });
+        }
         // get time  + up level
         console.log("PASSED");
         const moduleRef = doc(
@@ -96,7 +119,7 @@ export const QuizContextProvider = ({ children }) => {
 
         console.log("FIND REVIEW TIME");
         const finished = metaData.finishedAt;
-        const module = modulesData.find((x) => x.id == selectedModule.id);
+
         const reviewTime = new Date(
           finished.getTime() + 1000 * 60 * 60 * 24 * module.progress
         );
@@ -106,6 +129,7 @@ export const QuizContextProvider = ({ children }) => {
           latestAt: metaData.finishedAt,
           reviewAt: reviewTime,
           progress: increment(1),
+          started: true,
         }).then(() => {
           setUpdate(true);
           console.log("updated");

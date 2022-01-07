@@ -35,7 +35,7 @@ export const MapsContextProvider = ({ children }) => {
       docs.forEach((doc) => {
         data.push(doc.data());
       });
-      console.log(data[0].progress);
+      // console.log(data[0].progress);
       setMapsData(data);
     });
 

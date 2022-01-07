@@ -73,11 +73,9 @@ export const SetMapScreen = ({ navigation }) => {
     <View style={{ flexGrow: 1 }}>
       <BackButton
         navigation={navigation}
-        onPress={() => setSelectedModule(null)}
+        // onPress={() => setSelectedModule(null)}
       />
-
       <HeaderText title={`${mapName}`} />
-
       <Animated.ScrollView
         onScroll={handleScroll}
         scrollEventThrottle={16}
