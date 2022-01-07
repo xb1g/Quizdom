@@ -16,7 +16,7 @@ const CommunityStack = createStackNavigator();
 export const CommunityNavigator = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
-  console.log(theme);
+  // console.log(theme);
   return (
     <CommunityStack.Navigator
       initialRouteName="Planner"

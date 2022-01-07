@@ -22,9 +22,9 @@ import { QuizContextProvider } from "../../services/quiz/quiz.context";
 
 const createScreenOptions = ({ route }) => {
   const theme = useTheme(); //theme
-  useEffect(() => {
-    console.log(theme);
-  }, []);
+  // useEffect(() => {
+  //   console.log(theme);
+  // }, []);
   //console.log(theme)
   return {
     tabBarIcon: ({ focused, color, size }) => {
