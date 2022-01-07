@@ -36,8 +36,8 @@ export function ModuleButton({
   scrollTo,
 }) {
   const { height, width } = Dimensions.get("window");
-  const top = position.top * height;
-  const left = position.left * width;
+  const top = position.top;
+  const left = position.left;
   const { setSelectedModule, modulesData } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
   const [timeProgress, setTimeProgress] = useState(0);

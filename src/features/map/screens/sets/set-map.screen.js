@@ -98,11 +98,21 @@ export const SetMapScreen = ({ navigation }) => {
         )} */}
         {/* <View style={{ height: height * 1.8 + 600 }} /> */}
         <Image
-          source={require("./Untitled.png")}
+          source={require("./bgsetmap.png")}
           style={{
             width: width,
-            height: 2000,
+            height: 3000,
             top: -500,
+          }}
+        />
+        <View
+          style={{
+            width: 100,
+            height: 100,
+            backgroundColor: "red",
+            position: "absolute",
+            top: 500,
+            left: 400,
           }}
         />
         {modulesData.map((module) => (

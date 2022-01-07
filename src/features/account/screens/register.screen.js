@@ -70,7 +70,6 @@ export const RegisterScreen = ({ navigation }) => {
           }}
         />
         <AuthLogo />
-
         <TContainer>
           <Text
             // variant="label"
@@ -120,10 +119,7 @@ export const RegisterScreen = ({ navigation }) => {
                 secureTextEntry
                 onChangeText={(text) => setRepeatedPassword(text)}
               />
-              {/* <Spacer size="large" />
-              <Spacer size="large" />
-              <Spacer size="large" />
-              <Spacer size="large" /> */}
+
               <Spacer size="large" />
 
               {!isLoading ? (
@@ -190,7 +186,7 @@ export const RegisterScreen = ({ navigation }) => {
                   setUserInfo({ ...userInfo, yearOfBirth: text })
                 }
               />
-              {/* <Spacer size="large" /> */}
+              <Spacer size="large" />
               <AuthButton
                 type="primary"
                 size="large"

@@ -25,8 +25,8 @@ export const setsMapTemplate = [
     name: "Intro to sets",
     progress: 0,
     position: {
-      top: 0.1,
-      left: 0.1,
+      top: 200,
+      left: 100,
     },
   },
   {
@@ -34,8 +34,8 @@ export const setsMapTemplate = [
     name: "Venn diagrams",
     progress: 0,
     position: {
-      top: 0.3,
-      left: 0.3,
+      top: 400,
+      left: 200,
     },
   },
   {
@@ -43,8 +43,8 @@ export const setsMapTemplate = [
     name: "Type of sets",
     progress: 0,
     position: {
-      top: 0.5,
-      left: 0.1,
+      top: 600,
+      left: 250,
     },
   },
   {
@@ -52,8 +52,8 @@ export const setsMapTemplate = [
     name: "Union and Intersect",
     progress: 0,
     position: {
-      top: 0.7,
-      left: 0.1,
+      top: 800,
+      left: 300,
     },
   },
   {
@@ -61,8 +61,8 @@ export const setsMapTemplate = [
     name: "Complement",
     progress: 0,
     position: {
-      top: 0.9,
-      left: 0.1,
+      top: 970,
+      left: 250,
     },
   },
   {
@@ -70,8 +70,8 @@ export const setsMapTemplate = [
     name: "Subsets",
     progress: 0,
     position: {
-      top: 1.1,
-      left: 0.3,
+      top: 500,
+      left: 50,
     },
   },
   {
@@ -79,8 +79,8 @@ export const setsMapTemplate = [
     name: "Power Sets",
     progress: 0,
     position: {
-      top: 1.3,
-      left: 0.5,
+      top: 730,
+      left: 80,
     },
   },
   {
@@ -88,8 +88,8 @@ export const setsMapTemplate = [
     name: "Cardinality",
     progress: 0,
     position: {
-      top: 1.5,
-      left: 0.3,
+      top: 1200,
+      left: 100,
     },
   },
 ];

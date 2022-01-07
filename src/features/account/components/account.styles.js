@@ -45,7 +45,7 @@ export const TContainer = styled.View`
   border-radius: 30px;
   align-items: center;
   align-self: center;
-  top: 40%;
+  top: 30%;
 `;
 
 export const LogoText = styled.Text`
@@ -69,8 +69,8 @@ export const DescText = styled.Text`
 export const AuthLogo = styled(Image).attrs({
   source: require("../../../../assets/logo.png"),
 })`
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   resize-mode: contain;
   align-self: center;
   margin-top: 100px;
