@@ -23,7 +23,7 @@ import { requirements } from "../data/math/sets/modules";
 export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
-  const { selectedModule, mapName, modulesData, setUpdate } =
+  const { selectedModule, selectedMapName, selectedMapModulesData, setUpdate } =
     useContext(MapsContext);
   const [quizData, setQuizData] = useState([]);
   const [score, setScore] = useState(0);
@@ -35,7 +35,7 @@ export const QuizContextProvider = ({ children }) => {
   const getQuiz = () => {
     if (selectedModule) {
       console.log("gettin quiz");
-      console.log(mapName);
+      console.log(selectedMapName);
       const ar = [];
       const ids = Array.from({ length: 5 }, () => {
         let ran = Math.round(Math.random() * 10);
@@ -50,7 +50,7 @@ export const QuizContextProvider = ({ children }) => {
       // console.log(ids);
       const quizColRef = collection(
         db,
-        `quiz_${mapName}`,
+        `quiz_${selectedMapName}`,
         selectedModule.name,
         "level1"
       );
@@ -83,7 +83,9 @@ export const QuizContextProvider = ({ children }) => {
     if (metaData) {
       // if progress == 1 set started to firebase
       if (metaData.score >= 4) {
-        const module = modulesData.find((x) => x.id == selectedModule.id);
+        const module = selectedMapModulesData.find(
+          (x) => x.id == selectedModule.id
+        );
         // if progress is in requirement, unlocks
         console.log(requirements[selectedModule.id]);
         const unlocks = requirements[selectedModule.id].unlocks;
@@ -96,9 +98,9 @@ export const QuizContextProvider = ({ children }) => {
               "users",
               user.uid,
               "maps",
-              mapName,
+              selectedMapName,
               "modules",
-              modulesData.find((y) => y.id == x).name
+              selectedMapModulesData.find((y) => y.id == x).name
             );
             updateDoc(moduleRef, {
               unlocked: true,
@@ -112,7 +114,7 @@ export const QuizContextProvider = ({ children }) => {
           "users",
           user.uid,
           "maps",
-          mapName,
+          selectedMapName,
           "modules",
           selectedModule.name
         );
