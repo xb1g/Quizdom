@@ -151,6 +151,28 @@ export const AuthenticationContextProvider = ({ children }) => {
               setIsLoading(false);
               // setError(e.toString());
             });
+          const settingRef = doc(db, "users", uid, "maps", "sets");
+          const settingPayload = {
+            audio: { master: 100, music: 100, sfx: 100, voice: 100 },
+            notification: {
+              community_message: true,
+              questions: true,
+              answers: true,
+              remind_me: true,
+              do_not_disturb: false,
+            },
+            fav_badges: [],
+          };
+          setDoc(settingRef, settingPayload)
+            .then(() => {
+              console.log("success to add settings!!!");
+              setIsLoading(false);
+            })
+            .catch((e) => {
+              console.log("can't set up", e);
+              setIsLoading(false);
+              // setError(e.toString());
+            });
         });
       })
       .catch((e) => {
