@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   TouchableOpacity,
@@ -27,6 +27,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { MapsContext } from "../../../services/maps/maps.context";
 
 const PlanningItem = styled(List.Item)`
   margin-top: ${(props) => props.theme.space[3]};
@@ -37,7 +38,13 @@ const PlanningItem = styled(List.Item)`
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   const { width, height } = Dimensions.get("window");
-
+  const { modulesData } = useContext(MapsContext);
+  useEffect(() => {
+    // modulesData.forEach((map) => {
+    //   console.log(map);
+    // });
+    console.log(modulesData);
+  }, []);
   return (
     <>
       <Spacer size="extraLarge" />
