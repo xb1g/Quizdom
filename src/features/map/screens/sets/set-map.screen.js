@@ -41,8 +41,9 @@ export const SetMapScreen = ({ navigation }) => {
 
   const {
     mapData,
-    mapName,
-    modulesData,
+    selectedMapName,
+    setSelectedMapName,
+    selectedMapModulesData,
     selectedModule,
     setSelectedModule,
     loaded,
@@ -73,9 +74,13 @@ export const SetMapScreen = ({ navigation }) => {
     <View style={{ flexGrow: 1 }}>
       <BackButton
         navigation={navigation}
+        onPress={() => {
+          setSelectedMapName("");
+          navigation.goBack();
+        }}
         // onPress={() => setSelectedModule(null)}
       />
-      <HeaderText title={`${mapName}`} />
+      <HeaderText title={`${selectedMapName}`} />
       <Animated.ScrollView
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -115,14 +120,15 @@ export const SetMapScreen = ({ navigation }) => {
             left: 400,
           }}
         />
-        {modulesData.map((module) => (
-          <ModuleButton
-            scrollTo={toModule}
-            key={module.name + String(module.id)}
-            translateY={translateY}
-            {...module}
-          />
-        ))}
+        {selectedMapModulesData &&
+          selectedMapModulesData.map((module) => (
+            <ModuleButton
+              scrollTo={toModule}
+              key={module.name + String(module.id)}
+              translateY={translateY}
+              {...module}
+            />
+          ))}
       </Animated.ScrollView>
       {selectedModule && (
         <View

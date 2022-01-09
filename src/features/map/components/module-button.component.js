@@ -38,7 +38,7 @@ export function ModuleButton({
   const { height, width } = Dimensions.get("window");
   const top = position.top;
   const left = position.left;
-  const { setSelectedModule, modulesData } = useContext(MapsContext);
+  const { setSelectedModule, selectedMapModulesData } = useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
   const [timeProgress, setTimeProgress] = useState(0);
 
@@ -107,7 +107,9 @@ export function ModuleButton({
           if (!started) {
             // console.log("NOT STARTEd");
             // console.log("make progress on db and show module");
-            const module = modulesData.find((module) => module.id === id);
+            const module = selectedMapModulesData.find(
+              (module) => module.id === id
+            );
 
             if (module.unlocked) {
               //start

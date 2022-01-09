@@ -38,7 +38,7 @@ const SIZE = 100;
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
-  const { mapsData, modulesData } = useContext(MapsContext);
+  const { mapsData } = useContext(MapsContext);
   const [maps, setMaps] = useState([
     {
       name: "sets",

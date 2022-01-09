@@ -17,10 +17,11 @@ export const MapsContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
   const [selectedModule, setSelectedModule] = useState(null);
   const [mapsData, setMapsData] = useState([]);
-  const [mapName, setMapName] = useState("");
-  const [modulesData, setModulesData] = useState([]);
+  const [selectedMapName, setSelectedMapName] = useState("");
+  const [selectedMapModulesData, setSelectedMapModulesData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [allModules, setAllModules] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -30,75 +31,84 @@ export const MapsContextProvider = ({ children }) => {
 
   useEffect(() => {
     const mapsRef = collection(db, "users", user.uid, "maps");
+    const mapNames = [];
     getDocs(mapsRef).then((docs) => {
       const data = [];
       docs.forEach((doc) => {
         data.push(doc.data());
+        mapNames.push(doc.id);
+        console.log("beh", doc.id);
       });
-      // console.log(data[0].progress);
       setMapsData(data);
-    });
 
-    if (mapName) {
-      console.log("MAP NAME");
-      console.log(mapName);
-      const modulesRef = collection(
-        db,
-        "users",
-        user.uid,
-        "maps",
-        mapName,
-        "modules"
-      );
+      console.log("bah", mapNames);
+      const allModulesData = [];
+      mapNames.forEach((mapName) => {
+        // console.log("boh", mapName);
+        const modulesRef = collection(
+          db,
+          "users",
+          user.uid,
+          "maps",
+          mapName,
+          "modules"
+        );
 
-      getDocs(modulesRef)
-        .then((docs) => {
-          const modules = [];
+        getDocs(modulesRef).then((docs) => {
+          const modulesData = [];
           docs.forEach((doc) => {
-            // console.log(doc.data());
             const module = doc.data();
             // console.log(module.id, "IS id");
             const template = setsMapTemplate[module.id];
             const updatedModule = { ...template, ...module };
-            //print module
-            // console.log("MODULES");
-            // console.log(updatedModule);
-            modules.push(updatedModule);
+            modulesData.push(updatedModule);
           });
-          console.log("MOMOMO");
-          // console.log(modules);
-          setModulesData(modules);
-          setLoaded(true);
-          setUpdate(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoaded(true);
-          setError(err);
-          setUpdate(false);
+          const mapModules = { name: mapName, modules: modulesData };
+          allModulesData.push(mapModules);
+          // console.log("AsSD", allModulesData);
+          setAllModules(allModules.concat(allModulesData));
         });
+      });
+    });
+  }, []);
+
+  // when allModules changes log it to the console
+  // useEffect(() => {
+  //   console.log("allModules", allModules[0].name);
+  // }, [allModules]);
+
+  useEffect(() => {
+    console.log("baha", allModules);
+    // console.log(allModules);
+    if (selectedMapName && allModules) {
+      const modules = allModules.find(
+        (map) => map.name === selectedMapName
+      ).modules;
+      // const modules = allModules[0];
+      console.log(selectedMapName, modules);
+      setSelectedMapModulesData(modules);
     }
-  }, [mapName, update]);
+  }, [selectedMapName, allModules]);
 
   useEffect(() => {
     if (selectedModule) {
       console.log("SELEcTED", selectedModule.name);
-      // console.log(selectedModule);
     }
   }, [selectedModule]);
 
   return (
     <MapsContext.Provider
       value={{
-        setMapName,
-        mapName,
         mapsData,
+        setSelectedMapName,
+        selectedMapName,
         selectedModule,
         setSelectedModule,
-        modulesData,
+        selectedMapModulesData,
         setUpdate,
         loaded,
         error,
+        allModules,
       }}
     >
       {children}

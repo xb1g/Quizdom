@@ -42,7 +42,7 @@ const ProgressNumber = styled(Text)`
   font-size: 42px;
 `;
 export const Maps = ({ maps, navigation }) => {
-  const { setMapName } = useContext(MapsContext);
+  const { setSelectedMapName } = useContext(MapsContext);
   return (
     <>
       <FlatList
@@ -59,7 +59,7 @@ export const Maps = ({ maps, navigation }) => {
                   flex: 1,
                 }}
                 onPress={() => {
-                  setMapName(item.name);
+                  setSelectedMapName(item.name);
                   navigation.navigate(item.navigateName);
                 }}
               >

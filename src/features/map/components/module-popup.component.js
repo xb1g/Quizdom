@@ -18,12 +18,11 @@ import { Row } from "../../../components/utility/row.component";
 // };
 
 export function ModulePopup({ module, navigation }) {
-  const { mapData, mapName, modulesData } = useContext(MapsContext);
+  const { selectedMapModulesData } = useContext(MapsContext);
   useEffect(() => {
     console.log("modulesss");
-    // console.log("modulesss", modulesData);
-  }, [modulesData]);
-  const currentModule = modulesData.find((x) => x.id == module.id);
+  }, [selectedMapModulesData]);
+  const currentModule = selectedMapModulesData.find((x) => x.id == module.id);
   const insets = useSafeAreaInsets();
   console.log();
   return (
