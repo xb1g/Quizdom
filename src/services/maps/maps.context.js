@@ -43,49 +43,52 @@ export const MapsContextProvider = ({ children }) => {
 
       console.log("bah", mapNames);
       const allModulesData = [];
-      mapNames
-        .forEach((mapName) => {
-          console.log("boh", mapName);
-          const modulesRef = collection(
-            db,
-            "users",
-            user.uid,
-            "maps",
-            mapName,
-            "modules"
-          );
+      mapNames.forEach((mapName) => {
+        // console.log("boh", mapName);
+        const modulesRef = collection(
+          db,
+          "users",
+          user.uid,
+          "maps",
+          mapName,
+          "modules"
+        );
 
-          getDocs(modulesRef).then((docs) => {
-            const modulesData = [];
-            docs.forEach((doc) => {
-              modulesData.push(doc.data());
-            });
-            console.log("oho", modulesData.length);
-            const mapModules = { name: mapName, modules: modulesData };
-            allModulesData.push(mapModules);
+        getDocs(modulesRef).then((docs) => {
+          const modulesData = [];
+          docs.forEach((doc) => {
+            const module = doc.data();
+            // console.log(module.id, "IS id");
+            const template = setsMapTemplate[module.id];
+            const updatedModule = { ...template, ...module };
+            modulesData.push(updatedModule);
           });
-        })
-        .then(() => {
-          console.log("aha", allModulesData);
-          setAllModules(allModulesData);
+          const mapModules = { name: mapName, modules: modulesData };
+          allModulesData.push(mapModules);
+          // console.log("AsSD", allModulesData);
+          setAllModules(allModules.concat(allModulesData));
         });
+      });
     });
   }, []);
 
   // when allModules changes log it to the console
-  useEffect(() => {
-    console.log("allModules", allModules);
-  }, [allModules]);
+  // useEffect(() => {
+  //   console.log("allModules", allModules[0].name);
+  // }, [allModules]);
 
   useEffect(() => {
-    console.log("baha", selectedMapName);
-    console.log(allModules);
+    console.log("baha", allModules);
+    // console.log(allModules);
     if (selectedMapName && allModules) {
-      const modules = allModules[selectedMapName];
+      const modules = allModules.find(
+        (map) => map.name === selectedMapName
+      ).modules;
+      // const modules = allModules[0];
       console.log(selectedMapName, modules);
       setSelectedMapModulesData(modules);
     }
-  }, [selectedMapName]);
+  }, [selectedMapName, allModules]);
 
   useEffect(() => {
     if (selectedModule) {
