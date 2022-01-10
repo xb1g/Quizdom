@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { MapsContext } from "../../../services/maps/maps.context";
+import { shadow } from "../../../components/shadow/shadow.styles";
 // const CircularProgressWithChild = () => {
 //   return (
 //     <View>
@@ -175,6 +176,7 @@ export function ModuleButton({
             style={{
               fontSize: 20,
               color: "white",
+              ...shadow.shadow2,
             }}
           >
             {name}

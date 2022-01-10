@@ -84,42 +84,48 @@ export const SetMapScreen = ({ navigation }) => {
       <Animated.ScrollView
         onScroll={handleScroll}
         scrollEventThrottle={16}
-        contentContainerStyle={{ backgroundColor: "#8f4700" }}
+        // contentContainerStyle={{ backgroundColor: "#8f4700" }}
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
+        style={{
+          flexGrow: 1,
+        }}
         // bounces={false}
       >
-        {/* {Platform.OS === "ios" && (
-          <View
-            style={{
-              backgroundColor: "red",
-              height: 500,
-              position: "absolute",
-              top: -500,
-              left: 0,
-              right: 0,
-            }}
-          />
-        )} */}
+        {Platform.OS === "ios" && (
+          <>
+            <View
+              style={{
+                backgroundColor: "#96FF00",
+                height: 500,
+                position: "absolute",
+                top: -1000,
+                left: 0,
+                right: 0,
+              }}
+            />
+            <View
+              style={{
+                backgroundColor: "#00C9FF",
+                height: 1500,
+                position: "absolute",
+                top: 2000,
+                left: 0,
+                right: 0,
+              }}
+            />
+          </>
+        )}
         {/* <View style={{ height: height * 1.8 + 600 }} /> */}
         <Image
           source={require("./bgsetmap.png")}
           style={{
             width: width,
-            height: 3000,
+            height: 2500,
             top: -500,
           }}
         />
-        <View
-          style={{
-            width: 100,
-            height: 100,
-            backgroundColor: "red",
-            position: "absolute",
-            top: 500,
-            left: 400,
-          }}
-        />
+
         {selectedMapModulesData &&
           selectedMapModulesData.map((module) => (
             <ModuleButton
