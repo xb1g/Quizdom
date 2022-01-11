@@ -12,7 +12,6 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { List, ProgressBar } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 import { Button } from "../../../features/planner/components/button.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
@@ -29,190 +28,55 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { MapsContext } from "../../../services/maps/maps.context";
 
-const PlanningItem = styled(List.Item)`
+const MapPlanContainer = styled(View)`
+  background-color: ${(props) => props.theme.colors.bg.secondary};
+  border-radius: 30px;
+  padding: ${(props) => props.theme.space[3]};
   margin-top: ${(props) => props.theme.space[3]};
   margin-bottom: ${(props) => props.theme.space[3]};
   margin-right: ${(props) => props.theme.space[3]};
   margin-left: ${(props) => props.theme.space[3]};
 `;
+
+const ModuleContainer = styled(View)`
+  /* background-color: "#fff"; */
+  padding: ${(props) => props.theme.space[3]};
+  background-color: ${(props) => props.theme.colors.bg.secondary};
+`;
+
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   const { width, height } = Dimensions.get("window");
   const { modulesData } = useContext(MapsContext);
   useEffect(() => {
-    // modulesData.forEach((map) => {
-    //   console.log(map);
-    // });
     console.log(modulesData);
   }, []);
   return (
     <>
-      <Spacer size="extraLarge" />
-      <Spacer size="medium" />
       <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
-        <View>
-          <Row>
-            <View style={{ marginTop: 30, marginLeft: 30, paddingTop: 50 }}>
-              <TouchableHighlight
-                style={{
-                  borderRadius: Math.round(width + height) / 2,
-                  width: width * 0.3,
-                  height: width * 0.3,
-                  backgroundColor: "#ffc8ff",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                underlayColor="#ff66c4"
-                onPress={() => {
-                  console.log("pressed sets plan");
-                }}
-              >
-                <Text style={{ fontSize: 36, color: "white" }}>{"Sets"}</Text>
-              </TouchableHighlight>
-            </View>
-            <View style={{ marginTop: 70 }}>
-              <View
-                style={{
-                  marginHorizontal: 30,
-                  marginTop: 10,
-                  marginBottom: 10,
-                  borderRadius: 20,
-                  backgroundColor: "#ffffff",
-                }}
-              >
-                <View
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingHorizontal: 10,
-                  }}
-                >
-                  <Row>
-                    <View
-                      style={{
-                        borderRadius: Math.round(width + height) / 2,
-                        width: 30,
-                        height: 30,
-                        backgroundColor: "#ff88a8",
-                        marginRight: 20,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "white" }}>7</Text>
-                    </View>
-                    <View
-                      style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        paddingRight: 30,
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "#000000" }}>
-                        Intro to sets
-                      </Text>
-                      {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
-                      <View style={{ paddingRight: 30 }}>
-                        <Text style={{ fontSize: 15, color: "#000000" }}>
-                          2/10
-                        </Text>
-                      </View>
-                    </View>
-                  </Row>
-                  <View style={{ marginTop: 10, marginBottom: 10 }}>
-                    <ProgressBar progress={0.2} color="#0011ad" />
-                  </View>
-                </View>
-                <View
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingHorizontal: 10,
-                  }}
-                >
-                  <Row>
-                    <View
-                      style={{
-                        borderRadius: Math.round(width + height) / 2,
-                        width: 30,
-                        height: 30,
-                        backgroundColor: "#ff88a8",
-                        marginRight: 20,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "white" }}>5</Text>
-                    </View>
-                    <View
-                      style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        paddingRight: 30,
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "#000000" }}>
-                        Subsets
-                      </Text>
-                      {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
-                      <View style={{ paddingRight: 30 }}>
-                        <Text style={{ fontSize: 15, color: "#000000" }}>
-                          5/10
-                        </Text>
-                      </View>
-                    </View>
-                  </Row>
-                  <View style={{ marginTop: 10, marginBottom: 10 }}>
-                    <ProgressBar progress={0.5} color="#0011ad" />
-                  </View>
-                </View>
-                <View
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingHorizontal: 10,
-                  }}
-                >
-                  <Row>
-                    <View
-                      style={{
-                        borderRadius: Math.round(width + height) / 2,
-                        width: 30,
-                        height: 30,
-                        backgroundColor: "#ff88a8",
-                        marginRight: 20,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "white" }}>2</Text>
-                    </View>
-                    <View
-                      style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        paddingRight: 30,
-                      }}
-                    >
-                      <Text style={{ fontSize: 15, color: "#000000" }}>
-                        Powersets
-                      </Text>
-                      {/* <ProgressBar progress={0.2} color="#ffaadd" /> */}
-                      <View style={{ paddingRight: 30 }}>
-                        <Text style={{ fontSize: 15, color: "#000000" }}>
-                          1/10
-                        </Text>
-                      </View>
-                    </View>
-                  </Row>
-                  <View style={{ marginTop: 10, marginBottom: 10 }}>
-                    <ProgressBar progress={0.1} color="#0011ad" />
-                  </View>
-                </View>
-              </View>
-            </View>
-          </Row>
-        </View>
+        <Spacer size="extraLarge" />
+        <Spacer size="extraLarge" />
+        <Spacer size="extraLarge" />
+        <Spacer size="extraLarge" />
+        <MapPlanContainer>
+          <Text
+            variant="label"
+            style={{ color: "white", top: -30, fontSize: 32 }}
+          >
+            sets
+          </Text>
+          <Text
+            variant="label"
+            style={{ color: "white", top: -26, fontSize: 26 }}
+          >
+            3/9
+          </Text>
+          <ModuleContainer>
+            <Text variant="label" style={{ color: "white", fontSize: 32 }}>
+              Module 1
+            </Text>
+          </ModuleContainer>
+        </MapPlanContainer>
       </ScrollView>
     </>
   );
