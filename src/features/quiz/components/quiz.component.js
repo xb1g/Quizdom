@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ChoiceButton } from "./quiz.style";
 import { Ionicons } from "@expo/vector-icons";
+import { MathText } from "react-native-math-view/src/fallback";
 
 export const Choice = ({
   children,
@@ -64,7 +65,8 @@ export const Explain = ({ answer, quiz, page, checked }) => {
           >
             Explaination:
           </Text>
-          <Text>{quiz[expnum]}</Text>
+          {/* <Text>{quiz[expnum]}</Text> */}
+          <MathText value={quiz[expnum]} />
         </View>
       )}
     </>

@@ -27,6 +27,8 @@ import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navig
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { MapsContext } from "../../../services/maps/maps.context";
+// import MathView, { MathText } from "react-native-math-view";
+import MathView, { MathText } from "react-native-math-view/src/fallback";
 
 const SIZE = 100;
 
@@ -54,24 +56,31 @@ export const HomeScreen = ({ navigation }) => {
   const onAddQuiz = () => {
     const quizzes = [
       {
-        answer1: "A={1,2,2,3,{2,3}}",
-        answer2: "B={1,2,3,{2,3},{2,3}}",
-        answer3: "C={1,2,3,4,{1,2,3,4}}",
-        answer4: "D={1,2,34,5,{2,2,3}}",
-        correct_answer: 3,
-        explaination: "Set can't contain the same members but can contain sets",
-        hint: "Set can't contain the same members",
-        image:
-          "https://www.projectmaths.ie/documents/quizzes/VennDiagrams_files/anbc.JPG",
-        milestone: 1,
-        question: "What does the coloured part of this diagram represent?",
-        skillLevel: 2,
+        answer1: `{telephone, camera, computer, coffee, tea}`,
+        answer2: `$\\varnothing$`,
+        answer3: `{telephone, camera, computer}`,
+        answer4: `{notebook, computer, coffee}`,
+        correct_answer: 1,
+        explaination: `$B=\\text{{textbook, notebook, calculator, desk}}$`,
+        hint: `$' \\text{is complement}$`,
+        image: `https://study.com/cimages/multimages/16/1490086260_p3.png`,
+        source: `https://study.com/academy/practice/quiz-worksheet-venn-diagrams.html`,
+        question: `Use the Venn Diagram.`,
+        skillLevel: 1,
         tags: ["sets", "subsets"],
       },
     ];
     quizzes.forEach((quiz, index) => {
-      const quizRef = doc(db, "quiz_sets", "Venn diagrams", "level1", index);
-      setDoc(db, quiz);
+      console.log(typeof String(index));
+      console.log(quiz);
+      const quizRef = doc(
+        db,
+        "quiz_sets",
+        "Venn diagrams",
+        "level1",
+        String(index)
+      );
+      setDoc(quizRef, quiz);
     });
   };
 
@@ -105,6 +114,23 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
+        <MathView
+          math={"asdadx=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}\\varnothing"}
+          color="white"
+          style={{
+            fontSize: 50,
+          }}
+        />
+        <MathText
+          value="$B=\\text{\\{textbook, notebook, calculator, desk\\}}$"
+          color="white"
+          style={{
+            backgroundColor: "green",
+            textColor: "white",
+            fontSize: 20,
+          }}
+        />
+        <MathView math="\cos\left(x\right)=\frac{b}{c}" color="white" />
         <Button mode="contained" onPress={onAddQuiz}>
           ADD QUIZ
         </Button>

@@ -31,7 +31,7 @@ export const QuizContextProvider = ({ children }) => {
   const [metaData, setMetaData] = useState([]);
   const [quiz, setQuiz] = useState([1, 2, 3, 4, 5]);
   const [quizIds, setQuizIds] = useState([]);
-
+  const quizInterval = [1, 7, 16, 35];
   const getQuiz = () => {
     if (selectedModule) {
       console.log("gettin quiz");
@@ -89,6 +89,8 @@ export const QuizContextProvider = ({ children }) => {
         // if progress is in requirement, unlocks
         console.log(requirements[selectedModule.id]);
         const unlocks = requirements[selectedModule.id].unlocks;
+
+        //unlocks
         if (unlocks[module.progress + 1]) {
           unlocks[module.progress + 1].forEach((x) => {
             console.log("unlocking");
@@ -107,6 +109,7 @@ export const QuizContextProvider = ({ children }) => {
             });
           });
         }
+
         // get time  + up level
         console.log("PASSED");
         const moduleRef = doc(
@@ -123,7 +126,14 @@ export const QuizContextProvider = ({ children }) => {
         const finished = metaData.finishedAt;
 
         const reviewTime = new Date(
-          finished.getTime() + 1000 * 60 * 60 * 24 * module.progress
+          finished.getTime() +
+            1000 *
+              60 *
+              60 *
+              24 *
+              (quizInterval[module.progress]
+                ? quizInterval[module.progress]
+                : 30 * module.progress)
         );
         console.log(reviewTime);
 
@@ -137,6 +147,25 @@ export const QuizContextProvider = ({ children }) => {
           console.log("updated");
         });
         // update progress
+      } else if (metaData.score >= 0) {
+        console.log("FAILED");
+        const moduleRef = doc(
+          db,
+          "users",
+          user.uid,
+          "maps",
+          selectedMapName,
+          "modules",
+          selectedModule.name
+        );
+        updateDoc(moduleRef, {
+          latestAt: metaData.finishedAt,
+          progress: 0,
+          started: true,
+        }).then(() => {
+          setUpdate(true);
+          console.log("updated");
+        });
       }
     }
   }, [metaData]);

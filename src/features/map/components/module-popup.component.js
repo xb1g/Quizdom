@@ -75,7 +75,7 @@ export function ModulePopup({ module, navigation }) {
               fontSize: 26,
             }}
           >
-            {"/10 "}
+            {"/4 "}
           </Text>
         </Row>
         <Text

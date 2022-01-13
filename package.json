@@ -35,6 +35,7 @@
     "react-native-get-random-values": "^1.7.1",
     "react-native-ionicons": "^4.x",
     "react-native-keyboard-accessory": "^0.1.15",
+    "react-native-math-view": "^3.9.5",
     "react-native-paper": "^4.9.2",
     "react-native-pie": "^1.1.2",
     "react-native-pie-chart": "^2.0.2",

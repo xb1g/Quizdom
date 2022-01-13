@@ -34,6 +34,7 @@ import { ChoiceContainer, NextButton } from "../components/quiz.style";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { QuizContext } from "../../../services/quiz/quiz.context";
+import { MathText } from "react-native-math-view/src/fallback";
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
@@ -391,7 +392,13 @@ export function QuizScreen({ route, navigation }) {
                 correct={correct}
                 correctAnswer={correctAnswer}
               >
-                <Text>{quiz[page].answer1}</Text>
+                {/* <Text>{quiz[page].answer1}</Text> */}
+                <MathText
+                  value={quiz[page].answer1}
+                  style={{
+                    marginVertical: -10,
+                  }}
+                />
               </Choice>
               <Choice
                 setSelectedChoice={setSelectedChoice}
@@ -401,7 +408,13 @@ export function QuizScreen({ route, navigation }) {
                 correct={correct}
                 correctAnswer={correctAnswer}
               >
-                <Text>{quiz[page].answer2}</Text>
+                {/* <Text>{quiz[page].answer2}</Text> */}
+                <MathText
+                  value={quiz[page].answer2}
+                  style={{
+                    marginVertical: -10,
+                  }}
+                />
               </Choice>
               <Choice
                 setSelectedChoice={setSelectedChoice}
@@ -411,7 +424,13 @@ export function QuizScreen({ route, navigation }) {
                 correct={correct}
                 correctAnswer={correctAnswer}
               >
-                <Text>{quiz[page].answer3}</Text>
+                {/* <Text>{quiz[page].answer3}</Text> */}
+                <MathText
+                  value={quiz[page].answer3}
+                  style={{
+                    marginVertical: -10,
+                  }}
+                />
               </Choice>
               <Choice
                 setSelectedChoice={setSelectedChoice}
@@ -421,7 +440,13 @@ export function QuizScreen({ route, navigation }) {
                 correct={correct}
                 correctAnswer={correctAnswer}
               >
-                <Text>{quiz[page].answer4}</Text>
+                {/* <Text>{quiz[page].answer4}</Text> */}
+                <MathText
+                  value={quiz[page].answer4}
+                  style={{
+                    marginVertical: -10,
+                  }}
+                />
               </Choice>
               <Explain page={page} quiz={quiz[page]} checked={checked} />
               <Spacer size={"extraLarge"} />
