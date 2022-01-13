@@ -51,6 +51,29 @@ export const HomeScreen = ({ navigation }) => {
       image: require("../../../../assets/maps-image/setsmapimg.png"),
     },
   ]);
+  const onAddQuiz = () => {
+    const quizzes = [
+      {
+        answer1: "A={1,2,2,3,{2,3}}",
+        answer2: "B={1,2,3,{2,3},{2,3}}",
+        answer3: "C={1,2,3,4,{1,2,3,4}}",
+        answer4: "D={1,2,34,5,{2,2,3}}",
+        correct_answer: 3,
+        explaination: "Set can't contain the same members but can contain sets",
+        hint: "Set can't contain the same members",
+        image:
+          "https://www.projectmaths.ie/documents/quizzes/VennDiagrams_files/anbc.JPG",
+        milestone: 1,
+        question: "What does the coloured part of this diagram represent?",
+        skillLevel: 2,
+        tags: ["sets", "subsets"],
+      },
+    ];
+    quizzes.forEach((quiz, index) => {
+      const quizRef = doc(db, "quiz_sets", "Venn diagrams", "level1", index);
+      setDoc(db, quiz);
+    });
+  };
 
   useEffect(() => {
     if (mapsData) {
@@ -82,6 +105,9 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
+        <Button mode="contained" onPress={onAddQuiz}>
+          ADD QUIZ
+        </Button>
 
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.tertiarym }}
