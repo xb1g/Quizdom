@@ -151,7 +151,7 @@ export const AuthenticationContextProvider = ({ children }) => {
               setIsLoading(false);
               // setError(e.toString());
             });
-          const settingRef = doc(db, "users", uid, "maps", "sets");
+          const settingRef = doc(db, "users", uid, "settings", "common");
           const settingPayload = {
             audio: { master: 100, music: 100, sfx: 100, voice: 100 },
             notification: {
