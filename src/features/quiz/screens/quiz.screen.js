@@ -39,9 +39,9 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const CenteredContainer = styled.View`
   flex: 1;
-  justifycontent: "center";
-  alignitems: "center";
-  backgroundcolor: "#0000009d";
+  justify-content: center;
+  align-items: center;
+  background-color: #000000a2;
 `;
 
 const Button = ({ onPress, children, bottom }) => {
