@@ -67,12 +67,12 @@ export const HomeScreen = ({ navigation }) => {
         source: `https://study.com/academy/practice/quiz-worksheet-venn-diagrams.html`,
         question: `Use the Venn Diagram.`,
         skillLevel: 1,
-        tags: ["sets", "subsets"],
+        tags: ["sets", "Venn Diagram"],
       },
     ];
     quizzes.forEach((quiz, index) => {
       console.log(typeof String(index));
-      console.log(quiz);
+      // console.log(quiz);
       const quizRef = doc(
         db,
         "quiz_sets",

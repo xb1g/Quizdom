@@ -160,8 +160,9 @@ export const QuizContextProvider = ({ children }) => {
         );
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
+          reviewAt: metaData.finishedAt,
+
           progress: 0,
-          started: true,
         }).then(() => {
           setUpdate(true);
           console.log("updated");

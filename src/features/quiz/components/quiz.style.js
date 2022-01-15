@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { View, TouchableOpacity } from "react-native";
 
 export const ChoiceContainer = styled.View`
-  max-height: 500px;
+  max-height: 400px;
   padding: 10px;
   padding-bottom: -10px;
   margin-top: auto;

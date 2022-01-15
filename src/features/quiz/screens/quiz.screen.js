@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   View,
@@ -29,7 +29,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { Choice, Explain, HintButton } from "../components/quiz.component";
+import {
+  Choice,
+  Explain,
+  HintButton,
+  ScoreIndicator,
+} from "../components/quiz.component";
 import { ChoiceContainer, NextButton } from "../components/quiz.style";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
@@ -121,9 +126,13 @@ export function QuizScreen({ route, navigation }) {
   const [loaded, setLoaded] = useState(false);
 
   const { score, setScore, setMetaData, quiz } = useContext(QuizContext);
+  const scrollViewRef = useRef();
 
   useEffect(() => {
     setScore(0);
+    setCorrectArray([]);
+    setHintArray([]);
+
     const quizzes = quiz;
     if (quizzes) {
       console.log("got qez");
@@ -140,25 +149,9 @@ export function QuizScreen({ route, navigation }) {
   //   console.log(focusImage);
   // }, [focusImage]);
 
-  const onCheck = () => {
-    // console.log("Checking");
-    // console.log(selectedChoice);
-    // console.log(quiz[page].correct_answer);
-    setCorrectAnswer(quiz[page].correct_answer);
-    if (selectedChoice === quiz[page].correct_answer) {
-      setChecked(true);
-      setScore(score + 1);
-      setCorrect(true);
-      setCorrectArray([...correctArray, true]);
-    } else {
-      setChecked(true);
-      setCorrect(false);
-      setCorrectArray([...correctArray, false]);
-    }
-  };
-
   useEffect(() => {
     console.log("page is", page);
+    scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
     if (page == 5) {
       // setFinished(true);
       // save data
@@ -170,18 +163,34 @@ export function QuizScreen({ route, navigation }) {
         finishedAt: new Date(),
       });
       console.log("finished");
-      console.log(score, correctArray, hintArray);
+      // console.log(score, correctArray, hintArray);
       navigation.navigate("QuizFinish");
     }
   }, [page]);
+
+  const onCheck = () => {
+    setCorrectAnswer(quiz[page].correct_answer);
+    if (selectedChoice === quiz[page].correct_answer) {
+      setChecked(true);
+      setScore(score + 1);
+      setCorrect(true);
+      setCorrectArray([...correctArray, true]);
+    } else {
+      setChecked(true);
+      setCorrect(false);
+      setCorrectArray([...correctArray, false]);
+    }
+
+    // scrollViewRef.current?.scrollTo({ y: 800, animated: true });
+  };
 
   const onNext = () => {
     setPage(page + 1);
     setChecked(false);
     setCorrect(null);
     setSelectedChoice(null);
-    console.log("PAGE");
-    console.log(page);
+    // console.log("PAGE");
+    // console.log(page);
   };
 
   const onExit = () => {
@@ -334,23 +343,26 @@ export function QuizScreen({ route, navigation }) {
               </Text>
             </TouchableOpacity>
             <Row>
+              <Text variant="label" style={{ fontSize: 40, marginRight: -10 }}>
+                #{" "}
+              </Text>
               <View>
-                <Text variant="label" style={{ fontSize: 60 }}>
-                  #{page + 1 + " "}
+                <Text variant="label" style={{ fontSize: 40 }}>
+                  {page + 1 + "/5 "}
                 </Text>
               </View>
-              <View style={{}}>
-                <ProgressBar
-                  progress={(page + 1) / 5}
-                  color="#960032"
-                  visible="true"
-                />
-              </View>
+              <ProgressBar
+                progress={page / 5}
+                color={"#423"}
+                style={{ backgroundColor: "red" }}
+              />
+              {/* <ScoreIndicator correctArray={correctArray} /> */}
               <HintButton showHint={onHint} />
+              <ProgressBar />
             </Row>
-            <Text variant="label" style={{ fontSize: 40 }}>
+            {/* <Text variant="label" style={{ fontSize: 40 }}>
               score: {score}
-            </Text>
+            </Text> */}
           </View>
           <ScrollView
             style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
@@ -380,10 +392,16 @@ export function QuizScreen({ route, navigation }) {
                 </TouchableOpacity>
               </>
             )}
+            <Explain
+              scrollViewRef={scrollViewRef}
+              page={page}
+              quiz={quiz[page]}
+              checked={checked}
+            />
             <Spacer size={"extraLarge"} />
           </ScrollView>
           <ChoiceContainer>
-            <ScrollView>
+            <ScrollView ref={scrollViewRef}>
               <Choice
                 setSelectedChoice={setSelectedChoice}
                 number={1}
@@ -448,7 +466,7 @@ export function QuizScreen({ route, navigation }) {
                   }}
                 />
               </Choice>
-              <Explain page={page} quiz={quiz[page]} checked={checked} />
+
               <Spacer size={"extraLarge"} />
               <Spacer size={"extraLarge"} />
               <Spacer size={"medium"} />

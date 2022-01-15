@@ -4,6 +4,7 @@ import { Text } from "../../../components/typography/text.component";
 import { ChoiceButton } from "./quiz.style";
 import { Ionicons } from "@expo/vector-icons";
 import { MathText } from "react-native-math-view/src/fallback";
+import { Row } from "../../../components/utility/row.component";
 
 export const Choice = ({
   children,
@@ -14,8 +15,8 @@ export const Choice = ({
   setSelectedChoice,
   correctAnswer,
 }) => {
-  console.log("correct");
-  console.log(correct);
+  // console.log("correct");
+  // console.log(correct);
   const color = correct ? "#6de090" : "#ff5151";
   const borderColor = correct ? "#56ad70" : "#d184ae";
 
@@ -45,14 +46,44 @@ export const Choice = ({
   );
 };
 
-export const Explain = ({ answer, quiz, page, checked }) => {
+export const ScoreIndicator = ({ correctArray }) => {
+  for (let i = 0; i < 5; i++) {
+    // console.log(i, "is null?", correctArray[i] === null);
+    // console.log("is undefined?", correctArray[i] === undefined);
+    // console.log("is false?", correctArray[i] === false);
+    // console.log("is true?", correctArray[i] === true);
+    if (correctArray[i] === null || correctArray[i] === undefined) {
+      correctArray[i] = false;
+    }
+  }
+  // console.log(correctArray);
+  return (
+    <View style={{ alignSelf: "center", flex: 1, backgroundColor: "red" }}>
+      <Row>
+        <View
+          style={{
+            borderRadius: 30,
+            width: 25,
+            height: 15,
+            margin: 5,
+            backgroundColor: correctArray[0] ? "#6de090" : "#ff5151",
+          }}
+        />
+      </Row>
+    </View>
+  );
+};
+
+export const Explain = ({ answer, quiz, page, checked, scrollViewRef }) => {
   const expnum = "explaination";
+
+  // checked ? () => scrollViewRef?.current.scrollToEnd({ animated: true }) : null;
   return (
     <>
       {checked && (
         <View
           style={{
-            backgroundColor: "#e7e689",
+            backgroundColor: "#f3f2b4",
             borderRadius: 10,
             padding: 10,
             margin: 10,

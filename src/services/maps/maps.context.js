@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 import { db } from "../../../firebase-config";
 import {
   collection,
+  query,
   doc,
   getDoc,
   getDocs,
@@ -21,7 +22,7 @@ export const MapsContextProvider = ({ children }) => {
   const [selectedMapModulesData, setSelectedMapModulesData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [allModules, setAllModules] = useState([]);
+  const [allModules, setAllModules] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -42,7 +43,8 @@ export const MapsContextProvider = ({ children }) => {
       setMapsData(data);
 
       console.log("bah", mapNames);
-      const allModulesData = [];
+      const allModulesData = {};
+
       mapNames.forEach((mapName) => {
         // console.log("boh", mapName);
         const modulesRef = collection(
@@ -54,9 +56,21 @@ export const MapsContextProvider = ({ children }) => {
           "modules"
         );
 
-        getDocs(modulesRef).then((docs) => {
+        const q = query(modulesRef);
+        onSnapshot(q, (snapshot) => {
+          // snapshot.docChanges().forEach((change) => {
+          //   if (change.type === "added") {
+          //     console.log("New city: ", change.doc.data());
+          //   }
+          //   if (change.type === "modified") {
+          //     console.log("Modified city: ", change.doc.data());
+          //   }
+          //   if (change.type === "removed") {
+          //     console.log("Removed city: ", change.doc.data());
+          //   }
+          // });
           const modulesData = [];
-          docs.forEach((doc) => {
+          snapshot.forEach((doc) => {
             const module = doc.data();
             // console.log(module.id, "IS id");
             const template = setsMapTemplate[module.id];
@@ -64,9 +78,10 @@ export const MapsContextProvider = ({ children }) => {
             modulesData.push(updatedModule);
           });
           const mapModules = { name: mapName, modules: modulesData };
-          allModulesData.push(mapModules);
+          allModulesData[mapName] = mapModules;
           // console.log("AsSD", allModulesData);
-          setAllModules(allModules.concat(allModulesData));
+          // console.log("SETTING MODULS", allModulesData);
+          setAllModules(allModulesData);
         });
       });
     });
@@ -78,16 +93,15 @@ export const MapsContextProvider = ({ children }) => {
   // }, [allModules]);
 
   useEffect(() => {
-    console.log("baha", allModules);
+    // console.log("baha", allModules);
     // console.log(allModules);
     if (selectedMapName && allModules) {
-      const modules = allModules.find(
-        (map) => map.name === selectedMapName
-      ).modules;
+      const modules = allModules[selectedMapName].modules;
       // const modules = allModules[0];
-      console.log(selectedMapName, modules);
+      // console.log("HAIYA", selectedMapName, modules);
       setSelectedMapModulesData(modules);
     }
+    console.log("asdasd new modui");
   }, [selectedMapName, allModules]);
 
   useEffect(() => {

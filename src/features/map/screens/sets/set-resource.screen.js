@@ -61,7 +61,7 @@ export function SetResourceScreen({ navigation }) {
   // const { resource } = useContext(ResourceContext);
   useEffect(() => {
     console.log("resourace");
-    console.log(selectedModule.name);
+    // console.log(selectedModule.name);
     // console.log(setsResources[selectedModule.name]);
     setResourceData(setsResources[selectedModule.name]["important"]);
     setResourceAdditional(setsResources[selectedModule.name]["additional"]);

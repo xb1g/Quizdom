@@ -20,7 +20,7 @@ export const QuizFinishScreen = ({ navigation }) => {
 
   const handleGesture = (event, gestureState) => {
     let { nativeEvent } = event;
-    console.log(nativeEvent);
+    // console.log(nativeEvent);
 
     // if (gestureState.dx > 100) {
     //   navigation.navigate(SET_MAP_NAVIGATION_NAME);

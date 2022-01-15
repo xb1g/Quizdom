@@ -102,8 +102,8 @@ export function ModuleButton({
       <TouchableOpacity
         // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          console.log(top + 300);
-          console.log(left);
+          // console.log(top + 300);
+          // console.log(left);
           scrollTo(top - 200);
           if (!started) {
             // console.log("NOT STARTEd");
@@ -143,7 +143,17 @@ export function ModuleButton({
         >
           <View
             style={{
-              backgroundColor: unlocked ? "#71ffd0" : "grey",
+              backgroundColor: unlocked
+                ? progress === 0
+                  ? "#fff492"
+                  : progress === 1
+                  ? "#64edff"
+                  : progress === 2
+                  ? "#5cffae"
+                  : progress === 3
+                  ? "#91ff76"
+                  : "#fffb28"
+                : "grey",
               borderRadius: 100,
               width: 65,
               height: 65,
