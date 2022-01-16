@@ -368,7 +368,8 @@ export function QuizScreen({ route, navigation }) {
             style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
           >
             <Spacer size={"large"} />
-            <Text>{quiz[page].question}</Text>
+            <MathText value={quiz[page].question} />
+            {/* <Text>{quiz[page].question}</Text> */}
             {quiz[page].image && (
               <>
                 <TouchableOpacity
