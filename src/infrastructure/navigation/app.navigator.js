@@ -20,6 +20,7 @@ import { ResourceContextProvider } from "../../services/resource/resource.contex
 import { ModulesContextProvider } from "../../services/modules/modules.context";
 import { QuizContextProvider } from "../../services/quiz/quiz.context";
 import { SettingsContextProvider } from "../../services/authentication/setting/setting.context";
+import { CommunityContextProvider } from "../../services/authentication/community/community.context";
 
 const createScreenOptions = ({ route }) => {
   const theme = useTheme(); //theme
@@ -71,34 +72,36 @@ export const AppNavigator = () => {
             <QuizContextProvider>
               <ResourceContextProvider>
                 <SettingsContextProvider>
-                  <Tab.Navigator
-                    initialRouteName="Home"
-                    screenOptions={createScreenOptions}
-                  >
-                    <Tab.Screen
-                      name="Planner"
-                      component={PlannerNavigator}
-                      // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-                      options={{ headerShown: false }}
-                    />
-                    <Tab.Screen
-                      name="Home"
-                      component={HomeNavigator}
-                      options={{
-                        headerShown: false,
-                      }}
-                    />
-                    <Tab.Screen
-                      name="Community"
-                      component={CommunityNavigator}
-                      options={{ headerShown: false }}
-                    />
-                    <Tab.Screen
-                      name="User"
-                      component={UserNavigator}
-                      options={{ headerShown: false }}
-                    />
-                  </Tab.Navigator>
+                  <CommunityContextProvider>
+                    <Tab.Navigator
+                      initialRouteName="Home"
+                      screenOptions={createScreenOptions}
+                    >
+                      <Tab.Screen
+                        name="Planner"
+                        component={PlannerNavigator}
+                        // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+                        options={{ headerShown: false }}
+                      />
+                      <Tab.Screen
+                        name="Home"
+                        component={HomeNavigator}
+                        options={{
+                          headerShown: false,
+                        }}
+                      />
+                      <Tab.Screen
+                        name="Community"
+                        component={CommunityNavigator}
+                        options={{ headerShown: false }}
+                      />
+                      <Tab.Screen
+                        name="User"
+                        component={UserNavigator}
+                        options={{ headerShown: false }}
+                      />
+                    </Tab.Navigator>
+                  </CommunityContextProvider>
                 </SettingsContextProvider>
               </ResourceContextProvider>
             </QuizContextProvider>
