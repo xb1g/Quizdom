@@ -46,7 +46,7 @@ export const CommunityScreen = () => {
               justifyContent: "center",
             }}
           >
-            <Text style={{ fontSize: 20, color: "#ffffff" }}>Sets</Text>
+            <Text style={{ fontSize: 20, color: "#ffffff" }}>Math</Text>
           </TouchableOpacity>
         </Row>
         <Row>
