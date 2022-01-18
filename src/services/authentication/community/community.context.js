@@ -28,6 +28,18 @@ export const CommunityContextProvider = ({ children }) => {
         memberName.push(doc.id);
         console.log("Member", doc.id, doc.data);
       });
-    });
+    }, []);
   });
+  return (
+    <CommunityContext.Provider
+      value={{
+        commuData,
+        setCommuData,
+        postData,
+        setPostData,
+        memberData,
+        setMemberData,
+      }}
+    ></CommunityContext.Provider>
+  );
 };
