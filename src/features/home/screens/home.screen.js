@@ -112,6 +112,7 @@ export const HomeScreen = ({ navigation }) => {
 -National Slate Museum
 -National Wool Museum
 -National Library of Wales
+
 27 of the visitors had visited National Slate Museum and National Wool Museum and, of these, 8 had visited all three attractions.
 
 72 of the people had visited National Library of Wales.
@@ -139,6 +140,7 @@ Some further information is given on the Venn diagram below. How many visitors h
 -Snowdon
 -Scafell Pike
 -Ben Nevis
+
 6 of the visitors had visited all three mountains.
 
 56 of the people had visited Ben Nevis.
@@ -152,10 +154,10 @@ Some further information is given on the Venn diagram below. How many visited Sc
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: `3800`,
-        answer2: `3300`,
-        answer3: `5000`,
-        answer4: `6700`,
+        answer1: `$3800$`,
+        answer2: `$3300$`,
+        answer3: `$5000$`,
+        answer4: `$6700$`,
         correct_answer: 3,
         explaination: `The easiest way to understand this problem is to draw a Venn Diagram:
         
@@ -173,8 +175,6 @@ Some further information is given on the Venn diagram below. How many visited Sc
         
         A ∩ B = The total students taking both ethics and metaphysics
         
-         
-        
         We know there are 15,000 total and that 9,500 are taking neither class.  Therefore, we know that 15,000 - 9,500 = 5,500 are taking at least one of the classes.  Based on our prompt, we know that there are 1,700 taking both and that 2,200 are taking ethics.  To fiind out how many are taking ONLY ethics, we have to subtract off the amount that are taking ethics and metaphysics.  Hence, 2,200 - 1,700 = 500.  Finally, if we know that there are 5,500 taking at at least one of these classes, we want to get rid of that portion taking ethics.  This will leave us with those who are taking at least metaphysics (regardless of whether or not they are taking ethics): 5,500 - 500 = 5,000.
         
          `,
@@ -188,10 +188,10 @@ Some further information is given on the Venn diagram below. How many visited Sc
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: `5`,
-        answer2: `28`,
-        answer3: `22`,
-        answer4: `3`,
+        answer1: `$5$`,
+        answer2: `$28$`,
+        answer3: `$22$`,
+        answer4: `$3$`,
         correct_answer: 4,
         explaination: `In order to find the intersection of chocolate and vanilla, it is easiest to make a Venn Diagram. The outside of the Venn Diagram is 10, and the total of the entire diagram must equal 35. Therefore the two circles of the Venn Diagram including just chocolate, just vanilla and the intersection must equal 25, with the just chocolate plus intersection side equalling 15 and the just vanilla plus intersection side equalling 13.
 
@@ -214,44 +214,49 @@ Some further information is given on the Venn diagram below. How many visited Sc
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: ``,
-        answer2: ``,
-        answer3: ``,
-        answer4: ``,
-        correct_answer: 1,
-        explaination: ``,
-        hint: ``,
-        image: ``,
-        source: ``,
-        question: ``,
+        answer1: `$\\{\\text{casey, drew, jade, glen}\\}$`,
+        answer2: `$\\{\\text{alex, casey, drew,hunter}\\}$`,
+        answer3: `$\\{\\text{casey, drew}\\}$`,
+        answer4: `$\\{\\text{drew, jade}\\}$`,
+        correct_answer: 3,
+        explaination: `The Intersect between S and T is the overlap between two circle`,
+        hint: `Which part of the diagram is the intersection of S and T?`,
+        image: `https://quizizz.com/_media/questions/L2FwcGhvc3RpbmdfcHJvZC9ibG9icy9BRW5CMlVxbE16T29KTUxxOExtUC1kczJaT0FHUmdxRk5OQWhORDVXdXB1eVdpWVhsZ3oxa3JRemV3eEpOWURDaXdUT3AwRmg3aV9BREE0bHdhZ3NpWVhJMFhPWGE3RjFsZy5YellMMDl2WnR2aE9uMV9S_900_900`,
+        source: `https://quizizz.com/admin/quiz/5c6c7be026ea6600203d38ec/set-subsets-and-venn-diagrams`,
+        question: `From the above Venn diagram, what is the set S ∩ T?`,
         skillLevel: 1,
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: ``,
-        answer2: ``,
-        answer3: ``,
-        answer4: ``,
-        correct_answer: 1,
-        explaination: ``,
+        answer1: `63`,
+        answer2: `62`,
+        answer3: `82`,
+        answer4: `83`,
+        correct_answer: 2,
+        explaination: `There are 4 circles in this diagram. You need to find the sum of the part that is the intersection of 3 circles, but not 4 circles.
+        so 18 from History, Mathematics, and Science
+        and 13 from History, Mathematics, and Geography
+        and 18 from History, Geography, and Science
+        and 13 from Science, Geography, and Mathematics
+        (18 + 13 + 18 + 13) = 62`,
         hint: ``,
-        image: ``,
-        source: ``,
-        question: ``,
-        skillLevel: 1,
+        image: `https://www.successkhan.com/wp-content/uploads/2019/02/rsn_ps_img_25_12.png`,
+        source: `https://www.successkhan.com/venn-diagram-practice-set-reasoning-ps-25-5/`,
+        question: `How many students take only three classes?`,
+        skillLevel: 3,
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: ``,
-        answer2: ``,
-        answer3: ``,
-        answer4: ``,
-        correct_answer: 1,
-        explaination: ``,
-        hint: ``,
-        image: ``,
-        source: ``,
-        question: ``,
+        answer1: `{12, 14, 15, 18, 21}`,
+        answer2: `{10, 11, 12, 14, 15, 18, 21}`,
+        answer3: `{10, 11, 13, 16, 17, 19, 20}`,
+        answer4: `{21}`,
+        correct_answer: 4,
+        explaination: `Intersection means that the two sets have at least one element in common. In this case, the number is {21}.`,
+        hint: `What does is the Intersection?`,
+        image: `https://quizizz.com/_media/questions/L2FwcGhvc3RpbmdfcHJvZC9ibG9icy9BRW5CMlVwbTJlUDlqamtyQkU0Szdjd1Fsei04WTVNQ0RzbmdmZjFfd3JCZm5Xa1JjcDBnZ2lOenBTMkpxempSdFNNcTE0eHJkYm80QjRwQmZNZllfR0JFTklnY3V1NDJPdy42Q2VyYVlpUTBOWmxLVEtt_900_900`,
+        source: `https://quizizz.com/admin/quiz/5c6c7be026ea6600203d38ec/set-subsets-and-venn-diagrams`,
+        question: `Which is the correct set notation for A intersection B ?`,
         skillLevel: 1,
         tags: ["sets", "Venn Diagram"],
       },
@@ -547,13 +552,13 @@ Some further information is given on the Venn diagram below. How many visited Sc
     //     tags: ["sets", "type of sets"],
     //   },
     // ];
-    newQuiz.forEach((quiz, index) => {
+    quizzes.forEach((quiz, index) => {
       console.log(typeof String(index));
       // console.log(quiz);
       const quizRef = doc(
         db,
         "quiz_sets",
-        "Type of sets",
+        "Venn diagrams",
         "level1",
         String(index)
       );
