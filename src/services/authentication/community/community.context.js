@@ -9,7 +9,8 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { AuthenticationContext } from "../authentication.context";
+import { AuthenticationContext } from "../../authentication/authentication.context";
+// import { setsMapTemplate } from "../data/math/sets";
 export const CommunityContext = createContext();
 export const CommunityContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);

@@ -6,6 +6,7 @@ import {
   Linking,
   Dimensions,
   TouchableHighlight,
+  FlatList,
 } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import {
@@ -47,10 +48,20 @@ const ModuleContainer = styled(View)`
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   const { width, height } = Dimensions.get("window");
-  const { modulesData } = useContext(MapsContext);
+  const { allModules } = useContext(MapsContext);
+  const [maps, setMaps] = useState([]);
   useEffect(() => {
-    console.log(modulesData);
-  }, []);
+    console.log("casdask");
+    console.log(allModules);
+    const allNames = Object.keys(allModules);
+    const saveModules = [];
+    allNames.forEach((name) => {
+      const module = allModules[name];
+      console.log("ASD", module);
+      saveModules.push(module);
+    });
+    setMaps(saveModules);
+  }, [allModules]);
   return (
     <>
       <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
@@ -58,25 +69,104 @@ export const PlannerScreen = ({ navigation }) => {
         <Spacer size="extraLarge" />
         <Spacer size="extraLarge" />
         <Spacer size="extraLarge" />
-        <MapPlanContainer>
-          <Text
-            variant="label"
-            style={{ color: "white", top: -30, fontSize: 32 }}
-          >
-            sets
-          </Text>
-          <Text
-            variant="label"
-            style={{ color: "white", top: -26, fontSize: 26 }}
-          >
-            3/9
-          </Text>
-          <ModuleContainer>
-            <Text variant="label" style={{ color: "white", fontSize: 32 }}>
-              Module 1
-            </Text>
-          </ModuleContainer>
-        </MapPlanContainer>
+        {maps.map((map, index) => {
+          return (
+            <MapPlanContainer>
+              <Text
+                variant="label"
+                style={{ color: "white", top: -30, fontSize: 32 }}
+              >
+                {map.name}
+              </Text>
+              <Text
+                variant="label"
+                style={{ color: "white", top: -26, fontSize: 26 }}
+              >
+                3/9
+              </Text>
+              <ModuleContainer>
+                <FlatList
+                  style={{
+                    height: 150,
+                    marginTop: "auto",
+                    flexGrow: 0,
+                  }}
+                  contentContainerStyle={{
+                    justifyContent: "center",
+                  }}
+                  data={map.modules}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => {
+                    const progress = item.progress;
+                    return (
+                      <Row>
+                        <View
+                          style={{
+                            width: 50,
+                            height: 50,
+                            borderRadius: 25,
+                            alignContent: "center",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor:
+                              progress === 1
+                                ? "#64edff"
+                                : progress === 2
+                                ? "#5cffae"
+                                : progress === 3
+                                ? "#91ff76"
+                                : "#fffb28",
+                          }}
+                        >
+                          <Text
+                            variant="label"
+                            style={{
+                              // color: "white",
+                              fontSize: 26,
+                            }}
+                          >
+                            {item.progress + " "}
+                          </Text>
+                        </View>
+                        <Text
+                          variant="label"
+                          style={{ color: "white", fontSize: 26 }}
+                        >
+                          {item.name}
+                        </Text>
+                      </Row>
+                    );
+                  }}
+                />
+                {/* {map.modules.map((module, index) => {
+                  const progress = module.progress;
+                  if (progress >= 1) {
+                    return (
+                      <>
+                        <Text
+                          variant="label"
+                          style={{
+                            color: "white",
+                            fontSize: 32,
+                            
+                          }}
+                        >
+                          {module.progress}
+                        </Text>
+                        <Text
+                          variant="label"
+                          style={{ color: "white", fontSize: 32 }}
+                        >
+                          {module.name}
+                        </Text>
+                      </>
+                    );
+                  }
+                })} */}
+              </ModuleContainer>
+            </MapPlanContainer>
+          );
+        })}
       </ScrollView>
     </>
   );

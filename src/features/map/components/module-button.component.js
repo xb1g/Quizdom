@@ -39,12 +39,13 @@ export function ModuleButton({
   const { height, width } = Dimensions.get("window");
   const top = position.top;
   const left = position.left;
-  const { setSelectedModule, selectedMapModulesData } = useContext(MapsContext);
+  const { setSelectedModule, selectedMapModulesData, updated } =
+    useContext(MapsContext);
   const [onFocus, setOnFocus] = useState(false);
   const [timeProgress, setTimeProgress] = useState(0);
 
   useEffect(() => {
-    if (started) {
+    if (started && progress) {
       const interval = setInterval(() => {
         const limitHrs = (reviewAt.seconds - latestAt.seconds) / 60 / 60;
         const nowAt = new Date().getTime() / 1000;
@@ -56,7 +57,7 @@ export function ModuleButton({
     } else {
       // console.log("not started", module.name);
     }
-  }, []);
+  }, [updated]);
 
   const module = {
     name,

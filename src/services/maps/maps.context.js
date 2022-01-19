@@ -20,15 +20,14 @@ export const MapsContextProvider = ({ children }) => {
   const [mapsData, setMapsData] = useState([]);
   const [selectedMapName, setSelectedMapName] = useState("");
   const [selectedMapModulesData, setSelectedMapModulesData] = useState([]);
-  const [update, setUpdate] = useState(false);
+  const [updated, setUpdated] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [allModules, setAllModules] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("loaded", loaded);
-    console.log("update", update);
-  }, [update, loaded]);
+    console.log(updated, "YET");
+  }, [updated]);
 
   useEffect(() => {
     const mapsRef = collection(db, "users", user.uid, "maps");
@@ -82,6 +81,7 @@ export const MapsContextProvider = ({ children }) => {
           // console.log("AsSD", allModulesData);
           // console.log("SETTING MODULS", allModulesData);
           setAllModules(allModulesData);
+          setUpdated(false);
         });
       });
     });
@@ -93,16 +93,14 @@ export const MapsContextProvider = ({ children }) => {
   // }, [allModules]);
 
   useEffect(() => {
-    // console.log("baha", allModules);
-    // console.log(allModules);
+    console.log("sth hppned", selectedMapName);
     if (selectedMapName && allModules) {
       const modules = allModules[selectedMapName].modules;
-      // const modules = allModules[0];
-      // console.log("HAIYA", selectedMapName, modules);
       setSelectedMapModulesData(modules);
     }
+    setUpdated(true);
     console.log("asdasd new modui");
-  }, [selectedMapName, allModules]);
+  }, [selectedMapName, allModules, updated]);
 
   useEffect(() => {
     if (selectedModule) {
@@ -119,8 +117,8 @@ export const MapsContextProvider = ({ children }) => {
         selectedModule,
         setSelectedModule,
         selectedMapModulesData,
-        setUpdate,
         loaded,
+        updated,
         error,
         allModules,
       }}

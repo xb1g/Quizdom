@@ -604,7 +604,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
           }}
         />
         <MathText
-          value="$B=\\text{\\{textbook, notebook, calculator, desk\\}}$"
+          value="The easiest way to understand this problem is to draw a Venn Diagram:                S = Total number of students                A = Total students taking ethics                B = Total students taking metaphysics                A - B = Students taking only ethics                B - A = Students taking only metaphysics                A ∪ B = The total students taking either ethics or metaphysics                A ∩ B = The total students taking both ethics and metaphysics                                 We know there are 15,000 total and that 9,500 are taking neither class.  Therefore, we know that 15,000 - 9,500 = 5,500 are taking at least one of the classes.  Based on our prompt, we know that there are 1,700 taking both and that 2,200 are taking ethics.  To fiind out how many are taking ONLY ethics, we have to subtract off the amount that are taking ethics and metaphysics.  Hence, 2,200 - 1,700 = 500.  Finally, if we know that there are 5,500 taking at at least one of these classes, we want to get rid of that portion taking ethics.  This will leave us with those who are taking at least metaphysics (regardless of whether or not they are taking ethics): 5,500 - 500 = 5,000.                 "
           color="white"
           style={{
             backgroundColor: "green",

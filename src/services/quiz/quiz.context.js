@@ -143,7 +143,7 @@ export const QuizContextProvider = ({ children }) => {
           progress: increment(1),
           started: true,
         }).then(() => {
-          setUpdate(true);
+          // setUpdate(true);
           console.log("updated");
         });
         // update progress
@@ -160,11 +160,11 @@ export const QuizContextProvider = ({ children }) => {
         );
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
-          reviewAt: metaData.finishedAt,
+          reviewAt: null,
 
           progress: 0,
         }).then(() => {
-          setUpdate(true);
+          // setUpdate(true);
           console.log("updated");
         });
       }

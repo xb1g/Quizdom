@@ -87,7 +87,7 @@ export function ModulePopup({ module, navigation }) {
           {module.name}
         </Text>
       </Row>
-      {currentModule.started && (
+      {currentModule.reviewAt && (
         <Row>
           <Text>To quiz</Text>
           <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
