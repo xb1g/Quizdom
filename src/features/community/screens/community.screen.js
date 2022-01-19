@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView, StatusBar, View } from "react-native";
 import {
   TouchableHighlight,
