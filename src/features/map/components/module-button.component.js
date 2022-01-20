@@ -76,12 +76,6 @@ export function ModuleButton({
       transform: [{ scale }],
     };
   });
-
-  // if (!started) {
-  //   return (
-  //     <View style={{ width: 50, height: 50, backgroundColor: "#8f4700" }} />
-  //   );
-  // } else {
   return (
     <Animated.View
       style={[
@@ -101,34 +95,16 @@ export function ModuleButton({
       ]}
     >
       <TouchableOpacity
-        // onPress={() => setSelectedModule(module)}
         onPress={() => {
-          // console.log(top + 300);
-          // console.log(left);
           scrollTo(top - 200);
           if (!started) {
-            // console.log("NOT STARTEd");
-            // console.log("make progress on db and show module");
             const module = selectedMapModulesData.find(
               (module) => module.id === id
             );
 
-            if (module.unlocked) {
-              //start
-              //show modal
-            }
             setSelectedModule(module);
             return;
           }
-          // console.log(reviewAt.seconds / 60 / 60 - latestAt.seconds / 60 / 60);
-          // print the time difference between now and latest in hours
-          // console.log(
-          //   "PASSES",
-          //   progress,
-          //   (new Date().getTime() / 1000 - latestAt.seconds) / 60 / 60
-          // );
-
-          // console.log(timeProgress);
           setSelectedModule(module);
         }}
       >
