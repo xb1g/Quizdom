@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { ScrollView, StatusBar, View } from "react-native";
 import {
@@ -9,7 +10,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 
-export const CommunityScreen = () => {
+export const CommunityScreen = (navigation) => {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
@@ -92,7 +93,10 @@ export const CommunityScreen = () => {
             marginTop: 30,
             alignItems: "center",
           }}
-          onPress={console.log("Add post")}
+          onPress={
+            //navigation.navigate("AddPostScreen")
+            console.log("Add post")
+          }
         >
           <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>
         </TouchableOpacity>

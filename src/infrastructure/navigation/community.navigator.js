@@ -10,6 +10,7 @@ import { CommunityScreen } from "../../features/community/screens/community.scre
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Platform, View } from "react-native";
 import { useTheme } from "styled-components/native";
+import { AddPostScreen } from "../../features/community/screens/add-post.screen";
 
 const CommunityStack = createStackNavigator();
 
@@ -68,7 +69,7 @@ export const CommunityNavigator = ({ navigation }) => {
       />
       <CommunityStack.Screen
         name="AddPostScreen"
-        component={CommunityScreen}
+        component={AddPostScreen}
         options={{
           title: "Community ",
           headerTitleStyle: {
