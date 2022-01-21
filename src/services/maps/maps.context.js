@@ -39,6 +39,7 @@ export const MapsContextProvider = ({ children }) => {
         mapNames.push(doc.id);
         console.log("beh", doc.id);
       });
+      console.log("mDATA", data);
       setMapsData(data);
 
       console.log("bah", mapNames);

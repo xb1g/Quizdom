@@ -64,6 +64,10 @@ export const PlannerScreen = ({ navigation }) => {
     setMaps(saveModules);
   }, [allModules, updated]);
 
+  const goToModule = (module) => {
+    console.log("GOTO", module);
+  };
+
   return (
     <>
       <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
@@ -158,17 +162,19 @@ export const PlannerScreen = ({ navigation }) => {
                               : "#fffb28"
                           }
                         />
-                        <View style={{ marginLeft: 20 }}>
-                          <Text
-                            variant="label"
-                            style={{ color: "white", fontSize: 26 }}
-                          >
-                            {item.name + " "}
-                          </Text>
-                          <Text style={{ color: "white", fontSize: 16 }}>
-                            {moment(item.reviewAt.toDate()).fromNow()}
-                          </Text>
-                        </View>
+                        <TouchableOpacity onPress={goToModule(item)}>
+                          <View style={{ marginLeft: 20 }}>
+                            <Text
+                              variant="label"
+                              style={{ color: "white", fontSize: 26 }}
+                            >
+                              {item.name + " "}
+                            </Text>
+                            <Text style={{ color: "white", fontSize: 16 }}>
+                              {moment(item.reviewAt.toDate()).fromNow()}
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
                       </View>
                     </>
                   );

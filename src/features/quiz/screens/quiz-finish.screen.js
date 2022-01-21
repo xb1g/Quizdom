@@ -20,6 +20,11 @@ export const QuizFinishScreen = ({ navigation }) => {
 
   const handleGesture = (event, gestureState) => {
     let { nativeEvent } = event;
+    console.log(nativeEvent);
+    if (nativeEvent.translationY < -350 && nativeEvent.velocityY < -1500) {
+      // go to map
+      console.log("go to map");
+    }
   };
 
   return (
@@ -29,15 +34,34 @@ export const QuizFinishScreen = ({ navigation }) => {
         variant="label"
         style={{
           color: "white",
-          fontSize: 48,
+          fontSize: 100,
           paddingLeft: 20,
           backgroundColor: "#ff66c4",
           paddingTop: 20,
+        }}
+      >
+        {"QUIZ"}
+      </Text>
+      <Text
+        variant="label"
+        style={{
+          color: "white",
+          fontSize: 48,
+          paddingLeft: 20,
+          backgroundColor: "#ff66c4",
           paddingBottom: 20,
         }}
       >
-        {"QUIZ" + " " + "Completed"}
+        {"completed!!"}
       </Text>
+      <ProgressBar
+        style={{
+          height: 15,
+          backgroundColor: "#ff5b5b",
+        }}
+        progress={scorepg}
+        color="#50f3ff"
+      />
       <PanGestureHandler
         enableTrackpadTwoFingerGesture
         onGestureEvent={handleGesture}
@@ -48,29 +72,28 @@ export const QuizFinishScreen = ({ navigation }) => {
             backgroundColor: "#393939",
           }}
         >
-          <View style={{ marginTop: 30, marginHorizontal: 50 }}>
-            <Text style={{ fontSize: 28, color: "#ffffff", paddingLeft: 50 }}>
-              Your score: {score}
-            </Text>
-          </View>
-          <View style={{ marginTop: 30, marginHorizontal: 50 }}>
-            <ProgressBar progress={scorepg} color="#a359a0" />
-          </View>
           <View
             style={{
-              marginHorizontal: 30,
-              marginTop: 50,
-              borderRadius: 50,
-              backgroundColor: "#ffaadd",
-              marginBottom: 50,
-              paddingTop: 50,
-              paddingBottom: 50,
+              marginTop: 30,
+              backgroundColor: "#fff",
+              marginRight: "auto",
+              borderBottomRightRadius: 40,
             }}
           >
-            <Text style={{ fontSize: 24, color: "white", paddingLeft: 50 }}>
-              Well done!
+            <Text
+              variant="label"
+              style={{
+                color: "#121",
+                fontSize: 68,
+                paddingRight: 30,
+                paddingLeft: 10,
+              }}
+            >
+              {score + "/5 "}
             </Text>
           </View>
+          <View style={{ marginTop: 30, marginHorizontal: 20 }}></View>
+
           <Row>
             <TouchableOpacity
               onPress={() => {
