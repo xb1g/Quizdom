@@ -296,7 +296,7 @@ export function QuizScreen({ route, navigation }) {
 
       {page < 5 ? (
         <View style={{ flex: 1 }}>
-          {
+          {quiz[page].hint && (
             <Modal animationType="fade" transparent={true} visible={showHint}>
               <TouchableOpacity
                 onPress={() => {
@@ -320,7 +320,7 @@ export function QuizScreen({ route, navigation }) {
                 </View>
               </TouchableOpacity>
             </Modal>
-          }
+          )}
           <View
             style={{
               backgroundColor: "#a2d1a2",
