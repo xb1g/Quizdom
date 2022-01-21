@@ -41,7 +41,6 @@ export function ModuleButton({
   const left = position.left;
   const { setSelectedModule, selectedMapModulesData, updated } =
     useContext(MapsContext);
-  const [onFocus, setOnFocus] = useState(false);
   const [timeProgress, setTimeProgress] = useState(0);
 
   useEffect(() => {
@@ -129,7 +128,7 @@ export function ModuleButton({
                   ? "#5cffae"
                   : progress === 3
                   ? "#91ff76"
-                  : "#fffb28"
+                  : "#ffd700"
                 : "grey",
               borderRadius: 100,
               width: 65,
