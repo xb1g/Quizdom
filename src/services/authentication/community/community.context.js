@@ -17,6 +17,7 @@ export const CommunityContextProvider = ({ children }) => {
   const [commuData, setCommuData] = useState([]);
   const [postData, setPostData] = useState([]);
   const [memberData, setMemberData] = useState([]);
+  const [answerData, setAnswerData] = useState([]);
   useEffect(() => {
     const memberRef = collection(db, "community", "Math", "members");
     const subjectName = [];
@@ -26,10 +27,22 @@ export const CommunityContextProvider = ({ children }) => {
       docs.forEach((doc) => {
         data.push(doc.data());
         memberName.push(doc.id);
-        console.log("Member", doc.id, doc.data);
       });
-    }, []);
-  });
+      setMemberData(data);
+      //console.log(memberData);
+    });
+    const postRef = collection(db, "community", "Math", "posts");
+    const postName = [];
+    getDocs(postRef).then((docs) => {
+      const data = [];
+      docs.forEach((doc) => {
+        data.push(doc.data());
+        postName.push(doc.id);
+      });
+      setPostData(data);
+      //console.log(postData);
+    });
+  }, []);
   return (
     <CommunityContext.Provider
       value={{
