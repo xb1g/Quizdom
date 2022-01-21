@@ -30,13 +30,6 @@ import { MapsContext } from "../../../services/maps/maps.context";
 // import MathView, { MathText } from "react-native-math-view";
 import MathView, { MathText } from "react-native-math-view/src/fallback";
 
-const SIZE = 100;
-
-// const handleRotation = (progress) => {
-//   "worklet";
-//   return `${progress.value * Math.PI * 2}rad`;
-// };
-
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
@@ -56,10 +49,10 @@ export const HomeScreen = ({ navigation }) => {
   const onAddQuiz = () => {
     const quizzes = [
       {
-        answer1: `{telephone, camera, computer, coffee, tea}`,
+        answer1: `$\\{telephone, camera, computer, coffee, tea\\}$`,
         answer2: `$\\varnothing$`,
-        answer3: `{telephone, camera, computer}`,
-        answer4: `{notebook, computer, coffee}`,
+        answer3: `$\\{telephone, camera, computer\\}$`,
+        answer4: `$\\{notebook, computer, coffee\\}$`,
         correct_answer: 1,
         explaination: `$B=\\text{{textbook, notebook, calculator, desk}}$`,
         hint: `$'$ means complement`,
@@ -70,10 +63,10 @@ export const HomeScreen = ({ navigation }) => {
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: `Set A = {2, 5, 11, 12}`,
-        answer2: `Set A = {2, 3, 4, 5, 6, 7, 11, 12}`,
-        answer3: `Set A = {1, 3, 4, 6, 7, 10, 13, 14, 15}`,
-        answer4: `Set A = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}`,
+        answer1: `Set A = $\\{2, 5, 11, 12\\}$`,
+        answer2: `Set A = $\\{2, 3, 4, 5, 6, 7, 11, 12\\}$`,
+        answer3: `Set A = $\\{1, 3, 4, 6, 7, 10, 13, 14, 15\\}$`,
+        answer4: `Set A = $\\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15\\}$`,
         correct_answer: 2,
         explaination: `every number in the circle A should be in the set`,
         hint: `which circle is the set A?`,
@@ -84,12 +77,12 @@ export const HomeScreen = ({ navigation }) => {
         tags: ["sets", "Venn Diagram"],
       },
       {
-        answer1: `{$8,9,10,11,12,13,14,15$}`,
-        answer2: `{$2, 5, 11, 12$}`,
-        answer3: `{$3, 7, 6, 4$}`,
-        answer4: `{$8,9$}`,
+        answer1: `$\\{8,9,10,11,12,13,14,15\\}$`,
+        answer2: `$\\{2, 5, 11, 12\\}$`,
+        answer3: `$\\{3, 7, 6, 4\\}$`,
+        answer4: `$\\{8,9\\}$`,
         correct_answer: 4,
-        explaination: `{8, 9} is the correct answer. You should have found all the items that were outside the two circles. You have found the items that are in set B but not set A.`,
+        explaination: `$\\{8, 9\\}$ is the correct answer. You should have found all the items that were outside the two circles. You have found the items that are in set $B$ but not set $A$.`,
         hint: `which circle is the set A?`,
         image: `https://bam.files.bbci.co.uk/bam/live/content/z3942p3/small`,
         source: `https://www.bbc.co.uk/bitesize/guides/zt7rk7h/test`,
@@ -120,7 +113,6 @@ export const HomeScreen = ({ navigation }) => {
 70 of the people had visited National Slate Museum.
 
 Some further information is given on the Venn diagram below. How many visitors had visited the National Library of Wales only?
-
 `,
         skillLevel: 1,
         tags: ["sets", "Venn Diagram"],
@@ -159,7 +151,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
         answer3: `$5000$`,
         answer4: `$6700$`,
         correct_answer: 3,
-        explaination: `The easiest way to understand this problem is to draw a Venn Diagram:
+        explaination: `Draw a Venn Diagram:
         
         S = Total number of students
         
@@ -171,13 +163,10 @@ Some further information is given on the Venn diagram below. How many visited Sc
         
         B - A = Students taking only metaphysics
         
-        A ∪ B = The total students taking either ethics or metaphysics
+        A $\\cup$ B = The total students taking either ethics or metaphysics
         
-        A ∩ B = The total students taking both ethics and metaphysics
-        
-        We know there are 15,000 total and that 9,500 are taking neither class.  Therefore, we know that 15,000 - 9,500 = 5,500 are taking at least one of the classes.  Based on our prompt, we know that there are 1,700 taking both and that 2,200 are taking ethics.  To fiind out how many are taking ONLY ethics, we have to subtract off the amount that are taking ethics and metaphysics.  Hence, 2,200 - 1,700 = 500.  Finally, if we know that there are 5,500 taking at at least one of these classes, we want to get rid of that portion taking ethics.  This will leave us with those who are taking at least metaphysics (regardless of whether or not they are taking ethics): 5,500 - 500 = 5,000.
-        
-         `,
+        A $\\cap$ B = The total students taking both ethics and metaphysics
+      `,
         explainationImage:
           "https://vt-vtwa-assets.varsitytutors.com/vt-vtwa/uploads/problem_question_image/image/225/TS4VennPhilClass.png",
         hint: `Try drawing a Venn diagram`,
@@ -193,19 +182,18 @@ Some further information is given on the Venn diagram below. How many visited Sc
         answer3: `$22$`,
         answer4: `$3$`,
         correct_answer: 4,
-        explaination: `In order to find the intersection of chocolate and vanilla, it is easiest to make a Venn Diagram. The outside of the Venn Diagram is 10, and the total of the entire diagram must equal 35. Therefore the two circles of the Venn Diagram including just chocolate, just vanilla and the intersection must equal 25, with the just chocolate plus intersection side equalling 15 and the just vanilla plus intersection side equalling 13.
+        explaination: `Make a Venn Diagram. There are 35 students in total, so draw the universe rectangle frame.
 
-        We know:
+        Draw 2 circle for 2 flavors. 
+        Outside the circles, there are 10 students. (10 students like neither)
+        The question asked for the Intersection of the two circles. (chocolate and vanilla)
+
+        The number of students who like chocolate is 15, so we can find the students who like only vanilla by $25 - 15 = 10$.
+        Put 10 in the Vanilla section.
         
-        (A U B) = A + B – (A ∩ B)
+        Find the numbers in the intersection $13 - 10 = 3$ (students who like vanilla - students who like only vanilla)
         
-        We have found that (A U B) = 25 and we are trying to find (A ∩ B). Plug in A and B
-        
-        25 = 15 + 13 – (A ∩ B) = 28 – (A ∩ B)
-        
-        or – (A ∩ B) = –3 
-        
-        (A ∩ B) = 3`,
+        `,
         hint: `Try drawing a Venn diagram`,
         image: ``,
         source: `https://www.varsitytutors.com/gre_math-help/data-analysis/venn-diagrams`,
@@ -238,7 +226,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
         and 13 from History, Mathematics, and Geography
         and 18 from History, Geography, and Science
         and 13 from Science, Geography, and Mathematics
-        (18 + 13 + 18 + 13) = 62`,
+        $(18 + 13 + 18 + 13) = 62$`,
         hint: ``,
         image: `https://www.successkhan.com/wp-content/uploads/2019/02/rsn_ps_img_25_12.png`,
         source: `https://www.successkhan.com/venn-diagram-practice-set-reasoning-ps-25-5/`,
@@ -596,26 +584,10 @@ Some further information is given on the Venn diagram below. How many visited Sc
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
-        <MathView
-          math={"asdadx=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}\\varnothing"}
-          color="white"
-          style={{
-            fontSize: 50,
-          }}
-        />
-        <MathText
-          value="The easiest way to understand this problem is to draw a Venn Diagram:                S = Total number of students                A = Total students taking ethics                B = Total students taking metaphysics                A - B = Students taking only ethics                B - A = Students taking only metaphysics                A ∪ B = The total students taking either ethics or metaphysics                A ∩ B = The total students taking both ethics and metaphysics                                 We know there are 15,000 total and that 9,500 are taking neither class.  Therefore, we know that 15,000 - 9,500 = 5,500 are taking at least one of the classes.  Based on our prompt, we know that there are 1,700 taking both and that 2,200 are taking ethics.  To fiind out how many are taking ONLY ethics, we have to subtract off the amount that are taking ethics and metaphysics.  Hence, 2,200 - 1,700 = 500.  Finally, if we know that there are 5,500 taking at at least one of these classes, we want to get rid of that portion taking ethics.  This will leave us with those who are taking at least metaphysics (regardless of whether or not they are taking ethics): 5,500 - 500 = 5,000.                 "
-          color="white"
-          style={{
-            backgroundColor: "green",
-            textColor: "white",
-            fontSize: 20,
-          }}
-        />
-        <MathView math="\cos\left(x\right)=\frac{b}{c}" color="white" />
-        <Button mode="contained" onPress={onAddQuiz}>
+
+        {/* <Button mode="contained" onPress={onAddQuiz}>
           ADD QUIZ
-        </Button>
+        </Button> */}
 
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.tertiarym }}

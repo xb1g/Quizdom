@@ -28,6 +28,8 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { MapsContext } from "../../../services/maps/maps.context";
 import Carousel from "react-native-snap-carousel";
+import { ProgressBar } from "react-native-paper";
+import moment from "moment";
 
 const MapPlanContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.bg.secondary};
@@ -46,7 +48,7 @@ const ModuleContainer = styled(View)`
 export const PlannerScreen = ({ navigation }) => {
   const theme = useTheme();
   const { width, height } = Dimensions.get("window");
-  const { allModules } = useContext(MapsContext);
+  const { allModules, updated } = useContext(MapsContext);
   const [maps, setMaps] = useState([]);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ export const PlannerScreen = ({ navigation }) => {
       saveModules.push(module);
     });
     setMaps(saveModules);
-  }, [allModules]);
+  }, [allModules, updated]);
 
   return (
     <>
@@ -137,14 +139,36 @@ export const PlannerScreen = ({ navigation }) => {
                           marginBottom: 10,
                         }}
                       >
-                        <Row style={{ marginLeft: 20 }}>
+                        <ProgressBar
+                          progress={progress / 4}
+                          style={{
+                            marginTop: -36,
+                            marginLeft: 22,
+                            height: 8,
+                            width: "90%",
+                            borderRadius: 20,
+                          }}
+                          color={
+                            progress === 1
+                              ? "#64edff"
+                              : progress === 2
+                              ? "#5cffae"
+                              : progress === 3
+                              ? "#91ff76"
+                              : "#fffb28"
+                          }
+                        />
+                        <View style={{ marginLeft: 20 }}>
                           <Text
                             variant="label"
                             style={{ color: "white", fontSize: 26 }}
                           >
-                            {item.name}
+                            {item.name + " "}
                           </Text>
-                        </Row>
+                          <Text style={{ color: "white", fontSize: 16 }}>
+                            {moment(item.reviewAt.toDate()).fromNow()}
+                          </Text>
+                        </View>
                       </View>
                     </>
                   );
