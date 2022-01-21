@@ -33,7 +33,7 @@ import MathView, { MathText } from "react-native-math-view/src/fallback";
 export const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
   const { onLogout } = useContext(AuthenticationContext);
-  const { mapsData } = useContext(MapsContext);
+  const { mapsData, updated } = useContext(MapsContext);
   const [maps, setMaps] = useState([
     {
       name: "sets",
@@ -558,7 +558,6 @@ Some further information is given on the Venn diagram below. How many visited Sc
     if (mapsData) {
       const mapsCopy = [];
       maps.forEach((map, index) => {
-        // console.log(map, index);
         const mapData = mapsData[map.id];
         const mapCopy = {
           ...map,
@@ -570,7 +569,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
     }
     console.log("map data changed from home");
     // console.log(modulesData);
-  }, [mapsData]);
+  }, [mapsData, updated]);
   let counter = 0;
 
   return (
@@ -594,7 +593,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
         >
           <TitleText>{" Today "}</TitleText>
         </TitleContainer>
-        <Today style={shadow} navigation={navigation} />
+        <Today style={shadow.shadow1} navigation={navigation} />
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.quaternarym }}
         >

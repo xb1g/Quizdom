@@ -33,6 +33,7 @@ const MapName = styled(Text)`
   align-self: center;
   color: #fff;
 `;
+
 const ProgressNumber = styled(Text)`
   position: absolute;
   top: 10px;
@@ -41,6 +42,7 @@ const ProgressNumber = styled(Text)`
   z-index: 1;
   font-size: 42px;
 `;
+
 export const Maps = ({ maps, navigation }) => {
   const { setSelectedMapName } = useContext(MapsContext);
   return (
@@ -59,6 +61,7 @@ export const Maps = ({ maps, navigation }) => {
                   flex: 1,
                 }}
                 onPress={() => {
+                  console.log("MAPPER", item);
                   setSelectedMapName(item.name);
                   navigation.navigate(item.navigateName);
                 }}
@@ -102,7 +105,6 @@ export const Maps = ({ maps, navigation }) => {
         }}
         keyExtractor={(item) => item.id + item.name}
       />
-      {/* </MapContainer> */}
     </>
   );
 };
