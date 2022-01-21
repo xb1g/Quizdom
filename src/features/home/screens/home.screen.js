@@ -602,7 +602,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
         >
           <TitleText>{" Today "}</TitleText>
         </TitleContainer>
-        <Today style={shadow} navigation={navigation} />
+        <Today style={shadow.shadow1} navigation={navigation} />
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.quaternarym }}
         >

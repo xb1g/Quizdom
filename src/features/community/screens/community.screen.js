@@ -4,25 +4,25 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+import { Button } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
+import { TitleContainer, TitleText } from "../../home/components/home.styles";
 
 export const CommunityScreen = () => {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
-        <Text
+        <TitleContainer
           style={{
-            color: "#ffffff",
-            fontSize: 36,
             marginTop: 30,
             paddingLeft: 30,
             marginRight: 100,
             backgroundColor: "#7ed957",
           }}
         >
-          Community
-        </Text>
+          <TitleText>{"Community"}</TitleText>
+        </TitleContainer>
         <Row>
           <TouchableOpacity
             style={{
@@ -81,6 +81,21 @@ export const CommunityScreen = () => {
             </Text>
           </TouchableHighlight>
         </Row>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#cb6ce6",
+            borderRadius: 30,
+            paddingHorizontal: 30,
+            paddingTop: 10,
+            paddingBottom: 10,
+            marginHorizontal: 30,
+            marginTop: 30,
+            alignItems: "center",
+          }}
+          onPress={console.log("Add post")}
+        >
+          <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>
+        </TouchableOpacity>
         <View style={{ background: "#ffaadd", paddingTop: 100 }}></View>
         <ScrollView></ScrollView>
         <StatusBar barStyle="dark-content" />
