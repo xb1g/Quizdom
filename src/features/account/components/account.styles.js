@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { Text } from "react-native-paper";
 import {
   TextInput,
@@ -12,12 +12,13 @@ import {
 } from "react-native";
 import AwesomeButtonC from "react-native-really-awesome-button/src/themes/c137";
 import { Logo } from "../../../../assets/logo";
+// import theme from "react-native-really-awesome-button/src/themes/c137";
 
 export const AccountBackground = styled.ImageBackground.attrs({
   // source: require("../../../../assets/splash.png"),
 })`
   flex: 1;
-  background-color: ${(props) => props.theme.colors.bg.primary};
+  background-color: #000000;
 `;
 
 export const AccountCover = styled.View`
@@ -41,7 +42,7 @@ export const TContainer = styled.View`
   position: absolute;
   padding: ${(props) => props.theme.space[4]};
   margin-top: ${(props) => props.theme.space[4]};
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   align-items: center;
   align-self: center;
@@ -50,7 +51,7 @@ export const TContainer = styled.View`
 
 export const LogoText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 35px;
+  font-size: 65px;
   position: absolute;
   top: 40%;
   align-self: center;
@@ -69,11 +70,20 @@ export const DescText = styled.Text`
 export const AuthLogo = styled(Image).attrs({
   source: require("../../../../assets/logo.png"),
 })`
+  width: 150px;
+  height: 150px;
+  resize-mode: contain;
+  align-self: center;
+  margin-top: 100px;
+`;
+export const AuthSmallLogo = styled(Image).attrs({
+  source: require("../../../../assets/logo.png"),
+})`
   width: 100px;
   height: 100px;
   resize-mode: contain;
   align-self: center;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 `;
 // export const AuthLogo = styled(Logo)`
 //   position: absolute;
@@ -82,16 +92,31 @@ export const AuthLogo = styled(Image).attrs({
 // `;
 
 export const AuthButton = styled(AwesomeButtonC).attrs({
-  textFontFamily: "Airstrike",
+  textFontFamily: "Bahnschrift",
   textSize: 20,
-  // backgroundDarker: "#ff5a5f",
-  borderRadius: 10,
+  backgroundDarker: "#000000",
+  borderRadius: 20,
   activityColor: "#ffffff",
-  backgroundActive: "#ff66c4",
-  backgroundColor: "#ffaadd",
-  backgroundDarker: "#ffffff",
-  backgroundShadow: "#ffffff",
-  textColor: "#ffffff",
+  backgroundActive: "#ffb3fa",
+  backgroundColor: "#3E0082",
+  backgroundDarker: "#00FFF0",
+  backgroundShadow: "#2b0070ac",
+  textColor: "#00FFF0",
+})`
+  align-self: center;
+`;
+
+export const AuthSignInButton = styled(AwesomeButtonC).attrs({
+  textFontFamily: "Bahnschrift",
+  textSize: 20,
+  backgroundDarker: "#000000",
+  borderRadius: 20,
+  activityColor: "#ffffff",
+  backgroundActive: "#ffddf2",
+  backgroundColor: "#ffddf2",
+  backgroundDarker: "#de7deb",
+  backgroundShadow: "#2b0070ac",
+  textColor: "#2a0061",
 })`
   align-self: center;
 `;

@@ -19,7 +19,7 @@ import { useTheme } from "styled-components/native";
 const TodayView = styled(View)`
   margin-horizontal: 20px;
   height: 300px;
-  background-color: #fff;
+  background-color: #3b3b3b;
   padding: 10px;
   border-radius: 25px;
 `;
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#ffaadd",
+    backgroundColor: "#5f3053",
     borderRadius: 20,
   },
   item: {

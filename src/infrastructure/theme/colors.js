@@ -1,8 +1,12 @@
 export const colors = {
   brand: {
     primary: "#ffc8ff",
-    secondary: "#5282BD",
+    secondary: "#86bdff",
     muted: "#C6DAF7",
+  },
+  logo: {
+    primary: "#3E0082",
+    secondary: "#00FFF0",
   },
   ui: {
     primary: "#262626",
@@ -16,7 +20,8 @@ export const colors = {
   bg: {
     primary: "#1d1d1d",
     secondary: "#3a3a3a",
-    tertiary: "#FFEEBB",
+    tertiary: "#525252",
+    inverse1: "#FFEEBB",
     inverse: "#ececec",
   },
   text: {
@@ -32,10 +37,10 @@ export const colors = {
     zerarym: "#d9d9d9",
     primary: "#fcab40",
     primarym: "#fde78e",
-    secondary: "#ff66c4",
-    secondarym: "#ffc5e8",
+    secondary: "#ffb3fa",
+    secondarym: "#df74d8",
     tertiary: "#004aad",
-    tertiarym: "#38b6ff",
+    tertiarym: "#8ad4ff",
     quaternary: "#a359a0",
     quaternarym: "#cb6ce6",
     quinary: "#77b800",

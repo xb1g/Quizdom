@@ -8,11 +8,11 @@ import {
   AccountCover,
   Container,
   TContainer,
-  AuthButton,
+  AuthSignInButton as AuthButton,
   AuthIconButton,
   DescText,
   LogoText,
-  AuthLogo,
+  AuthSmallLogo,
   AuthInput,
   // BackButton,
   TouchableWithoutFeedback,
@@ -29,19 +29,18 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Logo } from "../../../../assets/logo";
+import { shadow } from "../../../components/shadow/shadow.styles";
 
 const Center = styled.View`
   /* top: 10%; */
 `;
 
-// const TContainerII = styled(TContainer)`
-//   top: 50%;
-// `;
-
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+
+  const theme = useTheme();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -51,7 +50,24 @@ export const LoginScreen = ({ navigation }) => {
     >
       <AccountBackground>
         <BackButton navigation={navigation} />
-        <AuthLogo />
+        <View
+          style={{
+            backgroundColor: theme.colors.accent.primary,
+            paddingBottom: 200,
+            borderBottomLeftRadius: 200,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: theme.colors.accent.secondary,
+              paddingBottom: 150,
+              borderBottomEndRadius: 250,
+              paddingTop: 100,
+            }}
+          >
+            <AuthSmallLogo />
+          </View>
+        </View>
         {/* <Text
           style={{
             fontSize: 20,

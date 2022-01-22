@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 //import { Text } from "../../../components/typography/text.component";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { KeyboardAvoidingView } from "react-native";
@@ -16,7 +16,7 @@ import {
   AuthIconButton,
   DescText,
   LogoText,
-  AuthLogo,
+  AuthSmallLogo,
   Input,
 } from "../components/account.styles";
 
@@ -57,6 +57,8 @@ export const RegisterScreen = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState({});
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, error, isLoading } = useContext(AuthenticationContext);
+
+  const theme = useTheme();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -69,7 +71,17 @@ export const RegisterScreen = ({ navigation }) => {
             page ? setPage(false) : navigation.goBack();
           }}
         />
-        <AuthLogo />
+        <View
+          style={{
+            backgroundColor: theme.colors.logo.secondary,
+            paddingBottom: 300,
+            borderBottomRightRadius: 500,
+            paddingTop: 100,
+            // borderBottomLeftRadius: 500,
+          }}
+        >
+          <AuthSmallLogo />
+        </View>
         <TContainer>
           <Text
             // variant="label"
@@ -155,7 +167,7 @@ export const RegisterScreen = ({ navigation }) => {
                 label="Name"
                 //placeholder="Thanawas"
                 value={userInfo.name}
-                keyboardType="name"
+                keyboardType="name-phone-pad"
                 textContentType="givenName"
                 onChangeText={(text) =>
                   setUserInfo({ ...userInfo, name: text })

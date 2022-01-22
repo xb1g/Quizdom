@@ -68,44 +68,44 @@ export const AppNavigator = () => {
     <>
       <SafeAreaProvider>
         <MapsContextProvider>
-          <ModulesContextProvider>
-            <QuizContextProvider>
-              <ResourceContextProvider>
-                <SettingsContextProvider>
-                  <CommunityContextProvider>
-                    <Tab.Navigator
-                      initialRouteName="Home"
-                      screenOptions={createScreenOptions}
-                    >
-                      <Tab.Screen
-                        name="Planner"
-                        component={PlannerNavigator}
-                        // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
-                        options={{ headerShown: false }}
-                      />
-                      <Tab.Screen
-                        name="Home"
-                        component={HomeNavigator}
-                        options={{
-                          headerShown: false,
-                        }}
-                      />
-                      <Tab.Screen
-                        name="Community"
-                        component={CommunityNavigator}
-                        options={{ headerShown: false }}
-                      />
-                      <Tab.Screen
-                        name="User"
-                        component={UserNavigator}
-                        options={{ headerShown: false }}
-                      />
-                    </Tab.Navigator>
-                  </CommunityContextProvider>
-                </SettingsContextProvider>
-              </ResourceContextProvider>
-            </QuizContextProvider>
-          </ModulesContextProvider>
+          {/* <ModulesContextProvider> */}
+          <QuizContextProvider>
+            <ResourceContextProvider>
+              <SettingsContextProvider>
+                <CommunityContextProvider>
+                  <Tab.Navigator
+                    initialRouteName="Home"
+                    screenOptions={createScreenOptions}
+                  >
+                    <Tab.Screen
+                      name="Planner"
+                      component={PlannerNavigator}
+                      // options={{ headerTitle: (props) => <PlannerHeader {...props} /> }}
+                      options={{ headerShown: false }}
+                    />
+                    <Tab.Screen
+                      name="Home"
+                      component={HomeNavigator}
+                      options={{
+                        headerShown: false,
+                      }}
+                    />
+                    <Tab.Screen
+                      name="Community"
+                      component={CommunityNavigator}
+                      options={{ headerShown: false }}
+                    />
+                    <Tab.Screen
+                      name="User"
+                      component={UserNavigator}
+                      options={{ headerShown: false }}
+                    />
+                  </Tab.Navigator>
+                </CommunityContextProvider>
+              </SettingsContextProvider>
+            </ResourceContextProvider>
+          </QuizContextProvider>
+          {/* </ModulesContextProvider> */}
         </MapsContextProvider>
       </SafeAreaProvider>
       <ExpoStatusBar style="light" />
