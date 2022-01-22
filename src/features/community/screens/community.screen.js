@@ -10,7 +10,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 
-export const CommunityScreen = (navigation) => {
+export const CommunityScreen = ({ navigation }) => {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
@@ -94,8 +94,8 @@ export const CommunityScreen = (navigation) => {
             alignItems: "center",
           }}
           onPress={
-            //navigation.navigate("AddPostScreen")
-            console.log("Add post")
+            () => navigation.navigate("AddPostScreen")
+            //console.log("Add post")
           }
         >
           <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>
