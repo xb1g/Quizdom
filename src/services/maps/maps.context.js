@@ -9,9 +9,12 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
+
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { setsMapTemplate } from "../data/math/sets";
+import { appMapData as setsAppData } from "../data/maps";
 
+const appMapsData = [setsAppData];
 export const MapsContext = createContext();
 export const MapsContextProvider = ({ children }) => {
   // const { currentUser } = firebase.auth();
@@ -33,14 +36,27 @@ export const MapsContextProvider = ({ children }) => {
     const mapsRef = collection(db, "users", user.uid, "maps");
     const mapNames = [];
     getDocs(mapsRef).then((docs) => {
-      const data = [];
+      const maps = [];
       docs.forEach((doc) => {
-        data.push(doc.data());
+        // maps.push(doc.data());
+
+        console.log("aaaass");
+        console.log(appMapsData);
+        console.log(doc.data().name);
+        console.log(doc.id);
+        const map = {
+          ...doc.data(),
+          ...appMapsData.find((appMap) => appMap.name === doc.id),
+        };
+
+        console.log("Map is");
+        console.log(map);
+        maps.push(map);
         mapNames.push(doc.id);
-        console.log("beh", doc.id);
+        // console.log("beh", doc.id);
       });
-      console.log("mDATA", data);
-      setMapsData(data);
+      console.log("mDATA", maps);
+      setMapsData(maps);
 
       console.log("bah", mapNames);
       const allModulesData = {};
@@ -72,7 +88,6 @@ export const MapsContextProvider = ({ children }) => {
           const modulesData = [];
           snapshot.forEach((doc) => {
             const module = doc.data();
-            // console.log(module.id, "IS id");
             const template = setsMapTemplate[module.id];
             const updatedModule = { ...template, ...module };
             modulesData.push(updatedModule);

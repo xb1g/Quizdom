@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, TouchableOpacity, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import styled from "styled-components/native";
@@ -44,7 +44,18 @@ const ProgressNumber = styled(Text)`
 `;
 
 export const Maps = ({ maps, navigation }) => {
-  const { setSelectedMapName } = useContext(MapsContext);
+  const { setSelectedMapName, allModules } = useContext(MapsContext);
+  const [progresses, setProgresses] = useState({});
+
+  useEffect(() => {
+    maps.forEach((map) => {
+      const progress = allModules[map.name].modules.filter(
+        (module) => module.reviewAt
+      ).length;
+      setProgresses({ ...progresses, [map.name]: progress });
+    });
+  }, [allModules]);
+
   return (
     <>
       <FlatList
@@ -53,6 +64,9 @@ export const Maps = ({ maps, navigation }) => {
         data={maps}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
+          // const progress = allModules[item.name].modules.filter(
+          //   (module) => module.reviewAt
+          // ).length;
           // item.key = String(item.id) + item.name;
           return (
             <Row>
@@ -62,8 +76,13 @@ export const Maps = ({ maps, navigation }) => {
                 }}
                 onPress={() => {
                   console.log("MAPPER", item);
-                  setSelectedMapName(item.name);
-                  navigation.navigate(item.navigateName);
+                  if (item.isStarted) {
+                    setSelectedMapName(item.name);
+                    navigation.navigate(item.navigateName);
+                  } else {
+                    console.log("START GAME FIRST");
+                    navigation.navigate(item.startName);
+                  }
                 }}
               >
                 <ProgressNumber
@@ -72,7 +91,7 @@ export const Maps = ({ maps, navigation }) => {
                     ...shadow.shadow2,
                   }}
                 >
-                  {item.progress + "/" + item.modulesCount + " "}
+                  {progresses[item.name] + "/" + item.modulesCount + " "}
                 </ProgressNumber>
                 <MapCardContainer>
                   <View>

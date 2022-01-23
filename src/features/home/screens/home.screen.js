@@ -35,16 +35,16 @@ export const HomeScreen = ({ navigation }) => {
   const { onLogout } = useContext(AuthenticationContext);
   const { mapsData, updated } = useContext(MapsContext);
   const [maps, setMaps] = useState([
-    {
-      name: "sets",
-      navigateName: SET_MAP_NAVIGATION_NAME,
-      id: 0,
-      progress: "3",
-      modulesCount: 9,
-      isStarted: true,
-      isPaused: false,
-      image: require("../../../../assets/maps-image/setsmapimg.png"),
-    },
+    // {
+    //   name: "sets",
+    //   navigateName: SET_MAP_NAVIGATION_NAME,
+    //   id: 0,
+    //   progress: "3",
+    //   modulesCount: 9,
+    //   isStarted: true,
+    //   isPaused: false,
+    //   image: require("../../../../assets/maps-image/setsmapimg.png"),
+    // },
   ]);
   const onAddQuiz = () => {
     const quizzes = [
@@ -556,15 +556,18 @@ Some further information is given on the Venn diagram below. How many visited Sc
 
   useEffect(() => {
     if (mapsData) {
+      console.log("mapsData");
+      console.log(mapsData);
       const mapsCopy = [];
-      maps.forEach((map, index) => {
-        const mapData = mapsData[map.id];
+      mapsData.forEach((mapData, index) => {
+        // const mapData = mapsData[map.id];
         const mapCopy = {
-          ...map,
+          // ...map,
           ...mapData,
         };
         mapsCopy.push(mapCopy);
       });
+      console.log("CPY", mapsCopy);
       setMaps(mapsCopy);
     }
     console.log("map data changed from home");

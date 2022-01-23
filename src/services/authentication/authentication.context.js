@@ -19,6 +19,7 @@ import {
   loginGoogle,
   getUserInfo,
 } from "./authentication.service";
+import { SET_MAP_NAVIGATION_NAME } from "../../infrastructure/constants/navigation";
 
 export const AuthenticationContext = createContext();
 
@@ -116,7 +117,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         const mapDataRef = doc(db, "users", uid, "maps", "sets");
         const mapDataPayload = {
           isStarted: false,
-          isPaused: true,
           progress: 0,
           modulesCount: 8,
         };
