@@ -21,13 +21,20 @@ import {
 } from "../../home/components/home.styles";
 import { addDoc, collection, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
-export const AddPostScreen = () => {
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { NavigationContainer } from "@react-navigation/native";
+export const AddPostScreen = ({ navigation }) => {
+  const { user } = useContext(AuthenticationContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [images, setImages] = useState([]);
-  const onAddPost = () => {
-    console.log("Posted");
-  };
+  const postRef = collection(db, "community", "Math", "posts");
+  const onAddPost = addDoc(postRef, {
+    title: title,
+    body: body,
+    images: images,
+    author_uid: user.uid,
+  });
   // const onAddPost = await addDoc(collection("community", "Math", "posts"), {
   //   title: title,
   //   body: body,
@@ -123,7 +130,7 @@ export const AddPostScreen = () => {
         keyExtractor={(image) => image.id}
       />
       <TouchableOpacity
-        onPress={onAddPost}
+        onPress={() => onAddPost && navigation.navigate("CommunityMainScreen")}
         style={{
           backgroundColor: "#999999",
           marginTop: 30,
