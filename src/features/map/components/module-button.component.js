@@ -39,7 +39,7 @@ export function ModuleButton({
   const { height, width } = Dimensions.get("window");
   const top = position.top;
   const left = position.left;
-  const { setSelectedModule, selectedMapModulesData, updated } =
+  const { setSelectedModule, selectedMapModulesData, updated, selectedModule } =
     useContext(MapsContext);
   const [timeProgress, setTimeProgress] = useState(0);
 
@@ -113,7 +113,13 @@ export function ModuleButton({
           activeStrokeWidth={25}
           inActiveStrokeWidth={25}
           value={timeProgress > 0 ? timeProgress : 0}
-          radius={60}
+          radius={
+            selectedModule
+              ? selectedModule.name === module.name
+                ? 80
+                : 60
+              : 60
+          }
           showProgressValue={false}
           // circleBackgroundColor={"#76ffc6"}
         >

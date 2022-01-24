@@ -20,10 +20,11 @@ export const QuizFinishScreen = ({ navigation }) => {
 
   const handleGesture = (event, gestureState) => {
     let { nativeEvent } = event;
+    const theme = useTheme();
     console.log(nativeEvent);
     if (nativeEvent.translationY < -350 && nativeEvent.velocityY < -1500) {
       // go to map
-      console.log("go to map");
+      // navigation.navigate(SET_MAP_NAVIGATION_NAME);
     }
   };
 
@@ -36,7 +37,7 @@ export const QuizFinishScreen = ({ navigation }) => {
           color: "white",
           fontSize: 100,
           paddingLeft: 20,
-          backgroundColor: "#ff66c4",
+          backgroundColor: theme.colors.accent.secondary,
           paddingTop: 20,
         }}
       >
@@ -48,7 +49,7 @@ export const QuizFinishScreen = ({ navigation }) => {
           color: "white",
           fontSize: 48,
           paddingLeft: 20,
-          backgroundColor: "#ff66c4",
+          backgroundColor: theme.colors.accent.secondary,
           paddingBottom: 20,
         }}
       >
@@ -60,7 +61,7 @@ export const QuizFinishScreen = ({ navigation }) => {
           backgroundColor: "#ff5b5b",
         }}
         progress={scorepg}
-        color="#50f3ff"
+        color={theme.colors.logo.secondary}
       />
       <PanGestureHandler
         enableTrackpadTwoFingerGesture
@@ -69,7 +70,7 @@ export const QuizFinishScreen = ({ navigation }) => {
         <View
           style={{
             flex: 1,
-            backgroundColor: "#393939",
+            backgroundColor: theme.colors.bg.secondary,
           }}
         >
           <View
