@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useContext } from "react";
-import { ScrollView, StatusBar, View } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { FlatList, ScrollView, StatusBar, View } from "react-native";
 import {
   TouchableHighlight,
   TouchableOpacity,
@@ -8,9 +8,15 @@ import {
 import { Button } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
+import { CommunityContext } from "../../../services/authentication/community/community.context";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 
 export const CommunityScreen = ({ navigation }) => {
+  const { postData } = useContext(CommunityContext);
+  useEffect(() => {
+    console.log("Post data");
+    console.log(postData);
+  }, []);
   return (
     <>
       <ScrollView>
@@ -82,7 +88,27 @@ export const CommunityScreen = ({ navigation }) => {
               Community Questions
             </Text>
           </TouchableHighlight>
-
+          <FlatList
+            style={{ backgroundColor: "#000000" }}
+            data={postData}
+            renderItem={(post) => {
+              console.log("posted", post);
+              return (
+                <>
+                  <Text style={{ color: "#ffffff" }}>
+                    Title : {post.item.title}
+                  </Text>
+                  <Text style={{ color: "#ffffff" }}>
+                    Body : {post.item.body}
+                  </Text>
+                  <Text style={{ color: "#ffffff" }}>
+                    Author uid : {post.item.author_uid}
+                  </Text>
+                </>
+              );
+            }}
+            keyExtractor={(post) => post.id}
+          />
           <TouchableOpacity
             style={{
               backgroundColor: "#cb6ce6",
