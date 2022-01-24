@@ -20,7 +20,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InequalitiesMapScreen from "../../features/map/screens/inequalities-map.screen";
 
 import { useTheme } from "styled-components/native";
-import { SET_MAP_NAVIGATION_NAME } from "../constants/navigation";
+import {
+  SET_MAP_NAVIGATION_NAME,
+  SET_MAP_START_NAME,
+} from "../constants/navigation";
+import { SetMapStartScreen } from "../../features/map/screens/sets/set-map-start.screen";
 
 const HomeStack = createStackNavigator();
 
@@ -29,7 +33,11 @@ export const HomeNavigator = ({ navigation, route }) => {
   useEffect(() => {
     console.log(getFocusedRouteNameFromRoute(route));
   }, [route]);
-  const tabHiddenRoutes = ["SetMapScreen", "QuizNavigator"];
+  const tabHiddenRoutes = [
+    SET_MAP_NAVIGATION_NAME,
+    // SET_MAP_START_NAME,
+    "QuizNavigator",
+  ];
   const theme = useTheme();
   React.useLayoutEffect(() => {
     if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
@@ -60,20 +68,6 @@ export const HomeNavigator = ({ navigation, route }) => {
           component={HomeScreen}
           options={{
             title: "",
-            // headerTitleStyle: {
-            //   backgroundColor: "red",
-            //   alignSelf: "center",
-            //   alignItems: "center",
-            //   justifyContent: "center",
-            //   fontFamily: "Airstrike",
-            //   marginTop: inset.top + Platform.OS === "ios" ? -20 : -10,
-            //   fontSize: 47,
-            //   color: "#fff",
-            // },
-            // cardStyle: {
-            //   // backgroundColor: "red",
-            // },
-            //Fix Later headerRight: () => <ProfileButton navigation={navigation} />,
             headerRight: () => <SettingButton navigation={navigation} />,
             //headerLeft: () => <AddButton navigation={navigation} />,
             headerTransparent: true,
@@ -83,8 +77,8 @@ export const HomeNavigator = ({ navigation, route }) => {
                   height:
                     Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
                   backgroundColor: theme.colors.bg.secondary, //coloradded
-                  // borderBottomRightRadius: 30,
-                  // borderBottomLeftRadius: 30,
+                  borderBottomRightRadius: 30,
+                  borderBottomLeftRadius: 30,
                   ...shadow.shadow2,
                 }}
               >
@@ -107,12 +101,19 @@ export const HomeNavigator = ({ navigation, route }) => {
         />
         <HomeStack.Screen
           name={SET_MAP_NAVIGATION_NAME}
-          // component={() => null}
-          // component={InequalitiesMapScreen}
           component={SetMapScreen}
           navigation={navigation}
           options={{
             headerShown: false,
+          }}
+        />
+        <HomeStack.Screen
+          name={SET_MAP_START_NAME}
+          component={SetMapStartScreen}
+          navigation={navigation}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.ModalPresentationIOS,
           }}
         />
         <HomeStack.Group

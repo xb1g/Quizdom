@@ -38,9 +38,9 @@ export const QuizContextProvider = ({ children }) => {
       console.log(selectedMapName);
       const ar = [];
       const ids = Array.from({ length: 5 }, () => {
-        let ran = Math.round(Math.random() * 10);
+        let ran = Math.round(Math.random() * 9);
         while (ar.includes(ran)) {
-          ran = Math.round(Math.random() * 10);
+          ran = Math.round(Math.random() * 9);
         }
         ar.push(ran);
         return String(ran);
