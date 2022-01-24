@@ -40,6 +40,7 @@ export const CommunityContextProvider = ({ children }) => {
         postName.push(doc.id);
       });
       setPostData(data);
+      //console.log("postData");
       //console.log(postData);
     });
   }, []);
