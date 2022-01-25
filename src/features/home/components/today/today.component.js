@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Dimensions, Pressable } from "react-native";
 
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
@@ -15,49 +15,70 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { useTheme } from "styled-components/native";
+import { MapsContext } from "../../../../services/maps/maps.context";
+import { setsResources } from "../../../../services/data/math/sets";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
   height: 300px;
-  background-color: #3b3b3b;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
   padding: 10px;
   border-radius: 25px;
 `;
 
+const TodayItem = styled(View)`
+  background-color: ${(props) => props.theme.colors.bg.tertiary};
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+`;
+
+const TodayTitle = styled(Text)`
+  font-size: 25px;
+  color: ${(props) => props.theme.colors.text.inverse};
+  margin: 5px;
+`;
+
+const TodayBody = styled(Text)`
+  font-size: 15px;
+  color: ${(props) => props.theme.colors.text.inverse};
+  margin: 5px;
+`;
+
 const { width: screenWidth } = Dimensions.get("window");
-export const Today = ({
-  navigation,
-  todos = [
-    {
-      title: "Type of sets",
-      resource: [
-        { type: "web", link: "someotherlink", title: "sets suck" },
-        { type: "video", link: "linkshit", title: "sets suck" },
-      ],
-      subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-      illustration: "https://i.imgur.com/UYiroysl.jpg",
-    },
-    {
-      title: "Inequalities",
-      resource: [
-        { type: "web", link: "someotherlink", title: "cool title" },
-        { type: "video", link: "linkshit", title: "cool title" },
-      ],
-      subtitle: "Lorem ipsum dolor sit amet",
-      illustration: "https://i.imgur.com/UPrs1EWl.jpg",
-    },
-    {
-      title: "Exponential",
-      resource: [
-        { type: "web", link: "someotherlink", title: "cool title" },
-        { type: "video", link: "linkshit", title: "cool title" },
-      ],
-      subtitle: "Lorem ipsum dolor sit amet et nuncat ",
-      illustration: "https://i.imgur.com/MABUbpDl.jpg",
-    },
-  ],
-}) => {
+export const Today = ({ navigation }) => {
+  const [todos, setTodos] = useState([]);
   const theme = useTheme();
+
+  const { allModules, updated } = useContext(MapsContext);
+  useEffect(() => {
+    const allNames = Object.keys(allModules);
+    const todayModules = [];
+    allNames.forEach((name) => {
+      const map = allModules[name];
+      map.modules.forEach((module) => {
+        console.log(module.name, !!module.reviewAt, module.unlocked);
+        // console.log(setsResources[module.name]["important"]);
+
+        if (module.unlocked) {
+          const todayModule = {
+            title: module.name,
+            reviewAt: module.reviewAt,
+            unlocked: module.unlocked,
+            resource: setsResources[module.name].important,
+          };
+
+          console.log("todayModule");
+          console.log(todayModule);
+          todayModules.push(todayModule);
+        }
+      });
+    });
+    console.log("SAVE MODO");
+    // console.log(saveModu[0].modules[0]);
+    setTodos(todayModules);
+  }, [allModules, updated]);
+
   return (
     <TodayView style={shadow.shadow1}>
       <Carousel
@@ -67,17 +88,8 @@ export const Today = ({
         data={todos}
         renderItem={({ item, index }) => {
           return (
-            <View style={styles.container}>
-              <Text
-                style={{
-                  fontSize: 25,
-                  marginLeft: 5,
-                  marginBottom: 5,
-                }}
-                numberOfLines={2}
-              >
-                {item.title}
-              </Text>
+            <TodayItem>
+              <TodayTitle numberOfLines={2}>{item.title}</TodayTitle>
               <View>
                 <FlatList
                   data={item.resource}
@@ -96,12 +108,16 @@ export const Today = ({
                             <Ionicons
                               name="play-circle-outline"
                               size={24}
-                              color="#f3f"
+                              color={theme.colors.logo.secondary}
                             />
                           ) : (
-                            <Ionicons name="reader" size={24} color="#33f" />
+                            <Ionicons
+                              name="reader"
+                              size={24}
+                              color={theme.colors.logo.primary}
+                            />
                           )}
-                          <Text>{item.title}</Text>
+                          <TodayBody>{item.title}</TodayBody>
                         </View>
                       </TouchableOpacity>
                     );
@@ -123,7 +139,7 @@ export const Today = ({
               >
                 <View
                   style={{
-                    backgroundColor: "#26ffed",
+                    backgroundColor: theme.colors.accent.primary,
                     flex: 1,
                     width: "50%",
                     height: 50,
@@ -136,9 +152,7 @@ export const Today = ({
                   }}
                 >
                   <TouchableHighlight>
-                    <View
-                      style={{ alignSelf: "center", backgroundColor: "red" }}
-                    >
+                    <View style={{ alignSelf: "center" }}>
                       <Ionicons name="help-circle-outline" size={32} />
                     </View>
                   </TouchableHighlight>
@@ -166,7 +180,7 @@ export const Today = ({
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>
+            </TodayItem>
           );
         }}
         // hasParallaxImages={true}
@@ -174,26 +188,3 @@ export const Today = ({
     </TodayView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: "#5f3053",
-    borderRadius: 20,
-  },
-  item: {
-    width: 300 - 60,
-    height: 300 - 60,
-  },
-  imageContainer: {
-    flex: 1,
-    marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-    backgroundColor: "white",
-    borderRadius: 8,
-  },
-  image: {
-    ...StyleSheet.absoluteFillObject,
-    resizeMode: "cover",
-  },
-});

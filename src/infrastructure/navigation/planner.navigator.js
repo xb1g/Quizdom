@@ -37,8 +37,8 @@ export const PlannerNavigator = ({ navigation }) => {
                 height:
                   Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
                 backgroundColor: theme.colors.bg.secondary, //coloradded
-                // borderBottomRightRadius: 30,
-                // borderBottomLeftRadius: 30,
+                borderBottomRightRadius: 30,
+                borderBottomLeftRadius: 30,
                 ...shadow.shadow2,
               }}
             >

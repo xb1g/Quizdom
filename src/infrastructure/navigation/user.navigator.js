@@ -15,10 +15,12 @@ import { StatsScreen } from "../../features/user/screens/stats.screen";
 import { FriendProfileScreen } from "../../features/user/screens/friend-profile.screen";
 import { SettingsScreen } from "../../features/settings/screens/settings.screen";
 // import { UserInfoContextProvider } from "../../services/user-info/user-info.context";
+import { useTheme } from "styled-components/native";
 
 const UserStack = createStackNavigator();
 
 export const UserNavigator = ({ route, navigation }) => {
+  const theme = useTheme();
   return (
     // <UserInfoContextProvider>
     <UserStack.Navigator
@@ -35,7 +37,7 @@ export const UserNavigator = ({ route, navigation }) => {
         options={{
           headerShown: false,
           cardStyle: {
-            backgroundColor: "#33363d",
+            backgroundColor: theme.colors.bg.primary,
           },
         }}
       />

@@ -88,7 +88,9 @@ export function ModulePopup({ module, navigation }) {
 
       {!currentModule.unlocked && <Text>Do your module first bruh</Text>}
       <TouchableOpacity
-        onPress={() => navigation.navigate("QuizNavigator")}
+        onPress={() =>
+          currentModule.unlocked && navigation.navigate("QuizNavigator")
+        }
         style={{
           position: "absolute",
           bottom: 10,
