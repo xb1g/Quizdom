@@ -94,13 +94,20 @@ export const AddPostScreen = ({ navigation }) => {
           fontSize: 25,
           backgroundColor: "#fff999",
           marginHorizontal: 30,
+          marginTop: 10,
         }}
         onChangeText={setTitle}
         value={title}
         placeholder="Title"
       />
       <TextInput
-        style={{ fontSize: 25, backgroundColor: "#fff999", marginTop: 30 }}
+        style={{
+          fontSize: 18,
+          backgroundColor: "#fff999",
+          marginTop: 30,
+          marginHorizontal: 10,
+          paddingBottom: 18,
+        }}
         onChangeText={setBody}
         value={body}
         placeholder="Body"
@@ -111,15 +118,18 @@ export const AddPostScreen = ({ navigation }) => {
           backgroundColor: "#ffaadd",
           marginTop: 30,
           paddingTop: 20,
+          marginBottom: 20,
           paddingBottom: 20,
           marginHorizontal: 10,
+          borderRadius: 30,
           alignItems: "center",
         }}
       >
-        <Text>Add Image</Text>
+        <Text style={{ color: "#ffffff", fontSize: 20 }}>Add Image</Text>
       </TouchableOpacity>
       <FlatList
-        style={{ backgroundColor: "#000000" }}
+        style={{ backgroundColor: "#8ad4ff" }}
+        numColumns={2}
         data={images}
         renderItem={(image) => {
           console.log("slumMunMun", image);
@@ -128,6 +138,7 @@ export const AddPostScreen = ({ navigation }) => {
               style={{
                 width: 200,
                 height: 200,
+                borderRadius: 10,
               }}
               source={{ uri: image.item }}
             />
@@ -139,10 +150,11 @@ export const AddPostScreen = ({ navigation }) => {
         onPress={() => onAddPost()}
         style={{
           backgroundColor: "#999999",
-          marginTop: 30,
+          marginTop: 10,
           paddingTop: 20,
           paddingBottom: 20,
           marginHorizontal: 10,
+          borderRadius: 30,
           alignItems: "center",
         }}
       >

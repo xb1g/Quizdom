@@ -3,6 +3,7 @@ import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ScrollView } from "react-native-gesture-handler";
 import { BackButton } from "../components/user-profile.styles";
+import { Book } from "../../../../assets/achievement0";
 // import { BackButton } from "../../account/components/account.styles";
 
 export const AchievementScreen = ({ navigation }) => {
@@ -11,7 +12,7 @@ export const AchievementScreen = ({ navigation }) => {
       id: 1,
       title: "First Achievement",
       description: "You have completed your first quiz",
-      image: "https://picsum.photos/200",
+      image: "../../../../assets/achievement0/book.png",
       progress: 1,
       goal: 1,
     },
@@ -133,7 +134,7 @@ export const AchievementScreen = ({ navigation }) => {
                     }}
                   >
                     <Image
-                      source={{ uri: item.image }}
+                      source={require("../../../../assets/achievement0/book.png")}
                       style={{
                         width: 80,
                         // padding: 20,

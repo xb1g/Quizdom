@@ -114,43 +114,56 @@ export function PostScreen({ route, navigation }) {
               : require("../../../../assets/no_user_picture.png")
           }
         />
-        <Text>{post.title}</Text>
-        <Text>{post.body}</Text>
-        <FlatList
-          style={{ backgroundColor: "#ffaadd" }}
-          data={post.images}
-          renderItem={(posted) => {
-            console.log("slumMunMun", posted);
-            return (
-              <Image
-                style={{
-                  width: 200,
-                  height: 200,
-                }}
-                source={{ uri: posted.item }}
-              />
-            );
-          }}
-          keyExtractor={(posted) => posted.id}
-        />
-
-        <FlatList
-          style={{ backgroundColor: "#000000" }}
-          data={images}
-          renderItem={(image) => {
-            console.log("slumMIU", image);
-            return (
-              <Image
-                style={{
-                  width: 200,
-                  height: 200,
-                }}
-                source={{ uri: image.item }}
-              />
-            );
-          }}
-          keyExtractor={(image) => image.id}
-        />
+        <Text style={{ marginTop: 10 }}>{post.title}</Text>
+        <Text style={{ marginTop: 10 }}>{post.body}</Text>
+        <View style={{ marginHorizontal: 20, marginBottom: 20, marginTop: 10 }}>
+          <FlatList
+            style={{ backgroundColor: "#8ad4ff" }}
+            numColumns={2}
+            data={post.images}
+            renderItem={(posted) => {
+              console.log("slumMunMun", posted);
+              return (
+                <Image
+                  style={{
+                    width: 150,
+                    height: 150,
+                    borderRadius: 10,
+                    marginHorizontal: 20,
+                    marginTop: 10,
+                    marginBottom: 10,
+                  }}
+                  source={{ uri: posted.item }}
+                />
+              );
+            }}
+            keyExtractor={(posted) => posted.id}
+          />
+        </View>
+        <View style={{ marginHorzontal: 20 }}>
+          <FlatList
+            style={{ backgroundColor: "#303030" }}
+            numColumns={2}
+            data={images}
+            renderItem={(image) => {
+              console.log("slumMIU", image);
+              return (
+                <Image
+                  style={{
+                    width: 150,
+                    height: 150,
+                    borderRadius: 10,
+                    marginHorizontal: 20,
+                    marginBottom: 10,
+                    marginTop: 10,
+                  }}
+                  source={{ uri: image.item }}
+                />
+              );
+            }}
+            keyExtractor={(image) => image.id}
+          />
+        </View>
         <View style={{ marginTop: 30 }}>
           <Row>
             <TouchableOpacity

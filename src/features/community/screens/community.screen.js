@@ -12,14 +12,17 @@ import { CommunityContext } from "../../../services/authentication/community/com
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { useTheme } from "styled-components/native";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const CommunityScreen = ({ navigation }) => {
   const { postData } = useContext(CommunityContext);
   const theme = useTheme();
+  const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
     console.log("Post data");
     console.log(postData);
+    console.log(user.uid);
   }, []);
   return (
     <>
@@ -63,6 +66,8 @@ export const CommunityScreen = ({ navigation }) => {
               paddingHorizontal: 20,
               paddinTop: 20,
               paddingBottom: 10,
+              alignItems: "center",
+              justifyContent: "center",
             }}
             underlayColor={"#fde78e"}
           >
@@ -77,6 +82,8 @@ export const CommunityScreen = ({ navigation }) => {
               paddingHorizontal: 20,
               paddinTop: 20,
               paddingBottom: 10,
+              alignItems: "center",
+              justifyContent: "center",
             }}
             underlayColor={"#fde78e"}
           >
@@ -108,19 +115,24 @@ export const CommunityScreen = ({ navigation }) => {
                     <Text style={{ color: "#ffffff" }}>
                       Title : {post.item.title}
                     </Text>
-                    <Text style={{ color: "#ffffff" }}>
+                    <Text style={{ color: "#ffffff", marginTop: 10 }}>
                       Body : {post.item.body}
                     </Text>
                     <FlatList
-                      style={{ backgroundColor: "#ffaadd" }}
+                      style={{ backgroundColor: "#303030" }}
+                      numColumns={2}
                       data={post.item.images}
                       renderItem={(image) => {
                         console.log("Slum images"), image;
                         return (
                           <Image
                             style={{
-                              width: 200,
-                              height: 200,
+                              width: 150,
+                              height: 150,
+                              marginTop: 20,
+                              marginBottom: 20,
+                              marginRight: 30,
+                              borderRadius: 10,
                             }}
                             source={{ uri: image.item }}
                           />
