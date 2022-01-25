@@ -120,7 +120,7 @@ export function PostScreen({ route, navigation }) {
           style={{ backgroundColor: "#ffaadd" }}
           data={post.images}
           renderItem={(posted) => {
-            console.log("slumMunMun", posted);
+            // console.log("slumMunMun", posted);
             return (
               <Image
                 style={{
