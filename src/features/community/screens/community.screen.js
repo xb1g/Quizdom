@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useContext, useEffect } from "react";
-import { FlatList, ScrollView, StatusBar, View } from "react-native";
+import { FlatList, Image, ScrollView, StatusBar, View } from "react-native";
 import {
   TouchableHighlight,
   TouchableOpacity,
@@ -70,7 +70,7 @@ export const CommunityScreen = ({ navigation }) => {
             }}
             underlayColor={"#fde78e"}
           >
-            <Text style={{ fontSize: 16, color: "#ffffff" }}>My Questions</Text>
+            <Text style={{ fontSize: 16, color: "#ffffff" }}>My Posts</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={{
@@ -85,7 +85,7 @@ export const CommunityScreen = ({ navigation }) => {
             underlayColor={"#fde78e"}
           >
             <Text style={{ fontSize: 16, color: "#ffffff" }}>
-              Community Questions
+              Community Posts
             </Text>
           </TouchableHighlight>
           <FlatList
@@ -101,6 +101,23 @@ export const CommunityScreen = ({ navigation }) => {
                   <Text style={{ color: "#ffffff" }}>
                     Body : {post.item.body}
                   </Text>
+                  <FlatList
+                    style={{ backgroundColor: "#ffaadd" }}
+                    data={post.item.images}
+                    renderItem={(image) => {
+                      console.log("Slum images"), image;
+                      return (
+                        <Image
+                          style={{
+                            width: 200,
+                            height: 200,
+                          }}
+                          source={{ uri: image.item }}
+                        />
+                      );
+                    }}
+                    keyExtractor={(image) => image.id}
+                  />
                   <Text style={{ color: "#ffffff" }}>
                     Author uid : {post.item.author_uid}
                   </Text>
