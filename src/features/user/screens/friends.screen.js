@@ -104,9 +104,11 @@ export const FriendsScreen = ({ navigation }) => {
   return (
     <View>
       <BackButton navigation={navigation} />
-      {/* <SafeTop /> */}
+      <SafeTop />
       <HeaderText title="Friends" />
       <View style={{ marginHorizontal: 20 }}>
+        <Spacer size={"extraLarge"} />
+        <Spacer size={"extraLarge"} />
         <Searchbar
           style={{
             backgroundColor: "#222222",
@@ -133,7 +135,6 @@ export const FriendsScreen = ({ navigation }) => {
           height: "100%",
         }}
         data={search === "" ? userInfo.friends : filteredUser}
-        keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           const alreadyFriend = isFriend(item);
           return (

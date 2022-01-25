@@ -19,8 +19,8 @@ export const CommunityScreen = ({ navigation }) => {
   }, []);
   return (
     <>
-      <ScrollView>
-        <View style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
+        <View>
           <TitleContainer
             style={{
               marginTop: 30,
@@ -89,39 +89,54 @@ export const CommunityScreen = ({ navigation }) => {
             </Text>
           </TouchableHighlight>
           <FlatList
-            style={{ backgroundColor: "#000000" }}
+            // style={{ backgroundColor: "#000000" }}
             data={postData}
             renderItem={(post) => {
               console.log("posted", post);
               return (
-                <>
-                  <Text style={{ color: "#ffffff" }}>
-                    Title : {post.item.title}
-                  </Text>
-                  <Text style={{ color: "#ffffff" }}>
-                    Body : {post.item.body}
-                  </Text>
-                  <FlatList
-                    style={{ backgroundColor: "#ffaadd" }}
-                    data={post.item.images}
-                    renderItem={(image) => {
-                      console.log("Slum images"), image;
-                      return (
-                        <Image
-                          style={{
-                            width: 200,
-                            height: 200,
-                          }}
-                          source={{ uri: image.item }}
-                        />
-                      );
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("PostScreen", {
+                      post: post.item,
+                    });
+                  }}
+                >
+                  <View
+                    style={{
+                      margin: 10,
+                      backgroundColor: "#303030",
+                      padding: 20,
+                      borderRadius: 20,
                     }}
-                    keyExtractor={(image) => image.id}
-                  />
-                  <Text style={{ color: "#ffffff" }}>
-                    Author uid : {post.item.author_uid}
-                  </Text>
-                </>
+                  >
+                    <Text style={{ color: "#ffffff" }}>
+                      Title : {post.item.title}
+                    </Text>
+                    <Text style={{ color: "#ffffff" }}>
+                      Body : {post.item.body}
+                    </Text>
+                    <FlatList
+                      style={{ backgroundColor: "#ffaadd" }}
+                      data={post.item.images}
+                      renderItem={(image) => {
+                        console.log("Slum images"), image;
+                        return (
+                          <Image
+                            style={{
+                              width: 200,
+                              height: 200,
+                            }}
+                            source={{ uri: image.item }}
+                          />
+                        );
+                      }}
+                      keyExtractor={(image) => image.id}
+                    />
+                    <Text style={{ color: "#ffffff" }}>
+                      Author uid : {post.item.author_uid}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               );
             }}
             keyExtractor={(post) => post.id}

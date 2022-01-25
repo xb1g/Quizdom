@@ -29,20 +29,26 @@ export const AddPostScreen = ({ navigation }) => {
   const [body, setBody] = useState("");
   const [images, setImages] = useState([]);
   const postRef = collection(db, "community", "Math", "posts");
-  const onAddPost = addDoc(postRef, {
-    title: title,
-    body: body,
-    images: images,
-    author_uid: user.uid,
-  });
+
+  const onAddPost = () => {
+    addDoc(postRef, {
+      title: title,
+      body: body,
+      images: images,
+      author_uid: user.uid,
+    }).then(() => navigation.navigate("CommunityMainScreen"));
+  };
+
   // const onAddPost = await addDoc(collection("community", "Math", "posts"), {
   //   title: title,
   //   body: body,
   //   images: images,
   // });
+
   useEffect(() => {
     console.log(images);
   }, [images]);
+
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -130,7 +136,7 @@ export const AddPostScreen = ({ navigation }) => {
         keyExtractor={(image) => image.id}
       />
       <TouchableOpacity
-        onPress={() => onAddPost && navigation.navigate("CommunityMainScreen")}
+        onPress={() => onAddPost()}
         style={{
           backgroundColor: "#999999",
           marginTop: 30,

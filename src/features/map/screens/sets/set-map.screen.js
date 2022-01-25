@@ -51,11 +51,9 @@ export const SetMapScreen = ({ navigation }) => {
 
   useEffect(() => {
     console.log("setmap");
-    // console.log(selectedMapModulesData);
   }, [selectedMapModulesData]);
 
   const translateY = useSharedValue(0);
-
   const handleScroll = useAnimatedScrollHandler((event) => {
     translateY.value = event.contentOffset.y;
   });

@@ -10,40 +10,35 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { AuthenticationContext } from "../../authentication/authentication.context";
-// import { setsMapTemplate } from "../data/math/sets";
+
 export const CommunityContext = createContext();
 export const CommunityContextProvider = ({ children }) => {
-  const { user } = useContext(AuthenticationContext);
   const [commuData, setCommuData] = useState([]);
   const [postData, setPostData] = useState([]);
   const [memberData, setMemberData] = useState([]);
-  const [answerData, setAnswerData] = useState([]);
+  // const [postSnapshotData, setPostSnapshotData] = useState([]);
   useEffect(() => {
     const memberRef = collection(db, "community", "Math", "members");
-    const subjectName = [];
-    const memberName = [];
     getDocs(memberRef).then((docs) => {
       const data = [];
       docs.forEach((doc) => {
         data.push(doc.data());
-        memberName.push(doc.id);
       });
       setMemberData(data);
       //console.log(memberData);
     });
-    const postRef = collection(db, "community", "Math", "posts");
-    const postName = [];
-    getDocs(postRef).then((docs) => {
-      const data = [];
-      docs.forEach((doc) => {
-        data.push(doc.data());
-        postName.push(doc.id);
+    const postq = query(collection(db, "community", "Math", "posts"));
+    onSnapshot(postq, (posts) => {
+      const datas = [];
+      posts.forEach((doc) => {
+        const post = doc.data();
+        datas.push(post);
       });
-      setPostData(data);
-      //console.log("postData");
-      //console.log(postData);
+      console.log(datas);
+      setPostData(datas);
     });
   }, []);
+
   return (
     <CommunityContext.Provider
       value={{
