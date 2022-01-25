@@ -59,15 +59,15 @@ export const PlannerScreen = ({ navigation }) => {
   const [maps, setMaps] = useState([]);
 
   useEffect(() => {
-    console.log("casdask");
-    console.log(allModules);
+    // console.log("casdask");
+    // console.log(allModules);
     const allNames = Object.keys(allModules);
-    console.log("allNames");
-    console.log(allNames);
+    // console.log("allNames");
+    // console.log(allNames);
     const saveModules = [];
     allNames.forEach((name) => {
       const module = allModules[name];
-      console.log("ASD", module);
+      // console.log("ASD", module);
       saveModules.push(module);
     });
     setMaps(saveModules);
@@ -85,6 +85,8 @@ export const PlannerScreen = ({ navigation }) => {
             style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}
             data={maps}
             renderItem={(map) => {
+              console.log("maaap");
+              console.log(map);
               map = map.item;
               const modules = map.modules.filter((module) => module.reviewAt);
               const progress = modules.length;
@@ -180,9 +182,18 @@ export const PlannerScreen = ({ navigation }) => {
                               <TouchableOpacity
                                 onPress={() => {
                                   console.log("MAPPER", map);
+                                  console.log("itemfg");
+                                  console.log(item);
                                   setSelectedMapName(map.name);
-
-                                  navigation.navigate(item.navigateName);
+                                  const module = {
+                                    name: item.name,
+                                    id: item.id,
+                                    // unlocked: item.unlocked,
+                                  };
+                                  // setSelectedModule(module);
+                                  navigation.navigate("Home", {
+                                    screen: SET_MAP_NAVIGATION_NAME,
+                                  });
                                 }}
                               >
                                 <View style={{ marginLeft: 20 }}>
@@ -231,8 +242,3 @@ export const PlannerScreen = ({ navigation }) => {
     </>
   );
 };
-// export default function Plan() {
-//   useEffect(() => {
-//     onSnapshot(collection(db, "plan"), () => {});
-//   });
-// }

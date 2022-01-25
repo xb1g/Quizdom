@@ -9,14 +9,6 @@ import { MapsContext } from "../../../services/maps/maps.context";
 import moment from "moment";
 import { Row } from "../../../components/utility/row.component";
 
-// const CircularProgress = () => {
-//   return (
-//     <View>
-//       <Text>CircularProgress</Text>
-//     </View>
-//   );
-// };
-
 export function ModulePopup({ module, navigation }) {
   const { selectedMapModulesData } = useContext(MapsContext);
   useEffect(() => {
@@ -24,7 +16,7 @@ export function ModulePopup({ module, navigation }) {
   }, [selectedMapModulesData]);
   const currentModule = selectedMapModulesData.find((x) => x.id == module.id);
   const insets = useSafeAreaInsets();
-  console.log();
+
   return (
     <View
       style={{
@@ -89,7 +81,7 @@ export function ModulePopup({ module, navigation }) {
       </Row>
       {currentModule.reviewAt && (
         <Row>
-          <Text>To quiz</Text>
+          <Text>{"To quiz "}</Text>
           <Text>{moment(currentModule.reviewAt.toDate()).fromNow()}</Text>
         </Row>
       )}

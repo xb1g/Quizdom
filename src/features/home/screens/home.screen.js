@@ -540,6 +540,7 @@ Some further information is given on the Venn diagram below. How many visited Sc
     //     tags: ["sets", "type of sets"],
     //   },
     // ];
+
     quizzes.forEach((quiz, index) => {
       console.log(typeof String(index));
       // console.log(quiz);

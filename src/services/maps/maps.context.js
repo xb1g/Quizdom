@@ -74,17 +74,17 @@ export const MapsContextProvider = ({ children }) => {
 
         const q = query(modulesRef);
         onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === "added") {
-              console.log("New city: ", change.doc.data());
-            }
-            if (change.type === "modified") {
-              console.log("Modified city: ", change.doc.data());
-            }
-            if (change.type === "removed") {
-              console.log("Removed city: ", change.doc.data());
-            }
-          });
+          // snapshot.docChanges().forEach((change) => {
+          //   if (change.type === "added") {
+          //     console.log("New city: ", change.doc.data());
+          //   }
+          //   if (change.type === "modified") {
+          //     console.log("Modified city: ", change.doc.data());
+          //   }
+          //   if (change.type === "removed") {
+          //     console.log("Removed city: ", change.doc.data());
+          //   }
+          // });
           const modulesData = [];
           snapshot.forEach((doc) => {
             const module = doc.data();
@@ -92,7 +92,11 @@ export const MapsContextProvider = ({ children }) => {
             const updatedModule = { ...template, ...module };
             modulesData.push(updatedModule);
           });
-          const mapModules = { name: mapName, modules: modulesData };
+          const mapModules = {
+            name: mapName,
+            modules: modulesData,
+            ...mapsData[mapName],
+          };
           allModulesData[mapName] = mapModules;
           // console.log("AsSD", allModulesData);
           // console.log("SETTING MODULS", allModulesData);
