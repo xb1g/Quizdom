@@ -132,7 +132,7 @@ export const AddPostScreen = ({ navigation }) => {
         numColumns={2}
         data={images}
         renderItem={(image) => {
-          console.log("slumMunMun", image);
+          // console.log("slumMunMun", image);
           return (
             <Image
               style={{

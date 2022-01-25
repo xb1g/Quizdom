@@ -14,23 +14,32 @@ import { AddPostScreen } from "../../features/community/screens/add-post.screen"
 import { Text } from "../../components/typography/text.component";
 import { PostScreen } from "../../features/community/screens/post.screen";
 import { ListButton } from "../../components/button/list-button.component";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const CommunityStack = createStackNavigator();
 
-export const CommunityNavigator = ({ navigation }) => {
+export const CommunityNavigator = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
-  // console.log(theme);
+  const tabHiddenRoutes = ["AddPostScreen", "PostScreen"];
+  React.useLayoutEffect(() => {
+    if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+      navigation.setOptions({ tabBarStyle: { display: "none" } });
+    } else {
+      navigation.setOptions({
+        tabBarStyle: {
+          backgroundColor: theme.colors.bg.secondary, // for home screen exception
+          bottom: 0,
+          borderTopColor: "transparent",
+          overflow: "hidden",
+        },
+      });
+    }
+  }, [navigation, route]);
   return (
-    <CommunityStack.Navigator
-      initialRouteName="Planner"
-      screenOptions={{
-        // headerShown: false,
-        ...TransitionPresets.ModalPresentationIOS,
-      }}
-    >
+    <CommunityStack.Navigator initialRouteName="Planner">
       <CommunityStack.Screen
-        name="CommunityMainScreen"
+        name="CommunityScreen"
         component={CommunityScreen}
         options={{
           title: "",
