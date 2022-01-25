@@ -59,23 +59,17 @@ export const PlannerScreen = ({ navigation }) => {
   const [maps, setMaps] = useState([]);
 
   useEffect(() => {
-    // console.log("casdask");
-    // console.log(allModules);
     const allNames = Object.keys(allModules);
-    // console.log("allNames");
-    // console.log(allNames);
     const saveModules = [];
     allNames.forEach((name) => {
       const module = allModules[name];
-      // console.log("ASD", module);
       saveModules.push(module);
     });
     setMaps(saveModules);
   }, [allModules, updated]);
 
   return (
-    <>
-      {/* <ScrollView style={{ flex: 1 }}> */}
+    <View style={{ flex: 1 }}>
       {maps && (
         <>
           <Spacer size="extraLarge" />
@@ -239,6 +233,6 @@ export const PlannerScreen = ({ navigation }) => {
         </>
       )}
       {/* </ScrollView> */}
-    </>
+    </View>
   );
 };

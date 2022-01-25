@@ -13,6 +13,7 @@ import { useTheme } from "styled-components/native";
 import { AddPostScreen } from "../../features/community/screens/add-post.screen";
 import { Text } from "../../components/typography/text.component";
 import { PostScreen } from "../../features/community/screens/post.screen";
+import { ListButton } from "../../components/button/list-button.component";
 
 const CommunityStack = createStackNavigator();
 
@@ -33,7 +34,7 @@ export const CommunityNavigator = ({ navigation }) => {
         component={CommunityScreen}
         options={{
           title: "",
-          // headerRight: () => <SettingButton navigation={navigation} />,
+          headerRight: () => <ListButton navigation={navigation} />,
           // headerLeft: () => <AddButton navigation={navigation} />,
           headerTransparent: true,
           headerBackground: () => (

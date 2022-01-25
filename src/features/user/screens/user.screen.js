@@ -35,20 +35,20 @@ const Container = styled.View`
   padding: ${(props) => props.theme.space[1]};
   flex-direction: row;
   align-items: center;
-  background-color: #3d3d3d;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
   border-radius: 20px;
 `;
 
 const ItemContainer = styled.View`
   margin: ${(props) => props.theme.space[3]};
   padding: ${(props) => props.theme.space[2]};
-  background-color: #3f3f3f;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
   border-radius: 20px;
 `;
 
 const Line = styled.View`
   height: 1px;
-  background-color: #d8d8d860;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
   margin-vertical: ${(props) => props.theme.space[2]};
   margin-horizontal: ${(props) => props.theme.space[3]};
 `;
@@ -76,7 +76,6 @@ export const UserScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("UserProfileScreen")}
         >
           <Container style={{ ...shadow.shadow2 }}>
-            {/* <UserIcon size={75} icon="human" backgroundColor="#2182bd" /> */}
             <Image
               style={{
                 width: 75,

@@ -10,27 +10,23 @@ import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { CommunityContext } from "../../../services/authentication/community/community.context";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { useTheme } from "styled-components/native";
 
 export const CommunityScreen = ({ navigation }) => {
   const { postData } = useContext(CommunityContext);
+  const theme = useTheme();
+
   useEffect(() => {
     console.log("Post data");
     console.log(postData);
   }, []);
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: "#3a3a3a" }}>
+      <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
         <View>
-          <TitleContainer
-            style={{
-              marginTop: 30,
-              paddingLeft: 30,
-              marginRight: 100,
-              backgroundColor: "#7ed957",
-            }}
-          >
-            <TitleText>{"Community"}</TitleText>
-          </TitleContainer>
+          <Spacer size="large" />
+
           <Row>
             <TouchableOpacity
               style={{
