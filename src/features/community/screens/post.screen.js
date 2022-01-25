@@ -46,7 +46,12 @@ export function PostScreen({ route, navigation }) {
       comment: comment,
       images: images,
       author_uid: user.uid,
-    }).then(() => navigation.navigate("CommunityMainScreen"));
+    })
+      .then(() => navigation.navigate("CommunityScreen"))
+      .catch((e) => {
+        console.log("Can't post comment");
+        console.log(e);
+      });
   };
 
   let openImagePickerAsync = async () => {
@@ -103,114 +108,120 @@ export function PostScreen({ route, navigation }) {
   // console.log(post);
 
   return (
-    <ScrollView>
-      <View>
-        <ProfileImage
-          source={
-            author.ProfileImage
-              ? {
-                  uri: author.ProfileImage,
-                }
-              : require("../../../../assets/no_user_picture.png")
-          }
-        />
-        <Text style={{ marginTop: 10 }}>{post.title}</Text>
-        <Text style={{ marginTop: 10 }}>{post.body}</Text>
-        <View style={{ marginHorizontal: 20, marginBottom: 20, marginTop: 10 }}>
-          <FlatList
-            style={{ backgroundColor: "#8ad4ff" }}
-            numColumns={2}
-            data={post.images}
-            renderItem={(posted) => {
-              console.log("slumMunMun", posted);
-              return (
-                <Image
-                  style={{
-                    width: 150,
-                    height: 150,
-                    borderRadius: 10,
-                    marginHorizontal: 20,
-                    marginTop: 10,
-                    marginBottom: 10,
-                  }}
-                  source={{ uri: posted.item }}
-                />
-              );
-            }}
-            keyExtractor={(posted) => posted.id}
+    <>
+      <ScrollView>
+        <View>
+          <ProfileImage
+            source={
+              author.ProfileImage
+                ? {
+                    uri: author.ProfileImage,
+                  }
+                : require("../../../../assets/no_user_picture.png")
+            }
           />
-        </View>
-        <View style={{ marginHorzontal: 20 }}>
-          <FlatList
-            style={{ backgroundColor: "#303030" }}
-            numColumns={2}
-            data={images}
-            renderItem={(image) => {
-              console.log("slumMIU", image);
-              return (
-                <Image
-                  style={{
-                    width: 150,
-                    height: 150,
-                    borderRadius: 10,
-                    marginHorizontal: 20,
-                    marginBottom: 10,
-                    marginTop: 10,
-                  }}
-                  source={{ uri: image.item }}
-                />
-              );
-            }}
-            keyExtractor={(image) => image.id}
-          />
-        </View>
-        <View style={{ marginTop: 30 }}>
-          <Row>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#77b800",
-                borderRadius: 30,
-                marginHorizontal: 15,
-                alignItems: "center",
-                paddingHorizontal: 20,
-                paddingTop: 10,
-                paddingBottom: 10,
+          <Text style={{ marginTop: 10 }}>{post.title}</Text>
+          <Text style={{ marginTop: 10 }}>{post.body}</Text>
+          <View
+            style={{ marginHorizontal: 20, marginBottom: 20, marginTop: 10 }}
+          >
+            <FlatList
+              style={{ backgroundColor: "#8ad4ff" }}
+              numColumns={2}
+              data={post.images}
+              renderItem={(posted) => {
+                console.log("slumMunMun", posted);
+                return (
+                  <Image
+                    style={{
+                      width: 150,
+                      height: 150,
+                      borderRadius: 10,
+                      marginHorizontal: 20,
+                      marginTop: 10,
+                      marginBottom: 10,
+                    }}
+                    source={{ uri: posted.item }}
+                  />
+                );
               }}
-              onPress={openImagePickerAsync}
-            >
-              <Text style={{ color: "#ffffff", fontSize: 16 }}>Add image</Text>
-            </TouchableOpacity>
-
-            <TextInput
-              style={{
-                fontSize: 16,
-                backgroundColor: "#fff999",
-                marginHorizontal: 10,
-                paddingHorizontal: 75,
-                borderRadius: 30,
-              }}
-              onChangeText={setComment}
-              value={comment}
-              placeholder="Your comment here"
+              keyExtractor={(posted) => posted.id}
             />
-          </Row>
+          </View>
+          <View style={{ marginHorzontal: 20 }}>
+            <FlatList
+              style={{ backgroundColor: "#303030" }}
+              numColumns={2}
+              data={images}
+              renderItem={(image) => {
+                console.log("slumMIU", image);
+                return (
+                  <Image
+                    style={{
+                      width: 150,
+                      height: 150,
+                      borderRadius: 10,
+                      marginHorizontal: 20,
+                      marginBottom: 10,
+                      marginTop: 10,
+                    }}
+                    source={{ uri: image.item }}
+                  />
+                );
+              }}
+              keyExtractor={(image) => image.id}
+            />
+          </View>
+          <View style={{ marginTop: 30 }}>
+            <Row>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#77b800",
+                  borderRadius: 30,
+                  marginHorizontal: 15,
+                  alignItems: "center",
+                  paddingHorizontal: 20,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}
+                onPress={openImagePickerAsync}
+              >
+                <Text style={{ color: "#ffffff", fontSize: 16 }}>
+                  Add image
+                </Text>
+              </TouchableOpacity>
+
+              <TextInput
+                style={{
+                  fontSize: 16,
+                  backgroundColor: "#fff999",
+                  marginHorizontal: 10,
+                  paddingHorizontal: 75,
+                  borderRadius: 30,
+                }}
+                onChangeText={setComment}
+                value={comment}
+                placeholder="Your comment here"
+              />
+            </Row>
+          </View>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#ffaadd",
+              borderRadius: 30,
+              marginTop: 30,
+              marginHorizontal: 30,
+              paddingTop: 20,
+              paddingBottom: 20,
+              alignItems: "center",
+            }}
+            onPress={console.log("Suffer")}
+          >
+            <Text style={{ color: "#ffffff", fontSize: 20 }}>Post Comment</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#ffaadd",
-            borderRadius: 30,
-            marginTop: 30,
-            marginHorizontal: 30,
-            paddingTop: 20,
-            paddingBottom: 20,
-            alignItems: "center",
-          }}
-          onPress={console.log("Suffer")}
-        >
-          <Text style={{ color: "#ffffff", fontSize: 20 }}>Post Comment</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }
 

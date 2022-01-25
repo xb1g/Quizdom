@@ -36,7 +36,7 @@ export const AddPostScreen = ({ navigation }) => {
       body: body,
       images: images,
       author_uid: user.uid,
-    }).then(() => navigation.navigate("CommunityMainScreen"));
+    }).then(() => navigation.navigate("CommunityScreen"));
   };
 
   // const onAddPost = await addDoc(collection("community", "Math", "posts"), {
@@ -88,7 +88,7 @@ export const AddPostScreen = ({ navigation }) => {
   };
   return (
     <>
-      <Spacer></Spacer>
+      <Spacer size="extraLarge" />
       <TextInput
         style={{
           fontSize: 25,
