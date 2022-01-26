@@ -69,170 +69,178 @@ export const PlannerScreen = ({ navigation }) => {
   }, [allModules, updated]);
 
   return (
-    <View style={{ flex: 1 }}>
-      {maps && (
-        <>
-          <Spacer size="extraLarge" />
-          <Spacer size="extraLarge" />
-          <Spacer size="extraLarge" />
-          <FlatList
-            style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}
-            data={maps}
-            renderItem={(map) => {
-              console.log("maaap");
-              console.log(map);
-              map = map.item;
-              const modules = map.modules.filter((module) => module.reviewAt);
-              const progress = modules.length;
-              // const modules = map.item.modules;
-              console.log("maaap");
-              console.log(map);
-              return (
-                <>
-                  {/* <Text>asd</Text> */}
-                  <MapPlanContainer>
-                    <Text
-                      variant="label"
-                      style={{ color: "white", top: -30, fontSize: 36 }}
-                    >
-                      {map.name}
-                    </Text>
-                    <Text
-                      variant="label"
-                      style={{ color: "white", top: -26, fontSize: 26 }}
-                    >
-                      {progress + "/" + map.modules.length}
-                    </Text>
-                    <ModuleContainer />
-                  </MapPlanContainer>
-                  {progress > 0 ? (
-                    <Carousel
-                      sliderWidth={width}
-                      itemWidth={width - 80}
-                      sliderHeight={200}
-                      data={modules}
-                      renderItem={({ item }) => {
-                        const progress = item.progress;
-                        console.log(item.reviewAt);
-                        return (
-                          <>
-                            <View
-                              style={{
-                                width: 50,
-                                height: 50,
-                                borderRadius: 25,
-                                alignContent: "center",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                backgroundColor:
-                                  progress === 1
-                                    ? "#64edff"
-                                    : progress === 2
-                                    ? "#5cffae"
-                                    : progress === 3
-                                    ? "#91ff76"
-                                    : "#fffb28",
-                                marginBottom: -30,
-                                marginLeft: -10,
-                                zIndex: 1,
-                              }}
-                            >
-                              <Text
-                                variant="label"
-                                style={{
-                                  fontSize: 26,
-                                }}
-                              >
-                                {progress + " "}
-                              </Text>
-                            </View>
-                            <View
-                              style={{
-                                padding: 20,
-                                backgroundColor: "#525252",
-                                borderRadius: 30,
-                                marginBottom: 10,
-                              }}
-                            >
-                              <ProgressBar
-                                progress={progress / 4}
-                                style={{
-                                  marginTop: -36,
-                                  marginLeft: 22,
-                                  height: 8,
-                                  width: "90%",
-                                  borderRadius: 20,
-                                }}
-                                color={
-                                  progress === 1
-                                    ? "#64edff"
-                                    : progress === 2
-                                    ? "#5cffae"
-                                    : progress === 3
-                                    ? "#91ff76"
-                                    : "#fffb28"
-                                }
-                              />
-                              <TouchableOpacity
-                                onPress={() => {
-                                  console.log("MAPPER", map);
-                                  console.log("itemfg");
-                                  console.log(item);
-                                  setSelectedMapName(map.name);
-                                  const module = {
-                                    name: item.name,
-                                    id: item.id,
-                                    // unlocked: item.unlocked,
-                                  };
-                                  // setSelectedModule(module);
-                                  navigation.navigate("Home", {
-                                    screen: SET_MAP_NAVIGATION_NAME,
-                                  });
-                                }}
-                              >
-                                <View style={{ marginLeft: 20 }}>
-                                  <Text
-                                    variant="label"
-                                    style={{ color: "white", fontSize: 26 }}
-                                  >
-                                    {item.name + " "}
-                                  </Text>
-                                  <Text
-                                    style={{ color: "white", fontSize: 16 }}
-                                  >
-                                    {moment(item.reviewAt.toDate()).fromNow()}
-                                  </Text>
-                                </View>
-                              </TouchableOpacity>
-                            </View>
-                          </>
-                        );
-                      }}
-                    />
-                  ) : (
-                    <TouchableOpacity
-                      onPress={() => {
-                        setSelectedMapName(map.name);
-                        navigation.navigate("Home", {
-                          screen: SET_MAP_NAVIGATION_NAME,
-                        });
-                      }}
-                    >
+    <>
+      <View style={{ flex: 1 }}>
+        {/* <Spacer style={{ width: 101, height: 100 }} /> */}
+        {maps && (
+          <>
+            <FlatList
+              style={{
+                flex: 1,
+                paddingTop: 90,
+                backgroundColor: theme.colors.bg.primary,
+              }}
+              data={maps}
+              renderItem={(map) => {
+                console.log("maaap");
+                console.log(map);
+                map = map.item;
+                const modules = map.modules.filter((module) => module.reviewAt);
+                const progress = modules.length;
+                // const modules = map.item.modules;
+                console.log("maaap");
+                console.log(map);
+                return (
+                  <>
+                    {/* <Text>asd</Text> */}
+                    <MapPlanContainer>
                       <Text
-                        style={{ color: "white", fontSize: 16, marginLeft: 40 }}
+                        variant="label"
+                        style={{ color: "white", top: -30, fontSize: 36 }}
                       >
-                        Start learning
+                        {map.name}
                       </Text>
-                    </TouchableOpacity>
-                  )}
-                </>
-              );
-            }}
-            keyExtractor={(item) => item.name}
-          />
-        </>
-      )}
-      {/* </ScrollView> */}
-    </View>
+                      <Text
+                        variant="label"
+                        style={{ color: "white", top: -26, fontSize: 26 }}
+                      >
+                        {progress + "/" + map.modules.length}
+                      </Text>
+                      <ModuleContainer />
+                    </MapPlanContainer>
+                    {progress > 0 ? (
+                      <Carousel
+                        sliderWidth={width}
+                        itemWidth={width - 80}
+                        sliderHeight={200}
+                        data={modules}
+                        renderItem={({ item }) => {
+                          const progress = item.progress;
+                          console.log(item.reviewAt);
+                          return (
+                            <>
+                              <View
+                                style={{
+                                  width: 50,
+                                  height: 50,
+                                  borderRadius: 25,
+                                  alignContent: "center",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  backgroundColor:
+                                    progress === 1
+                                      ? "#64edff"
+                                      : progress === 2
+                                      ? "#5cffae"
+                                      : progress === 3
+                                      ? "#91ff76"
+                                      : "#fffb28",
+                                  marginBottom: -30,
+                                  marginLeft: -10,
+                                  zIndex: 1,
+                                }}
+                              >
+                                <Text
+                                  variant="label"
+                                  style={{
+                                    fontSize: 26,
+                                  }}
+                                >
+                                  {progress + " "}
+                                </Text>
+                              </View>
+                              <View
+                                style={{
+                                  padding: 20,
+                                  backgroundColor: "#525252",
+                                  borderRadius: 30,
+                                  marginBottom: 10,
+                                }}
+                              >
+                                <ProgressBar
+                                  progress={progress / 4}
+                                  style={{
+                                    marginTop: -36,
+                                    marginLeft: 22,
+                                    height: 8,
+                                    width: "90%",
+                                    borderRadius: 20,
+                                  }}
+                                  color={
+                                    progress === 1
+                                      ? "#64edff"
+                                      : progress === 2
+                                      ? "#5cffae"
+                                      : progress === 3
+                                      ? "#91ff76"
+                                      : "#fffb28"
+                                  }
+                                />
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    console.log("MAPPER", map);
+                                    console.log("itemfg");
+                                    console.log(item);
+                                    setSelectedMapName(map.name);
+                                    const module = {
+                                      name: item.name,
+                                      id: item.id,
+                                      // unlocked: item.unlocked,
+                                    };
+                                    // setSelectedModule(module);
+                                    navigation.navigate("Home", {
+                                      screen: SET_MAP_NAVIGATION_NAME,
+                                    });
+                                  }}
+                                >
+                                  <View style={{ marginLeft: 20 }}>
+                                    <Text
+                                      variant="label"
+                                      style={{ color: "white", fontSize: 26 }}
+                                    >
+                                      {item.name + " "}
+                                    </Text>
+                                    <Text
+                                      style={{ color: "white", fontSize: 16 }}
+                                    >
+                                      {moment(item.reviewAt.toDate()).fromNow()}
+                                    </Text>
+                                  </View>
+                                </TouchableOpacity>
+                              </View>
+                            </>
+                          );
+                        }}
+                      />
+                    ) : (
+                      <TouchableOpacity
+                        onPress={() => {
+                          setSelectedMapName(map.name);
+                          navigation.navigate("Home", {
+                            screen: SET_MAP_NAVIGATION_NAME,
+                          });
+                        }}
+                      >
+                        <Text
+                          style={{
+                            color: "white",
+                            fontSize: 16,
+                            marginLeft: 40,
+                          }}
+                        >
+                          Start learning
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </>
+                );
+              }}
+              keyExtractor={(item) => item.name}
+            />
+          </>
+        )}
+        {/* </ScrollView> */}
+      </View>
+    </>
   );
 };

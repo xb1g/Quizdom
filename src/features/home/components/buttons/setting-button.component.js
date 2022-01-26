@@ -7,7 +7,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
-export const SettingButton = ({ navigation }) => {
+export const UserButton = ({ navigation }) => {
   const inset = useSafeAreaInsets();
   return (
     <TouchableOpacity

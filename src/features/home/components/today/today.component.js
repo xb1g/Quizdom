@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Dimensions, Pressable } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  Pressable,
+  Linking,
+} from "react-native";
 
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 import { View } from "react-native";
@@ -8,6 +14,7 @@ import styled from "styled-components";
 import { shadow } from "../../../../components/shadow/shadow.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "../../../../components/typography/text.component";
+import { Row } from "../../../../components/utility/row.component";
 import { TodoTopic } from "./todo-topic.component";
 import {
   FlatList,
@@ -17,6 +24,9 @@ import {
 import { useTheme } from "styled-components/native";
 import { MapsContext } from "../../../../services/maps/maps.context";
 import { setsResources } from "../../../../services/data/math/sets";
+import AwesomeButton from "react-native-really-awesome-button";
+import { LinearGradient } from "expo-linear-gradient";
+import { SET_MAP_NAVIGATION_NAME } from "../../../../infrastructure/constants/navigation";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -46,26 +56,31 @@ const TodayBody = styled(Text)`
 `;
 
 const { width: screenWidth } = Dimensions.get("window");
+
 export const Today = ({ navigation }) => {
   const [todos, setTodos] = useState([]);
   const theme = useTheme();
 
-  const { allModules, updated } = useContext(MapsContext);
+  const { allModules, updated, setSelectedModule, setSelectedMapName } =
+    useContext(MapsContext);
   useEffect(() => {
     const allNames = Object.keys(allModules);
+    console.log(allNames);
+    console.log("allNames");
     const todayModules = [];
     allNames.forEach((name) => {
       const map = allModules[name];
       map.modules.forEach((module) => {
         console.log(module.name, !!module.reviewAt, module.unlocked);
         // console.log(setsResources[module.name]["important"]);
-
         if (module.unlocked) {
           const todayModule = {
             title: module.name,
+            id: module.id,
             reviewAt: module.reviewAt,
             unlocked: module.unlocked,
             resource: setsResources[module.name].important,
+            mapName: name,
           };
 
           console.log("todayModule");
@@ -95,7 +110,11 @@ export const Today = ({ navigation }) => {
                   data={item.resource}
                   renderItem={({ item }) => {
                     return (
-                      <TouchableOpacity onPress={() => {}}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          Linking.openURL(item.link);
+                        }}
+                      >
                         <View
                           style={{
                             flexDirection: "row",
@@ -128,57 +147,58 @@ export const Today = ({ navigation }) => {
               <View
                 style={{
                   flex: 1,
-                  width: "100%",
-                  flexDirection: "row",
-                  // backgroundColor: "#fff",
+                  alignContent: "flex-end",
                   justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                  alignSelf: "flex-end",
-                  alignContent: "center",
                 }}
               >
-                <View
-                  style={{
-                    backgroundColor: theme.colors.accent.primary,
-                    flex: 1,
-                    width: "50%",
-                    height: 50,
-                    alignSelf: "flex-end",
-                    flexGrow: 1,
-                    flexShrink: 0,
-                    justifyContent: "center",
-                    borderRadius: 15,
-                    marginRight: 5,
-                  }}
-                >
-                  <TouchableHighlight>
-                    <View style={{ alignSelf: "center" }}>
-                      <Ionicons name="help-circle-outline" size={32} />
-                    </View>
-                  </TouchableHighlight>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    backgroundColor: "#0dff21",
-                    width: "50%",
-                    height: 50,
-                    alignSelf: "flex-end",
-                    justifyContent: "center",
-                    flexGrow: 1,
-                    flexShrink: 0,
-                    borderRadius: 10,
-                    marginLeft: 5,
-                  }}
-                >
-                  <TouchableOpacity
-                    style={{
-                      alignSelf: "center",
-                    }}
-                  >
-                    <Ionicons name="chatbubbles-outline" size={32} />
-                  </TouchableOpacity>
-                </View>
+                <Row>
+                  <View style={{ flex: 0.5 }}>
+                    <AwesomeButton
+                      borderRadius={20}
+                      stretch
+                      backgroundColor={theme.colors.logo.secondary}
+                      backgroundDarker={theme.colors.logo.primary}
+                      onPress={() => {
+                        console.log(item.title);
+                        setSelectedMapName(item.mapName);
+                        setSelectedModule({
+                          name: item.title,
+                          id: item.id,
+                          unlocked: item.unlocked,
+                        });
+                        navigation.navigate("QuizNavigator");
+                      }}
+                    >
+                      <Text
+                        variant="label"
+                        style={{ zIndex: 10, fontSize: 30 }}
+                      >
+                        {"Q "}
+                      </Text>
+                    </AwesomeButton>
+                  </View>
+                  <View style={{ flex: 0.05 }} />
+                  <View style={{ flex: 0.5 }}>
+                    <AwesomeButton
+                      backgroundColor={theme.colors.accent.secondary}
+                      backgroundDarker={theme.colors.accent.tertiary}
+                      borderRadius={20}
+                      stretch
+                      onPress={() => {
+                        console.log(item.title);
+                        setSelectedMapName(item.mapName);
+                        setSelectedModule({
+                          name: item.title,
+                          id: item.id,
+                          unlocked: item.unlocked,
+                        });
+                        navigation.navigate("Community");
+                      }}
+                    >
+                      <Ionicons name="chatbubbles" size={30} />
+                    </AwesomeButton>
+                  </View>
+                </Row>
               </View>
             </TodayItem>
           );

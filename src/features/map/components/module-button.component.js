@@ -11,13 +11,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { MapsContext } from "../../../services/maps/maps.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
-// const CircularProgressWithChild = () => {
-//   return (
-//     <View>
-//       <Text>CircularProgressWithChild</Text>
-//     </View>
-//   );
-// };
 
 export function ModuleButton({
   color,

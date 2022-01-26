@@ -12,12 +12,28 @@ import { shadow } from "../../components/shadow/shadow.styles";
 import { Text } from "../../components/typography/text.component";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "styled-components";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const PlannerStack = createStackNavigator();
 
-export const PlannerNavigator = ({ navigation }) => {
+export const PlannerNavigator = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
+  const tabHiddenRoutes = ["AddPlanScreen"];
+  React.useLayoutEffect(() => {
+    if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+      navigation.setOptions({ tabBarStyle: { display: "none" } });
+    } else {
+      navigation.setOptions({
+        tabBarStyle: {
+          backgroundColor: theme.colors.bg.secondary, // for home screen exception
+          bottom: 0,
+          borderTopColor: "transparent",
+          overflow: "hidden",
+        },
+      });
+    }
+  }, [navigation, route]);
   return (
     <PlannerStack.Navigator
       initialRouteName="PlannerScreen"
@@ -57,6 +73,13 @@ export const PlannerNavigator = ({ navigation }) => {
               </Text>
             </View>
           ),
+          headerStyle: {
+            backgroundColor: theme.colors.bg.primary,
+            borderBottomRightRadius: 30,
+            borderBottomLeftRadius: 30,
+            height: 60 + insets.top,
+            ...shadow.shadow2,
+          },
         }}
       />
       <PlannerStack.Screen
@@ -64,6 +87,7 @@ export const PlannerNavigator = ({ navigation }) => {
         component={AddPlanScreen}
         options={{
           gestureResponseDistance: 400,
+          headerTransparent: true,
         }}
       />
     </PlannerStack.Navigator>

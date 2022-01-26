@@ -43,7 +43,7 @@ export const CommunityNavigator = ({ navigation, route }) => {
         component={CommunityScreen}
         options={{
           title: "",
-          headerRight: () => <ListButton navigation={navigation} />,
+          // headerRight: () => <ListButton navigation={navigation} />,
           // headerLeft: () => <AddButton navigation={navigation} />,
           headerTransparent: true,
           headerBackground: () => (
@@ -80,32 +80,6 @@ export const CommunityNavigator = ({ navigation, route }) => {
         options={{
           title: "",
           headerTransparent: true,
-          // headerBackground: () => (
-          //   <View
-          //     style={{
-          //       height:
-          //         Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
-          //       backgroundColor: theme.colors.bg.secondary, //coloraddexport default
-          //       borderBottomRightRadius: 30,
-          //       borderBottomLeftRadius: 30,
-          //       ...shadow.shadow2,
-          //     }}
-          //   >
-          //     <Text
-          //       style={{
-          //         alignSelf: "center",
-          //         alignItems: "center",
-          //         justifyContent: "center",
-          //         fontFamily: "Airstrike",
-          //         marginTop: insets.top - 5,
-          //         fontSize: 47,
-          //         color: "#fff",
-          //       }}
-          //     >
-          //       {"Kingdom" + " "}
-          //     </Text>
-          //   </View>
-          // ),
         }}
       />
       <CommunityStack.Screen

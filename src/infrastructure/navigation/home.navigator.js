@@ -9,7 +9,7 @@ import { SetMapScreen } from "../../features/map/screens/sets/set-map.screen";
 import { Ionicons } from "@expo/vector-icons";
 
 import { AddButton } from "../../features/home/components/buttons/add-button.component";
-import { SettingButton } from "../../features/home/components/buttons/setting-button.component";
+import { UserButton } from "../../features/home/components/buttons/setting-button.component";
 //import { ProfileButton } from "../../features/home/components/buttons/profile-button.component";
 import { shadow } from "../../components/shadow/shadow.styles";
 import { MapNavigator } from "./map.navigation";
@@ -68,7 +68,7 @@ export const HomeNavigator = ({ navigation, route }) => {
           component={HomeScreen}
           options={{
             title: "",
-            headerRight: () => <SettingButton navigation={navigation} />,
+            headerRight: () => <UserButton navigation={navigation} />,
             //headerLeft: () => <AddButton navigation={navigation} />,
             headerTransparent: true,
             headerBackground: () => (
