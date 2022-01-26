@@ -139,7 +139,7 @@ export const RegisterScreen = ({ navigation }) => {
                   type="primary"
                   size="large"
                   onPress={() => {
-                    console.log(email, password);
+                    // console.log(email, password);
                     // onRegister(email, password, repeatedPassword);
                     setPage(true);
                   }}
@@ -203,9 +203,9 @@ export const RegisterScreen = ({ navigation }) => {
                 type="primary"
                 size="large"
                 onPress={() => {
-                  console.log(email, password, repeatedPassword, userInfo);
+                  // console.log(email, password, repeatedPassword, userInfo);
                   onRegister(email, password, repeatedPassword, userInfo);
-                  console.log(error);
+                  // console.log(error);
                 }}
               >
                 register

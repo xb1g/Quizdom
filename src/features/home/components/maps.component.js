@@ -75,12 +75,12 @@ export const Maps = ({ maps, navigation }) => {
                   flex: 1,
                 }}
                 onPress={() => {
-                  console.log("MAPPER", item);
+                  // console.log("MAPPER", item);
                   if (item.isStarted) {
                     setSelectedMapName(item.name);
                     navigation.navigate(item.navigateName);
                   } else {
-                    console.log("START GAME FIRST");
+                    // console.log("START GAME FIRST");
                     navigation.navigate(item.startName);
                   }
                 }}

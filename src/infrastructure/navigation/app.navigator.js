@@ -25,9 +25,9 @@ import { CommunityContextProvider } from "../../services/authentication/communit
 const createScreenOptions = ({ route }) => {
   const theme = useTheme(); //theme
   // useEffect(() => {
-  //   console.log(theme);
+  //   // console.log(theme);
   // }, []);
-  //console.log(theme)
+  //// console.log(theme)
   return {
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;

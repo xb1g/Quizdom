@@ -14,8 +14,8 @@ export const ModulesContextProvider = ({ children }) => {
   useEffect(() => {
     const docRef = doc(db, "Questions", user.uid);
     onSnapshot(docRef, (doc) => {
-      console.log("MODO");
-      // console.log(doc.data());
+      // console.log("MODO");
+      // // console.log(doc.data());
     });
   }, []);
 

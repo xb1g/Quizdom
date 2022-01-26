@@ -47,7 +47,7 @@ const ModuleContainer = styled(View)`
 `;
 
 const goToModule = (module, navigation) => {
-  console.log("GOTO", module);
+  // console.log("GOTO", module);
   // navigation.navigate("SetMapScreen");
 };
 
@@ -82,14 +82,14 @@ export const PlannerScreen = ({ navigation }) => {
               }}
               data={maps}
               renderItem={(map) => {
-                console.log("maaap");
-                console.log(map);
+                // console.log("maaap");
+                // console.log(map);
                 map = map.item;
                 const modules = map.modules.filter((module) => module.reviewAt);
                 const progress = modules.length;
                 // const modules = map.item.modules;
-                console.log("maaap");
-                console.log(map);
+                // console.log("maaap");
+                // console.log(map);
                 return (
                   <>
                     {/* <Text>asd</Text> */}
@@ -116,7 +116,7 @@ export const PlannerScreen = ({ navigation }) => {
                         data={modules}
                         renderItem={({ item }) => {
                           const progress = item.progress;
-                          console.log(item.reviewAt);
+                          // console.log(item.reviewAt);
                           return (
                             <>
                               <View
@@ -178,9 +178,9 @@ export const PlannerScreen = ({ navigation }) => {
                                 />
                                 <TouchableOpacity
                                   onPress={() => {
-                                    console.log("MAPPER", map);
-                                    console.log("itemfg");
-                                    console.log(item);
+                                    // console.log("MAPPER", map);
+                                    // console.log("itemfg");
+                                    // console.log(item);
                                     setSelectedMapName(map.name);
                                     const module = {
                                       name: item.name,

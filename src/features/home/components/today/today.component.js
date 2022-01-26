@@ -65,14 +65,14 @@ export const Today = ({ navigation }) => {
     useContext(MapsContext);
   useEffect(() => {
     const allNames = Object.keys(allModules);
-    console.log(allNames);
-    console.log("allNames");
+    // console.log(allNames);
+    // console.log("allNames");
     const todayModules = [];
     allNames.forEach((name) => {
       const map = allModules[name];
       map.modules.forEach((module) => {
-        console.log(module.name, !!module.reviewAt, module.unlocked);
-        // console.log(setsResources[module.name]["important"]);
+        // console.log(module.name, !!module.reviewAt, module.unlocked);
+        // // console.log(setsResources[module.name]["important"]);
         if (module.unlocked) {
           const todayModule = {
             title: module.name,
@@ -83,14 +83,14 @@ export const Today = ({ navigation }) => {
             mapName: name,
           };
 
-          console.log("todayModule");
-          console.log(todayModule);
+          // console.log("todayModule");
+          // console.log(todayModule);
           todayModules.push(todayModule);
         }
       });
     });
-    console.log("SAVE MODO");
-    // console.log(saveModu[0].modules[0]);
+    // console.log("SAVE MODO");
+    // // console.log(saveModu[0].modules[0]);
     setTodos(todayModules);
   }, [allModules, updated]);
 
@@ -159,7 +159,7 @@ export const Today = ({ navigation }) => {
                       backgroundColor={theme.colors.logo.secondary}
                       backgroundDarker={theme.colors.logo.primary}
                       onPress={() => {
-                        console.log(item.title);
+                        // console.log(item.title);
                         setSelectedMapName(item.mapName);
                         setSelectedModule({
                           name: item.title,
@@ -185,7 +185,7 @@ export const Today = ({ navigation }) => {
                       borderRadius={20}
                       stretch
                       onPress={() => {
-                        console.log(item.title);
+                        // console.log(item.title);
                         setSelectedMapName(item.mapName);
                         setSelectedModule({
                           name: item.title,

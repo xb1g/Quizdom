@@ -24,7 +24,7 @@ import { Text } from "../../../components/typography/text.component";
 
 export const MapScreen = ({ route, navigation }) => {
   const { map } = route.params;
-  console.log(map);
+  // console.log(map);
   return (
     <View
       style={{
@@ -34,7 +34,7 @@ export const MapScreen = ({ route, navigation }) => {
       <TouchableOpacity
         // activeOpacity={0.5}
         onPress={() => {
-          console.log("object");
+          // console.log("object");
           navigation.goBack();
         }}
         style={{
@@ -74,7 +74,7 @@ export const MapScreen = ({ route, navigation }) => {
         >
           <TouchableOpacity
             onPress={() => {
-              console.log("COOL");
+              // console.log("COOL");
               navigation.navigate("ModuleInfoScreen", { module });
             }}
           >
@@ -91,7 +91,7 @@ export const MapScreen = ({ route, navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              console.log("COOL");
+              // console.log("COOL");
               navigation.navigate("ModuleInfoScreen", { module });
             }}
           >
@@ -108,7 +108,7 @@ export const MapScreen = ({ route, navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              console.log("COOL");
+              // console.log("COOL");
               navigation.navigate("ModuleInfoScreen", { module });
             }}
           >

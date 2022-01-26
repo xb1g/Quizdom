@@ -84,7 +84,7 @@ const FocusedImage = ({ uri, width, height }) => {
   const [aspect, setAspect] = useState(1);
   Image.getSize(uri, (width, height) => {
     setAspect(width / height);
-    // console.log(width / height);
+    // // console.log(width / height);
   });
 
   return (
@@ -135,22 +135,22 @@ export function QuizScreen({ route, navigation }) {
 
     const quizzes = quiz;
     if (quizzes) {
-      console.log("got qez");
+      // console.log("got qez");
 
-      // console.log(quizzes);
+      // // console.log(quizzes);
       setLoaded(true);
     } else {
-      console.log("no quiz");
+      // console.log("no quiz");
     }
     // setQuiz(quizzes);
   }, []);
 
   // useEffect(() => {
-  //   console.log(focusImage);
+  //   // console.log(focusImage);
   // }, [focusImage]);
 
   useEffect(() => {
-    console.log("page is", page);
+    // console.log("page is", page);
     scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
     if (page == 5) {
       // setFinished(true);
@@ -162,8 +162,8 @@ export function QuizScreen({ route, navigation }) {
         usedHint: hintArray,
         finishedAt: new Date(),
       });
-      console.log("finished");
-      // console.log(score, correctArray, hintArray);
+      // console.log("finished");
+      // // console.log(score, correctArray, hintArray);
       navigation.navigate("QuizFinish");
     }
   }, [page]);
@@ -189,8 +189,8 @@ export function QuizScreen({ route, navigation }) {
     setChecked(false);
     setCorrect(null);
     setSelectedChoice(null);
-    // console.log("PAGE");
-    // console.log(page);
+    // // console.log("PAGE");
+    // // console.log(page);
   };
 
   const onExit = () => {
@@ -374,7 +374,7 @@ export function QuizScreen({ route, navigation }) {
               <>
                 <TouchableOpacity
                   onPress={() => {
-                    // console.log("WDAD");
+                    // // console.log("WDAD");
                     setFocusImage(quiz[page].image);
                   }}
                 >

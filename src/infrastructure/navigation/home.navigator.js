@@ -31,7 +31,7 @@ const HomeStack = createStackNavigator();
 export const HomeNavigator = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
   useEffect(() => {
-    console.log(getFocusedRouteNameFromRoute(route));
+    // console.log(getFocusedRouteNameFromRoute(route));
   }, [route]);
   const tabHiddenRoutes = [
     SET_MAP_NAVIGATION_NAME,

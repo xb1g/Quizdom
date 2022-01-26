@@ -12,7 +12,7 @@ import { Row } from "../../../components/utility/row.component";
 export function ModulePopup({ module, navigation }) {
   const { selectedMapModulesData } = useContext(MapsContext);
   useEffect(() => {
-    console.log("modulesss");
+    // console.log("modulesss");
   }, [selectedMapModulesData]);
   const currentModule = selectedMapModulesData.find((x) => x.id == module.id);
   const insets = useSafeAreaInsets();

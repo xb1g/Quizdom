@@ -49,15 +49,15 @@ export const FriendsScreen = ({ navigation }) => {
 
   const getAllUser = async () => {
     const data = await getDocs(collection(db, "users"));
-    console.log(data);
+    // console.log(data);
     const userArray = [];
     data.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       const user = doc.data();
       user.uid = doc.id;
       userArray.push(user);
     });
-    console.log(userArray);
+    // console.log(userArray);
     setAllUser(userArray);
   };
 
@@ -66,8 +66,8 @@ export const FriendsScreen = ({ navigation }) => {
   }, []);
 
   const searchUsers = (text) => {
-    console.log("searching");
-    // console.log(allUser);
+    // console.log("searching");
+    // // console.log(allUser);
     const users = allUser.filter((user) => {
       const username = user.username;
       return (
@@ -77,7 +77,7 @@ export const FriendsScreen = ({ navigation }) => {
       );
     });
     setFilteredUser(users);
-    // console.log(allUser);
+    // // console.log(allUser);
   };
 
   const handleSearch = (text) => {
@@ -89,8 +89,8 @@ export const FriendsScreen = ({ navigation }) => {
 
   const isFriend = (user) => {
     const friends = userInfo.friends;
-    console.log("friends");
-    console.log(friends);
+    // console.log("friends");
+    // console.log(friends);
     if (friends) {
       friends.forEach((friend) => {
         if (friend.uid === user.uid) {

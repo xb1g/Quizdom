@@ -45,7 +45,7 @@ export const UserProfileScreen = ({ navigation }) => {
       allowsEditing: true,
       aspect: [1, 1],
     });
-    // console.log(pickerResult);
+    // // console.log(pickerResult);
     if (pickerResult.cancelled === true) {
       return;
     }
@@ -53,7 +53,7 @@ export const UserProfileScreen = ({ navigation }) => {
     try {
       // setProfileImage({ localUri: pickerResult.uri });
       const imageUrl = await uploadImageAsync(pickerResult.uri);
-      console.log(imageUrl);
+      // console.log(imageUrl);
       // setProfileImage(imageUrl);
       // save uri to firestore
       const docRef = doc(db, "users", user.uid);
@@ -62,12 +62,12 @@ export const UserProfileScreen = ({ navigation }) => {
         profileImage: imageUrl,
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       alert("Upload failed, sorry :(");
     }
   };
-  // console.log(userInfo);
-  // console.log(user.uid);
+  // // console.log(userInfo);
+  // // console.log(user.uid);
   return (
     <>
       <BackButton navigation={navigation} />
@@ -235,7 +235,7 @@ async function uploadImageAsync(uri) {
       resolve(xhr.response);
     };
     xhr.onerror = function (e) {
-      console.log(e);
+      // console.log(e);
       reject(new TypeError("Network request failed"));
     };
     xhr.responseType = "blob";
@@ -243,7 +243,7 @@ async function uploadImageAsync(uri) {
     xhr.send(null);
   });
   const fileRef = ref(storage, uuidv4());
-  // console.log(fileRef);
+  // // console.log(fileRef);
   const result = await uploadBytes(fileRef, blob);
 
   // We're done with the blob, close and release it

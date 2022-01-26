@@ -18,10 +18,10 @@ export const registerRequest = (email, password) =>
 
 export const getUserInfo = (uid) => {
   return onSnapshot(doc(db, "users", uid), (u) => {
-    console.log(u.data());
+    // console.log(u.data());
     // u.data() && setUserInfo(u.data());
     const userInfo = u.data();
-    console.log(userInfo);
+    // console.log(userInfo);
   });
 };
 

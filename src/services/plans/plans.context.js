@@ -24,7 +24,7 @@ export const PlansContextProvider = ({ children }) => {
         setPlans(p);
       } else {
         setPlans([]);
-        console.log("nothing dude");
+        // console.log("nothing dude");
       }
     });
   };

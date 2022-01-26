@@ -49,8 +49,8 @@ export function PostScreen({ route, navigation }) {
     })
       .then(() => navigation.navigate("CommunityScreen"))
       .catch((e) => {
-        console.log("Can't post comment");
-        console.log(e);
+        // console.log("Can't post comment");
+        // console.log(e);
       });
   };
 
@@ -67,7 +67,7 @@ export function PostScreen({ route, navigation }) {
       allowsEditing: true,
       aspect: [1, 1],
     });
-    // console.log(pickerResult);
+    // // console.log(pickerResult);
     if (pickerResult.cancelled === true) {
       return;
     }
@@ -75,7 +75,7 @@ export function PostScreen({ route, navigation }) {
     try {
       // setProfileImage({ localUri: pickerResult.uri });
       const imageUrl = await uploadImageAsync(pickerResult.uri);
-      console.log(imageUrl);
+      // console.log(imageUrl);
       const copyImages = images;
       copyImages.push(imageUrl);
       setImages(copyImages);
@@ -87,7 +87,7 @@ export function PostScreen({ route, navigation }) {
       //   postImage: imageUrl,
       // });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       alert("Upload failed, sorry :(");
     }
   };
@@ -97,15 +97,15 @@ export function PostScreen({ route, navigation }) {
     getDoc(authorRef)
       .then((doc) => {
         setAuthor(doc.data());
-        console.log(doc.data());
+        // console.log(doc.data());
       })
       .catch((err) => {
-        console.log("Error weird");
+        // console.log("Error weird");
       });
   }, []);
 
-  // console.log("paost");
-  // console.log(post);
+  // // console.log("paost");
+  // // console.log(post);
 
   return (
     <>
@@ -130,7 +130,7 @@ export function PostScreen({ route, navigation }) {
               numColumns={2}
               data={post.images}
               renderItem={(posted) => {
-                console.log("slumMunMun", posted);
+                // console.log("slumMunMun", posted);
                 return (
                   <Image
                     style={{
@@ -154,7 +154,7 @@ export function PostScreen({ route, navigation }) {
               numColumns={2}
               data={images}
               renderItem={(image) => {
-                console.log("slumMIU", image);
+                // console.log("slumMIU", image);
                 return (
                   <Image
                     style={{
@@ -234,7 +234,7 @@ async function uploadImageAsync(uri) {
       resolve(xhr.response);
     };
     xhr.onerror = function (e) {
-      console.log(e);
+      // console.log(e);
       reject(new TypeError("Network request failed"));
     };
     xhr.responseType = "blob";
@@ -242,7 +242,7 @@ async function uploadImageAsync(uri) {
     xhr.send(null);
   });
   const fileRef = ref(storage, uuidv4());
-  // console.log(fileRef);
+  // // console.log(fileRef);
   const result = await uploadBytes(fileRef, blob);
 
   // We're done with the blob, close and release it

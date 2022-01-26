@@ -15,8 +15,8 @@ export const Choice = ({
   setSelectedChoice,
   correctAnswer,
 }) => {
-  // console.log("correct");
-  // console.log(correct);
+  // // console.log("correct");
+  // // console.log(correct);
   const color = correct ? "#6de090" : "#ff5151";
   const borderColor = correct ? "#56ad70" : "#d184ae";
 
@@ -48,15 +48,15 @@ export const Choice = ({
 
 export const ScoreIndicator = ({ correctArray }) => {
   for (let i = 0; i < 5; i++) {
-    // console.log(i, "is null?", correctArray[i] === null);
-    // console.log("is undefined?", correctArray[i] === undefined);
-    // console.log("is false?", correctArray[i] === false);
-    // console.log("is true?", correctArray[i] === true);
+    // // console.log(i, "is null?", correctArray[i] === null);
+    // // console.log("is undefined?", correctArray[i] === undefined);
+    // // console.log("is false?", correctArray[i] === false);
+    // // console.log("is true?", correctArray[i] === true);
     if (correctArray[i] === null || correctArray[i] === undefined) {
       correctArray[i] = false;
     }
   }
-  // console.log(correctArray);
+  // // console.log(correctArray);
   return (
     <View style={{ alignSelf: "center", flex: 1, backgroundColor: "red" }}>
       <Row>

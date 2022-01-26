@@ -34,8 +34,8 @@ export const QuizContextProvider = ({ children }) => {
   const quizInterval = [1, 7, 16, 35];
   const getQuiz = () => {
     if (selectedModule) {
-      console.log("gettin quiz");
-      console.log(selectedMapName);
+      // console.log("gettin quiz");
+      // console.log(selectedMapName);
       const ar = [];
       const ids = Array.from({ length: 5 }, () => {
         let ran = Math.round(Math.random() * 9);
@@ -46,8 +46,8 @@ export const QuizContextProvider = ({ children }) => {
         return String(ran);
       });
       setQuizIds(ids);
-      console.log("IDS");
-      console.log(ids);
+      // console.log("IDS");
+      // console.log(ids);
       const quizColRef = collection(
         db,
         `quiz_${selectedMapName}`,
@@ -58,11 +58,11 @@ export const QuizContextProvider = ({ children }) => {
       const quizzes = [];
       getDocs(q).then((docs) => {
         docs.forEach((doc) => {
-          // console.log(doc.data());
+          // // console.log(doc.data());
           quizzes.push(doc.data());
         });
 
-        console.log("qzz");
+        // console.log("qzz");
         setQuiz(quizzes);
         setLoaded(true);
         // return quizzes;
@@ -78,8 +78,8 @@ export const QuizContextProvider = ({ children }) => {
   useEffect(() => {
     // check if passed
     getQuiz();
-    console.log("PROCESSING");
-    console.log(metaData);
+    // console.log("PROCESSING");
+    // console.log(metaData);
     if (metaData) {
       // if progress == 1 set started to firebase
       if (metaData.score >= 4) {
@@ -87,14 +87,14 @@ export const QuizContextProvider = ({ children }) => {
           (x) => x.id == selectedModule.id
         );
         // if progress is in requirement, unlocks
-        console.log(requirements[selectedModule.id]);
+        // console.log(requirements[selectedModule.id]);
         const unlocks = requirements[selectedModule.id].unlocks;
 
         //unlocks
         if (unlocks[module.progress + 1]) {
           unlocks[module.progress + 1].forEach((x) => {
-            console.log("unlocking");
-            console.log(x);
+            // console.log("unlocking");
+            // console.log(x);
             const moduleRef = doc(
               db,
               "users",
@@ -111,7 +111,7 @@ export const QuizContextProvider = ({ children }) => {
         }
 
         // get time  + up level
-        console.log("PASSED");
+        // console.log("PASSED");
         const moduleRef = doc(
           db,
           "users",
@@ -122,7 +122,7 @@ export const QuizContextProvider = ({ children }) => {
           selectedModule.name
         );
 
-        console.log("FIND REVIEW TIME");
+        // console.log("FIND REVIEW TIME");
         const finished = metaData.finishedAt;
 
         const reviewTime = new Date(
@@ -135,7 +135,7 @@ export const QuizContextProvider = ({ children }) => {
                 ? quizInterval[module.progress]
                 : 30 * module.progress)
         );
-        console.log(reviewTime);
+        // console.log(reviewTime);
 
         updateDoc(moduleRef, {
           latestAt: metaData.finishedAt,
@@ -144,11 +144,11 @@ export const QuizContextProvider = ({ children }) => {
           started: true,
         }).then(() => {
           // setUpdate(true);
-          console.log("updated");
+          // console.log("updated");
         });
         // update progress
       } else if (metaData.score >= 0) {
-        console.log("FAILED");
+        // console.log("FAILED");
         const moduleRef = doc(
           db,
           "users",
@@ -165,7 +165,7 @@ export const QuizContextProvider = ({ children }) => {
           progress: 0,
         }).then(() => {
           // setUpdate(true);
-          console.log("updated");
+          // console.log("updated");
         });
       }
     }

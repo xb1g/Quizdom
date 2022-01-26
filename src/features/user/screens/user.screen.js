@@ -55,7 +55,7 @@ const Line = styled.View`
 
 export const UserScreen = ({ navigation }) => {
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
   }, []);
 
   const onEditUserInfo = () => {
@@ -63,9 +63,9 @@ export const UserScreen = ({ navigation }) => {
   };
 
   const { onLogout, user, userInfo } = useContext(AuthenticationContext);
-  console.log(userInfo);
-  console.log("objecccct");
-  console.log(auth.currentUser);
+  // console.log(userInfo);
+  // console.log("objecccct");
+  // console.log(auth.currentUser);
   return (
     <>
       <ScrollView>
