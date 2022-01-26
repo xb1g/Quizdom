@@ -31,6 +31,9 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated";
 import { Button } from "react-native-paper";
+import Svg, { Line } from "react-native-svg";
+import { MapLine } from "../../components/map-line.component";
+import { requirements } from "../../../../services/data/math/sets/modules";
 
 export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
@@ -51,6 +54,7 @@ export const SetMapScreen = ({ navigation }) => {
 
   useEffect(() => {
     console.log("setmap");
+    console.log(selectedMapModulesData);
   }, [selectedMapModulesData]);
 
   const translateY = useSharedValue(0);
@@ -138,6 +142,12 @@ export const SetMapScreen = ({ navigation }) => {
               {...module}
             />
           ))}
+        {selectedMapModulesData && (
+          <MapLine
+            modules={selectedMapModulesData}
+            requirements={requirements}
+          />
+        )}
       </Animated.ScrollView>
       {selectedModule && (
         <View
