@@ -1,92 +1,96 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ScrollView } from "react-native-gesture-handler";
 import { BackButton } from "../components/user-profile.styles";
 import { Book } from "../../../../assets/achievement0";
+import { AchievementContext } from "../../../services/authentication/achievement/achievement.context";
 // import { BackButton } from "../../account/components/account.styles";
 
 export const AchievementScreen = ({ navigation }) => {
+  const { achievementData, setAchievementData } =
+    useContext(AchievementContext);
+
   const Achievements = [
     {
       id: 1,
-      title: "First Achievement",
-      description: "You have completed your first quiz",
+      title: "Quiz master",
+      description: "Answer questions correctly",
       image: require("../../../../assets/achievement0/book.png"),
-      progress: 1,
-      goal: 1,
+      progress: 0,
+      goal: 5,
     },
     {
       id: 2,
-      title: "Second Achievement",
-      description: "You have completed your second quiz",
+      title: "The end?",
+      description: "React the end of the map",
       image: require("../../../../assets/achievement0/castle.png"),
-      progress: 1,
-      goal: 2,
+      progress: 0,
+      goal: 1,
     },
     {
       id: 3,
-      title: "Third Achievement",
-      description: "You have completed your third quiz",
+      title: "Daily challenge",
+      description: "Do all today tasks",
       image: require("../../../../assets/achievement0/days.png"),
-      progress: 1,
+      progress: 0,
       goal: 3,
     },
     {
       id: 4,
-      title: "Fourth Achievement",
-      description: "You have completed your fourth quiz",
+      title: "On fire",
+      description: "Log in",
       image: require("../../../../assets/achievement0/fire.png"),
-      progress: 1,
-      goal: 4,
-    },
-    {
-      id: 5,
-      title: "Fifth Achievement",
-      description: "You have completed your fifth quiz",
-      image: require("../../../../assets/achievement0/hat.png"),
-      progress: 1,
-      goal: 5,
-    },
-    {
-      id: 6,
-      title: "Sixth Achievement",
-      description: "You have completed your sixth quiz",
-      image: require("../../../../assets/achievement0/perfection.png"),
-      progress: 1,
-      goal: 6,
-    },
-    {
-      id: 7,
-      title: "Seventh Achievement",
-      description: "You have completed your seventh quiz",
-      image: require("../../../../assets/achievement0/person.png"),
-      progress: 1,
+      progress: 0,
       goal: 7,
     },
     {
+      id: 5,
+      title: "A part of remembrance",
+      description: "Reach the end of the point",
+      image: require("../../../../assets/achievement0/hat.png"),
+      progress: 0,
+      goal: 1,
+    },
+    {
+      id: 6,
+      title: "Perfection",
+      description: "Complete quiz without any mistakes",
+      image: require("../../../../assets/achievement0/perfection.png"),
+      progress: 0,
+      goal: 3,
+    },
+    {
+      id: 7,
+      title: "Day limit",
+      description: "Study 3 points in a day",
+      image: require("../../../../assets/achievement0/days.png"),
+      progress: 0,
+      goal: 2,
+    },
+    {
       id: 8,
-      title: "Eighth Achievement",
-      description: "You have completed your eighth quiz",
+      title: "Recharge",
+      description: "Charge your level back",
       image: require("../../../../assets/achievement0/power.png"),
-      progress: 1,
-      goal: 8,
+      progress: 0,
+      goal: 3,
     },
     {
       id: 9,
-      title: "Ninth Achievement",
-      description: "You have completed your ninth quiz",
-      image: require("../../../../assets/achievement0/book.png"),
-      progress: 1,
-      goal: 9,
+      title: "Upgrade",
+      description: "Up level for your points",
+      image: require("../../../../assets/achievement0/power.png"),
+      progress: 0,
+      goal: 5,
     },
     {
       id: 10,
-      title: "Tenth Achievement",
-      description: "You have completed your tenth quiz",
-      image: require("../../../../assets/achievement0/book.png"),
-      progress: 1,
-      goal: 10,
+      title: "Finish",
+      description: "Do quiz",
+      image: require("../../../../assets/achievement0/person.png"),
+      progress: 0,
+      goal: 5,
     },
   ];
   return (
