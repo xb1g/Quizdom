@@ -22,10 +22,10 @@ export function MapLine({ modules, requirements }) {
           return unlockLevel.map((path) => {
             const unlocksIds = requirement.unlocks[path];
             const position1 = module.position;
-            console.log(module.name, module.id);
+            // console.log(module.name, module.id);
 
             return unlocksIds.map((id) => {
-              console.log("I", id);
+              // console.log("I", id);
               // console.log(modules);
               const position2 = modules.find((module) => {
                 return id === module.id;

@@ -250,6 +250,116 @@ Some further information is given on the Venn diagram below. How many visited Sc
       },
     ];
 
+    const powerSets = [
+      {
+        answer1: "2^n",
+        answer2: "2^n+1",
+        answer3: "2^n-1",
+        answer4: "2^n+3",
+        correct_answer: 3,
+        explaination: "|P(S)| = 2^n",
+        image: null,
+        source: "bank",
+        question: "What is the formular to find number of element of powerset.",
+        skillLevel: 1,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1: "8",
+        answer2: "12",
+        answer3: "32",
+        answer4: "40",
+        correct_answer: 3,
+        explaination: "|P(S)| = 2^n = 2^3 = 8, 4 x 8 =  32",
+        image: null,
+        source: "bank",
+        question:
+          "If a is a number of element of powerset therefore what is the value of 4a given a={1, 2, 3}.",
+        skillLevel: 3,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1: "2",
+        answer2: "4",
+        answer3: "10.",
+        answer4: "12",
+        correct_answer: 2,
+        explaination:
+          "Number of elements in set S = 2, the number of element in the power set P(S) = 22 = 4",
+        hint: null,
+        image: null,
+        source:
+          "https://testbook.com/question-answer/the-number-of-element-in-the-power-set-ps-of-set--5fbca8c478d47d29d1add96b",
+        question:
+          "The number of element in the power set P(S) of set S = {2, {1, 4}} is ?",
+        skillLevel: 2,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1:
+          "A set that includes all the subsets including the empty set and the original set itself",
+        answer2:
+          "A set of which all the elements are contained in another set.",
+        answer3:
+          "A set of elements in the universal set that is not part of the original set.",
+        answer4: "A set containing all elements that are in A or in B",
+        correct_answer: 1,
+        explaination:
+          "From the theory of powerset a Power Set is a set of all the subsets of a set.",
+        hint: "$' \text{is complement}$",
+        image: null,
+        source: "bank",
+        question: "How can you define powerset.",
+        skillLevel: 2,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1: "empty",
+        answer2: "8",
+        answer3: "16",
+        answer4: "32",
+        correct_answer: 4,
+        explaination: "|P(S)| = 2^n = 25 = 32",
+        hint: "$' \text{is complement}$",
+        image: null,
+        source: "bank",
+        question:
+          "For the set S={1,2,3,4,5} how many members will the power set have?.",
+        skillLevel: 2,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1: "empty",
+        answer2: "8",
+        answer3: "16",
+        answer4: "32",
+        correct_answer: 4,
+        explaination: "|P(S)| = 2^n = 25 = 32",
+        hint: "$' \text{is complement}$",
+        image: null,
+        source: "bank",
+        question:
+          "For the set S={1,2,3,4,5} how many members will the power set have?.",
+        skillLevel: 2,
+        tags: ["sets", "powerset"],
+      },
+      {
+        answer1: "{1, 2, 3}",
+        answer2: "$\varnothing$",
+        answer3: "{1,2}",
+        answer4: "{{}, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}}",
+        correct_answer: 4,
+        explaination:
+          "$B={{}, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}} set A is defined as the set of all subsets of the Set A including the Set itself and the null or empty set",
+        hint: "powerset is the set of all subsets of a set",
+        image: null,
+        source: "bank",
+        question: "What is the powerset of {1, 2, 3}.",
+        skillLevel: 1,
+        tags: ["sets", "powerset"],
+      },
+    ];
+
     // const another = [
     //   {
     //     answer1: "{}",

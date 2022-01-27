@@ -65,14 +65,14 @@ export const Today = ({ navigation }) => {
     useContext(MapsContext);
   useEffect(() => {
     const allNames = Object.keys(allModules);
-    // console.log(allNames);
-    // console.log("allNames");
     const todayModules = [];
     allNames.forEach((name) => {
       const map = allModules[name];
       map.modules.forEach((module) => {
         // console.log(module.name, !!module.reviewAt, module.unlocked);
         // // console.log(setsResources[module.name]["important"]);
+        const isToday = module.reviewAt;
+        console.log(isToday, new Date().getTime() / 1000);
         if (module.unlocked) {
           const todayModule = {
             title: module.name,
@@ -82,15 +82,10 @@ export const Today = ({ navigation }) => {
             resource: setsResources[module.name].important,
             mapName: name,
           };
-
-          // console.log("todayModule");
-          // console.log(todayModule);
           todayModules.push(todayModule);
         }
       });
     });
-    // console.log("SAVE MODO");
-    // // console.log(saveModu[0].modules[0]);
     setTodos(todayModules);
   }, [allModules, updated]);
 
@@ -108,6 +103,9 @@ export const Today = ({ navigation }) => {
               <View>
                 <FlatList
                   data={item.resource}
+                  style={{
+                    height: 150,
+                  }}
                   renderItem={({ item }) => {
                     return (
                       <TouchableOpacity

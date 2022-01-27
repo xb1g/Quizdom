@@ -116,7 +116,6 @@ export const PlannerScreen = ({ navigation }) => {
                         data={modules}
                         renderItem={({ item }) => {
                           const progress = item.progress;
-                          // console.log(item.reviewAt);
                           return (
                             <>
                               <View
@@ -185,8 +184,9 @@ export const PlannerScreen = ({ navigation }) => {
                                     const module = {
                                       name: item.name,
                                       id: item.id,
-                                      // unlocked: item.unlocked,
+                                      unlocked: true,
                                     };
+                                    setSelectedModule(module);
                                     // setSelectedModule(module);
                                     navigation.navigate("Home", {
                                       screen: SET_MAP_NAVIGATION_NAME,
@@ -203,7 +203,9 @@ export const PlannerScreen = ({ navigation }) => {
                                     <Text
                                       style={{ color: "white", fontSize: 16 }}
                                     >
-                                      {moment(item.reviewAt.toDate()).fromNow()}
+                                      {moment(
+                                        item.reviewAt.toDate()
+                                      ).calendar()}
                                     </Text>
                                   </View>
                                 </TouchableOpacity>
