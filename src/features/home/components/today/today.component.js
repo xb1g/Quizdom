@@ -72,7 +72,7 @@ export const Today = ({ navigation }) => {
         // console.log(module.name, !!module.reviewAt, module.unlocked);
         // // console.log(setsResources[module.name]["important"]);
         const isToday = module.reviewAt;
-        console.log(isToday, new Date().getTime() / 1000);
+        // console.log(isToday, new Date().getTime() / 1000);
         if (module.unlocked) {
           const todayModule = {
             title: module.name,
