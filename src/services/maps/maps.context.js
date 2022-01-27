@@ -29,7 +29,7 @@ export const MapsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(updated, "YET");
+    // console.log(updated, "YET");
   }, [updated]);
 
   useEffect(() => {
@@ -40,29 +40,29 @@ export const MapsContextProvider = ({ children }) => {
       docs.forEach((doc) => {
         // maps.push(doc.data());
 
-        console.log("aaaass");
-        console.log(appMapsData);
-        console.log(doc.data().name);
-        console.log(doc.id);
+        // console.log("aaaass");
+        // console.log(appMapsData);
+        // console.log(doc.data().name);
+        // console.log(doc.id);
         const map = {
           ...doc.data(),
           ...appMapsData.find((appMap) => appMap.name === doc.id),
         };
 
-        console.log("Map is");
-        console.log(map);
+        // console.log("Map is");
+        // console.log(map);
         maps.push(map);
         mapNames.push(doc.id);
-        // console.log("beh", doc.id);
+        // // console.log("beh", doc.id);
       });
-      console.log("mDATA", maps);
+      // console.log("mDATA", maps);
       setMapsData(maps);
 
-      console.log("bah", mapNames);
+      // console.log("bah", mapNames);
       const allModulesData = {};
 
       mapNames.forEach((mapName) => {
-        // console.log("boh", mapName);
+        // // console.log("boh", mapName);
         const modulesRef = collection(
           db,
           "users",
@@ -76,13 +76,13 @@ export const MapsContextProvider = ({ children }) => {
         onSnapshot(q, (snapshot) => {
           // snapshot.docChanges().forEach((change) => {
           //   if (change.type === "added") {
-          //     console.log("New city: ", change.doc.data());
+          //     // console.log("New city: ", change.doc.data());
           //   }
           //   if (change.type === "modified") {
-          //     console.log("Modified city: ", change.doc.data());
+          //     // console.log("Modified city: ", change.doc.data());
           //   }
           //   if (change.type === "removed") {
-          //     console.log("Removed city: ", change.doc.data());
+          //     // console.log("Removed city: ", change.doc.data());
           //   }
           // });
           const modulesData = [];
@@ -98,8 +98,8 @@ export const MapsContextProvider = ({ children }) => {
             ...mapsData[mapName],
           };
           allModulesData[mapName] = mapModules;
-          // console.log("AsSD", allModulesData);
-          // console.log("SETTING MODULS", allModulesData);
+          // // console.log("AsSD", allModulesData);
+          // // console.log("SETTING MODULS", allModulesData);
           setAllModules(allModulesData);
           setUpdated(false);
         });
@@ -109,22 +109,22 @@ export const MapsContextProvider = ({ children }) => {
 
   // when allModules changes log it to the console
   // useEffect(() => {
-  //   console.log("allModules", allModules[0].name);
+  //   // console.log("allModules", allModules[0].name);
   // }, [allModules]);
 
   useEffect(() => {
-    console.log("sth hppned", selectedMapName);
+    // console.log("sth hppned", selectedMapName);
     if (selectedMapName && allModules) {
       const modules = allModules[selectedMapName].modules;
       setSelectedMapModulesData(modules);
     }
     setUpdated(true);
-    console.log("asdasd new modui");
+    // console.log("asdasd new modui");
   }, [selectedMapName, allModules, updated]);
 
   useEffect(() => {
     if (selectedModule) {
-      console.log("SELEcTED", selectedModule.name);
+      // console.log("SELEcTED", selectedModule.name);
     }
   }, [selectedModule]);
 

@@ -542,8 +542,8 @@ Some further information is given on the Venn diagram below. How many visited Sc
     // ];
 
     quizzes.forEach((quiz, index) => {
-      console.log(typeof String(index));
-      // console.log(quiz);
+      // console.log(typeof String(index));
+      // // console.log(quiz);
       const quizRef = doc(
         db,
         "quiz_sets",
@@ -557,8 +557,8 @@ Some further information is given on the Venn diagram below. How many visited Sc
 
   useEffect(() => {
     if (mapsData) {
-      console.log("mapsData");
-      console.log(mapsData);
+      // console.log("mapsData");
+      // console.log(mapsData);
       const mapsCopy = [];
       mapsData.forEach((mapData, index) => {
         // const mapData = mapsData[map.id];
@@ -568,11 +568,11 @@ Some further information is given on the Venn diagram below. How many visited Sc
         };
         mapsCopy.push(mapCopy);
       });
-      console.log("CPY", mapsCopy);
+      // console.log("CPY", mapsCopy);
       setMaps(mapsCopy);
     }
-    console.log("map data changed from home");
-    // console.log(modulesData);
+    // console.log("map data changed from home");
+    // // console.log(modulesData);
   }, [mapsData, updated]);
   let counter = 0;
 

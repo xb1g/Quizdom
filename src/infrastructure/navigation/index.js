@@ -9,7 +9,7 @@ import { AccountNavigator } from "./account.navigator";
 export const Navigation = () => {
   const { user } = useContext(AuthenticationContext);
   useEffect(() => {
-    console.log("user", user);
+    // console.log("user", user);
   }, [user]);
 
   return (

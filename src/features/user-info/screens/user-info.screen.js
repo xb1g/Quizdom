@@ -30,10 +30,10 @@ export const EditUserInfoScreen = () => {
   useEffect(
     () =>
       onSnapshot(doc(db, "users", user.uid), (u) => {
-        console.log("u u u");
-        console.log(u.data());
+        // console.log("u u u");
+        // console.log(u.data());
         u.data() && setUserInfo(u.data());
-        console.log(userInfo);
+        // console.log(userInfo);
       }),
     []
   );
@@ -85,16 +85,16 @@ export const EditUserInfoScreen = () => {
           <Button
             type="primary"
             onPress={() => {
-              console.log("object");
-              console.log(userInfo);
+              // console.log("object");
+              // console.log(userInfo);
               const docRef = doc(db, "users", user.uid);
               setDoc(docRef, {
                 ...userInfo,
                 username,
                 email: user.email,
-              })
-                .then(console.log("success"))
-                .catch(console.log("error"));
+              });
+              // .then(// console.log("success"))
+              // .catch(// console.log("error"));
             }}
           >
             aha
@@ -125,16 +125,16 @@ export const EditUserInfoScreen = () => {
           <Button
             type="primary"
             onPress={() => {
-              console.log("object");
-              console.log(userInfo);
+              // console.log("object");
+              // console.log(userInfo);
               const docRef = doc(db, "users", user.uid);
               setDoc(docRef, {
                 ...userInfo,
                 name,
                 email: user.email,
-              })
-                .then(console.log("success"))
-                .catch(console.log("error"));
+              });
+              // .then(// console.log("success"))
+              // .catch(// console.log("error"));
             }}
           >
             aha
@@ -164,16 +164,16 @@ export const EditUserInfoScreen = () => {
           <Button
             type="primary"
             onPress={() => {
-              console.log("object");
-              console.log(userInfo);
+              // console.log("object");
+              // console.log(userInfo);
               const docRef = doc(db, "users", user.uid);
               setDoc(docRef, {
                 ...userInfo,
                 lastname,
                 email: user.email,
-              })
-                .then(console.log("success"))
-                .catch(console.log("error"));
+              });
+              // .then(// console.log("success"))
+              // .catch(// console.log("error"));
             }}
           >
             aha

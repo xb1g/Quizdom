@@ -21,7 +21,7 @@ export const AddFriendButton = ({ user }) => {
         zIndex: 1,
       }}
       onPress={() => {
-        console.log("pressed");
+        // console.log("pressed");
       }}
     >
       <Ionicons name="md-person-add" size={20} color="white" />

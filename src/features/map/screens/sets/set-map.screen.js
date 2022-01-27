@@ -53,8 +53,8 @@ export const SetMapScreen = ({ navigation }) => {
   } = useContext(MapsContext);
 
   useEffect(() => {
-    console.log("setmap");
-    console.log(selectedMapModulesData);
+    // console.log("setmap");
+    // console.log(selectedMapModulesData);
   }, [selectedMapModulesData]);
 
   const translateY = useSharedValue(0);
@@ -72,8 +72,8 @@ export const SetMapScreen = ({ navigation }) => {
   };
 
   // useEffect(() => {
-  //   console.log("j");
-  //   console.log(height * 1.8 + 600, width);
+  //   // console.log("j");
+  //   // console.log(height * 1.8 + 600, width);
   //   toModule(250);
   // }, [loaded]);
 
@@ -128,8 +128,8 @@ export const SetMapScreen = ({ navigation }) => {
           source={require("./bgsetmap.png")}
           style={{
             width: width,
-            height: 2500,
-            top: -500,
+            height: 3000,
+            top: -800,
           }}
         />
 

@@ -32,29 +32,29 @@ export const AuthenticationContextProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (usr) => {
       if (usr) {
-        console.log("got user");
+        // console.log("got user");
         setUser(usr);
         const docRef = doc(db, "users", usr.uid);
         onSnapshot(docRef, (u) => {
-          console.log("BRUHMO");
-          // console.log(u.data());
+          // console.log("BRUHMO");
+          // // console.log(u.data());
           const userInfo = u.data();
           if (userInfo) {
             setUserInfo(userInfo);
           }
         })
           .then((u) => {
-            console.log("gotasd");
-            // console.log(u);
+            // console.log("gotasd");
+            // // console.log(u);
           })
           .catch((e) => {
-            console.log("EEEEeerror");
-            console.log(e);
+            // console.log("EEEEeerror");
+            // console.log(e);
           });
         setError(null);
         setIsLoading(false);
       } else {
-        console.log("no user");
+        // console.log("no user");
         setUser(null);
         setUserInfo(null);
         setIsLoading(false);
@@ -72,13 +72,13 @@ export const AuthenticationContextProvider = ({ children }) => {
     setIsLoading(true);
     loginRequest(email, password)
       .then((u) => {
-        // console.log(u);
+        // // console.log(u);
         setUser(u);
         setError(null);
         setIsLoading(false);
       })
       .catch((e) => {
-        console.log(e, e.toString());
+        // console.log(e, e.toString());
         // setError(e.toString());
         setIsLoading(false);
       });
@@ -86,7 +86,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const onRegister = (email, password, repeatedPassword, userInfo) => {
     setIsLoading(true);
-    console.log("PASS", password, repeatedPassword);
+    // console.log("PASS", password, repeatedPassword);
     if (password !== repeatedPassword) {
       setError("Passwords do not match");
       return;
@@ -106,11 +106,11 @@ export const AuthenticationContextProvider = ({ children }) => {
 
         setDoc(docRef, payload)
           .then(() => {
-            console.log("successssssssssssssssssssss!!!");
+            // console.log("successssssssssssssssssssss!!!");
             setIsLoading(false);
           })
           .catch((e) => {
-            console.log("ERROR FUCKER", e);
+            // console.log("ERROR FUCKER", e);
             setIsLoading(false);
             // setError(e.toString());
           });
@@ -122,11 +122,11 @@ export const AuthenticationContextProvider = ({ children }) => {
         };
         setDoc(mapDataRef, mapDataPayload)
           .then(() => {
-            console.log("success to add modules!!!");
+            // console.log("success to add modules!!!");
             setIsLoading(false);
           })
           .catch((e) => {
-            console.log("can't create modules", e);
+            // console.log("can't create modules", e);
             setIsLoading(false);
             // setError(e.toString());
           });
@@ -143,11 +143,11 @@ export const AuthenticationContextProvider = ({ children }) => {
           const modulePayload = module;
           setDoc(moduleRef, modulePayload)
             .then(() => {
-              console.log(module);
+              // console.log(module);
               setIsLoading(false);
             })
             .catch((e) => {
-              console.log("can't create modules", e);
+              // console.log("can't create modules", e);
               setIsLoading(false);
               // setError(e.toString());
             });
@@ -165,20 +165,20 @@ export const AuthenticationContextProvider = ({ children }) => {
           };
           setDoc(settingRef, settingPayload)
             .then(() => {
-              console.log("success to add settings!!!");
+              // console.log("success to add settings!!!");
               setIsLoading(false);
             })
             .catch((e) => {
-              console.log("can't set up", e);
+              // console.log("can't set up", e);
               setIsLoading(false);
               // setError(e.toString());
             });
         });
       })
       .catch((e) => {
-        console.log("ERROR CATCHING", e);
+        // console.log("ERROR CATCHING", e);
         setError(e.toString());
-        console.log(error);
+        // console.log(error);
         setIsLoading(false);
       });
   };

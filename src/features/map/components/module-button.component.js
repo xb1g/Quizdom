@@ -47,7 +47,7 @@ export function ModuleButton({
       }, 1000);
       return () => clearInterval(interval);
     } else {
-      // console.log("not started", module.name);
+      // // console.log("not started", module.name);
     }
   }, [updated]);
 
@@ -131,8 +131,16 @@ export function ModuleButton({
                   : "#ffd700"
                 : "grey",
               borderRadius: 100,
-              width: 65,
-              height: 65,
+              width: selectedModule
+                ? selectedModule.name === module.name
+                  ? 65
+                  : 60
+                : 60,
+              height: selectedModule
+                ? selectedModule.name === module.name
+                  ? 65
+                  : 60
+                : 60,
               justifyContent: "center",
               alignItems: "center",
             }}

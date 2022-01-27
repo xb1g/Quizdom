@@ -51,7 +51,7 @@ export function SettingsScreen({ navigation }) {
             left={(props) => <List.Icon {...props} icon="volume-high" />}
             //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
-              console.log("pressed");
+              // console.log("pressed");
             }}
           />
           <View style={stylestxt.container}>
@@ -69,7 +69,7 @@ export function SettingsScreen({ navigation }) {
               step={1}
               value={volumeValue}
               onValueChange={(value) => setVolumeValue(value)}
-              //onValueChange={(value) => console.log({ volumeValue })}
+              //onValueChange={(value) => // console.log({ volumeValue })}
             />
           </View>
           <View style={stylestxt.container}>
@@ -85,7 +85,7 @@ export function SettingsScreen({ navigation }) {
               step={1}
               value={musicValue}
               onValueChange={(value) => setMusicValue(value)}
-              //onValueChange={(value) => console.log({ musicValue })}
+              //onValueChange={(value) => // console.log({ musicValue })}
             />
           </View>
           <View style={stylestxt.container}>
@@ -101,7 +101,7 @@ export function SettingsScreen({ navigation }) {
               step={1}
               value={sfxValue}
               onValueChange={(value) => setSfxValue(value)}
-              //onValueChange={(value) => console.log({ sfxValue })}
+              //onValueChange={(value) => // console.log({ sfxValue })}
             />
           </View>
           <View style={stylestxt.container}>
@@ -119,7 +119,7 @@ export function SettingsScreen({ navigation }) {
               step={1}
               value={voiceValue}
               onValueChange={(value) => setVoiceValue(value)}
-              //onValueChange={(value) => console.log({ voiceValue })}
+              //onValueChange={(value) => // console.log({ voiceValue })}
             />
           </View>
           <SettingsItem
@@ -136,7 +136,7 @@ export function SettingsScreen({ navigation }) {
             left={(props) => <List.Icon {...props} icon="bell" />}
             //right={(props) => <List.Icon {...props} icon="arrow-down" />}
             onPress={() => {
-              console.log("pressed");
+              // console.log("pressed");
             }}
           />
           <View style={stylestxt.container}>
@@ -202,7 +202,7 @@ export function SettingsScreen({ navigation }) {
             title="Email and Password setting"
             left={(props) => <List.Icon {...props} icon="wrench" />}
             onPress={() => {
-              console.log("pressed");
+              // console.log("pressed");
             }}
           />
           <SettingsItem
@@ -218,7 +218,7 @@ export function SettingsScreen({ navigation }) {
             title="Term of service and Privacy policy"
             left={(props) => <List.Icon {...props} icon="mail" />}
             onPress={() => {
-              console.log("pressed");
+              // console.log("pressed");
             }}
           />
         </ScrollView>

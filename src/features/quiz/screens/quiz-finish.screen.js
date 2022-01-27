@@ -20,12 +20,11 @@ export const QuizFinishScreen = ({ navigation }) => {
 
   const handleGesture = (event, gestureState) => {
     let { nativeEvent } = event;
-    const theme = useTheme();
-    console.log(nativeEvent);
-    if (nativeEvent.translationY < -350 && nativeEvent.velocityY < -1500) {
-      // go to map
-      // navigation.navigate(SET_MAP_NAVIGATION_NAME);
-    }
+    // console.log(nativeEvent);
+    // if (nativeEvent.translationY < -350 && nativeEvent.velocityY < -1500) {
+    //   // go to map
+    //   // navigation.navigate(SET_MAP_NAVIGATION_NAME);
+    // }
   };
 
   return (

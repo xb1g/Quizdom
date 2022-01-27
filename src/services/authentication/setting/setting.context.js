@@ -21,7 +21,7 @@ export const SettingsContextProvider = ({ children }) => {
   //     const data = [];
   //     data.push(doc.data);
   //     setSettingData(data);
-  //     console.log(settingData);
+  //     // console.log(settingData);
   //   });
   // }, []);
   return (

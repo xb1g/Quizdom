@@ -119,9 +119,9 @@ export const LoginScreen = ({ navigation }) => {
                 type="primary"
                 size="large"
                 onPress={() => {
-                  console.log(email, password);
+                  // console.log(email, password);
                   onLogin(email, password);
-                  console.log(error);
+                  // console.log(error);
                 }}
               >
                 Login

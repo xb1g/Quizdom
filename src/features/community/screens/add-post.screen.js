@@ -46,7 +46,7 @@ export const AddPostScreen = ({ navigation }) => {
   // });
 
   useEffect(() => {
-    console.log(images);
+    // console.log(images);
   }, [images]);
 
   let openImagePickerAsync = async () => {
@@ -62,7 +62,7 @@ export const AddPostScreen = ({ navigation }) => {
       allowsEditing: true,
       aspect: [1, 1],
     });
-    // console.log(pickerResult);
+    // // console.log(pickerResult);
     if (pickerResult.cancelled === true) {
       return;
     }
@@ -70,7 +70,7 @@ export const AddPostScreen = ({ navigation }) => {
     try {
       // setProfileImage({ localUri: pickerResult.uri });
       const imageUrl = await uploadImageAsync(pickerResult.uri);
-      console.log(imageUrl);
+      // console.log(imageUrl);
       const copyImages = images;
       copyImages.push(imageUrl);
       setImages(copyImages);
@@ -82,7 +82,7 @@ export const AddPostScreen = ({ navigation }) => {
       //   postImage: imageUrl,
       // });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       alert("Upload failed, sorry :(");
     }
   };
@@ -132,7 +132,7 @@ export const AddPostScreen = ({ navigation }) => {
         numColumns={2}
         data={images}
         renderItem={(image) => {
-          // console.log("slumMunMun", image);
+          // // console.log("slumMunMun", image);
           return (
             <Image
               style={{
@@ -172,7 +172,7 @@ async function uploadImageAsync(uri) {
       resolve(xhr.response);
     };
     xhr.onerror = function (e) {
-      console.log(e);
+      // console.log(e);
       reject(new TypeError("Network request failed"));
     };
     xhr.responseType = "blob";
@@ -180,7 +180,7 @@ async function uploadImageAsync(uri) {
     xhr.send(null);
   });
   const fileRef = ref(storage, uuidv4());
-  // console.log(fileRef);
+  // // console.log(fileRef);
   const result = await uploadBytes(fileRef, blob);
 
   // We're done with the blob, close and release it

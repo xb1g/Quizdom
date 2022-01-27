@@ -25,7 +25,7 @@ export const CommunityContextProvider = ({ children }) => {
         data.push(doc.data());
       });
       setMemberData(data);
-      //console.log(memberData);
+      //// console.log(memberData);
     });
     const postq = query(collection(db, "community", "Math", "posts"));
     onSnapshot(postq, (posts) => {
@@ -34,7 +34,7 @@ export const CommunityContextProvider = ({ children }) => {
         const post = doc.data();
         datas.push(post);
       });
-      console.log(datas);
+      // console.log(datas);
       setPostData(datas);
     });
   }, []);

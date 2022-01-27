@@ -38,9 +38,9 @@ export const CommunityScreen = ({ navigation }) => {
   const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
-    console.log("Post data");
-    console.log(postData);
-    console.log(user.uid);
+    // console.log("Post data");
+    // console.log(postData);
+    // console.log(user.uid);
   }, []);
   return (
     <>
@@ -79,7 +79,7 @@ export const CommunityScreen = ({ navigation }) => {
                     data={post.images}
                     horizontal
                     renderItem={(image) => {
-                      console.log("Slum images");
+                      // console.log("Slum images");
                       return (
                         <Image
                           style={{
@@ -123,7 +123,7 @@ export const CommunityScreen = ({ navigation }) => {
           }}
           onPress={
             () => navigation.navigate("AddPostScreen")
-            //console.log("Add post")
+            //// console.log("Add post")
           }
         >
           <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>

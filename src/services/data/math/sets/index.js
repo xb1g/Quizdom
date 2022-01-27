@@ -44,7 +44,7 @@ export const setsMapTemplate = [
     progress: 0,
     position: {
       top: 886,
-      left: 269,
+      left: 299,
     },
   },
   {
@@ -61,7 +61,7 @@ export const setsMapTemplate = [
     name: "Complement",
     progress: 0,
     position: {
-      top: 1475,
+      top: 1500,
       left: 199,
     },
   },
@@ -70,8 +70,8 @@ export const setsMapTemplate = [
     name: "Subsets",
     progress: 0,
     position: {
-      top: 666,
-      left: 40,
+      top: 696,
+      left: 30,
     },
   },
   {
