@@ -495,6 +495,90 @@ export const HomeScreen = ({ navigation }) => {
       },
     ];
 
+    const quizze2 = [
+      {
+        answer1: "$8$",
+        answer2: "$2$",
+        answer3: "$\\{8, 9,\\}$",
+        answer4: "$\\{3\\}$",
+        correct_answer: 1,
+        explaination: "8 is an element of $//{8, 9//}$ but not of $A$",
+        hint: "A set can be an element of another set",
+        image: null,
+        source:
+          "https://study.com/academy/practice/quiz-worksheet-set-notation.html",
+        question:
+          `Which is not an element of set $A$? 
+          $A = \\{1, 2, \\{3\\}, 5, \\{8, 9\\}, 20\\}$`,
+        skillLevel: 2,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "$g$",
+        answer2: "$a$",
+        answer3: "$200$",
+        answer4: "$\text{New York City}$",
+        correct_answer: 1,
+        explaination: "$g$ is not an element of $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$",
+        hint: "An element is part of the set ",
+        image: null,
+        source:
+          "https://study.com/academy/practice/quiz-worksheet-set-notation.html",
+        question: `Which is not an element of the following set?
+        $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$`,
+        skillLevel: 1,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "$C = \\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\\}$",
+        answer2: "$D = \\{0, 2, 4, 6, 8\\}$",
+        answer3: "$E = \\{1, 3, 5, 7, 9\\}$",
+        answer4: "None of the above",
+        correct_answer: 3,
+        explaination: "All elements of $E$ are ood numbers",
+        hint: " Odd numbers when divided by two have remainders ",
+        image: null,
+        source:
+          "https://www.mathgoodies.com/lessons/sets",
+        question:
+          "Which of the following is the set of odd whole numbers less than 10?",
+        skillLevel: 1,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "A capital letter is used to represent this set.",
+        answer2: "It uses curly braces.",
+        answer3: "It uses commas.",
+        answer4: "The objects in this set are not unique.",
+        correct_answer: 4,
+        explaination: "$r$ is doubled",
+        hint: " Sets must have unique objects as elements",
+        image: null,
+        source: "https://www.mathgoodies.com/lessons/sets",
+        question:
+          `Jennifer listed the set of all letters in the word library as shown below. 
+          What is wrong with this set? $A = \\{l, i, b, r, a, r, y\\}$`,
+        skillLevel: 1,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "$R = [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]$",
+        answer2: "$S = \\{hearts, diamonds, clubs, spades\\}$",
+        answer3: "$T = \\{jokers\\}$",
+        answer4: "None of the above.",
+        correct_answer: 2,
+        explaination: "$S$ uses curly brackets and contains all suits of cards",
+        hint: "Set notation uses curly brackets",
+        image: null,
+        source:
+          "https://www.mathgoodies.com/lessons/sets",
+        question:
+          "Which of the following is the set of all suits in a standard deck of playing cards?",
+        skillLevel: 2,
+        tags: ["sets", "notation"],
+      },
+    ];
+
     // const another = [
     //   {
     //     answer1: "{}",
