@@ -369,7 +369,13 @@ export function QuizScreen({ route, navigation }) {
             style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
           >
             <Spacer size={"large"} />
-            <MathText value={quiz[page].question} />
+            <MathText
+              value={quiz[page].question}
+              style={{
+                paddingHorizontal: 10,
+                fontSize: 22,
+              }}
+            />
             {/* <Text>{quiz[page].question}</Text> */}
             {quiz[page].image && (
               <>
