@@ -46,8 +46,8 @@ export const QuizContextProvider = ({ children }) => {
         return String(ran);
       });
       setQuizIds(ids);
-      // console.log("IDS");
-      // console.log(ids);
+      console.log("IDS");
+      console.log(ids);
       const quizColRef = collection(
         db,
         `quiz_${selectedMapName}`,

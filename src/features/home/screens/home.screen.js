@@ -362,18 +362,27 @@ export const HomeScreen = ({ navigation }) => {
 
     const quizze = [
       {
-        answer1: "$\\{2, 4 \\}$",
-        answer2: "$\\{0\\}$",
+        answer1: "$\\{\\{1\\}, \\{3\\} \\}$",
+        answer2: "$\\{\\varnothing\\}$",
         answer3: "$\\{1, 9, 5, 13\\}$",
         answer4: "$\\{2, 3, 4, 5\\}$",
         correct_answer: 3,
-        explaination: "$\\{1, 9, 5, 13\\}$",
-        hint: "Same number as subsets of U",
+        explaination: `To answer this question. You need to eliminate the wrong answers.
+
+          look at this answer $\\{\\{1\\}, \\{3\\} \\}$ : $\\{1\\}$ and $\\{3\\}$ are correct as the answers. But a set of them together isn't correct because the set is not in the set U.
+
+          Another answer $\\{\\varnothing\\}$. \\varnothing is a subset of every set. But a set of empty set isn't in the set U.
+          
+          The answer $\\{1, 9, 5, 13\\}$ is correct because every element in the set is in the set U.
+
+          The answer $\\{2, 3, 4, 5\\}$ is wrong because $2 , 4$ are not in the set U.
+          `,
+        hint: "Eliminate the answers that are not in the set U",
         image: null,
         source:
           "https://www.math-only-math.com/practice-test-on-sets-and-subsets.html",
         question:
-          "If U = {1, 3, 5, 7, 9, 11, 13}, then which of the following is subsets of U",
+          "If U = {1, 3, 5, 7, 9, 11, 13}, then which of the following is a subset of U",
         skillLevel: 1,
         tags: ["sets", "subsets"],
       },
@@ -383,8 +392,9 @@ export const HomeScreen = ({ navigation }) => {
         answer3: "$ C \\subseteq B $",
         answer4: "$ A \\subseteq C $",
         correct_answer: 1,
-        explaination: "$ B \\subseteq D $",
-        hint: "the entire set on the left is in the right set ",
+        explaination:
+          "$\\subseteq$ means the entire set on the left is in the right set. $ B \\subseteq D $ is correct because $4, 5, 6, 8$ are in the set $D$ ",
+        hint: "$\\subseteq$ means the entire set on the left is in the right set.",
         image: null,
         source:
           "https://www.varsitytutors.com/gre_subject_test_math-help/subsets",
@@ -415,24 +425,27 @@ export const HomeScreen = ({ navigation }) => {
       {
         answer1: "$ B \\subset A   $",
         answer2: "$ B \\subseteq A $",
-        answer3: "$ A \\subseteq B $",
+        answer3: "$ A \\subset A $",
         answer4: "$ A \\subset B   $",
         correct_answer: 4,
-        explaination: "$ A \\subset B  $",
-        hint: " Look at the image ",
+        explaination: `$A \\subset B$ means that every element in the set A is in the set B, but $B$ has at least 1 element that is not is $A$(proprt subset).
+
+          $A \\subseteq B$ means that every element in the set $A$ is in $B$ and they can also be equal. So $A \\subseteq A$ is correct.`,
+        hint: `$A \\subset$ B means that $A$ is a proper subset of $B$
+        $A \\subseteq B$ means that $A$ is a subset of $B$`,
         image:
           "https://www.mathgoodies.com/sites/default/files/lesson_images/subset_example1_0.png",
         source: "https://www.mathgoodies.com/lessons/sets/subsets",
         question:
-          "Given $A = \\{1, 2, 4\\}$ and $B = \\{1, 2, 3, 4, 5\\}$, what is the relationship between these sets? ",
+          "Given $A = \\{1, 2, 4\\}$ and $B = \\{1, 2, 3, 4, 5\\}$, which answer is right? ",
         skillLevel: 1,
         tags: ["sets", "subsets"],
       },
       {
         answer1: "$ A' = \\{ d,e,f,h \\}  $",
         answer2: "$ A' = \\{ d,e,f,g \\}  $",
-        answer3: "$ A' = \\{  a.c.d  \\}  $",
-        answer4: "$ A'=  \\{  b.d.g  \\}  $",
+        answer3: "$ A' = \\{ a,c,d \\}  $",
+        answer4: "$ A'=  \\{ b,d,g \\}  $",
         correct_answer: 2,
         explaination: "$ A' = \\{ d,e,f,g \\}  $",
         hint: "The number of subsets that $A$ has is 8",
@@ -445,13 +458,13 @@ export const HomeScreen = ({ navigation }) => {
         tags: ["sets", "subsets"],
       },
       {
-        answer1: "$ \\{boat \\}  $",
-        answer2: "$ \\{motorbike, car \\}  $",
-        answer3: "$ \\{bicycle, train \\}  $",
-        answer4: "$ \\{car, train \\} $",
+        answer1: "$ \\{\\text{boat} \\}  $",
+        answer2: "$ \\{\\test{motorbike, car} \\}  $",
+        answer3: "$ \\{\\test{bicycle, train} \\}  $",
+        answer4: "$ \\{\\test{car, train} \\} $",
         correct_answer: 4,
         explaination:
-          "subset of ${car, airplane, train} are \\varnothing, \\{car\\}, \\{airplane\\}, \\{train\\}, \\{car, airplane\\}, \\{car, train\\}, \\{car, airplane, train\\},$",
+          "subset of $\\{\\text{car, airplane, train}\\}$ are $\\varnothing, \\{car\\}, \\{airplane\\}, \\{train\\}, \\{car, airplane\\}, \\{car, train\\}, \\{car, airplane, train\\},$",
         hint: "Which words are in set A ",
         image: null,
         source:
@@ -468,7 +481,37 @@ export const HomeScreen = ({ navigation }) => {
         answer4: "1",
         correct_answer: 1,
         explaination:
-          "If a set has $n $elements, then the number of subset of the given set is$ 2^n$ and the number of proper subsets of the given subset is given by$ 2^{n-1}.$ ",
+          "If a set has $n$elements, then the number of subset of the given set is$ 2^n$ and the number of proper subsets of the given subset is given by$ 2^{n}-1.$ ",
+        hint: "How to get the number of subset of a set?",
+        image: null,
+        source:
+          "https://quizizz.com/admin/quiz/5eb3cff2ca60be001bfbf4bd/subsets-and-proper-subsets",
+        question: "How many subsets does set $A = \\{red, blue\\}$ has? ",
+        skillLevel: 2,
+        tags: ["sets", "subsets"],
+      },
+      {
+        answer1: "{vowels} $\\subset {consonants}",
+        answer2: "{consonants} $\\subset$ {vowels}",
+        answer3: "{vowels} $\\subset$ {alphabet}",
+        answer4: "{vowels} = {alphabet}",
+        correct_answer: 1,
+        explaination: "",
+        hint: "{vowels} is {a,e,i,o,u}",
+        image: null,
+        source: "https://www.mathgoodies.com/lessons/sets/subsets",
+        question: "Which of the following statements is true?",
+        skillLevel: 2,
+        tags: ["sets", "subsets"],
+      },
+      {
+        answer1: "4",
+        answer2: "2",
+        answer3: "3",
+        answer4: "1",
+        correct_answer: 1,
+        explaination:
+          "If a set has $n$elements, then the number of subset of the given set is$ 2^n$ and the number of proper subsets of the given subset is given by$ 2^{n}-1.$ ",
         hint: "How to get the number of subset of a set?",
         image: null,
         source:
@@ -480,11 +523,17 @@ export const HomeScreen = ({ navigation }) => {
       {
         answer1: "$\\{x, y\\}$",
         answer2: "$\\{c, x, y\\}$",
-        answer3: "$\\{a, b, c\\}$",
-        answer4: "$\\{a, \\{b\\}, c\\}$",
+        answer3: "$\\{a, \\{c, c\\}\\}$",
+        answer4: "$\\{\\{b\\}, a, c\\}$",
         correct_answer: 4,
-        explaination: "$\\{a, \\{b\\}, c\\}$",
-        hint: "$ {{b}} $",
+        explaination: `$\\{x, y\\}$ is in the set $A$, but the set of it $(\\{\\{x, y\\}\\})$ is a subset of set A. So it is wrong.
+        
+        $\\{c, x, y\\}$ is also wrong because $x$ and $y$ are not in the set $A$.
+        
+        $\\{a, \\{c, c\\}\\}$ is also wrong because $\\{c, c\\}$ is not in the set $A$.
+        
+        $\\{\\{b\\}, a, c\\}$ is right because $a, \\{b\\}, c$ is in the set $A$.`,
+        hint: "Try eliminating the wrong answers",
         image: null,
         source:
           "https://study.com/academy/practice/quiz-worksheet-subsets-in-math.html",
