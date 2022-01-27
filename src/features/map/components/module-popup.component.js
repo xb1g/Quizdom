@@ -73,7 +73,7 @@ export function ModulePopup({ module, navigation }) {
         <Text
           style={{
             fontSize: 22,
-            marginLeft: -36,
+            marginLeft: -26,
           }}
         >
           {module.name}

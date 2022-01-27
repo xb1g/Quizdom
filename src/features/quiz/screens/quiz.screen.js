@@ -312,11 +312,12 @@ export function QuizScreen({ route, navigation }) {
                 <View
                   style={{
                     backgroundColor: "#fff",
-                    padding: 20,
+                    padding: 10,
                     borderRadius: 10,
+                    marginHorizontal: 10,
                   }}
                 >
-                  <Text>Hint: {quiz[page].hint}</Text>
+                  <MathText value={"Hint: " + quiz[page].hint} />
                 </View>
               </TouchableOpacity>
             </Modal>

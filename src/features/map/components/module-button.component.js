@@ -143,6 +143,7 @@ export function ModuleButton({
                 : 60,
               justifyContent: "center",
               alignItems: "center",
+              ...shadow.shadow2,
             }}
           >
             <Text

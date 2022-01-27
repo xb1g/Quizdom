@@ -32,6 +32,7 @@ export function MapLine({ modules, requirements }) {
               }).position;
               return (
                 <Line
+                  key={String(position1.left) + String(position2.left)}
                   x1={position1.left + 35}
                   y1={position1.top + 35}
                   x2={position2.left + 35}

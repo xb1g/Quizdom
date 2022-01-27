@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import { ChoiceButton } from "./quiz.style";
 import { Ionicons } from "@expo/vector-icons";
@@ -75,8 +75,8 @@ export const ScoreIndicator = ({ correctArray }) => {
 };
 
 export const Explain = ({ answer, quiz, page, checked, scrollViewRef }) => {
-  const expnum = "explaination";
-
+  const expText = "explaination";
+  const expImage = "explainationImage";
   // checked ? () => scrollViewRef?.current.scrollToEnd({ animated: true }) : null;
   return (
     <>
@@ -91,13 +91,25 @@ export const Explain = ({ answer, quiz, page, checked, scrollViewRef }) => {
         >
           <Text
             style={{
-              marginBottom: 10,
+              marginBottom: 0,
             }}
           >
             Explaination:
           </Text>
           {/* <Text>{quiz[expnum]}</Text> */}
-          <MathText value={quiz[expnum]} />
+          <MathText value={quiz[expText]} />
+          {/* <Text>{quiz[expImage]}</Text> */}
+          {quiz[expImage] && (
+            <Image
+              style={{
+                height: 220,
+                resizeMode: "contain",
+                borderRadius: 20,
+                margin: 20,
+              }}
+              source={{ uri: quiz[expImage] }}
+            />
+          )}
         </View>
       )}
     </>

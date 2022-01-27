@@ -435,12 +435,12 @@ export const HomeScreen = ({ navigation }) => {
         answer4: "$ A'=  \\{  b.d.g  \\}  $",
         correct_answer: 2,
         explaination: "$ A' = \\{ d,e,f,g \\}  $",
-        hint: " Don't have same alphabet as A but have  alphabet same as U ",
+        hint: "The number of subsets that $A$ has is 8",
         image: null,
         source:
           "https://quizizz.com/admin/quiz/5eb3cff2ca60be001bfbf4bd/subsets-and-proper-subsets",
         question:
-          "  Let U= { a,b,c,d,e,f,g} and A ={ a,b,c} Find the complement of set A? ",
+          "Let $U= \\{ a,b,c,d,e,f,g\\} $and $A =\\{ a,b,c\\}$ which of these are subset of set $A$ but not a subset of $U$ ",
         skillLevel: 2,
         tags: ["sets", "subsets"],
       },
@@ -473,7 +473,7 @@ export const HomeScreen = ({ navigation }) => {
         image: null,
         source:
           "https://quizizz.com/admin/quiz/5eb3cff2ca60be001bfbf4bd/subsets-and-proper-subsets",
-        question: "How many subsets does set A = {red, blue} has? ",
+        question: "How many subsets does set $A = \\{red, blue\\}$ has? ",
         skillLevel: 2,
         tags: ["sets", "subsets"],
       },
