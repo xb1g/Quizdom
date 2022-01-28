@@ -358,7 +358,7 @@ export function QuizScreen({ route, navigation }) {
                 style={{ backgroundColor: "red" }}
               />
               {/* <ScoreIndicator correctArray={correctArray} /> */}
-              <HintButton showHint={onHint} />
+              {quiz[page].hint && <HintButton showHint={onHint} />}
               <ProgressBar />
             </Row>
             {/* <Text variant="label" style={{ fontSize: 40 }}>
