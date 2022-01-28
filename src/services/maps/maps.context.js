@@ -139,6 +139,7 @@ export const MapsContextProvider = ({ children }) => {
         selectedMapModulesData,
         loaded,
         updated,
+        setUpdated,
         error,
         allModules,
       }}

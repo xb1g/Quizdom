@@ -46,9 +46,8 @@ export function ModuleButton({
         setTimeProgress(100 - (passedHrs / limitHrs) * 100);
       }, 1000);
       return () => clearInterval(interval);
-    } else {
-      // // console.log("not started", module.name);
     }
+    console.log(updated);
   }, [updated]);
 
   const module = {
@@ -106,7 +105,7 @@ export function ModuleButton({
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={25}
           inActiveStrokeWidth={25}
-          value={timeProgress > 0 ? timeProgress : 0}
+          value={progress > 0 ? timeProgress : 0}
           radius={
             selectedModule
               ? selectedModule.name === module.name

@@ -19,12 +19,17 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 import { MapsContext } from "../maps/maps.context";
 import moment from "moment";
 import { requirements } from "../data/math/sets/modules";
+import { AuthLogo } from "../../features/home/components/home.styles";
 
 export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
-  const { selectedModule, selectedMapName, selectedMapModulesData, setUpdate } =
-    useContext(MapsContext);
+  const {
+    selectedModule,
+    selectedMapName,
+    selectedMapModulesData,
+    setUpdated,
+  } = useContext(MapsContext);
   const [quizData, setQuizData] = useState([]);
   const [score, setScore] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -32,41 +37,55 @@ export const QuizContextProvider = ({ children }) => {
   const [quiz, setQuiz] = useState([1, 2, 3, 4, 5]);
   const [quizIds, setQuizIds] = useState([]);
   const quizInterval = [1, 7, 16, 35];
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
   const getQuiz = () => {
     if (selectedModule) {
-      // console.log("gettin quiz");
-      // console.log(selectedMapName);
       const ar = [];
-      const ids = Array.from({ length: 5 }, () => {
-        let ran = Math.round(Math.random() * 9);
-        while (ar.includes(ran)) {
-          ran = Math.round(Math.random() * 9);
-        }
-        ar.push(ran);
-        return String(ran);
-      });
-      setQuizIds(ids);
       console.log("IDS");
-      console.log(ids);
       const quizColRef = collection(
         db,
         `quiz_${selectedMapName}`,
         selectedModule.name,
         "level1"
       );
-      const q = query(quizColRef, where(documentId(), "in", ids));
-      const quizzes = [];
-      getDocs(q).then((docs) => {
-        docs.forEach((doc) => {
-          // // console.log(doc.data());
-          quizzes.push(doc.data());
+      // const q = query(quizColRef, where(documentId(), "in", ids));
+      const allQuizzes = [];
+      getDocs(quizColRef)
+        .then((docs) => {
+          docs.forEach((doc) => {
+            // // console.log(doc.data());
+            allQuizzes.push(doc.data());
+            // console.log(doc.data());
+            ar.push(doc.id);
+          });
+        })
+        .then(() => {
+          // randomly choose 5 quizzes to chosenQuizzes from the allQuizzes array
+          console.log(allQuizzes);
+          const chosenQuizzes = shuffle(allQuizzes);
+          console.log(chosenQuizzes);
+          setQuiz(chosenQuizzes);
+          setLoaded(true);
+          // setQuizData(chosenQuizzes);
         });
-
-        // console.log("qzz");
-        setQuiz(quizzes);
-        setLoaded(true);
-        // return quizzes;
-      });
     }
     // return null;
   };
@@ -169,6 +188,7 @@ export const QuizContextProvider = ({ children }) => {
         });
       }
     }
+    setUpdated(false);
   }, [metaData]);
 
   return (

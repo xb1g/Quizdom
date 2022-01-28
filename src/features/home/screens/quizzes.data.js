@@ -97,7 +97,7 @@ export const complement = [
     explaination:
       "Analize (C-A)' then examine the overlapping areas between it and B. ",
     image:
-      "https://discord.com/channels/@me/593800041941172235/936190051145101312",
+      "https://cdn.discordapp.com/attachments/593800041941172235/936190050809548850/set.png",
     source: "dol",
     question: "What expression explains the colored part of the set",
     skillLevel: 1,
