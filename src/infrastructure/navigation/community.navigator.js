@@ -15,6 +15,7 @@ import { Text } from "../../components/typography/text.component";
 import { PostScreen } from "../../features/community/screens/post.screen";
 import { ListButton } from "../../components/button/list-button.component";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { AddPost } from "../../features/community/components/add-post.component";
 
 const CommunityStack = createStackNavigator();
 
@@ -44,7 +45,7 @@ export const CommunityNavigator = ({ navigation, route }) => {
         options={{
           title: "",
           // headerRight: () => <ListButton navigation={navigation} />,
-          // headerLeft: () => <AddButton navigation={navigation} />,
+          // headerLeft: () => <AddPost navigation={navigation} />,
           headerTransparent: true,
           headerBackground: () => (
             <View
@@ -80,36 +81,72 @@ export const CommunityNavigator = ({ navigation, route }) => {
         options={{
           title: "",
           headerTransparent: true,
+          headerLeft: () => null,
         }}
       />
       <CommunityStack.Screen
         name="PostScreen"
         component={PostScreen}
         options={{
+          title: "",
+          // headerShown: false,
+          headerTransparent: true,
+          headerLeft: () => null,
           headerRight: () => (
+            // <View
+            //   style={{
+            //     width: 50,
+            //     height: 50,
+            //     borderRadius: 25,
+            //     marginRight: 20,
+            //     marginBottom: 10,
+            //     backgroundColor: theme.colors.brand.primary,
+            //     padding: 10,
+            //     alignItems: "center",
+            //     justifyContent: "center",
+            //   }}
+            // >
+            <Ionicons
+              name="ios-add"
+              size={30}
+              color="#fff"
+              style={{ paddingRight: 20 }}
+            />
+            // </View>
+          ),
+          headerBackground: () => (
             <View
               style={{
-                width: 50,
-                height: 50,
-                borderRadius: 25,
-                marginRight: 20,
-                marginBottom: 10,
-                backgroundColor: theme.colors.brand.primary,
-                padding: 10,
-                alignItems: "center",
-                justifyContent: "center",
+                height:
+                  Platform.OS === "ios" ? 50 + insets.top : 50 + insets.top, //was 120 Android
+                backgroundColor: theme.colors.bg.secondary, //coloradded
+                borderBottomRightRadius: 30,
+                borderBottomLeftRadius: 30,
+                ...shadow.shadow2,
               }}
             >
-              <Ionicons name="ios-add" size={30} color="#fff" />
+              <Text
+                style={{
+                  alignSelf: "center",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "Airstrike",
+                  marginTop: insets.top - 5,
+                  fontSize: 47,
+                  color: "#fff",
+                }}
+              >
+                {"Kingdom" + " "}
+              </Text>
             </View>
           ),
-          headerStyle: {
-            backgroundColor: theme.colors.bg.primary,
-            borderBottomRightRadius: 30,
-            borderBottomLeftRadius: 30,
-            height: 60 + insets.top,
-            ...shadow.shadow2,
-          },
+          // headerStyle: {
+          //   backgroundColor: theme.colors.bg.primary,
+          //   borderBottomRightRadius: 30,
+          //   borderBottomLeftRadius: 30,
+          //   height: 60 + insets.top,
+          //   ...shadow.shadow2,
+          // },
         }}
       />
     </CommunityStack.Navigator>

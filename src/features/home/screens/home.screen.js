@@ -360,7 +360,7 @@ export const HomeScreen = ({ navigation }) => {
     //   },
     // ];
 
-    const quizze = [
+    const subsets = [
       {
         answer1: "$\\{\\{1\\}, \\{3\\} \\}$",
         answer2: "$\\{\\varnothing\\}$",
@@ -428,7 +428,7 @@ export const HomeScreen = ({ navigation }) => {
         answer3: "$ A \\subset A $",
         answer4: "$ A \\subset B   $",
         correct_answer: 4,
-        explaination: `$A \\subset B$ means that every element in the set A is in the set B, but $B$ has at least 1 element that is not is $A$(proprt subset).
+        explaination: `$A \\subset B$ means that every element in the set A is in the set B, but $B$ has at least 1 element that is not is $A$(proper subset).
 
           $A \\subseteq B$ means that every element in the set $A$ is in $B$ and they can also be equal. So $A \\subseteq A$ is correct.`,
         hint: `$A \\subset$ B means that $A$ is a proper subset of $B$
@@ -459,9 +459,9 @@ export const HomeScreen = ({ navigation }) => {
       },
       {
         answer1: "$ \\{\\text{boat} \\}  $",
-        answer2: "$ \\{\\test{motorbike, car} \\}  $",
-        answer3: "$ \\{\\test{bicycle, train} \\}  $",
-        answer4: "$ \\{\\test{car, train} \\} $",
+        answer2: "$ \\{\\text{motorbike, car} \\}  $",
+        answer3: "$ \\{\\text{bicycle, train} \\}  $",
+        answer4: "$ \\{\\text{car, train} \\} $",
         correct_answer: 4,
         explaination:
           "subset of $\\{\\text{car, airplane, train}\\}$ are $\\varnothing, \\{car\\}, \\{airplane\\}, \\{train\\}, \\{car, airplane\\}, \\{car, train\\}, \\{car, airplane, train\\},$",
@@ -543,7 +543,7 @@ export const HomeScreen = ({ navigation }) => {
       },
     ];
 
-    const quizze2 = [
+    const intro = [
       {
         answer1: "$8$",
         answer2: "$2$",
@@ -555,9 +555,8 @@ export const HomeScreen = ({ navigation }) => {
         image: null,
         source:
           "https://study.com/academy/practice/quiz-worksheet-set-notation.html",
-        question:
-          `Which is not an element of set $A$? 
-          $A = \\{1, 2, \\{3\\}, 5, \\{8, 9\\}, 20\\}$`,
+        question: `Which is not an element of set $A$? 
+          $$A = \\{1, 2, \\{3\\}, 5, \\{8, 9\\}, 20\\}$$`,
         skillLevel: 2,
         tags: ["sets", "notation"],
       },
@@ -567,7 +566,8 @@ export const HomeScreen = ({ navigation }) => {
         answer3: "$200$",
         answer4: "$\text{New York City}$",
         correct_answer: 1,
-        explaination: "$g$ is not an element of $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$",
+        explaination:
+          "$g$ is not an element of $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$",
         hint: "An element is part of the set ",
         image: null,
         source:
@@ -586,8 +586,7 @@ export const HomeScreen = ({ navigation }) => {
         explaination: "All elements of $E$ are ood numbers",
         hint: " Odd numbers when divided by two have remainders ",
         image: null,
-        source:
-          "https://www.mathgoodies.com/lessons/sets",
+        source: "https://www.mathgoodies.com/lessons/sets",
         question:
           "Which of the following is the set of odd whole numbers less than 10?",
         skillLevel: 1,
@@ -603,14 +602,14 @@ export const HomeScreen = ({ navigation }) => {
         hint: " Sets must have unique objects as elements",
         image: null,
         source: "https://www.mathgoodies.com/lessons/sets",
-        question:
-          `Jennifer listed the set of all letters in the word library as shown below. 
+        question: `Jennifer listed the set of all letters in the word library as shown below. 
           What is wrong with this set? $A = \\{l, i, b, r, a, r, y\\}$`,
         skillLevel: 1,
         tags: ["sets", "notation"],
       },
       {
-        answer1: "$R = [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]$",
+        answer1:
+          "$R = [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]$",
         answer2: "$S = \\{hearts, diamonds, clubs, spades\\}$",
         answer3: "$T = \\{jokers\\}$",
         answer4: "None of the above.",
@@ -618,8 +617,7 @@ export const HomeScreen = ({ navigation }) => {
         explaination: "$S$ uses curly brackets and contains all suits of cards",
         hint: "Set notation uses curly brackets",
         image: null,
-        source:
-          "https://www.mathgoodies.com/lessons/sets",
+        source: "https://www.mathgoodies.com/lessons/sets",
         question:
           "Which of the following is the set of all suits in a standard deck of playing cards?",
         skillLevel: 2,
@@ -627,301 +625,16 @@ export const HomeScreen = ({ navigation }) => {
       },
     ];
 
-    // const another = [
-    //   {
-    //     answer1: "{}",
-    //     answer2: "{{}}",
-    //     answer3: "{{1}}",
-    //     answer4: "{1}",
-    //     correct_answer: 1,
-    //     explaination: "Singleton set has only 1 member",
-    //     hint: "There is a set with none",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is not a singleton set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "{1,2,3,…,99,100}",
-    //     answer2: "{1,2,3,4,5}",
-    //     answer3: "{a,b,c}",
-    //     answer4: "{1,2,3,…}",
-    //     correct_answer: 4,
-    //     explaination: "Infinite set has unlimited members",
-    //     hint: "Infinite set has more members than finite set",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is infinite set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "9",
-    //     answer2: "89",
-    //     answer3: "90",
-    //     answer4: "82",
-    //     correct_answer: 3,
-    //     explaination: "Equal sets are sets that contain all same members",
-    //     hint: "Equal sets property",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "If A={1,9,b} ,B={1,a,81} and A=B then a+b=? ",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "{1,{2,3,4}}",
-    //     answer2: "{1,2,{3,{4}}}",
-    //     answer3: "{{1,2},{3,{4,}},{5,6}}",
-    //     answer4: "{{1,2,3},{4,{5,}},6,{{7}}}",
-    //     correct_answer: 4,
-    //     explaination: "Equivalent sets have the same number of members",
-    //     hint: "Somethings equal",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "If A={1,2,3,4} which one is equivalent set of set A",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:xinmathbb{N}$ and $x^3=8$}",
-    //     answer2: "B={$x:xinmathbb{N}$ and $x-10=-10$}",
-    //     answer3: "C={$x:xinmathbb{N}$ and $x+1=10$}",
-    //     answer4: "D={$x:xinmathbb{N}$ and $x^2=9$}",
-    //     correct_answer: 2,
-    //     explaination: "A set with no member inside",
-    //     hint: "Not any member",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is a null set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:xinmathbb{R}$ and $x^2=4$}",
-    //     answer2: "B={$x:xinmathbb{R}$ and $0div x=0$}",
-    //     answer3: "C={$x:xinmathbb{R}$ and $xcdot 0=1$}",
-    //     answer4: "D={$x:xinmathbb{R}$ and $x+x=14$}",
-    //     correct_answer: 4,
-    //     explaination: "Singleton set has only one member",
-    //     hint: "One member",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is a singleton set",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:xinmathbb{R}$ and $sqrt[]x = 2 $}",
-    //     answer2: "B={$x:xinmathbb{R}$ and $0< x<1$}",
-    //     answer3: "C={$x:xinmathbb{N}$ and $0< x<1$}",
-    //     answer4: "D={$x:xinmathbb{N}$ and $sqrt[]x = 2$}",
-    //     correct_answer: 2,
-    //     explaination: "Infinite set has infinite members",
-    //     hint: "Infinite members",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is infinite set",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "null set",
-    //     answer2: "singleton set",
-    //     answer3: "finite set",
-    //     answer4: "infinite set",
-    //     correct_answer: 3,
-    //     explaination: "T={1,2,3,…,98}",
-    //     hint: "$mathbb{N}$ is natural number",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "T={$x:xin mathbb{N}$ and $x<99$} What is a type of set T",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "singleton set",
-    //     answer2: "equivalent set",
-    //     answer3: "infinite set",
-    //     answer4: "null set",
-    //     correct_answer: 1,
-    //     explaination: "P={{1,2,3,4,5,6,7,8,9}}",
-    //     hint: "Natural number doesn’t have fractions and decimals",
-    //     image: null,
-    //     source: "Perth",
-    //     question:
-    //       "P={{$x:xin mathbb{N}$ and $x<10$}} What is the type of set P",
-    //     skillLevel: 3,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A is singleton set and B is finite set",
-    //     answer2: "A and B are equal sets",
-    //     answer3: "A and B are equivalent sets",
-    //     answer4: "A is null set and B is singleton set",
-    //     correct_answer: 4,
-    //     explaination: "A={} and B={27}",
-    //     hint: "Natural number doesn’t have fractions and decimals",
-    //     image: null,
-    //     source: "Perth",
-    //     question:
-    //       "If A={$x:xin mathbb{N}$ and $xcdot2=1$} and B={$x:xin mathbb{N}$ and $xdiv3=9$} Which one is correct answer",
-    //     skillLevel: 3,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    // ];
-
-    // const newQuiz = [
-    //   {
-    //     answer1: "{}",
-    //     answer2: "{{}}",
-    //     answer3: "{{1}}",
-    //     answer4: "{1}",
-    //     correct_answer: 1,
-    //     explaination: "Singleton set has only 1 member",
-    //     hint: "There is a set with none",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is not a singleton set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "{1,2,3,…,99,100}",
-    //     answer2: "{1,2,3,4,5}",
-    //     answer3: "{a,b,c}",
-    //     answer4: "{1,2,3,…}",
-    //     correct_answer: 4,
-    //     explaination: "Infinite set has unlimited members",
-    //     hint: "Infinite set has more members than finite set",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is infinite set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "9",
-    //     answer2: "89",
-    //     answer3: "90",
-    //     answer4: "82",
-    //     correct_answer: 3,
-    //     explaination: "Equal sets are sets that contain all same members",
-    //     hint: "Equal sets property",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "If A={1,9,b} ,B={1,a,81} and A=B then a+b=? ",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "{1,{2,3,4}}",
-    //     answer2: "{1,2,{3,{4}}}",
-    //     answer3: "{{1,2},{3,{4,}},{5,6}}",
-    //     answer4: "{{1,2,3},{4,{5,}},6,{{7}}}",
-    //     correct_answer: 4,
-    //     explaination: "Equivalent sets have the same number of members",
-    //     hint: "Somethings equal",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "If A={1,2,3,4} which one is equivalent set of set A",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:x\\in\\mathbb{N}$ and $x^3=8$}",
-    //     answer2: "B={$x:x\\in\\mathbb{N}$ and $x-10=-10$}",
-    //     answer3: "C={$x:x\\in\\mathbb{N}$ and $x+1=10$}",
-    //     answer4: "D={$x:x\\in\\mathbb{N}$ and $x^2=9$}",
-    //     correct_answer: 2,
-    //     explaination: "A set with no member inside",
-    //     hint: "Not any member",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is a null set",
-    //     skillLevel: 1,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:x\\in\\mathbb{R}$ and $x^2=4$}",
-    //     answer2: "B={$x:x\\in\\mathbb{R}$ and $0\\div x=0$}",
-    //     answer3: "C={$x:x\\in\\mathbb{R}$ and $x\\cdot 0=1$}",
-    //     answer4: "D={$x:x\\in\\mathbb{R}$ and $x+x=14$}",
-    //     correct_answer: 4,
-    //     explaination: "Singleton set has only one member",
-    //     hint: "One member",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is a singleton set",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A={$x:x\\in\\mathbb{R}$ and $\\sqrt[]x = 2 $}",
-    //     answer2: "B={$x:x\\in\\mathbb{R}$ and $0< x<1$}",
-    //     answer3: "C={$x:x\\in\\mathbb{N}$ and $0< x<1$}",
-    //     answer4: "D={$x:x\\in\\mathbb{N}$ and $\\sqrt[]x = 2$}",
-    //     correct_answer: 2,
-    //     explaination: "Infinite set has infinite members",
-    //     hint: "Infinite members",
-    //     image: null,
-    //     source: "Perth",
-    //     question: "Which one is infinite set",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "null set",
-    //     answer2: "singleton set",
-    //     answer3: "finite set",
-    //     answer4: "infinite set",
-    //     correct_answer: 3,
-    //     explaination: "T={1,2,3,…,98}",
-    //     hint: "$mathbb{N}$ is natural number",
-    //     image: null,
-    //     source: "Perth",
-    //     question:
-    //       "T={$x:x\\in \\mathbb{N}$ and $x<99$} What is a type of set T",
-    //     skillLevel: 2,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "singleton set",
-    //     answer2: "equivalent set",
-    //     answer3: "infinite set",
-    //     answer4: "null set",
-    //     correct_answer: 1,
-    //     explaination: "P={{1,2,3,4,5,6,7,8,9}}",
-    //     hint: "Natural number doesn’t have fractions and decimals",
-    //     image: null,
-    //     source: "Perth",
-    //     question:
-    //       "P={{$x:x\\in \\mathbb{N}$ and $x<10$}} What is the type of set P",
-    //     skillLevel: 3,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    //   {
-    //     answer1: "A is singleton set and B is finite set",
-    //     answer2: "A and B are equal sets",
-    //     answer3: "A and B are equivalent sets",
-    //     answer4: "A is null set and B is singleton set",
-    //     correct_answer: 4,
-    //     explaination: "A={} and B={27}",
-    //     hint: "Natural number doesn’t have fractions and decimals",
-    //     image: null,
-    //     source: "Perth",
-    //     question:
-    //       "If A={$x:xin \\mathbb{N}$ and $x\\cdot2=1$} and B={$x:xin mathbb{N}$ and $xdiv3=9$} Which one is correct answer",
-    //     skillLevel: 3,
-    //     tags: ["sets", "type of sets"],
-    //   },
-    // ];
-
-    quizze.forEach((quiz, index) => {
+    intro.forEach((quiz, index) => {
       // console.log(typeof String(index));
       // console.log(quiz);
-      const quizRef = doc(db, "quiz_sets", "Subsets", "level1", String(index));
+      const quizRef = doc(
+        db,
+        "quiz_sets",
+        "Intro to sets",
+        "level1",
+        String(index)
+      );
       setDoc(quizRef, quiz);
     });
   };

@@ -89,7 +89,6 @@ export const QuestionsList = ({ questions, navigation }) => {
       tags: ["math", "c++"],
       description: "how to sleep in c++",
       status: "answered",
-
       name: "Jane Doe",
       avatar: "https://picsum.photos/200",
       online: true,
@@ -107,7 +106,6 @@ export const QuestionsList = ({ questions, navigation }) => {
     >
       <FlatList
         data={questions}
-        // horizontal={true}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
@@ -118,7 +116,6 @@ export const QuestionsList = ({ questions, navigation }) => {
               }}
               style={{
                 backgroundColor: "#ffffff",
-
                 borderBottomColor:
                   item.status === "answered" ? "#6fffff" : "#ffaded",
                 borderBottomWidth: 10,
@@ -127,13 +124,7 @@ export const QuestionsList = ({ questions, navigation }) => {
                 padding: 5,
               }}
             >
-              <View
-                style={
-                  {
-                    //   borderRadius: 50,
-                  }
-                }
-              >
+              <View style={{}}>
                 <Text>{item.title}</Text>
               </View>
             </TouchableOpacity>

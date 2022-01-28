@@ -37,11 +37,6 @@ export const CommunityScreen = ({ navigation }) => {
   const theme = useTheme();
   const { user } = useContext(AuthenticationContext);
 
-  useEffect(() => {
-    // console.log("Post data");
-    // console.log(postData);
-    // console.log(user.uid);
-  }, []);
   return (
     <>
       <View
@@ -52,8 +47,9 @@ export const CommunityScreen = ({ navigation }) => {
       >
         <FilterButton />
         <FlatList
-          style={{ paddingTop: 90 }}
+          style={{ paddingTop: 50 }}
           data={postData}
+          keyExtractor={(post) => post.id}
           renderItem={(post) => {
             post = post.item;
             return (
@@ -61,6 +57,8 @@ export const CommunityScreen = ({ navigation }) => {
                 <TouchableOpacity
                   style={{
                     borderRadius: 20,
+                    borderBottomColor: post.answered ? "#7fffff" : "#ebd1e5",
+                    borderBottomWidth: 8,
                     margin: 10,
                     padding: 10,
                     backgroundColor: theme.colors.bg.secondary,
@@ -78,8 +76,11 @@ export const CommunityScreen = ({ navigation }) => {
                   <FlatList
                     data={post.images}
                     horizontal
+                    style={{
+                      marginTop: 10,
+                    }}
+                    keyExtractor={(image) => image.id}
                     renderItem={(image) => {
-                      // console.log("Slum images");
                       return (
                         <Image
                           style={{
@@ -94,21 +95,9 @@ export const CommunityScreen = ({ navigation }) => {
                     }}
                   />
                 </TouchableOpacity>
-                <View
-                  style={{
-                    marginTop: -15,
-                    zIndex: -1,
-                    height: 10,
-                    marginHorizontal: 10,
-                    borderRadius: 10,
-                    backgroundColor: "#ff6de7",
-                    width: "100%",
-                  }}
-                />
               </>
             );
           }}
-          keyExtractor={(post) => post.id}
         />
         <TouchableOpacity
           style={{
@@ -118,13 +107,10 @@ export const CommunityScreen = ({ navigation }) => {
             paddingTop: 10,
             paddingBottom: 10,
             marginHorizontal: 30,
-            marginTop: 30,
+            margin: 30,
             alignItems: "center",
           }}
-          onPress={
-            () => navigation.navigate("AddPostScreen")
-            //// console.log("Add post")
-          }
+          onPress={() => navigation.navigate("AddPostScreen")}
         >
           <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>
         </TouchableOpacity>

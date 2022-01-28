@@ -17,6 +17,7 @@ import styled from "styled-components/native";
 const Text = styled(CoolText)`
   color: #fff;
 `;
+
 export const EditUserInfoScreen = () => {
   const { user } = useContext(AuthenticationContext);
   // const { userInfo } = useContext(UserInfoContext);
@@ -37,6 +38,7 @@ export const EditUserInfoScreen = () => {
       }),
     []
   );
+
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
