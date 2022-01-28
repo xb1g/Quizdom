@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { db } from "../../../../firebase-config";
-
 import {
   collection,
   doc,
@@ -10,19 +9,27 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { AuthenticationContext } from "../authentication.context";
+import { Achievements } from "../../data/achievements";
+
 export const AchievementContext = createContext();
+
 export const AchievementContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
-  const [achievementData, setAchievementData] = useState([]);
+  const [achievementsData, setAchievementsData] = useState([]);
+
   useEffect(() => {
-    const achievementRef = collection(db, "users", user.uid, "achievements");
-    getDocs(achievementRef).then((docs) => {
+    const achievementsRef = collection(db, "users", user.uid, "achievements");
+    getDocs(achievementsRef).then((docs) => {
       const data = [];
       docs.forEach((doc) => {
-        data.push(doc.data());
+        let achievement = {
+          ...doc.data(),
+        };
+        // data.push(doc.data());
       });
-      setAchievementData(data);
-      console.log(achievementData);
+
+      setAchievementsData(data);
+      console.log(achievementsData);
       // console.log(settingData);
     });
   }, []);

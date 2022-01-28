@@ -21,4 +21,34 @@ export const shadow = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  glow1: {
+    shadowColor: "#ff7979",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.55,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  glow2: {
+    shadowColor: "#ff7979",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.55,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  glow3: {
+    shadowColor: "#ff7979",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.55,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
 });

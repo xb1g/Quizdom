@@ -5,6 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { BackButton } from "../components/user-profile.styles";
 import { Book } from "../../../../assets/achievement0";
 import { AchievementContext } from "../../../services/authentication/achievement/achievement.context";
+import { shadow } from "../../../components/shadow/shadow.styles";
 // import { BackButton } from "../../account/components/account.styles";
 
 export const AchievementScreen = ({ navigation }) => {
@@ -61,28 +62,12 @@ export const AchievementScreen = ({ navigation }) => {
       goal: 3,
     },
     {
-      id: 7,
-      title: "Day limit",
-      description: "Study 3 points in a day",
-      image: require("../../../../assets/achievement0/days.png"),
-      progress: 0,
-      goal: 2,
-    },
-    {
       id: 8,
       title: "Recharge",
       description: "Charge your level back",
       image: require("../../../../assets/achievement0/power.png"),
       progress: 0,
       goal: 3,
-    },
-    {
-      id: 9,
-      title: "Upgrade",
-      description: "Up level for your points",
-      image: require("../../../../assets/achievement0/power.png"),
-      progress: 0,
-      goal: 5,
     },
     {
       id: 10,
@@ -93,6 +78,7 @@ export const AchievementScreen = ({ navigation }) => {
       goal: 5,
     },
   ];
+
   return (
     <>
       <View
@@ -122,7 +108,7 @@ export const AchievementScreen = ({ navigation }) => {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate("BadgeScreen")}
+                onPress={() => navigation.navigate("BadgeScreen", { item })}
               >
                 <View
                   style={{
@@ -133,7 +119,7 @@ export const AchievementScreen = ({ navigation }) => {
                     style={{
                       // flex: 1,
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
-                      borderRadius: 10,
+                      borderRadius: 30,
 
                       padding: 15,
                       zIndex: -10,
@@ -147,6 +133,7 @@ export const AchievementScreen = ({ navigation }) => {
                         // flex: 1,
                         height: 80,
                         borderRadius: 50,
+                        ...shadow.glowRed,
                       }}
                     />
                   </View>

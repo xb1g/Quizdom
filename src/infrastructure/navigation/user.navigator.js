@@ -3,6 +3,7 @@ import React from "react";
 import {
   createStackNavigator,
   CardStyleInterpolators,
+  TransitionPresets,
 } from "@react-navigation/stack";
 
 import { UserScreen } from "../../features/user/screens/user.screen";
@@ -80,7 +81,13 @@ export const UserNavigator = ({ route, navigation }) => {
           headerShown: false,
           cardStyle: {
             backgroundColor: "#33363d",
+            borderTopRightRadius: 30,
+            borderTopLeftRadius: 30,
+            borderBottomRightRadius: 30,
+            borderBottomLeftRadius: 30,
+            margin: 20,
           },
+          ...TransitionPresets.ModalPresentationIOS,
         }}
       />
       <UserStack.Screen
