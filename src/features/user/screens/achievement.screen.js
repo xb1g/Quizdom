@@ -121,7 +121,9 @@ export const AchievementScreen = ({ navigation }) => {
           numColumns={3}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("BadgeScreen")}
+              >
                 <View
                   style={{
                     padding: 10,

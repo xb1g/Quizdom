@@ -564,16 +564,16 @@ export const HomeScreen = ({ navigation }) => {
         answer1: "$g$",
         answer2: "$a$",
         answer3: "$200$",
-        answer4: "$\text{New York City}$",
+        answer4: "$\\text{New York City}$",
         correct_answer: 1,
         explaination:
-          "$g$ is not an element of $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$",
+          "$g$ is not an element of $\\{a, e, i, o, u,\\text New York City,\\text{Jupiter}, 7, 200\\}$",
         hint: "An element is part of the set ",
         image: null,
         source:
           "https://study.com/academy/practice/quiz-worksheet-set-notation.html",
         question: `Which is not an element of the following set?
-        $\\{a, e, i, o, u,$$\text New York City$$,$$\text Jupiter$$, 7, 200\\}$`,
+        $\\{a, e, i, o, u,\\text{New York City},\\text{Jupiter}, 7, 200\\}$`,
         skillLevel: 1,
         tags: ["sets", "notation"],
       },
@@ -584,7 +584,7 @@ export const HomeScreen = ({ navigation }) => {
         answer4: "None of the above",
         correct_answer: 3,
         explaination: "All elements of $E$ are ood numbers",
-        hint: " Odd numbers when divided by two have remainders ",
+        hint: "Odd numbers when divided by two have remainders",
         image: null,
         source: "https://www.mathgoodies.com/lessons/sets",
         question:
@@ -608,8 +608,7 @@ export const HomeScreen = ({ navigation }) => {
         tags: ["sets", "notation"],
       },
       {
-        answer1:
-          "$R = [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]$",
+        answer1: "$R = \\{red, black\\}$",
         answer2: "$S = \\{hearts, diamonds, clubs, spades\\}$",
         answer3: "$T = \\{jokers\\}$",
         answer4: "None of the above.",
@@ -621,6 +620,72 @@ export const HomeScreen = ({ navigation }) => {
         question:
           "Which of the following is the set of all suits in a standard deck of playing cards?",
         skillLevel: 2,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "Superset",
+        answer2: "Finite Set",
+        answer3: "Empty (or Null) Set",
+        answer4: "Infinite set",
+        correct_answer: 3,
+        explaination: `$\\{\\}$ is a sign of Empty Set.
+        $\\varnothing$ is a sign of Null Set
+        both of them are the same`,
+        hint: "it is not a superset",
+        image: null,
+        source:
+          "https://quizizz.com/admin/quiz/5ebd8e600d1397001b878fbe/introduction-to-sets",
+        question:
+          "What type of set is denoted as either ${}$ or $\\varnothing$?",
+
+        skillLevel: 1,
+        tags: ["sets", "notation"],
+      },
+      {
+        answer1: "$Q = \\{ I, E \\}$",
+        answer2: "$Q = \\{ S, T, R \\}$",
+        answer3: "$Q = \\{ S, I, S, T, E, R \\}$",
+        answer4: "$Q = \\{ S, I, T, E, R \\}$",
+        correct_answer: 4,
+        explaination:
+          "the letters of $SISTER$ are $S, I, S, T, E, R$ so $Q = \\{ S, I, T, E, R \\}$",
+        hint: "Can a set have duplicate letters?",
+        image: null,
+        source:
+          "https://quizizz.com/admin/quiz/5ebd8e600d1397001b878fbe/introduction-to-sets",
+        question: `Set Q contains the letters in the word SISTER. Which of the following is set Q?`,
+        skillLevel: 1,
+        tags: ["sets", "notation"],
+      },
+      // {
+      //   answer1: "complement of a set",
+      //   answer2: "union of set",
+      //   answer3: "cardinality of a set",
+      //   answer4: "intersection of sets​",
+      //   correct_answer: 2,
+      //   explaination: "Because the union set is all set",
+      //   hint: "",
+      //   image: null,
+      //   source: "https://brainly.ph/question/6488558",
+      //   question:
+      //     "The set of elements in the universal set which are not in a given set is called the ____",
+      //   skillLevel: 1,
+      //   tags: ["sets", "notation"],
+      // },
+      {
+        answer1: "$\\{a, b, c, d, e, f\\}$",
+        answer2: "$\\{l, m, n, o, p\\}$",
+        answer3: "$\\{a, e, i, o, u\\}$",
+        answer4: "$\\{p, q, r, s, t\\}$",
+        correct_answer: 3,
+        explaination:
+          "This set contains five elements. Namely, $ a, e, i, o, u. $",
+        hint: "",
+        image: null,
+        source:
+          "https://quizizz.com/admin/quiz/5ebd8e600d1397001b878fbe/introduction-to-sets",
+        question: "The set of vowels in English alphabet contains elements",
+        skillLevel: 1,
         tags: ["sets", "notation"],
       },
     ];
