@@ -9,7 +9,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { AuthenticationContext } from "../authentication.context";
-import { Achievements } from "../../data/achievements";
+import { achievementsBase } from "../../data/achievements";
 
 export const AchievementContext = createContext();
 
@@ -19,23 +19,32 @@ export const AchievementContextProvider = ({ children }) => {
 
   useEffect(() => {
     const achievementsRef = collection(db, "users", user.uid, "achievements");
-    getDocs(achievementsRef).then((docs) => {
-      const data = [];
-      docs.forEach((doc) => {
-        let achievement = {
-          ...doc.data(),
-        };
-        // data.push(doc.data());
+    const savedProgress = [];
+    getDocs(achievementsRef)
+      .then((docs) => {
+        docs.forEach((doc) => {
+          let achievement = {
+            ...doc.data(),
+          };
+          savedProgress.push(achievement);
+        });
+        console.log(savedProgress);
+      })
+      .then(() => {
+        const achievements = [];
+        achievementsBase.map((achievement) => {
+          const achievementData = {
+            ...achievement,
+            ...savedProgress.find((item) => item.id === achievement.id),
+          };
+          achievements.push(achievementData);
+        });
+        setAchievementsData(achievements);
       });
-
-      setAchievementsData(data);
-      console.log(achievementsData);
-      // console.log(settingData);
-    });
   }, []);
   return (
     <AchievementContext.Provider
-      value={{ achievementData, setAchievementData }}
+      value={{ achievementsData, setAchievementsData }}
     >
       {children}
     </AchievementContext.Provider>

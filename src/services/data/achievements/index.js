@@ -1,4 +1,4 @@
-export const Achievements = [
+export const achievementsBase = [
   {
     id: 1,
     title: "Quiz Master",
