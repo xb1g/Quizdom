@@ -103,9 +103,10 @@ export const AchievementScreen = ({ navigation }) => {
       </View>
       <BackButton navigation={navigation} />
       {/* <ScrollView> */}
-      <View style={{ marginTop: 30 }}>
+      <View style={{}}>
         <FlatList
           contentContainerStyle={{
+            marginTop: 30,
             alignItems: "center",
             justifyContent: "flex-end",
           }}
@@ -128,9 +129,8 @@ export const AchievementScreen = ({ navigation }) => {
                   <View
                     style={{
                       // flex: 1,
-                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      backgroundColor: "#ffffff2b",
                       borderRadius: 30,
-
                       padding: 15,
                       zIndex: -10,
                     }}
@@ -152,7 +152,7 @@ export const AchievementScreen = ({ navigation }) => {
                         // flex: 1,
                         height: 80,
                         borderRadius: 50,
-                        ...shadow.glowRed,
+                        ...shadow.glow0,
                       }}
                     />
                   </View>

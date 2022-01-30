@@ -15,7 +15,7 @@ export const achievementsBase = [
   {
     id: 2,
     title: "The End?",
-    description: "React the end of a map",
+    description: "Reach the end of a map",
     imageName: "Castle",
     image0: allImages.CastleImage0,
     image1: allImages.CastleImage1,

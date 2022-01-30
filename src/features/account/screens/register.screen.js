@@ -73,7 +73,7 @@ export const RegisterScreen = ({ navigation }) => {
         />
         <View
           style={{
-            backgroundColor: theme.colors.logo.secondary,
+            backgroundColor: "#5c0c34",
             paddingBottom: 300,
             borderBottomRightRadius: 500,
             paddingTop: 100,

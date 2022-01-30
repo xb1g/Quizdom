@@ -19,7 +19,6 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Icon } from "../../../components/icon/icon.component";
 import { Logo } from "../../../../assets/logo";
-import theme from "react-native-really-awesome-button/src/themes/c137";
 
 const TContainerI = styled(TContainer)`
   top: 50%;

@@ -97,11 +97,11 @@ export const AuthButton = styled(AwesomeButtonC).attrs({
   backgroundDarker: "#000000",
   borderRadius: 20,
   activityColor: "#ffffff",
-  backgroundActive: "#ffb3fa",
-  backgroundColor: "#3E0082",
-  backgroundDarker: "#00FFF0",
+  backgroundActive: "#692700",
+  backgroundColor: "#FF7B4B",
+  backgroundDarker: "#2a0664",
   backgroundShadow: "#2b0070ac",
-  textColor: "#00FFF0",
+  textColor: "#5FFF79",
 })`
   align-self: center;
 `;

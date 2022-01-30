@@ -59,7 +59,7 @@ export const LoginScreen = ({ navigation }) => {
         >
           <View
             style={{
-              backgroundColor: theme.colors.accent.secondary,
+              backgroundColor: theme.colors.accent.quaternarym,
               paddingBottom: 150,
               borderBottomEndRadius: 250,
               paddingTop: 100,
