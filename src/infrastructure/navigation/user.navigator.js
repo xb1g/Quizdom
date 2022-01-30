@@ -131,6 +131,7 @@ export const UserNavigator = ({ route, navigation }) => {
         name="SettingsScreen"
         component={SettingsScreen}
         options={{
+          gestureResponseDistance: 800,
           headerShown: false,
           cardStyle: {
             backgroundColor: "#33363d",

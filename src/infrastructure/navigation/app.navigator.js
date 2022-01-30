@@ -22,13 +22,10 @@ import { QuizContextProvider } from "../../services/quiz/quiz.context";
 import { SettingsContextProvider } from "../../services/authentication/setting/setting.context";
 import { CommunityContextProvider } from "../../services/authentication/community/community.context";
 import { AchievementContextProvider } from "../../services/authentication/achievement/achievement.context";
+import { shadow } from "../../components/shadow/shadow.styles";
 
 const createScreenOptions = ({ route }) => {
   const theme = useTheme(); //theme
-  // useEffect(() => {
-  //   // console.log(theme);
-  // }, []);
-  //// console.log(theme)
   return {
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;
@@ -46,12 +43,26 @@ const createScreenOptions = ({ route }) => {
       return <Ionicons name={iconName} size={size + 7} color={color} />;
     },
     tabBarStyle: {
-      backgroundColor: theme.colors.bg.secondary, //for home screen go to home navigator
+      backgroundColor: theme.colors.accent.primary,
+      position: "absolute",
       bottom: 0,
       borderTopColor: "transparent",
       overflow: "hidden",
     },
-
+    // tabBarBackground: () => (
+    //   <View
+    //     style={{
+    //       flex: 1,
+    //       elevation: 5,
+    //       shadowOffset: { width: 0, height: -5 },
+    //       shadowColor: "black",
+    //       shadowOpacity: 0.5,
+    //       shadowRadius: 5,
+    //       borderRadius: 30,
+    //       backgroundColor: "red",
+    //     }}
+    //   />
+    // ),
     tabBarActiveTintColor: "#fbbcff",
     tabBarInactiveTintColor: "#d9d9d9",
     tabBarShowLabel: false,

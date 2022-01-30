@@ -3,6 +3,8 @@ import { ScrollView, StatusBar, View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { db, storage } from "../../../../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "styled-components/native";
 import {
   FlatList,
   TextInput,
@@ -23,7 +25,11 @@ import { addDoc, collection, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { NavigationContainer } from "@react-navigation/native";
+import { SafeTop } from "../../../components/utility/safe-area.component";
+
 export const AddPostScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
+  const theme = useTheme();
   const { user } = useContext(AuthenticationContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -88,78 +94,85 @@ export const AddPostScreen = ({ navigation }) => {
   };
   return (
     <>
-      <Spacer size="extraLarge" />
-      <TextInput
+      <SafeTop
         style={{
-          fontSize: 25,
-          backgroundColor: "#fff999",
-          marginHorizontal: 30,
-          marginTop: 10,
-        }}
-        onChangeText={setTitle}
-        value={title}
-        placeholder="Title"
-      />
-      <TextInput
-        style={{
-          fontSize: 18,
-          backgroundColor: "#fff999",
-          marginTop: 30,
-          marginHorizontal: 10,
-          paddingBottom: 18,
-        }}
-        onChangeText={setBody}
-        value={body}
-        placeholder="Body"
-      />
-      <TouchableOpacity
-        onPress={openImagePickerAsync}
-        style={{
-          backgroundColor: "#ffaadd",
-          marginTop: 30,
-          paddingTop: 20,
-          marginBottom: 20,
-          paddingBottom: 20,
-          marginHorizontal: 10,
-          borderRadius: 30,
-          alignItems: "center",
+          backgroundColor: theme.colors.bg.primary,
         }}
       >
-        <Text style={{ color: "#ffffff", fontSize: 20 }}>Add Image</Text>
-      </TouchableOpacity>
-      <FlatList
-        style={{ backgroundColor: "#8ad4ff" }}
-        numColumns={2}
-        data={images}
-        renderItem={(image) => {
-          // // console.log("slumMunMun", image);
-          return (
-            <Image
-              style={{
-                width: 200,
-                height: 200,
-                borderRadius: 10,
-              }}
-              source={{ uri: image.item }}
-            />
-          );
-        }}
-        keyExtractor={(image) => image.id}
-      />
-      <TouchableOpacity
-        onPress={() => onAddPost()}
-        style={{
-          backgroundColor: "#999999",
-          marginTop: 10,
-          paddingTop: 20,
-          paddingBottom: 20,
-          marginHorizontal: 10,
-          borderRadius: 30,
-          alignItems: "center",
-        }}
-      >
-        <Text>Post</Text>
-      </TouchableOpacity>
+        {/* <Spacer size="extraLarge" /> */}
+        <TextInput
+          style={{
+            fontSize: 25,
+            backgroundColor: "#fff999",
+            marginHorizontal: 30,
+            marginTop: 10,
+          }}
+          onChangeText={setTitle}
+          value={title}
+          placeholder="Title"
+        />
+        <TextInput
+          style={{
+            fontSize: 18,
+            backgroundColor: "#fff999",
+            marginTop: 30,
+            marginHorizontal: 10,
+            paddingBottom: 18,
+          }}
+          onChangeText={setBody}
+          value={body}
+          placeholder="Body"
+        />
+        <TouchableOpacity
+          onPress={openImagePickerAsync}
+          style={{
+            backgroundColor: "#ffaadd",
+            marginTop: 30,
+            paddingTop: 20,
+            marginBottom: 20,
+            paddingBottom: 20,
+            marginHorizontal: 10,
+            borderRadius: 30,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "#ffffff", fontSize: 20 }}>Add Image</Text>
+        </TouchableOpacity>
+        <FlatList
+          style={{ backgroundColor: "#8ad4ff" }}
+          numColumns={2}
+          data={images}
+          renderItem={(image) => {
+            // // console.log("slumMunMun", image);
+            return (
+              <Image
+                style={{
+                  width: 200,
+                  height: 200,
+                  borderRadius: 10,
+                }}
+                source={{ uri: image.item }}
+              />
+            );
+          }}
+          keyExtractor={(image) => image.id}
+        />
+        <TouchableOpacity
+          onPress={() => onAddPost()}
+          style={{
+            backgroundColor: "#ff7979",
+            marginTop: 10,
+            marginBottom: insets.bottom + 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            marginHorizontal: 10,
+            borderRadius: 30,
+            alignItems: "center",
+          }}
+        >
+          <Text>Post</Text>
+        </TouchableOpacity>
+      </SafeTop>
     </>
   );
 };

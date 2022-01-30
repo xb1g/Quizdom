@@ -53,14 +53,14 @@ export const SetMapStartScreen = ({ navigation }) => {
         </Text>
       ))}
       <Image
-        source={require("./setstart.png")}
+        source={require("./badgeset.png")}
         style={{
           width: "80%",
           height: "100%",
           resizeMode: "contain",
           position: "absolute",
           bottom: 0,
-          right: -40,
+          right: -30,
         }}
       />
 

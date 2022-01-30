@@ -79,9 +79,16 @@ export const CommunityNavigator = ({ navigation, route }) => {
         name="AddPostScreen"
         component={AddPostScreen}
         options={{
-          title: "",
+          gestureEnabled: false,
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+            borderTopRightRadius: 30,
+            borderTopLeftRadius: 30,
+            marginHorizontal: 15,
+          },
           headerTransparent: true,
-          headerLeft: () => null,
+          ...TransitionPresets.ModalPresentationIOS,
         }}
       />
       <CommunityStack.Screen

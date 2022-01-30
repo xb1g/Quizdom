@@ -106,7 +106,7 @@ export function ModuleButton({
           activeStrokeSecondaryColor={"#b535ff"}
           activeStrokeWidth={25}
           inActiveStrokeWidth={25}
-          value={progress > 0 ? timeProgress : 0}
+          value={progress > 0 && timeProgress > 0 ? timeProgress : 0}
           radius={
             selectedModule
               ? selectedModule.name === module.name

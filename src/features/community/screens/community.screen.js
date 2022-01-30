@@ -1,10 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useContext, useEffect } from "react";
-import { FlatList, Image, ScrollView, StatusBar, View } from "react-native";
 import {
-  TouchableHighlight,
+  FlatList,
+  Image,
+  ScrollView,
+  StatusBar,
+  TextInput,
+  View,
   TouchableOpacity,
-} from "react-native-gesture-handler";
+} from "react-native";
+import { TouchableHighlight } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
@@ -14,6 +19,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { shadow } from "../../../components/shadow/shadow.styles";
 
 const FilterButton = () => {
   const { colors } = useTheme();
@@ -100,19 +106,34 @@ export const CommunityScreen = ({ navigation }) => {
           }}
         />
         <TouchableOpacity
-          style={{
-            backgroundColor: "#cb6ce6",
-            borderRadius: 30,
-            paddingHorizontal: 30,
-            paddingTop: 10,
-            paddingBottom: 10,
-            marginHorizontal: 30,
-            margin: 30,
-            alignItems: "center",
-          }}
           onPress={() => navigation.navigate("AddPostScreen")}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+          }}
         >
-          <Text style={{ color: "#ffffff", fontSize: 16 }}>Add Post</Text>
+          <View
+            style={{
+              position: "absolute",
+              bottom: 20,
+              right: 20,
+              width: 50,
+              height: 50,
+              borderRadius: 50,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: theme.colors.accent.secondary,
+              ...shadow.shadow2,
+            }}
+          >
+            <Ionicons
+              name="ios-add"
+              size={30}
+              color="white"
+              style={{ alignSelf: "center" }}
+            />
+          </View>
         </TouchableOpacity>
         <StatusBar barStyle="light-content" />
       </View>

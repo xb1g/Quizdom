@@ -29,9 +29,10 @@ const Num = styledComponentsNative(Text)`
   align-self: flex-start;
 `;
 
-const Container = styledComponentsNative(ScrollView)`
+const Container = styledComponentsNative(View)`
   flex: 1;
   padding: 10px;
+  align-items: center;
 `;
 
 const CloseButton = styledComponentsNative(TouchableOpacity)`
@@ -44,7 +45,6 @@ const CloseButton = styledComponentsNative(TouchableOpacity)`
 `;
 
 export const BadgeScreen = ({ route, navigation }) => {
-  console.log("BadgeScreen");
   const { item: badge } = route.params;
   const goBack = () => {
     navigation.goBack();
@@ -55,11 +55,7 @@ export const BadgeScreen = ({ route, navigation }) => {
 
   return (
     <>
-      <Container
-        contentContainerStyle={{
-          alignItems: "center",
-        }}
-      >
+      <Container>
         <Title variant={"label"}>{badge.title + " "}</Title>
         <Image
           source={
@@ -81,6 +77,7 @@ export const BadgeScreen = ({ route, navigation }) => {
               return (
                 <>
                   <Image
+                    key={index + item.title}
                     source={
                       index === 0
                         ? badge.image1
