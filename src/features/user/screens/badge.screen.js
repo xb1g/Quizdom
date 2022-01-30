@@ -11,6 +11,14 @@ const Title = styledComponentsNative(Text)`
   font-weight: bold;
   color: #fff;
 `;
+const Desc = styledComponentsNative(Text)`
+  font-size: 20px;
+  margin-left: -10px;
+  color: #fff;
+  padding: 15px;
+  background-color: #000;
+  align-self: flex-start;
+`;
 
 const Container = styledComponentsNative(ScrollView)`
   flex: 1;
@@ -23,6 +31,7 @@ const CloseButton = styledComponentsNative(TouchableOpacity)`
   align-self: center;
   bottom: 50px;
   padding: 10px;
+  
   border-radius: 10px;
 `;
 
@@ -40,7 +49,19 @@ export const BadgeScreen = ({ route, navigation }) => {
         }}
       >
         <Title variant={"label"}>{badge.title + " "}</Title>
-        <Image source={badge.image} style={{ width: 200, height: 200 }} />
+        <Image
+          source={
+            badge.level === 1
+              ? badge.image1
+              : badge.level === 2
+              ? badge.image2
+              : badge.level === 3
+              ? badge.image3
+              : badge.image0
+          }
+          style={{ width: 200, height: 200 }}
+        />
+        <Desc>{badge.description}</Desc>
       </Container>
       <CloseButton onPress={() => navigation.goBack()}>
         <Text

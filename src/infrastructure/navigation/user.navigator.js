@@ -18,12 +18,28 @@ import { SettingsScreen } from "../../features/settings/screens/settings.screen"
 // import { UserInfoContextProvider } from "../../services/user-info/user-info.context";
 import { useTheme } from "styled-components/native";
 import { BadgeScreen } from "../../features/user/screens/badge.screen";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const UserStack = createStackNavigator();
 
 export const UserNavigator = ({ route, navigation }) => {
   const theme = useTheme();
-  const hiddenRoute = [BadgeScreen];
+  const tabHiddenRoutes = ["BadgeScreen", "AchievementScreen"];
+  React.useLayoutEffect(() => {
+    if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+      navigation.setOptions({ tabBarStyle: { display: "none" } });
+    } else {
+      navigation.setOptions({
+        tabBarStyle: {
+          backgroundColor: theme.colors.bg.secondary, // for home screen exception
+          bottom: 0,
+          borderTopColor: "transparent",
+          overflow: "hidden",
+        },
+      });
+    }
+  }, [navigation, route]);
+
   return (
     // <UserInfoContextProvider>
     <UserStack.Navigator
@@ -86,6 +102,7 @@ export const UserNavigator = ({ route, navigation }) => {
             borderBottomRightRadius: 30,
             borderBottomLeftRadius: 30,
             margin: 20,
+            marginBottom: 50,
           },
           ...TransitionPresets.ModalPresentationIOS,
         }}

@@ -65,7 +65,7 @@ export const SetMapScreen = ({ navigation }) => {
   const toModule = (top) => {
     if (scrollViewRef.current !== null) {
       scrollViewRef.current.scrollTo({
-        y: top,
+        y: top - 200,
         animated: true,
       });
     }

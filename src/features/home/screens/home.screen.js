@@ -497,7 +497,7 @@ export const HomeScreen = ({ navigation }) => {
         answer4: "$\\{\\text{vowels}\\} = \\{\\text{alphabet}\\}$",
         correct_answer: 1,
         explaination: "",
-        hint: "{vowels} is {a,e,i,o,u}",
+        hint: "vowels are  $\\{a,e,i,o,u\\}$",
         image: null,
         source: "https://www.mathgoodies.com/lessons/sets/subsets",
         question: "Which of the following statements is true?",
@@ -583,7 +583,7 @@ export const HomeScreen = ({ navigation }) => {
         answer3: "$E = \\{1, 3, 5, 7, 9\\}$",
         answer4: "None of the above",
         correct_answer: 3,
-        explaination: "All elements of $E$ are ood numbers",
+        explaination: "All elements of $E$ are odd numbers",
         hint: "Odd numbers when divided by two have remainders",
         image: null,
         source: "https://www.mathgoodies.com/lessons/sets",
@@ -598,8 +598,8 @@ export const HomeScreen = ({ navigation }) => {
         answer3: "It uses commas.",
         answer4: "The objects in this set are not unique.",
         correct_answer: 4,
-        explaination: "$r$ is doubled",
-        hint: " Sets must have unique objects as elements",
+        explaination: "$r \\text{is doubled}$",
+        hint: "Sets must have unique objects as elements",
         image: null,
         source: "https://www.mathgoodies.com/lessons/sets",
         question: `Jennifer listed the set of all letters in the word library as shown below. 
@@ -680,7 +680,7 @@ export const HomeScreen = ({ navigation }) => {
         correct_answer: 3,
         explaination:
           "This set contains five elements. Namely, $ a, e, i, o, u. $",
-        hint: "",
+        hint: "what are vowels?",
         image: null,
         source:
           "https://quizizz.com/admin/quiz/5ebd8e600d1397001b878fbe/introduction-to-sets",
@@ -737,9 +737,9 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
 
-        <Button mode="contained" onPress={onAddQuiz}>
+        {/* <Button mode="contained" onPress={onAddQuiz}>
           ADD QUIZ
-        </Button>
+        </Button> */}
 
         <TitleContainer
           style={{ backgroundColor: theme.colors.accent.tertiarym }}
@@ -754,7 +754,7 @@ export const HomeScreen = ({ navigation }) => {
         </TitleContainer>
         <Maps maps={maps} navigation={navigation} />
         {/* <ScrollView></ScrollView> */}
-        <Button onPress={onLogout}>Logout</Button>
+        {/* <Button onPress={onLogout}>Logout</Button> */}
       </ScrollView>
       <StatusBar style="light" />
     </HomeBackground>

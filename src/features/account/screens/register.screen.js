@@ -155,6 +155,9 @@ export const RegisterScreen = ({ navigation }) => {
               <AuthInput
                 label="Username"
                 value={userInfo.username}
+                autoCapitalize="none"
+                autoCorrect={false}
+                textContentType="username"
                 keyboardType="default"
                 maxLength={25}
                 onChangeText={(text) =>
@@ -167,8 +170,10 @@ export const RegisterScreen = ({ navigation }) => {
                 label="Name"
                 //placeholder="Thanawas"
                 value={userInfo.name}
-                keyboardType="name-phone-pad"
+                keyboardType="default"
                 textContentType="givenName"
+                secureTextEntry={false}
+                autoCorrect={false}
                 onChangeText={(text) =>
                   setUserInfo({ ...userInfo, name: text })
                 }
@@ -180,7 +185,7 @@ export const RegisterScreen = ({ navigation }) => {
                 //placeholder="Sitdown"
                 value={userInfo.lastname}
                 textContentType="familyName"
-                autoCapitalize="none"
+                secureTextEntry={false}
                 onChangeText={(text) =>
                   setUserInfo({ ...userInfo, lastname: text })
                 }

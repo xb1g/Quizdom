@@ -58,7 +58,7 @@ export function ModuleButton({
 
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
-      Math.abs(translateY.value - top - 200),
+      Math.abs(translateY.value - top - 100),
       [0, height / 2, height],
       [0.5, 1.2, 0.5],
       Extrapolate.CLAMP
@@ -67,6 +67,7 @@ export function ModuleButton({
       transform: [{ scale }],
     };
   });
+
   return (
     <Animated.View
       style={[
@@ -122,9 +123,9 @@ export function ModuleButton({
                 ? progress === 0
                   ? "#fff492"
                   : progress === 1
-                  ? "#64edff"
+                  ? "#ffa9e9"
                   : progress === 2
-                  ? "#5cffae"
+                  ? "#5cffc9"
                   : progress === 3
                   ? "#91ff76"
                   : "#ffd700"
@@ -142,7 +143,7 @@ export function ModuleButton({
                 : 60,
               justifyContent: "center",
               alignItems: "center",
-              ...shadow.shadow2,
+              // progress > 0 ? ...shadow.shadow2 : ...shadow.glowRed,
             }}
           >
             <Text

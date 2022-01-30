@@ -61,148 +61,174 @@ export const Today = ({ navigation }) => {
   const [todos, setTodos] = useState([]);
   const theme = useTheme();
 
-  const { allModules, updated, setSelectedModule, setSelectedMapName } =
-    useContext(MapsContext);
+  const {
+    allModules,
+    updated,
+    setSelectedModule,
+    setSelectedMapName,
+    mapsData,
+  } = useContext(MapsContext);
   useEffect(() => {
     const allNames = Object.keys(allModules);
     const todayModules = [];
     allNames.forEach((name) => {
       const map = allModules[name];
-      map.modules.forEach((module) => {
-        // console.log(module.name, !!module.reviewAt, module.unlocked);
-        // // console.log(setsResources[module.name]["important"]);
-        const isToday = module.reviewAt;
-        // console.log(isToday, new Date().getTime() / 1000);
-        if (module.unlocked) {
-          const todayModule = {
-            title: module.name,
-            id: module.id,
-            reviewAt: module.reviewAt,
-            unlocked: module.unlocked,
-            resource: setsResources[module.name].important,
-            mapName: name,
-          };
-          todayModules.push(todayModule);
-        }
-      });
+      const mapData = mapsData.find((m) => m.name === name);
+      console.log(map.started);
+      console.log("AD");
+      if (mapData.isStarted) {
+        map.modules.forEach((module) => {
+          // console.log(module.name, !!module.reviewAt, module.unlocked);
+          // // console.log(setsResources[module.name]["important"]);
+          const isToday = module.reviewAt;
+          // console.log(isToday, new Date().getTime() / 1000);
+          if (module.unlocked) {
+            const todayModule = {
+              title: module.name,
+              id: module.id,
+              reviewAt: module.reviewAt,
+              unlocked: module.unlocked,
+              resource: setsResources[module.name].important,
+              mapName: name,
+            };
+            todayModules.push(todayModule);
+          }
+        });
+      } else {
+        console.log("IDONT WANNA");
+      }
     });
     setTodos(todayModules);
   }, [allModules, updated]);
 
   return (
     <TodayView style={shadow.shadow1}>
-      <Carousel
-        sliderWidth={screenWidth - 60}
-        sliderHeight={300}
-        itemWidth={screenWidth - 110}
-        data={todos}
-        renderItem={({ item, index }) => {
-          return (
-            <TodayItem>
-              <TodayTitle numberOfLines={2}>{item.title}</TodayTitle>
-              <View>
-                <FlatList
-                  data={item.resource}
-                  style={{
-                    height: 150,
-                  }}
-                  renderItem={({ item }) => {
-                    return (
-                      <TouchableOpacity
-                        onPress={() => {
-                          Linking.openURL(item.link);
-                        }}
-                      >
-                        <View
-                          style={{
-                            flexDirection: "row",
-                            margin: 10,
-                            marginTop: 10,
-                            alignItems: "center",
+      {todos.length > 0 ? (
+        <Carousel
+          sliderWidth={screenWidth - 60}
+          sliderHeight={300}
+          itemWidth={screenWidth - 110}
+          data={todos}
+          renderItem={({ item, index }) => {
+            return (
+              <TodayItem>
+                <TodayTitle numberOfLines={2}>{item.title}</TodayTitle>
+                <View>
+                  <FlatList
+                    data={item.resource}
+                    style={{
+                      height: 150,
+                    }}
+                    renderItem={({ item }) => {
+                      return (
+                        <TouchableOpacity
+                          onPress={() => {
+                            Linking.openURL(item.link);
                           }}
                         >
-                          {item.type === "video" ? (
-                            <Ionicons
-                              name="play-circle-outline"
-                              size={24}
-                              color={theme.colors.logo.secondary}
-                            />
-                          ) : (
-                            <Ionicons
-                              name="reader"
-                              size={24}
-                              color={theme.colors.logo.primary}
-                            />
-                          )}
-                          <TodayBody>{item.title}</TodayBody>
-                        </View>
-                      </TouchableOpacity>
-                    );
+                          <View
+                            style={{
+                              flexDirection: "row",
+                              margin: 10,
+                              marginTop: 10,
+                              alignItems: "center",
+                            }}
+                          >
+                            {item.type === "video" ? (
+                              <Ionicons
+                                name="play-circle-outline"
+                                size={24}
+                                color={theme.colors.logo.secondary}
+                              />
+                            ) : (
+                              <Ionicons
+                                name="reader"
+                                size={24}
+                                color={theme.colors.logo.primary}
+                              />
+                            )}
+                            <TodayBody>{item.title}</TodayBody>
+                          </View>
+                        </TouchableOpacity>
+                      );
+                    }}
+                    keyExtractor={(item) => item.link}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignContent: "flex-end",
+                    justifyContent: "flex-end",
                   }}
-                  keyExtractor={(item) => item.link}
-                />
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  alignContent: "flex-end",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Row>
-                  <View style={{ flex: 0.5 }}>
-                    <AwesomeButton
-                      borderRadius={20}
-                      stretch
-                      backgroundColor={theme.colors.logo.secondary}
-                      backgroundDarker={theme.colors.logo.primary}
-                      onPress={() => {
-                        // console.log(item.title);
-                        setSelectedMapName(item.mapName);
-                        setSelectedModule({
-                          name: item.title,
-                          id: item.id,
-                          unlocked: item.unlocked,
-                        });
-                        navigation.navigate("QuizNavigator");
-                      }}
-                    >
-                      <Text
-                        variant="label"
-                        style={{ zIndex: 10, fontSize: 30 }}
+                >
+                  <Row>
+                    <View style={{ flex: 0.5 }}>
+                      <AwesomeButton
+                        borderRadius={20}
+                        stretch
+                        backgroundColor={theme.colors.logo.secondary}
+                        backgroundDarker={theme.colors.logo.primary}
+                        onPress={() => {
+                          // console.log(item.title);
+                          setSelectedMapName(item.mapName);
+                          setSelectedModule({
+                            name: item.title,
+                            id: item.id,
+                            unlocked: item.unlocked,
+                          });
+                          navigation.navigate("QuizNavigator");
+                        }}
                       >
-                        {"Q "}
-                      </Text>
-                    </AwesomeButton>
-                  </View>
-                  <View style={{ flex: 0.05 }} />
-                  <View style={{ flex: 0.5 }}>
-                    <AwesomeButton
-                      backgroundColor={theme.colors.accent.secondary}
-                      backgroundDarker={theme.colors.accent.tertiary}
-                      borderRadius={20}
-                      stretch
-                      onPress={() => {
-                        // console.log(item.title);
-                        setSelectedMapName(item.mapName);
-                        setSelectedModule({
-                          name: item.title,
-                          id: item.id,
-                          unlocked: item.unlocked,
-                        });
-                        navigation.navigate("Community");
-                      }}
-                    >
-                      <Ionicons name="chatbubbles" size={30} />
-                    </AwesomeButton>
-                  </View>
-                </Row>
-              </View>
-            </TodayItem>
-          );
-        }}
-        // hasParallaxImages={true}
-      />
+                        <Text
+                          variant="label"
+                          style={{ zIndex: 10, fontSize: 30 }}
+                        >
+                          {"Q "}
+                        </Text>
+                      </AwesomeButton>
+                    </View>
+                    <View style={{ flex: 0.05 }} />
+                    <View style={{ flex: 0.5 }}>
+                      <AwesomeButton
+                        backgroundColor={theme.colors.accent.secondary}
+                        backgroundDarker={theme.colors.accent.tertiary}
+                        borderRadius={20}
+                        stretch
+                        onPress={() => {
+                          // console.log(item.title);
+                          setSelectedMapName(item.mapName);
+                          setSelectedModule({
+                            name: item.title,
+                            id: item.id,
+                            unlocked: item.unlocked,
+                          });
+                          navigation.navigate("Community");
+                        }}
+                      >
+                        <Ionicons name="chatbubbles" size={30} />
+                      </AwesomeButton>
+                    </View>
+                  </Row>
+                </View>
+              </TodayItem>
+            );
+          }}
+          // hasParallaxImages={true}
+        />
+      ) : (
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 30,
+          }}
+        >
+          <TodayBody>
+            {"Nothing here for now. \nLearn more or reward yourself!"}
+          </TodayBody>
+        </View>
+      )}
     </TodayView>
   );
 };

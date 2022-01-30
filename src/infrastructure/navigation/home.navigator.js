@@ -30,12 +30,9 @@ const HomeStack = createStackNavigator();
 
 export const HomeNavigator = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
-  useEffect(() => {
-    // console.log(getFocusedRouteNameFromRoute(route));
-  }, [route]);
   const tabHiddenRoutes = [
     SET_MAP_NAVIGATION_NAME,
-    // SET_MAP_START_NAME,
+    SET_MAP_START_NAME,
     "QuizNavigator",
   ];
   const theme = useTheme();
@@ -112,6 +109,16 @@ export const HomeNavigator = ({ navigation, route }) => {
           component={SetMapStartScreen}
           navigation={navigation}
           options={{
+            gestureResponseDistance: 800,
+            cardStyle: {
+              backgroundColor: "#33363d",
+              borderTopRightRadius: 30,
+              borderTopLeftRadius: 30,
+              borderBottomRightRadius: 30,
+              borderBottomLeftRadius: 30,
+              margin: 20,
+              marginBottom: 50,
+            },
             headerShown: false,
             ...TransitionPresets.ModalPresentationIOS,
           }}

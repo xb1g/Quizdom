@@ -23,7 +23,6 @@ export const AchievementContextProvider = ({ children }) => {
     const q = query(achievementsRef);
     const savedProgress = [];
 
-    getDocs(achievementsRef);
     onSnapshot(q, (snapshot) => {
       snapshot.forEach((doc) => {
         let achievement = {

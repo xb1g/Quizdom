@@ -90,8 +90,15 @@ export const AchievementScreen = ({ navigation }) => {
           marginLeft: 80,
         }}
       >
-        <Text variant="label" style={{ color: "white", fontSize: 40 }}>
-          Achievements
+        <Text
+          variant="label"
+          style={{
+            color: "white",
+            alignSelf: "flex-end",
+            fontSize: 35,
+          }}
+        >
+          {"Achievements "}
         </Text>
       </View>
       <BackButton navigation={navigation} />
