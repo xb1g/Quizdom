@@ -81,7 +81,7 @@ export const UserProfileScreen = ({ navigation }) => {
                 height: 150,
               }}
             />
-            {!editingColor && (
+            {/* {!editingColor && (
               <IconButton
                 icon="pencil"
                 color="white"
@@ -101,7 +101,7 @@ export const UserProfileScreen = ({ navigation }) => {
                   // navigation.navigate("PickColor");
                 }}
               />
-            )}
+            )} */}
             <TouchableOpacity
               onPress={openImagePickerAsync}
               style={{

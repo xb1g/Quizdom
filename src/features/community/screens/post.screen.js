@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { db, storage } from "../../../../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Ionicons } from "@expo/vector-icons";
 
 import { Button } from "react-native-paper";
 import {
@@ -16,18 +17,93 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Text } from "../../../components/typography/text.component";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components/native";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { SmallTitle } from "./add-post.screen";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { DismissKeyboardView } from "../../../components/utility/dismiss-keyboard-view.component";
 
 const ProfileImage = styled(Image)`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
-  margin-left: 20px;
-  margin-top: 20px;
 `;
+
+const CommentView = ({ comment }) => {
+  const { user } = useContext(AuthenticationContext);
+  const { colors } = useTheme();
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        margin: 10,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: colors.background,
+      }}
+    >
+      <ProfileImage source={{ uri: user.photoURL }} />
+      <View
+        style={{
+          marginLeft: 10,
+          flex: 1,
+        }}
+      >
+        <Text
+          style={{
+            color: colors.text,
+          }}
+        >
+          {comment.text}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const CommentInput = ({ insets, theme }) => {
+  return (
+    <View
+      style={{
+        position: "absolute",
+        flex: 1,
+        width: "100%",
+        bottom: 0,
+        padding: 15,
+        borderRadius: 20,
+        paddingBottom: 15 + insets.bottom,
+        backgroundColor: theme.colors.bg.secondary,
+      }}
+    >
+      <Row
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Ionicons name="image" size={30} color={"#b8b8b8"} />
+        <TextInput
+          placeholder="Add a comment"
+          placeholderTextColor={theme.colors.text.inverse}
+          style={{
+            borderRadius: 10,
+            padding: 10,
+            width: "80%",
+            backgroundColor: "#5e5e5e",
+          }}
+        />
+        <Ionicons name="send" size={30} color={"#b8b8b8"} />
+      </Row>
+    </View>
+  );
+};
 
 export function PostScreen({ route, navigation }) {
   const { user } = useContext(AuthenticationContext);
+  const theme = useTheme();
+  const insets = useSafeAreaInsets();
   const [author, setAuthor] = useState("");
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
@@ -104,124 +180,93 @@ export function PostScreen({ route, navigation }) {
       });
   }, []);
 
-  // // console.log("paost");
-  // // console.log(post);
-
   return (
-    <>
-      <ScrollView>
-        <View>
-          <ProfileImage
-            source={
-              author.ProfileImage
-                ? {
-                    uri: author.ProfileImage,
+    <DismissKeyboardView>
+      <>
+        <ScrollView
+          style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}
+        >
+          <Spacer size="extraLarge" />
+          <Spacer size="extraLarge" />
+          <Spacer size="extraLarge" />
+          <View>
+            <View
+              style={{
+                margin: 20,
+                padding: 20,
+                borderRadius: 20,
+                backgroundColor: theme.colors.bg.secondary,
+              }}
+            >
+              <Row>
+                <ProfileImage
+                  source={
+                    author.profileImage
+                      ? {
+                          uri: author.profileImage,
+                        }
+                      : require("../../../../assets/no_user_picture.png")
                   }
-                : require("../../../../assets/no_user_picture.png")
-            }
-          />
-          <Text style={{ marginTop: 10 }}>{post.title}</Text>
-          <Text style={{ marginTop: 10 }}>{post.body}</Text>
-          <View
-            style={{ marginHorizontal: 20, marginBottom: 20, marginTop: 10 }}
-          >
-            <FlatList
-              style={{ backgroundColor: "#8ad4ff" }}
-              numColumns={2}
-              data={post.images}
-              renderItem={(posted) => {
-                // console.log("slumMunMun", posted);
-                return (
-                  <Image
-                    style={{
-                      width: 150,
-                      height: 150,
-                      borderRadius: 10,
-                      marginHorizontal: 20,
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}
-                    source={{ uri: posted.item }}
-                  />
-                );
-              }}
-              keyExtractor={(posted) => posted.id}
-            />
-          </View>
-          <View style={{ marginHorzontal: 20 }}>
-            <FlatList
-              style={{ backgroundColor: "#303030" }}
-              numColumns={2}
-              data={images}
-              renderItem={(image) => {
-                // console.log("slumMIU", image);
-                return (
-                  <Image
-                    style={{
-                      width: 150,
-                      height: 150,
-                      borderRadius: 10,
-                      marginHorizontal: 20,
-                      marginBottom: 10,
-                      marginTop: 10,
-                    }}
-                    source={{ uri: image.item }}
-                  />
-                );
-              }}
-              keyExtractor={(image) => image.id}
-            />
-          </View>
-          <View style={{ marginTop: 30 }}>
-            <Row>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#77b800",
-                  borderRadius: 30,
-                  marginHorizontal: 15,
-                  alignItems: "center",
-                  paddingHorizontal: 20,
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                }}
-                onPress={openImagePickerAsync}
-              >
-                <Text style={{ color: "#ffffff", fontSize: 16 }}>
-                  Add image
+                />
+                <Text
+                  style={{ marginLeft: 10, color: theme.colors.bg.inverse }}
+                >
+                  {author.username}
                 </Text>
-              </TouchableOpacity>
+              </Row>
+              <Text variant="titleInverse" style={{ marginTop: 10 }}>
+                {post.title}
+              </Text>
+              <Text variant="bodyInverse" style={{ marginTop: 10 }}>
+                {post.body}
+              </Text>
 
-              <TextInput
-                style={{
-                  fontSize: 16,
-                  backgroundColor: "#fff999",
-                  marginHorizontal: 10,
-                  paddingHorizontal: 75,
-                  borderRadius: 30,
+              <FlatList
+                horizontal
+                data={post.images}
+                renderItem={(posted) => {
+                  // console.log("slumMunMun", posted);
+                  return (
+                    <Image
+                      style={{
+                        width: 150,
+                        height: 150,
+                        borderRadius: 10,
+                      }}
+                      source={{ uri: posted.item }}
+                    />
+                  );
                 }}
-                onChangeText={setComment}
-                value={comment}
-                placeholder="Your comment here"
+                keyExtractor={(posted) => posted.id}
               />
-            </Row>
+            </View>
+            <View style={{ marginHorzontal: 20 }}>
+              <FlatList
+                style={{ backgroundColor: "#303030" }}
+                data={images}
+                renderItem={(image) => {
+                  return (
+                    <Image
+                      style={{
+                        width: 150,
+                        height: 150,
+                        borderRadius: 10,
+                        marginHorizontal: 20,
+                        marginBottom: 10,
+                        marginTop: 10,
+                      }}
+                      source={{ uri: image.item }}
+                    />
+                  );
+                }}
+                keyExtractor={(image) => image.id}
+              />
+            </View>
           </View>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#ffaadd",
-              borderRadius: 30,
-              marginTop: 30,
-              marginHorizontal: 30,
-              paddingTop: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-            }}
-            onPress={console.log("Suffer")}
-          >
-            <Text style={{ color: "#ffffff", fontSize: 20 }}>Post Comment</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </>
+        </ScrollView>
+        <CommentInput insets={insets} theme={theme} />
+      </>
+    </DismissKeyboardView>
   );
 }
 

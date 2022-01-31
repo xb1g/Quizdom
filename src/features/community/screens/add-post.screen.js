@@ -6,6 +6,10 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedbackBase,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { db, storage } from "../../../../firebase-config";
@@ -26,7 +30,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { AuthButton } from "../../account/components/account.styles";
 
-const Title = styledComponentsNative(Text).attrs({
+export const Title = styledComponentsNative(Text).attrs({
   variant: "label",
 })`
     font-size: 36px;
@@ -34,18 +38,18 @@ const Title = styledComponentsNative(Text).attrs({
     margin: 20px
   `;
 
-const SmallTitle = styledComponentsNative(Text).attrs({})`
+export const SmallTitle = styledComponentsNative(Text).attrs({})`
     font-size: 18px;
     color: #fff;
   `;
 
-const CloseButton = styledComponentsNative(TouchableOpacity)`
+export const CloseButton = styledComponentsNative(TouchableOpacity)`
     position: absolute;
     right: 0px;
     z-index: 1;
   `;
 
-const Input = styledComponentsNative(TextInput).attrs({
+export const Input = styledComponentsNative(TextInput).attrs({
   placeholder: "Title",
   placeholderTextColor: "#c7c7c7",
 })`
@@ -55,7 +59,7 @@ const Input = styledComponentsNative(TextInput).attrs({
     margin: 10px;
   `;
 
-const BodyInput = styledComponentsNative(TextInput).attrs({
+export const BodyInput = styledComponentsNative(TextInput).attrs({
   multiline: true,
   maxLength: 500,
   numberOfLines: 10,
@@ -127,106 +131,113 @@ export const AddPostScreen = ({ navigation }) => {
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: theme.colors.bg.primary,
-          flex: 1,
-        }}
-      >
-        <Row>
-          <Title>Add post</Title>
-          <CloseButton onPress={() => navigation.goBack()}>
-            <Title>{"X "}</Title>
-          </CloseButton>
-        </Row>
-        <View
-          style={{
-            borderColor: "white",
-            borderWidth: 1,
-            borderRadius: 20,
-            margin: 10,
-            padding: 10,
-          }}
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <TouchableWithoutFeedback
+          style={{ flex: 1 }}
+          onPress={() => Keyboard.dismiss()}
         >
-          <Input onChangeText={(text) => setTitle(text)} value={title} />
-          <BodyInput
-            placeholderTextColor="#c2c2c2"
-            onChangeText={setBody}
-            value={body}
-            placeholder="Body"
-          />
-
-          <Row style={{ padding: 10, alignItems: "center" }}>
-            <SmallTitle>Tags:</SmallTitle>
-            <Spacer position={"right"} />
-            <TouchableOpacity
-              style={{
-                borderRadius: 10,
-                backgroundColor: "#5e5e5e",
-                width: 20,
-                height: 20,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <SmallTitle>+</SmallTitle>
-            </TouchableOpacity>
-          </Row>
-          <Row style={{ padding: 10, alignItems: "center" }}>
-            <SmallTitle>Question? </SmallTitle>
-            <Switch
-              value={isQuestion}
-              onValueChange={(value) => setIsQuestion(value)}
-            />
-          </Row>
-          <TouchableOpacity
-            onPress={openImagePickerAsync}
+          <View
             style={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 30,
-              backgroundColor: "#ffffff47",
-              marginRight: "auto",
-              alignItems: "center",
+              backgroundColor: theme.colors.bg.primary,
+              flex: 1,
             }}
           >
-            <Row style={{ justifyContent: "center", alignItems: "center" }}>
-              <SmallTitle>Add Images</SmallTitle>
-              <Spacer position="right" />
-              <Ionicons name="image-outline" size={25} color="white" />
+            <Row>
+              <Title>Add post</Title>
+              <CloseButton onPress={() => navigation.goBack()}>
+                <Title>{"X "}</Title>
+              </CloseButton>
             </Row>
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          data={images}
-          horizontal
-          renderItem={(image) => {
-            console.log(image);
-            return (
-              <Image
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 10,
-                  margin: 10,
-                }}
-                defaultSource={require("../../../../assets/icon.png")}
-                source={{ uri: image.item }}
+            <View
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                borderRadius: 20,
+                margin: 10,
+                padding: 10,
+              }}
+            >
+              <Input onChangeText={(text) => setTitle(text)} value={title} />
+              <BodyInput
+                placeholderTextColor="#c2c2c2"
+                onChangeText={setBody}
+                value={body}
+                placeholder="Body"
               />
-            );
-          }}
-          keyExtractor={(image, index) => index + image.item}
-        />
-        <AuthButton
-          onPress={onAddPost}
-          size="large"
-          style={{
-            marginBottom: insets.bottom + 10,
-          }}
-        >
-          <Text>Post</Text>
-        </AuthButton>
-      </View>
+
+              <Row style={{ padding: 10, alignItems: "center" }}>
+                <SmallTitle>Tags:</SmallTitle>
+                <Spacer position={"right"} />
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 10,
+                    backgroundColor: "#5e5e5e",
+                    width: 20,
+                    height: 20,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SmallTitle>+</SmallTitle>
+                </TouchableOpacity>
+              </Row>
+              <Row style={{ padding: 10, alignItems: "center" }}>
+                <SmallTitle>Question? </SmallTitle>
+                <Switch
+                  value={isQuestion}
+                  onValueChange={(value) => setIsQuestion(value)}
+                />
+              </Row>
+              <TouchableOpacity
+                onPress={openImagePickerAsync}
+                style={{
+                  padding: 10,
+                  margin: 10,
+                  borderRadius: 30,
+                  backgroundColor: "#ffffff47",
+                  marginRight: "auto",
+                  alignItems: "center",
+                }}
+              >
+                <Row style={{ justifyContent: "center", alignItems: "center" }}>
+                  <SmallTitle>Add Images</SmallTitle>
+                  <Spacer position="right" />
+                  <Ionicons name="image-outline" size={25} color="white" />
+                </Row>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={images}
+              horizontal
+              renderItem={(image) => {
+                console.log(image);
+                return (
+                  <Image
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 10,
+                      margin: 10,
+                    }}
+                    defaultSource={require("../../../../assets/icon.png")}
+                    source={{ uri: image.item }}
+                  />
+                );
+              }}
+              keyExtractor={(image, index) => index + image.item}
+            />
+            <AuthButton
+              onPress={onAddPost}
+              size="large"
+              style={{
+                marginBottom: insets.bottom + 10,
+              }}
+            >
+              <Text>Post</Text>
+            </AuthButton>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </>
   );
 };
