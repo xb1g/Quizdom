@@ -40,6 +40,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { QuizContext } from "../../../services/quiz/quiz.context";
 import { MathText } from "react-native-math-view/src/fallback";
+import theme from "react-native-really-awesome-button/src/themes/c137";
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
@@ -50,31 +51,70 @@ const CenteredContainer = styled.View`
   background-color: #000000a2;
 `;
 
-const Button = ({ onPress, children, bottom }) => {
+const Button = ({ onPress, children, disabled }) => {
   const [pressed, setPressed] = useState(false);
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        position: "absolute",
-        paddingHorizontal: 30,
-        padding: 10,
-        bottom: bottom,
-        backgroundColor: "#ffdfe9",
-        borderRadius: 10,
-        margin: "auto",
-        alignSelf: "center",
-        zIndex: 1,
-        ...shadow.shadow1,
-      }}
+      disabled={disabled}
+      style={
+        disabled
+          ? {
+              paddingHorizontal: 30,
+              padding: 10,
+              backgroundColor: "#d4d4d47f",
+              borderRadius: 10,
+              marginTop: -30,
+              marginRight: 10,
+              alignSelf: "flex-end",
+              width: 30,
+              height: 40,
+              zIndex: 1,
+              ...shadow.shadow1,
+            }
+          : {
+              paddingHorizontal: 30,
+              padding: 10,
+              backgroundColor: "#ffdfe9",
+              borderRadius: 10,
+              margin: "auto",
+              alignSelf: "flex-end",
+              zIndex: 1,
+              marginTop: -30,
+              marginRight: 10,
+              width: 30,
+              height: 40,
+              ...shadow.glow1,
+            }
+      }
     >
       <Text
-        style={{ fontSize: 20 }}
+        style={{
+          fontSize: 42,
+          top: -10,
+          left: -2,
+          position: "absolute",
+          zIndex: 2,
+        }}
         variant="label"
-        color={pressed ? "#FFFFFF" : "#470000"}
+        color={disabled ? "#47474783" : "#470000"}
       >
-        {children}
+        {children + " "}
+      </Text>
+      <Text
+        style={{
+          fontSize: 42,
+          top: -5,
+          left: 5,
+          position: "absolute",
+          color:
+            "#" +
+            ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0"),
+        }}
+        variant="label"
+      >
+        {children + " "}
       </Text>
     </TouchableOpacity>
   );
@@ -214,7 +254,7 @@ export function QuizScreen({ route, navigation }) {
 
   return (
     <>
-      <SafeTop color="#a2d1a2" flex={0} />
+      <SafeTop color="#b5ecb5" flex={0} />
 
       <Modal
         animationType="fade"
@@ -324,46 +364,107 @@ export function QuizScreen({ route, navigation }) {
           )}
           <View
             style={{
-              backgroundColor: "#a2d1a2",
+              backgroundColor: "#b5ecb5",
               padding: 10,
               borderBottomLeftRadius: 30,
               borderBottomRightRadius: 30,
               paddingBottom: 20,
               zIndex: 1,
+              ...shadow.shadow2,
             }}
           >
-            <TouchableOpacity onPress={onExit}>
+            <TouchableOpacity
+              onPress={onExit}
+              style={{
+                marginRight: "auto",
+                backgroundColor: "#ffffff40",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: 10,
+                borderRadius: 10,
+                ...shadow.shadow1,
+              }}
+            >
               <Text
                 style={{
                   fontSize: 16,
                   color: "#960032",
-                  // marginLeft: "auto",
+                  alignSelf: "center",
                 }}
               >
                 Exit
               </Text>
             </TouchableOpacity>
+            <Row
+              style={{
+                alignSelf: "center",
+                marginTop: -35,
+              }}
+            >
+              {quiz[page].tags &&
+                quiz[page].tags.map((tag) => (
+                  <View
+                    style={{
+                      fontSize: 16,
+                      padding: 10,
+                      backgroundColor: "#acfffb",
+                      borderRadius: 10,
+                      marginHorizontal: 5,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 16,
+                      }}
+                    >
+                      {tag}
+                    </Text>
+                  </View>
+                ))}
+            </Row>
             <Row>
-              <Text variant="label" style={{ fontSize: 40, marginRight: -10 }}>
+              <Text
+                variant="label"
+                style={{ fontSize: 60, marginRight: -10, zIndex: 2 }}
+              >
+                #{" "}
+              </Text>
+              <Text
+                variant="label"
+                style={{
+                  fontSize: 60,
+                  position: "absolute",
+                  color:
+                    "#" +
+                    ((Math.random() * 0xffffff) << 0)
+                      .toString(16)
+                      .padStart(6, "0"),
+                  top: 5,
+                  left: 5,
+                }}
+              >
                 #{" "}
               </Text>
               <View>
-                <Text variant="label" style={{ fontSize: 40 }}>
+                <Text
+                  variant="label"
+                  style={{
+                    fontSize: 50,
+                    marginTop: 10,
+                    color:
+                      "#" +
+                      ((Math.random() * 0xffffff) << 0)
+                        .toString(16)
+                        .padStart(6, "0"),
+                  }}
+                >
                   {page + 1 + "/5 "}
                 </Text>
               </View>
-              <ProgressBar
-                progress={page / 5}
-                color={"#423"}
-                style={{ backgroundColor: "red" }}
-              />
               {/* <ScoreIndicator correctArray={correctArray} /> */}
               {quiz[page].hint && <HintButton showHint={onHint} />}
               <ProgressBar />
             </Row>
-            {/* <Text variant="label" style={{ fontSize: 40 }}>
-              score: {score}
-            </Text> */}
           </View>
           <ScrollView
             style={{ padding: 10, marginTop: -20, marginBottom: -20 }}
@@ -409,6 +510,13 @@ export function QuizScreen({ route, navigation }) {
             <Spacer size={"extraLarge"} />
           </ScrollView>
           <ChoiceContainer>
+            <Button
+              onPress={!checked ? onCheck : onNext}
+              style={{}}
+              disabled={!selectedChoice}
+            >
+              {">>"}
+            </Button>
             <ScrollView ref={scrollViewRef}>
               <Choice
                 setSelectedChoice={setSelectedChoice}
@@ -480,16 +588,6 @@ export function QuizScreen({ route, navigation }) {
               <Spacer size={"medium"} />
             </ScrollView>
           </ChoiceContainer>
-          {!checked && selectedChoice && (
-            <Button onPress={onCheck} bottom={insets.bottom}>
-              Check
-            </Button>
-          )}
-          {checked && (
-            <Button onPress={onNext} bottom={insets.bottom}>
-              Next
-            </Button>
-          )}
         </View>
       ) : (
         <View>

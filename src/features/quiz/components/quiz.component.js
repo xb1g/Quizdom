@@ -5,6 +5,7 @@ import { ChoiceButton } from "./quiz.style";
 import { Ionicons } from "@expo/vector-icons";
 import { MathText } from "react-native-math-view/src/fallback";
 import { Row } from "../../../components/utility/row.component";
+import { shadow } from "../../../components/shadow/shadow.styles";
 
 export const Choice = ({
   children,
@@ -31,14 +32,16 @@ export const Choice = ({
               backgroundColor: "#6de090",
               borderColor: "#56ad70",
               borderWidth: 3,
+              ...shadow.glow1,
             }
           : selectedChoice === number
           ? {
               backgroundColor: !checked ? "#b1ffff" : color,
               borderColor: !checked ? "#64a39e" : borderColor,
               borderWidth: 3,
+              ...shadow.glow1,
             }
-          : { backgroundColor: "pink" }
+          : { backgroundColor: "pink", ...shadow.shadow1 }
       }
     >
       {children}
@@ -122,9 +125,11 @@ export const HintButton = ({ showHint }) => {
       onPress={showHint}
       style={{
         marginLeft: "auto",
+        marginRight: 10,
+        marginTop: 10,
       }}
     >
-      <Ionicons name="bulb" size={35} color="black" />
+      <Ionicons name="bulb" size={35} color="#fffc3c" style={shadow.shadow1} />
     </TouchableOpacity>
   );
 };

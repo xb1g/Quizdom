@@ -21,6 +21,6 @@ export const NextButton = styled(TouchableOpacity)`
 export const ChoiceButton = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.accent.primary};
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 10px;
 `;

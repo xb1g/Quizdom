@@ -30,7 +30,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import Svg, { Line } from "react-native-svg";
 import { MapLine } from "../../components/map-line.component";
 import { requirements } from "../../../../services/data/math/sets/modules";
@@ -39,6 +39,7 @@ export const SetMapScreen = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   const { width, height } = Dimensions.get("window");
+  const [loading, setLoading] = useState(true);
 
   const scrollViewRef = useRef(null);
 
@@ -70,122 +71,140 @@ export const SetMapScreen = ({ navigation }) => {
       });
     }
   };
-
-  // useEffect(() => {
-  //   // console.log("j");
-  //   // console.log(height * 1.8 + 600, width);
-  //   toModule(250);
-  // }, [loaded]);
-
-  return (
-    <View style={{ flexGrow: 1 }}>
-      <BackButton
-        navigation={navigation}
-        onPress={() => {
-          setSelectedMapName("");
-          navigation.goBack();
-        }}
-        // onPress={() => setSelectedModule(null)}
-      />
-      <HeaderText title={`${selectedMapName}`} />
-      <Animated.ScrollView
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        // contentContainerStyle={{ backgroundColor: "#8f4700" }}
-        ref={scrollViewRef}
-        showsVerticalScrollIndicator={false}
+  if (loading && loaded)
+    return (
+      <View
         style={{
-          flexGrow: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
         }}
-        // bounces={false}
       >
-        {Platform.OS === "ios" && (
-          <>
-            <View
-              style={{
-                backgroundColor: "#96FF00",
-                height: 500,
-                position: "absolute",
-                top: -1000,
-                left: 0,
-                right: 0,
-              }}
-            />
-            <View
-              style={{
-                backgroundColor: "#00C9FF",
-                height: 1500,
-                position: "absolute",
-                top: 2000,
-                left: 0,
-                right: 0,
-              }}
-            />
-          </>
-        )}
-        {/* <View style={{ height: height * 1.8 + 600 }} /> */}
-        <Image
-          source={require("./bgsetmap.png")}
-          style={{
-            width: width,
-            height: 3000,
-            top: -800,
-          }}
+        <ActivityIndicator
+          animating={true}
+          color={theme.colors.accent.tertiary}
+          size="large"
         />
-
-        {selectedMapModulesData &&
-          selectedMapModulesData.map((module) => (
-            <ModuleButton
-              scrollTo={toModule}
-              key={module.name + String(module.id)}
-              translateY={translateY}
-              {...module}
-            />
-          ))}
-        {selectedMapModulesData && (
-          <MapLine
-            modules={selectedMapModulesData}
-            requirements={requirements}
-          />
-        )}
-      </Animated.ScrollView>
-      {selectedModule && (
-        <View
-          style={{
-            flex: 1,
+      </View>
+    );
+  else
+    return (
+      <View style={{ flexGrow: 1 }}>
+        <BackButton
+          navigation={navigation}
+          onPress={() => {
+            setSelectedMapName("");
+            navigation.goBack();
           }}
-          // onPressOut={() => setSelectedModule(null)}
+          // onPress={() => setSelectedModule(null)}
+        />
+        <HeaderText title={`${selectedMapName}`} />
+        <Animated.ScrollView
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+          // contentContainerStyle={{ backgroundColor: "#8f4700" }}
+          ref={scrollViewRef}
+          showsVerticalScrollIndicator={false}
+          style={{
+            flexGrow: 1,
+          }}
+          // bounces={false}
         >
+          {Platform.OS === "ios" && (
+            <>
+              <View
+                style={{
+                  backgroundColor: "#96FF00",
+                  height: 500,
+                  position: "absolute",
+                  top: -1000,
+                  left: 0,
+                  right: 0,
+                }}
+              />
+              <View
+                style={{
+                  backgroundColor: "#00C9FF",
+                  height: 1500,
+                  position: "absolute",
+                  top: 2000,
+                  left: 0,
+                  right: 0,
+                }}
+              />
+            </>
+          )}
+          {/* <View style={{ height: height * 1.8 + 600 }} /> */}
+          <Image
+            source={require("./bgsetmap.png")}
+            onLoadStart={() => {
+              setLoading(true);
+              console.log("loading");
+            }}
+            onLoad={() => {
+              setLoading(false);
+              console.log("loaded");
+            }}
+            style={{
+              width: width,
+              height: 3000,
+              top: -800,
+            }}
+          />
+
+          {selectedMapModulesData &&
+            selectedMapModulesData.map((module) => (
+              <ModuleButton
+                scrollTo={toModule}
+                key={module.name + String(module.id)}
+                translateY={translateY}
+                {...module}
+              />
+            ))}
+          {selectedMapModulesData && (
+            <MapLine
+              modules={selectedMapModulesData}
+              requirements={requirements}
+            />
+          )}
+        </Animated.ScrollView>
+        {selectedModule && (
           <View
             style={{
-              position: "absolute",
-              bottom: insets.bottom,
-              ...shadow.shadow2,
-              zIndex: 11,
+              flex: 1,
             }}
+            // onPressOut={() => setSelectedModule(null)}
           >
-            <TouchableOpacity
+            <View
               style={{
                 position: "absolute",
-                top: 20,
-                right: 20,
-                zIndex: 10,
+                bottom: insets.bottom,
+                ...shadow.shadow2,
+                zIndex: 11,
               }}
-              onPress={() => setSelectedModule(null)}
             >
-              <Text
-                variant="label"
+              <TouchableOpacity
                 style={{
-                  fontSize: 40,
+                  position: "absolute",
+                  top: 20,
+                  right: 20,
+                  zIndex: 10,
                 }}
+                onPress={() => setSelectedModule(null)}
               >
-                {"x "}
-              </Text>
-            </TouchableOpacity>
-            <ModulePopup module={selectedModule} navigation={navigation} />
+                <Text
+                  variant="label"
+                  style={{
+                    fontSize: 40,
+                  }}
+                >
+                  {"x "}
+                </Text>
+              </TouchableOpacity>
+              <ModulePopup module={selectedModule} navigation={navigation} />
+            </View>
           </View>
-        </View>
-      )}
-    </View>
-  );
+        )}
+      </View>
+    );
 };

@@ -72,17 +72,20 @@ export const QuizContextProvider = ({ children }) => {
         .then((docs) => {
           docs.forEach((doc) => {
             // // console.log(doc.data());
-            allQuizzes.push(doc.data());
+            allQuizzes.push({ ...doc.data(), id: doc.id });
             // console.log(doc.data());
-            ar.push(doc.id);
           });
         })
         .then(() => {
           // randomly choose 5 quizzes to chosenQuizzes from the allQuizzes array
-          console.log(allQuizzes);
-          const chosenQuizzes = shuffle(allQuizzes);
-          console.log(chosenQuizzes);
+          // console.log(allQuizzes);
+          const chosenQuizzes = shuffle(allQuizzes).slice(0, 5);
+          chosenQuizzes.forEach((quiz) => {
+            // console.log(quiz);
+            ar.push(quiz.id);
+          });
           setQuiz(chosenQuizzes);
+          console.log(ar);
           setLoaded(true);
           // setQuizData(chosenQuizzes);
         });

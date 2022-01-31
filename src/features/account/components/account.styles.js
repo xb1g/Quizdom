@@ -99,7 +99,7 @@ export const AuthButton = styled(AwesomeButtonC).attrs({
   activityColor: "#ffffff",
   backgroundActive: "#692700",
   backgroundColor: "#FF7B4B",
-  backgroundDarker: "#2a0664",
+  backgroundDarker: "#5612c2",
   backgroundShadow: "#2b0070ac",
   textColor: "#5FFF79",
 })`
