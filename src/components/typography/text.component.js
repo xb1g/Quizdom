@@ -32,12 +32,29 @@ const label = (theme) => `
     font-weight: ${theme.fontWeights.medium};
 `;
 
+const labelTitle = (theme) => `
+    font-family: ${theme.fonts.heading};
+    font-size: ${theme.fontSizes.title};
+`;
+
+const bodyInverse = (theme) => `
+    color: ${theme.colors.text.inverse};
+`;
+
+const titleInverse = (theme) => `
+    color: ${theme.colors.text.inverse};
+    font-size: ${theme.fontSizes.title};
+`;
+
 const variants = {
   body,
   label,
+  labelTitle,
   caption,
   error,
   hint,
+  bodyInverse,
+  titleInverse,
 };
 
 export const Text = styled.Text`
