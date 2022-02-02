@@ -91,7 +91,11 @@ export const AddPostScreen = ({ navigation }) => {
         images: images,
         isQuestion: isQuestion,
         author_uid: user.uid,
-      }).then(() => navigation.navigate("CommunityScreen"));
+      })
+        .then(() => navigation.navigate("CommunityScreen"))
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

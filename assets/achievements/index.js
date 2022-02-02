@@ -45,6 +45,8 @@ export const PowerImage3 = require("../achievements/achievement3/power.png");
 
 export const PersonImage0 = require("../achievements/achievement0/person.png");
 export const PersonImage1 = require("../achievements/achievement1/person.png");
+export const PersonImage2 = require("../achievements/achievement2/person.png");
+export const PersonImage3 = require("../achievements/achievement3/person.png");
 // export const Person
 // export const FireImage0 = require("../achievements/achievement0/fire.png");
 // export const HatImage0 = require("../achievements/achievement0/hat.png");

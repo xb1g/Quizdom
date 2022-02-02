@@ -125,8 +125,7 @@ export function PostScreen({ route, navigation }) {
     })
       .then(() => navigation.navigate("CommunityScreen"))
       .catch((e) => {
-        // console.log("Can't post comment");
-        // console.log(e);
+        console.log(e);
       });
   };
 
@@ -177,73 +176,77 @@ export function PostScreen({ route, navigation }) {
       })
       .catch((err) => {
         // console.log("Error weird");
+        console.log(err);
       });
   }, []);
 
   return (
     <DismissKeyboardView>
       <>
-        <ScrollView
-          style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}
-        >
+        <View style={{ flex: 1, backgroundColor: theme.colors.bg.primary }}>
           <Spacer size="extraLarge" />
           <Spacer size="extraLarge" />
           <Spacer size="extraLarge" />
           <View>
-            <View
-              style={{
-                margin: 20,
-                padding: 20,
-                borderRadius: 20,
-                backgroundColor: theme.colors.bg.secondary,
-              }}
-            >
-              <Row>
-                <ProfileImage
-                  source={
-                    author.profileImage
-                      ? {
-                          uri: author.profileImage,
-                        }
-                      : require("../../../../assets/no_user_picture.png")
-                  }
-                />
-                <Text
-                  style={{ marginLeft: 10, color: theme.colors.bg.inverse }}
-                >
-                  {author.username}
-                </Text>
-              </Row>
-              <Text variant="titleInverse" style={{ marginTop: 10 }}>
-                {post.title}
-              </Text>
-              <Text variant="bodyInverse" style={{ marginTop: 10 }}>
-                {post.body}
-              </Text>
-
-              <FlatList
-                horizontal
-                data={post.images}
-                renderItem={(posted) => {
-                  // console.log("slumMunMun", posted);
-                  return (
-                    <Image
-                      style={{
-                        width: 150,
-                        height: 150,
-                        borderRadius: 10,
-                      }}
-                      source={{ uri: posted.item }}
-                    />
-                  );
-                }}
-                keyExtractor={(posted) => posted.id}
-              />
-            </View>
             <View style={{ marginHorzontal: 20 }}>
               <FlatList
                 style={{ backgroundColor: "#303030" }}
                 data={images}
+                ListHeaderComponent={() => (
+                  <View
+                    style={{
+                      margin: 20,
+                      padding: 20,
+                      borderRadius: 20,
+                      backgroundColor: theme.colors.bg.secondary,
+                    }}
+                  >
+                    <Row>
+                      <ProfileImage
+                        source={
+                          author.profileImage
+                            ? {
+                                uri: author.profileImage,
+                              }
+                            : require("../../../../assets/no_user_picture.png")
+                        }
+                      />
+                      <Text
+                        style={{
+                          marginLeft: 10,
+                          color: theme.colors.bg.inverse,
+                        }}
+                      >
+                        {author.username}
+                      </Text>
+                    </Row>
+                    <Text variant="titleInverse" style={{ marginTop: 10 }}>
+                      {post.title}
+                    </Text>
+                    <Text variant="bodyInverse" style={{ marginTop: 10 }}>
+                      {post.body}
+                    </Text>
+
+                    <FlatList
+                      horizontal
+                      data={post.images}
+                      renderItem={(posted) => {
+                        // console.log("slumMunMun", posted);
+                        return (
+                          <Image
+                            style={{
+                              width: 150,
+                              height: 150,
+                              borderRadius: 10,
+                            }}
+                            source={{ uri: posted.item }}
+                          />
+                        );
+                      }}
+                      keyExtractor={(posted) => posted.id}
+                    />
+                  </View>
+                )}
                 renderItem={(image) => {
                   return (
                     <Image
@@ -263,7 +266,7 @@ export function PostScreen({ route, navigation }) {
               />
             </View>
           </View>
-        </ScrollView>
+        </View>
         <CommentInput insets={insets} theme={theme} />
       </>
     </DismissKeyboardView>

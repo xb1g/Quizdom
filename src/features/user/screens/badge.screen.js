@@ -7,6 +7,10 @@ import { AchievementContext } from "../../../services/authentication/achievement
 import styledComponentsNative from "styled-components/native";
 import { Row } from "../../../components/utility/row.component";
 import { shadow } from "../../../components/shadow/shadow.styles";
+import {
+  CenteredColumn,
+  Column,
+} from "../../../components/utility/column.component";
 
 const Title = styledComponentsNative(Text)`
   font-size: 46px;
@@ -19,6 +23,15 @@ const Desc = styledComponentsNative(Text)`
   color: #fff;
   padding: 15px;
   background-color: #000;
+  align-self: flex-start;
+`;
+
+const Progress = styledComponentsNative(Text)`
+  font-size: 24px;
+  margin-left: -10px;
+  color: #fff;
+  padding: 15px;
+  margin-top: 10px;
   align-self: flex-start;
 `;
 
@@ -49,6 +62,7 @@ export const BadgeScreen = ({ route, navigation }) => {
   const goBack = () => {
     navigation.goBack();
   };
+
   useEffect(() => {
     console.log(badge);
   }, [badge]);
@@ -67,17 +81,27 @@ export const BadgeScreen = ({ route, navigation }) => {
               ? badge.image3
               : badge.image0
           }
-          style={{ width: 200, height: 200, ...shadow.glow0 }}
+          style={{
+            ...{ width: 200, height: 200 },
+            ...shadow[badge.level ? "glow" + badge.level : "shadow1"],
+          }}
         />
         <Desc>{badge.description}</Desc>
         <View>
-          <Desc>{badge.progress || 0}</Desc>
-          <Row style={{ alignItems: "center", marginTop: 30 }}>
+          <Progress>{badge.progress || 0}</Progress>
+          <Row
+            style={{
+              alignItems: "center",
+              marginTop: 80,
+              backgroundColor: "#000000",
+              padding: 5,
+            }}
+          >
             {badge.rank.map((item, index) => {
               return (
-                <>
+                <CenteredColumn key={String(item) + String(index) + "column"}>
                   <Image
-                    key={index + item.title}
+                    key={index + item + "image"}
                     source={
                       index === 0
                         ? badge.image1
@@ -89,16 +113,16 @@ export const BadgeScreen = ({ route, navigation }) => {
                     }
                     style={
                       index === 0
-                        ? { ...{ width: 50, height: 50 }, ...shadow.glow1 }
+                        ? { ...{ width: 60, height: 60 }, ...shadow.glow1 }
                         : index === 1
-                        ? { ...{ width: 50, height: 50 }, ...shadow.glow2 }
+                        ? { ...{ width: 60, height: 60 }, ...shadow.glow2 }
                         : index === 2
-                        ? { ...{ width: 50, height: 50 }, ...shadow.glow3 }
-                        : { ...{ width: 50, height: 50 }, ...shadow.glow1 }
+                        ? { ...{ width: 60, height: 60 }, ...shadow.glow3 }
+                        : { ...{ width: 60, height: 60 }, ...shadow.glow1 }
                     }
                   />
                   <Num
-                    key={index}
+                    key={index + item + "num"}
                     style={{
                       backgroundColor:
                         badge.level === 1
@@ -112,12 +136,13 @@ export const BadgeScreen = ({ route, navigation }) => {
                   >
                     {item}
                   </Num>
-                </>
+                </CenteredColumn>
               );
             })}
           </Row>
         </View>
       </Container>
+
       <CloseButton onPress={goBack}>
         <Text
           variant="label"
