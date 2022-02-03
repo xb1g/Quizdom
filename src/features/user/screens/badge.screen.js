@@ -64,7 +64,7 @@ export const BadgeScreen = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    console.log(badge);
+    // console.log(badge);
   }, [badge]);
 
   return (

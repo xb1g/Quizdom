@@ -80,7 +80,7 @@ export const AchievementScreen = ({ navigation }) => {
   // ];
 
   useEffect(() => {
-    console.log("achievementData", achievementsData);
+    console.log("achievementData");
   }, [achievementsData]);
   return (
     <>

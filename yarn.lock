@@ -5910,6 +5910,11 @@ react-native-circular-progress-indicator@2.0.4:
   resolved "https://registry.yarnpkg.com/react-native-circular-progress-indicator/-/react-native-circular-progress-indicator-2.0.4.tgz#06d1c036492c030a6619a3d82d2124677614fa7d"
   integrity sha512-pXuUI44HJpXl3Tdbwp7qLL9yGvkvRUzFjIWAq+uCZmJUOjrBeCJp/gw+w5Jsb1muCUH1gF5HgRsM4GacBHOHtg==
 
+react-native-confetti-cannon@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-confetti-cannon/-/react-native-confetti-cannon-1.5.2.tgz#ca1a05edd2a64b080ea8b6238c49277908e1f123"
+  integrity sha512-IZuWjlW7QsdxEGNnvpD6W+7iKCCQhnd5BvuNvMtirU7Nxm8WS2N6LPGMBz1ZYDuusG+GRZkoXXTNCdoAAGpCTg==
+
 react-native-gesture-handler@~1.10.2:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"

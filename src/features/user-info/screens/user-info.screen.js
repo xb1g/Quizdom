@@ -94,9 +94,9 @@ export const EditUserInfoScreen = () => {
                 ...userInfo,
                 username,
                 email: user.email,
-              });
-              // .then(// console.log("success"))
-              // .catch(// console.log("error"));
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
             }}
           >
             aha
@@ -134,9 +134,9 @@ export const EditUserInfoScreen = () => {
                 ...userInfo,
                 name,
                 email: user.email,
-              });
-              // .then(// console.log("success"))
-              // .catch(// console.log("error"));
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
             }}
           >
             aha
@@ -173,9 +173,9 @@ export const EditUserInfoScreen = () => {
                 ...userInfo,
                 lastname,
                 email: user.email,
-              });
-              // .then(// console.log("success"))
-              // .catch(// console.log("error"));
+              })
+                .then(console.log("success"))
+                .catch(console.log("error"));
             }}
           >
             aha

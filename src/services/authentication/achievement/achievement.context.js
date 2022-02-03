@@ -27,10 +27,11 @@ export const AchievementContextProvider = ({ children }) => {
       snapshot.forEach((doc) => {
         let achievement = {
           ...doc.data(),
+          name: doc.id,
         };
         savedProgress.push(achievement);
       });
-      console.log(savedProgress);
+      console.log("ahaha", savedProgress);
 
       const achievements = [];
       achievementsBase.map((achievement) => {
@@ -40,7 +41,7 @@ export const AchievementContextProvider = ({ children }) => {
         };
         achievements.push(achievementData);
       });
-      console.log("AC", achievements);
+      // console.log("AC", achievements);
       setAchievementsData(achievements);
     });
   }, []);

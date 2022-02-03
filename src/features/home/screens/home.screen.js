@@ -8,6 +8,8 @@ import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
+import ConfettiCannon from "react-native-confetti-cannon";
+
 import {
   TitleText,
   HomeBackground,
@@ -700,7 +702,13 @@ export const HomeScreen = ({ navigation }) => {
         "level1",
         String(index)
       );
-      setDoc(quizRef, quiz);
+      setDoc(quizRef, quiz)
+        .then(() => {
+          console.log("Intro to sets level 1 quiz added");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   };
 
@@ -736,6 +744,7 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
+        <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
 
         {/* <Button mode="contained" onPress={onAddQuiz}>
           ADD QUIZ

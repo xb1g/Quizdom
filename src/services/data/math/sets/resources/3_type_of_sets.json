@@ -10,14 +10,6 @@
     },
     {
       "type": "video",
-      "title": "Types of set 2.",
-      "author": "ExamSolutions",
-      "time": "8 minutes",
-      "description": "Different types of sets again.",
-      "link": "https://www.youtube.com/watch?v=WL46UtTPr_c"
-    },
-    {
-      "type": "video",
       "title": "Universal set",
       "author": "Dont Memorise",
       "time": "4 minutes",
@@ -31,6 +23,16 @@
       "time": "3 minutes",
       "description": "Null set or empty set.",
       "link": "https://www.youtube.com/watch?v=BhFgcf0VSYc"
+    }
+  ],
+  "additional": [
+    {
+      "type": "video",
+      "title": "Types of set 2.",
+      "author": "ExamSolutions",
+      "time": "8 minutes",
+      "description": "Different types of sets again.",
+      "link": "https://www.youtube.com/watch?v=WL46UtTPr_c"
     }
   ]
 }
