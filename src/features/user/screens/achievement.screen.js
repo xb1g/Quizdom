@@ -87,7 +87,7 @@ export const AchievementScreen = ({ navigation }) => {
       <View
         style={{
           marginTop: 50,
-          marginLeft: 80,
+          marginLeft: 60,
         }}
       >
         <Text
@@ -95,7 +95,7 @@ export const AchievementScreen = ({ navigation }) => {
           style={{
             color: "white",
             alignSelf: "flex-end",
-            fontSize: 35,
+            fontSize: 40,
           }}
         >
           {"Achievements "}
@@ -117,6 +117,7 @@ export const AchievementScreen = ({ navigation }) => {
           data={achievementsData}
           numColumns={3}
           renderItem={({ item }) => {
+            const rnum = Math.floor(Math.random() * 3);
             return (
               <TouchableOpacity
                 onPress={() => navigation.navigate("BadgeScreen", { item })}
@@ -137,22 +138,20 @@ export const AchievementScreen = ({ navigation }) => {
                   >
                     <Image
                       // source={item.image[item.progress || 0]}
-                      source={
-                        item.level === 1
-                          ? item.image1
-                          : item.level === 2
-                          ? item.image2
-                          : item.level === 3
-                          ? item.image3
-                          : item.image0
+                      key={
+                        String(item.id) +
+                        String(item.imageName) +
+                        String(item.progress)
                       }
+                      // source={item["image" + (item.level || 0)]}
+                      source={item["image" + rnum]}
                       style={{
                         width: 80,
                         // padding: 20,
                         // flex: 1,
                         height: 80,
                         borderRadius: 50,
-                        ...shadow.glow0,
+                        ...shadow["glow" + rnum],
                       }}
                     />
                   </View>

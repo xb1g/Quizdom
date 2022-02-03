@@ -35,76 +35,80 @@ export const MapsContextProvider = ({ children }) => {
   useEffect(() => {
     const mapsRef = collection(db, "users", user.uid, "maps");
     const mapNames = [];
-    getDocs(mapsRef).then((docs) => {
-      const maps = [];
-      docs.forEach((doc) => {
-        // maps.push(doc.data());
+    getDocs(mapsRef)
+      .then((docs) => {
+        const maps = [];
+        docs.forEach((doc) => {
+          // maps.push(doc.data());
 
-        // console.log("aaaass");
-        // console.log(appMapsData);
-        // console.log(doc.data().name);
-        // console.log(doc.id);
-        const map = {
-          ...doc.data(),
-          ...appMapsData.find((appMap) => appMap.name === doc.id),
-        };
-
-        // console.log("Map is");
-        // console.log(map);
-        maps.push(map);
-        mapNames.push(doc.id);
-        // // console.log("beh", doc.id);
-      });
-      // console.log("mDATA", maps);
-      setMapsData(maps);
-
-      // console.log("bah", mapNames);
-      const allModulesData = {};
-
-      mapNames.forEach((mapName) => {
-        // // console.log("boh", mapName);
-        const modulesRef = collection(
-          db,
-          "users",
-          user.uid,
-          "maps",
-          mapName,
-          "modules"
-        );
-
-        const q = query(modulesRef);
-        onSnapshot(q, (snapshot) => {
-          // snapshot.docChanges().forEach((change) => {
-          //   if (change.type === "added") {
-          //     // console.log("New city: ", change.doc.data());
-          //   }
-          //   if (change.type === "modified") {
-          //     // console.log("Modified city: ", change.doc.data());
-          //   }
-          //   if (change.type === "removed") {
-          //     // console.log("Removed city: ", change.doc.data());
-          //   }
-          // });
-          const modulesData = [];
-          snapshot.forEach((doc) => {
-            const module = doc.data();
-            const template = setsMapTemplate[module.id];
-            const updatedModule = { ...template, ...module };
-            modulesData.push(updatedModule);
-          });
-          const mapModules = {
-            name: mapName,
-            modules: modulesData,
-            ...mapsData[mapName],
+          // console.log("aaaass");
+          // console.log(appMapsData);
+          // console.log(doc.data().name);
+          // console.log(doc.id);
+          const map = {
+            ...doc.data(),
+            ...appMapsData.find((appMap) => appMap.name === doc.id),
           };
-          allModulesData[mapName] = mapModules;
-          // // console.log("AsSD", allModulesData);
-          // // console.log("SETTING MODULS", allModulesData);
-          setAllModules(allModulesData);
-          setUpdated(false);
+
+          // console.log("Map is");
+          // console.log(map);
+          maps.push(map);
+          mapNames.push(doc.id);
+          // // console.log("beh", doc.id);
         });
+        // console.log("mDATA", maps);
+        setMapsData(maps);
+
+        // console.log("bah", mapNames);
+        const allModulesData = {};
+
+        mapNames.forEach((mapName) => {
+          // // console.log("boh", mapName);
+          const modulesRef = collection(
+            db,
+            "users",
+            user.uid,
+            "maps",
+            mapName,
+            "modules"
+          );
+
+          const q = query(modulesRef);
+          onSnapshot(q, (snapshot) => {
+            // snapshot.docChanges().forEach((change) => {
+            //   if (change.type === "added") {
+            //     // console.log("New city: ", change.doc.data());
+            //   }
+            //   if (change.type === "modified") {
+            //     // console.log("Modified city: ", change.doc.data());
+            //   }
+            //   if (change.type === "removed") {
+            //     // console.log("Removed city: ", change.doc.data());
+            //   }
+            // });
+            const modulesData = [];
+            snapshot.forEach((doc) => {
+              const module = doc.data();
+              const template = setsMapTemplate[module.id];
+              const updatedModule = { ...template, ...module };
+              modulesData.push(updatedModule);
+            });
+            const mapModules = {
+              name: mapName,
+              modules: modulesData,
+              ...mapsData[mapName],
+            };
+            allModulesData[mapName] = mapModules;
+            // // console.log("AsSD", allModulesData);
+            // // console.log("SETTING MODULS", allModulesData);
+            setAllModules(allModulesData);
+            setUpdated(false);
+          });
+        });
+      })
+      .catch((error) => {
+        setError(error);
       });
-    });
   }, []);
 
   // when allModules changes log it to the console

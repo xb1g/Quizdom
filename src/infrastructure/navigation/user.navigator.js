@@ -19,6 +19,7 @@ import { SettingsScreen } from "../../features/settings/screens/settings.screen"
 import { useTheme } from "styled-components/native";
 import { BadgeScreen } from "../../features/user/screens/badge.screen";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { HelpScreen } from "../../features/help/screens/help.screen";
 
 const UserStack = createStackNavigator();
 
@@ -142,6 +143,16 @@ export const UserNavigator = ({ route, navigation }) => {
       <UserStack.Screen
         name="StatsScreen"
         component={StatsScreen}
+        options={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: "#33363d",
+          },
+        }}
+      />
+      <UserStack.Screen
+        name="HelpScreen"
+        component={HelpScreen}
         options={{
           headerShown: false,
           cardStyle: {

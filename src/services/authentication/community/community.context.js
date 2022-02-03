@@ -26,14 +26,18 @@ export const CommunityContextProvider = ({ children }) => {
         selectedCommunityName,
         "members"
       );
-      getDocs(memberRef).then((docs) => {
-        const data = [];
-        docs.forEach((doc) => {
-          data.push(doc.data());
+      getDocs(memberRef)
+        .then((docs) => {
+          const data = [];
+          docs.forEach((doc) => {
+            data.push(doc.data());
+          });
+          setMemberData(data);
+          //// console.log(memberData);
+        })
+        .catch((e) => {
+          console.log(e);
         });
-        setMemberData(data);
-        //// console.log(memberData);
-      });
       const postq = query(collection(db, "community", "Math", "posts"));
       onSnapshot(postq, (posts) => {
         const datas = [];

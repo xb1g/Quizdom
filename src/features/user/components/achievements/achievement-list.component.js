@@ -8,13 +8,13 @@ export const AchievementList = ({ achievements }) => {
       id: 1,
       title: "First Achievement",
       description: "You have completed your first quiz",
-      image: "https://picsum.photos/200",
+      image: require("../../../../../assets/achievements/achievement2/book.png"),
     },
     {
       id: 2,
-      title: "Second Achievement",
-      description: "You have completed your second quiz",
-      image: "https://picsum.photos/200",
+      title: "First Achievement",
+      description: "You have completed your first quiz",
+      image: require("../../../../../assets/achievements/achievement1/perfection.png"),
     },
   ];
   return (
@@ -27,7 +27,7 @@ export const AchievementList = ({ achievements }) => {
           <View>
             {/* <Text>{item.title}</Text> */}
             <Image
-              source={{ uri: item.image }}
+              source={item.image}
               style={{
                 margin: 10,
                 ...shadow.shadow2,

@@ -33,7 +33,7 @@ const FilterButton = () => {
         margin: 5,
       }}
     >
-      <Ionicons name="filter" color="white" size="25" />
+      <Ionicons name="filter" color="white" size={25} />
     </TouchableOpacity>
   );
 };
@@ -55,7 +55,14 @@ export const CommunityScreen = ({ navigation }) => {
         <FlatList
           style={{ paddingTop: 50 }}
           data={postData}
-          keyExtractor={(post) => post.id}
+          keyExtractor={(post) => {
+            // console.log(post);
+            return (
+              post.title.slice(-5) +
+              post.isQuestion +
+              post.author_uid.slice(0, 5)
+            ).toString();
+          }}
           renderItem={(post) => {
             post = post.item;
             return (
@@ -85,7 +92,10 @@ export const CommunityScreen = ({ navigation }) => {
                     style={{
                       marginTop: 10,
                     }}
-                    keyExtractor={(image) => image.id}
+                    keyExtractor={(image) => {
+                      // console.log(image);
+                      return image.slice(-10);
+                    }}
                     renderItem={(image) => {
                       return (
                         <Image

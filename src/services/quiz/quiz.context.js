@@ -88,6 +88,9 @@ export const QuizContextProvider = ({ children }) => {
           console.log(ar);
           setLoaded(true);
           // setQuizData(chosenQuizzes);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
     // return null;
@@ -164,10 +167,14 @@ export const QuizContextProvider = ({ children }) => {
           reviewAt: reviewTime,
           progress: increment(1),
           started: true,
-        }).then(() => {
-          // setUpdate(true);
-          // console.log("updated");
-        });
+        })
+          .then(() => {
+            // setUpdate(true);
+            // console.log("updated");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         // update progress
       } else if (metaData.score >= 0) {
         // console.log("FAILED");
