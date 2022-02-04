@@ -82,6 +82,7 @@ export const AchievementScreen = ({ navigation }) => {
   useEffect(() => {
     console.log("achievementData");
   }, [achievementsData]);
+
   return (
     <>
       <View
@@ -117,7 +118,7 @@ export const AchievementScreen = ({ navigation }) => {
           data={achievementsData}
           numColumns={3}
           renderItem={({ item }) => {
-            const rnum = Math.floor(Math.random() * 3);
+            // const rnum = Math.floor(Math.random() * 3);
             return (
               <TouchableOpacity
                 onPress={() => navigation.navigate("BadgeScreen", { item })}
@@ -143,15 +144,15 @@ export const AchievementScreen = ({ navigation }) => {
                         String(item.imageName) +
                         String(item.progress)
                       }
-                      // source={item["image" + (item.level || 0)]}
-                      source={item["image" + rnum]}
+                      source={item["image" + (item.level || 0)]}
+                      // source={item["image" + rnum]}
                       style={{
                         width: 80,
                         // padding: 20,
                         // flex: 1,
                         height: 80,
                         borderRadius: 50,
-                        ...shadow["glow" + rnum],
+                        ...shadow["glow" + (item.level || 0)],
                       }}
                     />
                   </View>

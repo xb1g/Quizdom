@@ -18,7 +18,7 @@ export const shadow = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    // elevation: 5,
   },
   glow0: {
     shadowColor: "#000000",

@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 import styled, { useTheme } from "styled-components/native";
 import { Button, List, ProgressBar } from "react-native-paper";
+import ConfettiCannon from "react-native-confetti-cannon";
 import {
   PanGestureHandler,
   ScrollView,
@@ -30,6 +31,8 @@ export const QuizFinishScreen = ({ navigation }) => {
   return (
     <>
       <SafeTop flex={0} color={theme.colors.accent.secondary} />
+
+      <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
       <Text
         variant="label"
         style={{

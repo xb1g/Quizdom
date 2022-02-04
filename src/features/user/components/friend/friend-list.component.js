@@ -14,60 +14,13 @@ export const FriendList = ({ friends, navigation }) => {
       color: "#ff2312",
     },
   ];
-  //   {
-  //     id: 2,
-  //     name: "Jane Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#8d0900",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "John Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#ff2312",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Jane Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#ff2312",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Jane Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#12ff26",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Jane Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#889608",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Jane Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#69ff12",
-  //   },
-  // ];
+
   return (
     <View
       style={{
         backgroundColor: "rgba(255,255,255,0.5)",
-        borderRadius: 10,
+        borderRadius: 20,
+        padding: 5,
         margin: 10,
       }}
     >

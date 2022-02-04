@@ -51,22 +51,16 @@ export const UserProfileScreen = ({ navigation }) => {
     }
 
     try {
-      // setProfileImage({ localUri: pickerResult.uri });
       const imageUrl = await uploadImageAsync(pickerResult.uri);
-      // console.log(imageUrl);
-      // setProfileImage(imageUrl);
-      // save uri to firestore
       const docRef = doc(db, "users", user.uid);
-      // Set the "capital" field of the city 'DC'
       await updateDoc(docRef, {
         profileImage: imageUrl,
       });
     } catch (e) {
-      // console.log(e);
       alert("Upload failed, sorry :(");
     }
   };
-  // // console.log(userInfo);
+  console.log(userInfo);
   // // console.log(user.uid);
   return (
     <>

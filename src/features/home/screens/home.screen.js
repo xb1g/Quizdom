@@ -8,7 +8,6 @@ import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
-import ConfettiCannon from "react-native-confetti-cannon";
 
 import {
   TitleText,
@@ -744,7 +743,6 @@ export const HomeScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Spacer size="large" />
-        <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
 
         {/* <Button mode="contained" onPress={onAddQuiz}>
           ADD QUIZ
