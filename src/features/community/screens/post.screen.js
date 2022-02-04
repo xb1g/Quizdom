@@ -62,46 +62,78 @@ const CommentView = ({ comment }) => {
   );
 };
 
-const CommentInput = ({ insets, theme }) => {
+const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
   return (
     <KeyboardAvoidingView
       behavior="position"
-      style={{ flex: 1, backgroundColor: theme.colors.bg.secondary }}
+      style={{
+        //position: "absolute",
+        flex: 1,
+        backgroundColor: theme.colors.bg.primary,
+      }}
     >
-      <View
-        style={{
-          //position: "absolute",
-          //flex: 1,
-          width: "100%",
-          bottom: 0,
-          padding: 15,
-          borderRadius: 20,
-          marginTop: 350,
-          paddingBottom: 15 + insets.bottom,
-          backgroundColor: theme.colors.bg.secondary,
-        }}
-      >
-        <Row
+      <ScrollView>
+        <View
           style={{
+            //position: "absolute",
             //flex: 1,
-            alignItems: "center",
-            justifyContent: "space-between",
+            width: "100%",
+            bottom: 0,
+            padding: 15,
+            borderRadius: 20,
+            marginTop: 350,
+            paddingBottom: 15 + insets.bottom,
+            backgroundColor: theme.colors.bg.secondary,
           }}
         >
-          <Ionicons name="image" size={30} color={"#b8b8b8"} />
-          <TextInput
-            placeholder="Add a comment"
-            placeholderTextColor={theme.colors.text.inverse}
-            style={{
-              borderRadius: 10,
-              padding: 10,
-              width: "80%",
-              backgroundColor: "#5e5e5e",
+          <FlatList
+            horizontal
+            style={{ backgroundColor: "#303030" }}
+            data={images}
+            renderItem={(image) => {
+              return (
+                <Image
+                  style={{
+                    width: 150,
+                    height: 150,
+                    borderRadius: 10,
+                    marginHorizontal: 20,
+                    marginBottom: 10,
+                    marginTop: 10,
+                  }}
+                  source={{ uri: image.item }}
+                />
+              );
             }}
+            keyExtractor={(image) => image.id}
           />
-          <Ionicons name="send" size={30} color={"#b8b8b8"} />
-        </Row>
-      </View>
+          <Row
+            style={{
+              //flex: 1,
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Ionicons
+              name="image"
+              size={30}
+              color={"#b8b8b8"}
+              onPress={openImagePickerAsync}
+            />
+            <TextInput
+              placeholder="Add a comment"
+              placeholderTextColor={theme.colors.text.inverse}
+              style={{
+                borderRadius: 10,
+                padding: 10,
+                width: "80%",
+                backgroundColor: "#5e5e5e",
+              }}
+            />
+            <Ionicons name="send" size={30} color={"#b8b8b8"} />
+          </Row>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
@@ -193,6 +225,7 @@ export function PostScreen({ route, navigation }) {
           <Spacer size="extraLarge" />
           <Spacer size="extraLarge" />
           <Spacer size="extraLarge" />
+
           <View>
             <View style={{ marginHorzontal: 20 }}>
               <FlatList
@@ -275,7 +308,12 @@ export function PostScreen({ route, navigation }) {
             </View>
           </View>
         </View>
-        <CommentInput insets={insets} theme={theme} />
+        <CommentInput
+          insets={insets}
+          theme={theme}
+          openImagePickerAsync={openImagePickerAsync}
+          images={images}
+        />
       </>
     </DismissKeyboardView>
   );
