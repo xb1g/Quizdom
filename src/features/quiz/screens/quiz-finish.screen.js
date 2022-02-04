@@ -32,7 +32,6 @@ export const QuizFinishScreen = ({ navigation }) => {
     <>
       <SafeTop flex={0} color={theme.colors.accent.secondary} />
 
-      <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
       <Text
         variant="label"
         style={{
@@ -45,6 +44,7 @@ export const QuizFinishScreen = ({ navigation }) => {
       >
         {"QUIZ"}
       </Text>
+
       <Text
         variant="label"
         style={{
@@ -153,7 +153,9 @@ export const QuizFinishScreen = ({ navigation }) => {
           </Row>
         </View>
       </PanGestureHandler>
-      <View style={{ backgroundColor: "#393939" }}></View>
+      <View style={{ backgroundColor: "#393939" }}>
+        <ConfettiCannon count={40 * score} origin={{ x: -10, y: 0 }} />
+      </View>
     </>
   );
 };
