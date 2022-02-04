@@ -60,7 +60,10 @@ export const UserProfileScreen = ({ navigation }) => {
       alert("Upload failed, sorry :(");
     }
   };
-  console.log(userInfo);
+
+  useEffect(() => {
+    console.log("UIF", userInfo);
+  }, [userInfo]);
   // // console.log(user.uid);
   return (
     <>
