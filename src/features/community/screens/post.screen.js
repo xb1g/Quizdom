@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View, Image, KeyboardAvoidingView } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { doc, getDoc, addDoc, collection } from "firebase/firestore";
 import { Row } from "../../../components/utility/row.component";
@@ -64,39 +64,45 @@ const CommentView = ({ comment }) => {
 
 const CommentInput = ({ insets, theme }) => {
   return (
-    <View
-      style={{
-        position: "absolute",
-        flex: 1,
-        width: "100%",
-        bottom: 0,
-        padding: 15,
-        borderRadius: 20,
-        paddingBottom: 15 + insets.bottom,
-        backgroundColor: theme.colors.bg.secondary,
-      }}
+    <KeyboardAvoidingView
+      behavior="position"
+      style={{ flex: 1, backgroundColor: theme.colors.bg.secondary }}
     >
-      <Row
+      <View
         style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "space-between",
+          //position: "absolute",
+          //flex: 1,
+          width: "100%",
+          bottom: 0,
+          padding: 15,
+          borderRadius: 20,
+          marginTop: 350,
+          paddingBottom: 15 + insets.bottom,
+          backgroundColor: theme.colors.bg.secondary,
         }}
       >
-        <Ionicons name="image" size={30} color={"#b8b8b8"} />
-        <TextInput
-          placeholder="Add a comment"
-          placeholderTextColor={theme.colors.text.inverse}
+        <Row
           style={{
-            borderRadius: 10,
-            padding: 10,
-            width: "80%",
-            backgroundColor: "#5e5e5e",
+            //flex: 1,
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
-        />
-        <Ionicons name="send" size={30} color={"#b8b8b8"} />
-      </Row>
-    </View>
+        >
+          <Ionicons name="image" size={30} color={"#b8b8b8"} />
+          <TextInput
+            placeholder="Add a comment"
+            placeholderTextColor={theme.colors.text.inverse}
+            style={{
+              borderRadius: 10,
+              padding: 10,
+              width: "80%",
+              backgroundColor: "#5e5e5e",
+            }}
+          />
+          <Ionicons name="send" size={30} color={"#b8b8b8"} />
+        </Row>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -233,14 +239,16 @@ export function PostScreen({ route, navigation }) {
                       renderItem={(posted) => {
                         // console.log("slumMunMun", posted);
                         return (
-                          <Image
-                            style={{
-                              width: 150,
-                              height: 150,
-                              borderRadius: 10,
-                            }}
-                            source={{ uri: posted.item }}
-                          />
+                          <TouchableOpacity>
+                            <Image
+                              style={{
+                                width: 150,
+                                height: 150,
+                                borderRadius: 10,
+                              }}
+                              source={{ uri: posted.item }}
+                            />
+                          </TouchableOpacity>
                         );
                       }}
                       keyExtractor={(posted) => posted.id}
