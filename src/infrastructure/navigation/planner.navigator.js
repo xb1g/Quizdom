@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
@@ -13,6 +13,7 @@ import { Text } from "../../components/typography/text.component";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "styled-components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const PlannerStack = createStackNavigator();
 
@@ -73,6 +74,34 @@ export const PlannerNavigator = ({ navigation, route }) => {
               </Text>
             </View>
           ),
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("AddPlan")}
+              style={{}}
+            >
+              <View
+                style={{
+                  position: "absolute",
+                  bottom: 20,
+                  right: 20,
+                  width: 50,
+                  height: 50,
+                  borderRadius: 50,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: theme.colors.accent.secondary,
+                  ...shadow.shadow2,
+                }}
+              >
+                <Ionicons
+                  name="ios-add"
+                  size={30}
+                  color="white"
+                  style={{ alignSelf: "center" }}
+                />
+              </View>
+            </TouchableOpacity>
+          ),
           headerStyle: {
             backgroundColor: theme.colors.bg.primary,
             borderBottomRightRadius: 30,
@@ -88,6 +117,7 @@ export const PlannerNavigator = ({ navigation, route }) => {
         options={{
           gestureResponseDistance: 400,
           headerTransparent: true,
+          ...TransitionPresets.ModalPresentationIOS,
         }}
       />
     </PlannerStack.Navigator>

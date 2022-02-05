@@ -1,4 +1,4 @@
-import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
+import { doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 
 export const finishedQuizAchievements = (metadata, uid) => {
@@ -8,33 +8,62 @@ export const finishedQuizAchievements = (metadata, uid) => {
       "users",
       uid,
       "achievements",
-      "quiz_masters"
+      "quiz_master"
     );
     getDoc(quizMasterAchievementRef)
-      .then((doc) => console.log("EXC", doc.exists))
+      .then((doc) => {
+        if (doc.exists()) {
+          updateDoc(quizMasterAchievementRef, {
+            progress: increment(metadata.score),
+          })
+            .then(() => {
+              console.log("Achievement updated");
+            })
+            .catch((err) => {
+              console.log(typeof err);
+              console.log(err);
+            });
+        } else {
+          setDoc(quizMasterAchievementRef, {
+            progress: increment(metadata.score),
+          })
+            .then(() => {
+              console.log("Achievement created");
+            })
+            .catch((err) => {
+              console.log(typeof err);
+              console.log(err);
+            });
+        }
+      })
       .catch((e) => console.log(e));
 
-    updateDoc(quizMasterAchievementRef, {
-      progress: increment(metadata.score),
-    })
-      .then(() => {
-        console.log("Achievement updated");
-      })
-      .catch((err) => {
-        console.log(typeof err);
-        console.log(err);
-      });
-
     const powerAchievementRef = doc(db, "users", uid, "achievements", "power");
-    updateDoc(powerAchievementRef, {
-      progress: increment(1),
-    })
-      .then(() => {
-        console.log("Achievement updated");
+    getDoc(powerAchievementRef)
+      .then((doc) => {
+        if (doc.exists()) {
+          updateDoc(powerAchievementRef, {
+            progress: increment(1),
+          })
+            .then(() => {
+              console.log("Achievement updated");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          setDoc(powerAchievementRef, {
+            progress: increment(1),
+          })
+            .then(() => {
+              console.log("Achievement created");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((e) => console.log(e));
   }
   if (metadata.score == 5) {
     const perfectionAchievementRef = doc(
