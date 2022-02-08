@@ -62,8 +62,8 @@ export const CommunityContextProvider = ({ children }) => {
               cdatas.push(comment);
               cdatasid.push(commentid);
             });
-            console.log(cdatas);
-            console.log(cdatasid);
+            //console.log(cdatas);
+            //console.log(cdatasid);
             setCommentID(cdatasid);
             setCommentData(cdatas);
           });

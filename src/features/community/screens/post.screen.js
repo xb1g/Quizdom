@@ -1,6 +1,6 @@
 import { View, Image, KeyboardAvoidingView } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
-import { doc, getDoc, addDoc, collection } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
 import { Row } from "../../../components/utility/row.component";
 import * as ImagePicker from "expo-image-picker";
 import { v4 as uuidv4 } from "uuid";
@@ -173,12 +173,21 @@ export function PostScreen({ route, navigation }) {
       comment: comment,
       images: images,
       author_uid: user.uid,
-      id: commentRef.id,
     })
-      .then(
-        () => console.log("Success"),
-        navigation.navigate("CommunityScreen")
-      )
+      .then((docRef) => {
+        console.log(docRef.id);
+        navigation.navigate("CommunityScreen");
+        const newCommentRef = doc(
+          db,
+          "community",
+          "Math",
+          "posts",
+          post.id,
+          "comments",
+          docRef.id
+        );
+        updateDoc(newCommentRef, { commentId: docRef.id });
+      })
       .catch((e) => {
         console.log(e);
       });
