@@ -20,7 +20,7 @@ import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "react-native-math-view/src/common";
 import { Button, Switch } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import { addDoc, collection, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -92,7 +92,12 @@ export const AddPostScreen = ({ navigation }) => {
         isQuestion: isQuestion,
         author_uid: user.uid,
       })
-        .then(() => navigation.navigate("CommunityScreen"))
+        .then((docRef) => {
+          navigation.navigate("CommunityScreen");
+          console.log("Document written with ID: ", docRef.id);
+          const newPostRef = doc(db, "community", "Math", "posts", docRef.id);
+          updateDoc(newPostRef, { id: docRef.id });
+        })
         .catch((err) => {
           console.log(err);
         });

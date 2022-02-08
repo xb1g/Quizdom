@@ -21,14 +21,24 @@ import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
 const CommentVisible = () => {
-  const commentUser = commentUser;
+  const { user } = useContext(AuthenticationContext);
   const color = useTheme();
+  const { commentData } = useContext(CommunityContext);
+  const { commentID } = useContext(CommunityContext);
   return (
-    <>
-      <View>
-        <Text></Text>
-      </View>
-    </>
+    <View>
+      <Flatlist
+        data={commentData}
+        keyExtractor={commentID}
+        renderItem={(comment) => {
+          return (
+            <>
+              <View></View>
+            </>
+          );
+        }}
+      />
+    </View>
   );
 };
 const FilterButton = () => {

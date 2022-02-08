@@ -21,6 +21,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SmallTitle } from "./add-post.screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DismissKeyboardView } from "../../../components/utility/dismiss-keyboard-view.component";
+import { CommunityContext } from "../../../services/authentication/community/community.context";
 
 const ProfileImage = styled(Image)`
   width: 30px;
@@ -61,7 +62,14 @@ const CommentView = ({ comment }) => {
   );
 };
 
-const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
+const CommentInput = ({
+  insets,
+  theme,
+  openImagePickerAsync,
+  images,
+  onAddComment,
+  setComment,
+}) => {
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -129,8 +137,14 @@ const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
                 width: "80%",
                 backgroundColor: "#5e5e5e",
               }}
+              onChangeText={setComment}
             />
-            <Ionicons name="send" size={30} color={"#b8b8b8"} />
+            <Ionicons
+              name="send"
+              size={30}
+              color={"#b8b8b8"}
+              onPress={onAddComment}
+            />
           </Row>
         </View>
       </ScrollView>
@@ -146,7 +160,6 @@ export function PostScreen({ route, navigation }) {
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
   const { post } = route.params;
-
   const onAddComment = () => {
     const commentRef = collection(
       db,
@@ -154,14 +167,18 @@ export function PostScreen({ route, navigation }) {
       "Math",
       "posts",
       post.id,
-      "comment"
+      "comments"
     );
     addDoc(commentRef, {
       comment: comment,
       images: images,
       author_uid: user.uid,
+      id: commentRef.id,
     })
-      .then(() => navigation.navigate("CommunityScreen"))
+      .then(
+        () => console.log("Success"),
+        navigation.navigate("CommunityScreen")
+      )
       .catch((e) => {
         console.log(e);
       });
@@ -313,6 +330,8 @@ export function PostScreen({ route, navigation }) {
           theme={theme}
           openImagePickerAsync={openImagePickerAsync}
           images={images}
+          onAddComment={onAddComment}
+          setComment={setComment}
         />
       </>
     </DismissKeyboardView>
