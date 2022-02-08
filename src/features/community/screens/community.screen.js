@@ -20,7 +20,17 @@ import { useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
-
+const CommentVisible = () => {
+  const commentUser = commentUser;
+  const color = useTheme();
+  return (
+    <>
+      <View>
+        <Text></Text>
+      </View>
+    </>
+  );
+};
 const FilterButton = () => {
   const { colors } = useTheme();
   const { user } = useContext(AuthenticationContext);

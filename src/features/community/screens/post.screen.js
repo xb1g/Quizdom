@@ -90,6 +90,7 @@ const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
             style={{ backgroundColor: "#303030" }}
             data={images}
             renderItem={(image) => {
+              console.log(image.item);
               return (
                 <Image
                   style={{
@@ -100,11 +101,11 @@ const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
                     marginBottom: 10,
                     marginTop: 10,
                   }}
+                  key={image.item.substring(image.item.length - 5)}
                   source={{ uri: image.item }}
                 />
               );
             }}
-            keyExtractor={(image) => image.id}
           />
           <Row
             style={{
