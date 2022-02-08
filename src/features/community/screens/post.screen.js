@@ -28,7 +28,14 @@ const ProfileImage = styled(Image)`
   height: 30px;
   border-radius: 50px;
 `;
-
+const CommentFromPeople = () => {
+  const { colors } = useTheme();
+  return (
+    <View>
+      <FlatList />
+    </View>
+  );
+};
 const CommentView = ({ comment }) => {
   const { user } = useContext(AuthenticationContext);
   const { colors } = useTheme();
@@ -157,6 +164,8 @@ export function PostScreen({ route, navigation }) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const [author, setAuthor] = useState("");
+  const [commentAuthor, setCommentAuthor] = useState("");
+  const { commentData } = useContext(CommunityContext);
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
   const { post } = route.params;
@@ -186,7 +195,9 @@ export function PostScreen({ route, navigation }) {
           "comments",
           docRef.id
         );
-        updateDoc(newCommentRef, { commentId: docRef.id });
+        updateDoc(newCommentRef, {
+          commentId: docRef.id,
+        });
       })
       .catch((e) => {
         console.log(e);

@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -16,31 +16,11 @@ import { Row } from "../../../components/utility/row.component";
 import { CommunityContext } from "../../../services/authentication/community/community.context";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { useTheme } from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
-const CommentVisible = () => {
-  const { user } = useContext(AuthenticationContext);
-  const color = useTheme();
-  const { commentData } = useContext(CommunityContext);
-  const { commentID } = useContext(CommunityContext);
-  return (
-    <View>
-      <Flatlist
-        data={commentData}
-        keyExtractor={commentID}
-        renderItem={(comment) => {
-          return (
-            <>
-              <View></View>
-            </>
-          );
-        }}
-      />
-    </View>
-  );
-};
+import { doc, getDoc } from "firebase/firestore";
 const FilterButton = () => {
   const { colors } = useTheme();
   const { user } = useContext(AuthenticationContext);
@@ -62,7 +42,6 @@ export const CommunityScreen = ({ navigation }) => {
   const { postData } = useContext(CommunityContext);
   const theme = useTheme();
   const { user } = useContext(AuthenticationContext);
-
   return (
     <>
       <View
