@@ -45,11 +45,11 @@ export const AuthenticationContextProvider = ({ children }) => {
         })
           .then((u) => {
             // console.log("gotasd");
-            // // console.log(u);
+            console.log(u);
           })
           .catch((e) => {
             // console.log("EEEEeerror");
-            // console.log(e);
+            console.log(e);
           });
         setError(null);
         setIsLoading(false);
