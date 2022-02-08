@@ -8,7 +8,6 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { db, storage } from "../../../../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Ionicons } from "@expo/vector-icons";
-
 import { Button } from "react-native-paper";
 import {
   FlatList,
