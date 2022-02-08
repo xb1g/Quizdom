@@ -74,20 +74,31 @@ export const finishedQuizAchievements = (metadata, uid) => {
       "perfection"
     );
 
-    updateDoc(perfectionAchievementRef, {
-      progress: increment(1),
-    })
-      .then(() => {
-        console.log("Achievement updated");
+    getDoc(perfectionAchievementRef)
+      .then((doc) => {
+        if (doc.exists()) {
+          updateDoc(perfectionAchievementRef, {
+            progress: increment(1),
+          })
+            .then(() => {
+              console.log("Achievement updated");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          setDoc(perfectionAchievementRef, {
+            progress: increment(1),
+          })
+            .then(() => {
+              console.log("Achievement created");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((e) => console.log(e));
   }
-
-  // score = 2
-
-  // perfect?
-  // quiz ++
   console.log(metadata);
 };
