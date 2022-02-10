@@ -57,6 +57,7 @@ export const Input = styledComponentsNative(TextInput).attrs({
     padding: 10px;
     background-color: #5e5e5e;
     margin: 10px;
+    color: #fff;
   `;
 
 export const BodyInput = styledComponentsNative(TextInput).attrs({
@@ -69,6 +70,7 @@ export const BodyInput = styledComponentsNative(TextInput).attrs({
     background-color: #5e5e5e;
     margin: 10px;
     height: 200px;
+    color: #fff;
   `;
 
 export const AddPostScreen = ({ navigation }) => {
@@ -159,8 +161,7 @@ export const AddPostScreen = ({ navigation }) => {
             </Row>
             <View
               style={{
-                borderColor: "white",
-                borderWidth: 1,
+                backgroundColor: theme.colors.bg.secondary,
                 borderRadius: 20,
                 margin: 10,
                 padding: 10,

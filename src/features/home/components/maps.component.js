@@ -91,7 +91,7 @@ export const Maps = ({ maps, navigation }) => {
                     ...shadow.shadow2,
                   }}
                 >
-                  {progresses[item.name] + "/" + item.modulesCount + " "}
+                  {(progresses[item.name] || 0) + "/" + item.modulesCount + " "}
                 </ProgressNumber>
                 <MapCardContainer>
                   <View>

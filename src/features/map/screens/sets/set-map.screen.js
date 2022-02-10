@@ -71,6 +71,7 @@ export const SetMapScreen = ({ navigation }) => {
       });
     }
   };
+
   if (loading && loaded)
     return (
       <View

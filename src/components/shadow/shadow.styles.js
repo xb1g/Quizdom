@@ -20,6 +20,16 @@ export const shadow = StyleSheet.create({
     shadowRadius: 3.84,
     // elevation: 5,
   },
+  shadow3: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.45,
+    shadowRadius: 4,
+    // elevation: 5,
+  },
   glow0: {
     shadowColor: "#000000",
     shadowOffset: {

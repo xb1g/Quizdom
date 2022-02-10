@@ -161,17 +161,22 @@ export function ModuleButton({
         <View
           style={{
             position: "absolute",
-            left: left < width / 2 ? 120 : -90,
+            left: left + 60 < width / 2 ? 120 : -110,
+            // backgroundColor: "#00000033",
+            borderRadius: 15,
+            padding: 10,
             top: 20,
+            width: 150,
             zIndex: 10,
-            width: 100,
           }}
         >
           <Text
+            adjustsFontSizeToFit
             style={{
               fontSize: 20,
+              color: "#fff",
               color: "white",
-              ...shadow.shadow2,
+              ...shadow.shadow3,
             }}
           >
             {name}
