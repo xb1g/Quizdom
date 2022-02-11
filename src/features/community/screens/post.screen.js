@@ -1,6 +1,6 @@
 import { View, Image, KeyboardAvoidingView } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
-import { doc, getDoc, addDoc, collection } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
 import { Row } from "../../../components/utility/row.component";
 import * as ImagePicker from "expo-image-picker";
 import { v4 as uuidv4 } from "uuid";
@@ -21,13 +21,21 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SmallTitle } from "./add-post.screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DismissKeyboardView } from "../../../components/utility/dismiss-keyboard-view.component";
+import { CommunityContext } from "../../../services/authentication/community/community.context";
 
 const ProfileImage = styled(Image)`
   width: 30px;
   height: 30px;
   border-radius: 50px;
 `;
-
+const CommentFromPeople = () => {
+  const { colors } = useTheme();
+  return (
+    <View>
+      <FlatList />
+    </View>
+  );
+};
 const CommentView = ({ comment }) => {
   const { user } = useContext(AuthenticationContext);
   const { colors } = useTheme();
@@ -61,7 +69,14 @@ const CommentView = ({ comment }) => {
   );
 };
 
-const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
+const CommentInput = ({
+  insets,
+  theme,
+  openImagePickerAsync,
+  images,
+  onAddComment,
+  setComment,
+}) => {
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -129,8 +144,14 @@ const CommentInput = ({ insets, theme, openImagePickerAsync, images }) => {
                 width: "80%",
                 backgroundColor: "#5e5e5e",
               }}
+              onChangeText={setComment}
             />
-            <Ionicons name="send" size={30} color={"#b8b8b8"} />
+            <Ionicons
+              name="send"
+              size={30}
+              color={"#b8b8b8"}
+              onPress={onAddComment}
+            />
           </Row>
         </View>
       </ScrollView>
@@ -143,10 +164,11 @@ export function PostScreen({ route, navigation }) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const [author, setAuthor] = useState("");
+  const [commentAuthor, setCommentAuthor] = useState("");
+  const { commentData } = useContext(CommunityContext);
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
   const { post } = route.params;
-
   const onAddComment = () => {
     const commentRef = collection(
       db,
@@ -154,14 +176,29 @@ export function PostScreen({ route, navigation }) {
       "Math",
       "posts",
       post.id,
-      "comment"
+      "comments"
     );
     addDoc(commentRef, {
       comment: comment,
       images: images,
       author_uid: user.uid,
     })
-      .then(() => navigation.navigate("CommunityScreen"))
+      .then((docRef) => {
+        console.log(docRef.id);
+        navigation.navigate("CommunityScreen");
+        const newCommentRef = doc(
+          db,
+          "community",
+          "Math",
+          "posts",
+          post.id,
+          "comments",
+          docRef.id
+        );
+        updateDoc(newCommentRef, {
+          commentId: docRef.id,
+        });
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -313,6 +350,8 @@ export function PostScreen({ route, navigation }) {
           theme={theme}
           openImagePickerAsync={openImagePickerAsync}
           images={images}
+          onAddComment={onAddComment}
+          setComment={setComment}
         />
       </>
     </DismissKeyboardView>

@@ -1,25 +1,24 @@
 import React from "react";
-import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { View } from "react-native";
+import { TouchableOpacity } from "react-native";
+
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export const AddButton = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate("AddPlan")}
       style={{
-        flexDirection: "row",
-        paddingLeft: 25,
-        //marginTop: -20,
-        marginRight: 10,
-      }}
-      onPress={() => {
-        navigation.navigate("AddPlan");
+        position: "absolute",
+        top: 40 - insets.top,
+        right: 20,
       }}
     >
-      <View>
-        <Ionicons name="add-circle" color="pink" size={40} />
-      </View>
+      <Ionicons name="ios-add-circle-outline" size={40} color="white" />
     </TouchableOpacity>
   );
 };

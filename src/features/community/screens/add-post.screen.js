@@ -20,7 +20,7 @@ import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "react-native-math-view/src/common";
 import { Button, Switch } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import { addDoc, collection, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -57,6 +57,7 @@ export const Input = styledComponentsNative(TextInput).attrs({
     padding: 10px;
     background-color: #5e5e5e;
     margin: 10px;
+    color: #fff;
   `;
 
 export const BodyInput = styledComponentsNative(TextInput).attrs({
@@ -69,6 +70,7 @@ export const BodyInput = styledComponentsNative(TextInput).attrs({
     background-color: #5e5e5e;
     margin: 10px;
     height: 200px;
+    color: #fff;
   `;
 
 export const AddPostScreen = ({ navigation }) => {
@@ -92,7 +94,12 @@ export const AddPostScreen = ({ navigation }) => {
         isQuestion: isQuestion,
         author_uid: user.uid,
       })
-        .then(() => navigation.navigate("CommunityScreen"))
+        .then((docRef) => {
+          navigation.navigate("CommunityScreen");
+          console.log("Document written with ID: ", docRef.id);
+          const newPostRef = doc(db, "community", "Math", "posts", docRef.id);
+          updateDoc(newPostRef, { id: docRef.id });
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -154,8 +161,7 @@ export const AddPostScreen = ({ navigation }) => {
             </Row>
             <View
               style={{
-                borderColor: "white",
-                borderWidth: 1,
+                backgroundColor: theme.colors.bg.secondary,
                 borderRadius: 20,
                 margin: 10,
                 padding: 10,
