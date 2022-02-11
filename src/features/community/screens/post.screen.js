@@ -1,6 +1,14 @@
 import { View, Image, KeyboardAvoidingView } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
-import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  docs,
+  getDoc,
+  getDocs,
+  addDoc,
+  collection,
+  updateDoc,
+} from "firebase/firestore";
 import { Row } from "../../../components/utility/row.component";
 import * as ImagePicker from "expo-image-picker";
 import { v4 as uuidv4 } from "uuid";
@@ -28,11 +36,65 @@ const ProfileImage = styled(Image)`
   height: 30px;
   border-radius: 50px;
 `;
-const CommentFromPeople = () => {
+const CommentFromPeople = ({ showComments }) => {
   const { colors } = useTheme();
+  const showComment = [];
   return (
-    <View>
-      <FlatList />
+    <View style={{ backgroundColor: "#303030" }}>
+      <FlatList
+        horizontal
+        style={{ backgroundColor: "#303030" }}
+        data={showComments}
+        renderItem={(showComment) => {
+          console.log(showComment.item);
+          return (
+            <>
+              <Row>
+                <ProfileImage
+                  source={
+                    showComment.item.profileImage
+                      ? {
+                          uri: showComment.item.profileImage,
+                        }
+                      : require("../../../../assets/no_user_picture.png")
+                  }
+                  key={showComment.item.commentId}
+                />
+                <Text
+                  style={{
+                    color: "#ffffff",
+                    fontSize: 16,
+                    marginHorizontal: 20,
+                  }}
+                >
+                  : {showComment.item.comment}
+                </Text>
+              </Row>
+              <FlatList
+                horizontal
+                style={{ backgroundColor: "#303030" }}
+                data={showComment.item.images}
+                renderItem={(imaged) => {
+                  console.log("Slum");
+                  console.log(imaged);
+                  <Image
+                    style={{
+                      width: 150,
+                      height: 150,
+                      borderRadius: 10,
+                      marginHorizontal: 20,
+                      marginBottom: 10,
+                      marginTop: 10,
+                    }}
+                    source={{ uri: imaged.item }}
+                    key={imaged.item.substring(imaged.item.length - 5)}
+                  />;
+                }}
+              />
+            </>
+          );
+        }}
+      />
     </View>
   );
 };
@@ -165,7 +227,7 @@ export function PostScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const [author, setAuthor] = useState("");
   const [commentAuthor, setCommentAuthor] = useState("");
-  const { commentData } = useContext(CommunityContext);
+  const [showComments, setShowComments] = useState([]);
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
   const { post } = route.params;
@@ -182,6 +244,7 @@ export function PostScreen({ route, navigation }) {
       comment: comment,
       images: images,
       author_uid: user.uid,
+      profileImage: commentAuthor.profileImage,
     })
       .then((docRef) => {
         console.log(docRef.id);
@@ -248,6 +311,36 @@ export function PostScreen({ route, navigation }) {
       .then((doc) => {
         setAuthor(doc.data());
         // console.log(doc.data());
+      })
+      .catch((err) => {
+        // console.log("Error weird");
+        console.log(err);
+      });
+    const ctxAuthorRef = doc(db, "users", user.uid);
+    getDoc(ctxAuthorRef)
+      .then((doc) => {
+        setCommentAuthor(doc.data());
+        // console.log(doc.data());
+      })
+      .catch((err) => {
+        // console.log("Error weird");
+        console.log(err);
+      });
+    const commentInRef = collection(
+      db,
+      "community",
+      "Math",
+      "posts",
+      post.id,
+      "comments"
+    );
+    getDocs(commentInRef)
+      .then((docs) => {
+        const data = [];
+        docs.forEach((doc) => {
+          data.push(doc.data());
+        });
+        setShowComments(data);
       })
       .catch((err) => {
         // console.log("Error weird");
@@ -345,6 +438,7 @@ export function PostScreen({ route, navigation }) {
             </View>
           </View>
         </View>
+        <CommentFromPeople showComments={showComments} />
         <CommentInput
           insets={insets}
           theme={theme}

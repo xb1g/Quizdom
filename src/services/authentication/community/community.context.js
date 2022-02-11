@@ -53,20 +53,20 @@ export const CommunityContextProvider = ({ children }) => {
           const commentq = query(
             collection(db, "community", "Math", "posts", postid, "comments")
           );
-          onSnapshot(commentq, (comments) => {
-            const cdatas = [];
-            const cdatasid = [];
-            comments.forEach((doc) => {
-              const comment = doc.data();
-              const commentid = doc.id;
-              cdatas.push(comment);
-              cdatasid.push(commentid);
-            });
-            setCommentID(cdatasid);
-            setCommentData(cdatas);
-            //console.log(cdatas);
-            //console.log(cdatasid);
-          });
+          // onSnapshot(commentq, (comments) => {
+          //   const cdatas = [];
+          //   const cdatasid = [];
+          //   comments.forEach((doc) => {
+          //     const comment = doc.data();
+          //     const commentid = doc.id;
+          //     cdatas.push(comment);
+          //     cdatasid.push(commentid);
+          //   });
+          //   setCommentID(cdatasid);
+          //   setCommentData(cdatas);
+          //   //console.log(cdatas);
+          //   //console.log(cdatasid);
+          // });
         });
 
         // console.log(datas);
