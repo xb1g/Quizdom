@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.6",
+    "@expo/ngrok": "^2.5.0",
     "@miblanchard/react-native-slider": "^2.0.2",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/slider": "^4.1.12",
