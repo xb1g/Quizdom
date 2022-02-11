@@ -77,7 +77,6 @@ export const RegisterScreen = ({ navigation }) => {
             paddingBottom: 300,
             borderBottomRightRadius: 500,
             paddingTop: 100,
-            // borderBottomLeftRadius: 500,
           }}
         >
           <AuthSmallLogo />

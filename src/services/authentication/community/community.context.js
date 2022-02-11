@@ -15,6 +15,9 @@ export const CommunityContext = createContext();
 export const CommunityContextProvider = ({ children }) => {
   const [commuData, setCommuData] = useState([]);
   const [postData, setPostData] = useState([]);
+  const [postID, setPostID] = useState([]);
+  const [commentID, setCommentID] = useState([]);
+  const [commentData, setCommentData] = useState([]);
   const [memberData, setMemberData] = useState([]);
   const [selectedCommunityName, setSelectedCommunityName] = useState("Math");
   // const [postSnapshotData, setPostSnapshotData] = useState([]);
@@ -26,23 +29,49 @@ export const CommunityContextProvider = ({ children }) => {
         selectedCommunityName,
         "members"
       );
-      getDocs(memberRef).then((docs) => {
-        const data = [];
-        docs.forEach((doc) => {
-          data.push(doc.data());
+      getDocs(memberRef)
+        .then((docs) => {
+          const data = [];
+          docs.forEach((doc) => {
+            data.push(doc.data());
+          });
+          setMemberData(data);
+          //// console.log(memberData);
+        })
+        .catch((e) => {
+          console.log(e);
         });
-        setMemberData(data);
-        //// console.log(memberData);
-      });
       const postq = query(collection(db, "community", "Math", "posts"));
       onSnapshot(postq, (posts) => {
         const datas = [];
+        const datasid = [];
         posts.forEach((doc) => {
           const post = doc.data();
+          const postid = doc.id;
           datas.push(post);
+          datasid.push(postid);
+          const commentq = query(
+            collection(db, "community", "Math", "posts", postid, "comments")
+          );
+          // onSnapshot(commentq, (comments) => {
+          //   const cdatas = [];
+          //   const cdatasid = [];
+          //   comments.forEach((doc) => {
+          //     const comment = doc.data();
+          //     const commentid = doc.id;
+          //     cdatas.push(comment);
+          //     cdatasid.push(commentid);
+          //   });
+          //   setCommentID(cdatasid);
+          //   setCommentData(cdatas);
+          //   //console.log(cdatas);
+          //   //console.log(cdatasid);
+          // });
         });
+
         // console.log(datas);
         setPostData(datas);
+        setPostID(datasid);
       });
     }
   }, []);
@@ -56,6 +85,12 @@ export const CommunityContextProvider = ({ children }) => {
         setPostData,
         memberData,
         setMemberData,
+        commentData,
+        setCommentData,
+        commentID,
+        setCommentID,
+        postID,
+        setPostID,
       }}
     >
       {children}

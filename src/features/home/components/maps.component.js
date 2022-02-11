@@ -91,7 +91,7 @@ export const Maps = ({ maps, navigation }) => {
                     ...shadow.shadow2,
                   }}
                 >
-                  {progresses[item.name] + "/" + item.modulesCount + " "}
+                  {(progresses[item.name] || 0) + "/" + item.modulesCount + " "}
                 </ProgressNumber>
                 <MapCardContainer>
                   <View>
@@ -116,6 +116,17 @@ export const Maps = ({ maps, navigation }) => {
                       }}
                     />
                     <MapName variant="label">{item.name}</MapName>
+                    {/* <Text
+                      style={{
+                        fontSize: 25,
+                        alignSelf: "center",
+                        color: "#fff",
+                        ...shadow.shadow3,
+                      }}
+                      variant="label"
+                    >
+                      {item.name}
+                    </Text> */}
                   </View>
                 </MapCardContainer>
               </TouchableOpacity>

@@ -148,7 +148,7 @@ export const UserScreen = ({ navigation }) => {
             <UserItem
               icon="help-outline"
               title="Help"
-              onPress={() => navigation.navigate("SettingsScreen")}
+              onPress={() => navigation.navigate("HelpScreen")}
             />
           </ItemContainer>
         </List.Section>

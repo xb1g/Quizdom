@@ -6,6 +6,10 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedbackBase,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { db, storage } from "../../../../firebase-config";
@@ -16,7 +20,7 @@ import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "react-native-math-view/src/common";
 import { Button, Switch } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import { addDoc, collection, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -26,7 +30,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { AuthButton } from "../../account/components/account.styles";
 
-const Title = styledComponentsNative(Text).attrs({
+export const Title = styledComponentsNative(Text).attrs({
   variant: "label",
 })`
     font-size: 36px;
@@ -34,28 +38,29 @@ const Title = styledComponentsNative(Text).attrs({
     margin: 20px
   `;
 
-const SmallTitle = styledComponentsNative(Text).attrs({})`
+export const SmallTitle = styledComponentsNative(Text).attrs({})`
     font-size: 18px;
     color: #fff;
   `;
 
-const CloseButton = styledComponentsNative(TouchableOpacity)`
+export const CloseButton = styledComponentsNative(TouchableOpacity)`
     position: absolute;
     right: 0px;
     z-index: 1;
   `;
 
-const Input = styledComponentsNative(TextInput).attrs({
-  placeholder: "Title",
+export const Input = styledComponentsNative(TextInput).attrs({
+  // placeholder: "Title",
   placeholderTextColor: "#c7c7c7",
 })`
     border-radius: 10px;
     padding: 10px;
-    background-color: #5e5e5e;
+    background-color: ${(props) => props.theme.colors.bg.tertiary};
     margin: 10px;
+    color: #fff;
   `;
 
-const BodyInput = styledComponentsNative(TextInput).attrs({
+export const BodyInput = styledComponentsNative(TextInput).attrs({
   multiline: true,
   maxLength: 500,
   numberOfLines: 10,
@@ -65,6 +70,7 @@ const BodyInput = styledComponentsNative(TextInput).attrs({
     background-color: #5e5e5e;
     margin: 10px;
     height: 200px;
+    color: #fff;
   `;
 
 export const AddPostScreen = ({ navigation }) => {
@@ -87,7 +93,16 @@ export const AddPostScreen = ({ navigation }) => {
         images: images,
         isQuestion: isQuestion,
         author_uid: user.uid,
-      }).then(() => navigation.navigate("CommunityScreen"));
+      })
+        .then((docRef) => {
+          navigation.navigate("CommunityScreen");
+          console.log("Document written with ID: ", docRef.id);
+          const newPostRef = doc(db, "community", "Math", "posts", docRef.id);
+          updateDoc(newPostRef, { id: docRef.id });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -127,106 +142,116 @@ export const AddPostScreen = ({ navigation }) => {
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: theme.colors.bg.primary,
-          flex: 1,
-        }}
-      >
-        <Row>
-          <Title>Add post</Title>
-          <CloseButton onPress={() => navigation.goBack()}>
-            <Title>{"X "}</Title>
-          </CloseButton>
-        </Row>
-        <View
-          style={{
-            borderColor: "white",
-            borderWidth: 1,
-            borderRadius: 20,
-            margin: 10,
-            padding: 10,
-          }}
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <TouchableWithoutFeedback
+          style={{ flex: 1 }}
+          onPress={() => Keyboard.dismiss()}
         >
-          <Input onChangeText={(text) => setTitle(text)} value={title} />
-          <BodyInput
-            placeholderTextColor="#c2c2c2"
-            onChangeText={setBody}
-            value={body}
-            placeholder="Body"
-          />
-
-          <Row style={{ padding: 10, alignItems: "center" }}>
-            <SmallTitle>Tags:</SmallTitle>
-            <Spacer position={"right"} />
-            <TouchableOpacity
-              style={{
-                borderRadius: 10,
-                backgroundColor: "#5e5e5e",
-                width: 20,
-                height: 20,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <SmallTitle>+</SmallTitle>
-            </TouchableOpacity>
-          </Row>
-          <Row style={{ padding: 10, alignItems: "center" }}>
-            <SmallTitle>Question? </SmallTitle>
-            <Switch
-              value={isQuestion}
-              onValueChange={(value) => setIsQuestion(value)}
-            />
-          </Row>
-          <TouchableOpacity
-            onPress={openImagePickerAsync}
+          <View
             style={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 30,
-              backgroundColor: "#ffffff47",
-              marginRight: "auto",
-              alignItems: "center",
+              backgroundColor: theme.colors.bg.primary,
+              flex: 1,
             }}
           >
-            <Row style={{ justifyContent: "center", alignItems: "center" }}>
-              <SmallTitle>Add Images</SmallTitle>
-              <Spacer position="right" />
-              <Ionicons name="image-outline" size={25} color="white" />
+            <Row>
+              <Title>Add post</Title>
+              <CloseButton onPress={() => navigation.goBack()}>
+                <Title>{"X "}</Title>
+              </CloseButton>
             </Row>
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          data={images}
-          horizontal
-          renderItem={(image) => {
-            console.log(image);
-            return (
-              <Image
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 10,
-                  margin: 10,
-                }}
-                defaultSource={require("../../../../assets/icon.png")}
-                source={{ uri: image.item }}
+            <View
+              style={{
+                backgroundColor: theme.colors.bg.secondary,
+                borderRadius: 20,
+                margin: 10,
+                padding: 10,
+              }}
+            >
+              <Input
+                onChangeText={(text) => setTitle(text)}
+                placeholder={"Title"}
+                value={title}
               />
-            );
-          }}
-          keyExtractor={(image, index) => index + image.item}
-        />
-        <AuthButton
-          onPress={onAddPost}
-          size="large"
-          style={{
-            marginBottom: insets.bottom + 10,
-          }}
-        >
-          <Text>Post</Text>
-        </AuthButton>
-      </View>
+              <BodyInput
+                placeholderTextColor="#c2c2c2"
+                onChangeText={setBody}
+                value={body}
+                placeholder="Body"
+              />
+
+              <Row style={{ padding: 10, alignItems: "center" }}>
+                <SmallTitle>Tags:</SmallTitle>
+                <Spacer position={"right"} />
+                <TouchableOpacity
+                  style={{
+                    borderRadius: 10,
+                    backgroundColor: "#5e5e5e",
+                    width: 20,
+                    height: 20,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SmallTitle>+</SmallTitle>
+                </TouchableOpacity>
+              </Row>
+              <Row style={{ padding: 10, alignItems: "center" }}>
+                <SmallTitle>Question? </SmallTitle>
+                <Switch
+                  value={isQuestion}
+                  onValueChange={(value) => setIsQuestion(value)}
+                />
+              </Row>
+              <TouchableOpacity
+                onPress={openImagePickerAsync}
+                style={{
+                  padding: 10,
+                  margin: 10,
+                  borderRadius: 30,
+                  backgroundColor: "#ffffff47",
+                  marginRight: "auto",
+                  alignItems: "center",
+                }}
+              >
+                <Row style={{ justifyContent: "center", alignItems: "center" }}>
+                  <SmallTitle>Add Images</SmallTitle>
+                  <Spacer position="right" />
+                  <Ionicons name="image-outline" size={25} color="white" />
+                </Row>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={images}
+              horizontal
+              renderItem={(image) => {
+                console.log(image);
+                return (
+                  <Image
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 10,
+                      margin: 10,
+                    }}
+                    defaultSource={require("../../../../assets/icon.png")}
+                    source={{ uri: image.item }}
+                  />
+                );
+              }}
+              keyExtractor={(image, index) => index + image.item}
+            />
+            <AuthButton
+              onPress={onAddPost}
+              size="large"
+              style={{
+                marginBottom: insets.bottom + 10,
+              }}
+            >
+              <Text>Post</Text>
+            </AuthButton>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </>
   );
 };

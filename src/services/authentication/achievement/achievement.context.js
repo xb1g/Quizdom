@@ -27,20 +27,33 @@ export const AchievementContextProvider = ({ children }) => {
       snapshot.forEach((doc) => {
         let achievement = {
           ...doc.data(),
+          name: doc.id,
         };
         savedProgress.push(achievement);
       });
-      console.log(savedProgress);
+      console.log("ahaha", savedProgress);
 
       const achievements = [];
       achievementsBase.map((achievement) => {
+        const savedAchievement = savedProgress.find(
+          (savedAchievement) => savedAchievement.id === achievement.id
+        );
+        const progress = savedAchievement ? savedAchievement.progress : 0;
         const achievementData = {
           ...achievement,
-          ...savedProgress.find((item) => item.id === achievement.id),
+          ...savedAchievement,
+          level:
+            progress > achievement.rank[2]
+              ? 3
+              : progress > achievement.rank[1]
+              ? 2
+              : progress > achievement.rank[0]
+              ? 1
+              : 0,
         };
         achievements.push(achievementData);
       });
-      console.log("AC", achievements);
+      // console.log("AC", achievements);
       setAchievementsData(achievements);
     });
   }, []);

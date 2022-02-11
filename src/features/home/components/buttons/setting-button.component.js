@@ -1,6 +1,6 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 
 import {
   SafeAreaView,
@@ -8,20 +8,17 @@ import {
 } from "react-native-safe-area-context";
 
 export const UserButton = ({ navigation }) => {
-  const inset = useSafeAreaInsets();
+  const insets = useSafeAreaInsets();
   return (
     <TouchableOpacity
       style={{
-        flexDirection: "row",
-        paddingRight: 25,
-        marginTop: -inset.top * 0.25,
-        // marginRight: 10,
+        position: "absolute",
+        top: 40 - insets.top,
+        right: 20,
       }}
-      onPress={() => {
-        navigation.navigate("UserProfileScreen");
-      }}
+      onPress={() => navigation.navigate("UserProfileScreen")}
     >
-      <Ionicons name="ios-person-circle-outline" size={35} color={"#fff"} />
+      <Ionicons name="ios-person-circle-outline" size={40} color={"#fff"} />
     </TouchableOpacity>
   );
 };

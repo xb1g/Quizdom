@@ -20,6 +20,7 @@ import { MapsContext } from "../maps/maps.context";
 import moment from "moment";
 import { requirements } from "../data/math/sets/modules";
 import { AuthLogo } from "../../features/home/components/home.styles";
+import { finishedQuizAchievements } from "../authentication/achievement/achievement.service";
 
 export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
@@ -88,6 +89,9 @@ export const QuizContextProvider = ({ children }) => {
           console.log(ar);
           setLoaded(true);
           // setQuizData(chosenQuizzes);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
     // return null;
@@ -164,10 +168,14 @@ export const QuizContextProvider = ({ children }) => {
           reviewAt: reviewTime,
           progress: increment(1),
           started: true,
-        }).then(() => {
-          // setUpdate(true);
-          // console.log("updated");
-        });
+        })
+          .then(() => {
+            // setUpdate(true);
+            // console.log("updated");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         // update progress
       } else if (metaData.score >= 0) {
         // console.log("FAILED");
@@ -185,11 +193,17 @@ export const QuizContextProvider = ({ children }) => {
           reviewAt: null,
 
           progress: 0,
-        }).then(() => {
-          // setUpdate(true);
-          // console.log("updated");
-        });
+        })
+          .then(() => {
+            // setUpdate(true);
+            // console.log("updated");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
+
+      finishedQuizAchievements(metaData, user.uid);
     }
     setUpdated(false);
   }, [metaData]);

@@ -1,99 +1,46 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { shadow } from "../../../components/shadow/shadow.styles";
+import { Text } from "../../../components/typography/text.component";
 
 export const QuestionsList = ({ questions, navigation }) => {
   questions = [
     {
       id: 1,
-      title: "what's this",
-      tags: ["math", "c++"],
-      description: "how to sleep in c++",
-      status: "answered",
-
-      name: "John Doe",
-      avatar: "https://picsum.photos/200",
-      online: true,
-      uid: "abcdefg",
-      color: "#ff2312",
-    },
-    {
-      id: 2,
-      title: "what's this",
-      tags: ["math", "c++"],
-      description: "how to sleep in c++",
-      status: "answered",
-
-      name: "Jane Doe",
-      avatar: "https://picsum.photos/200",
-      online: true,
-      uid: "abcdefg",
-      color: "#8d0900",
-    },
-    {
-      id: 3,
-      title: "what's this",
-      tags: ["math", "c++"],
-      description: "how to sleep in c++",
-      status: "answered",
-
-      name: "John Doe",
-      avatar: "https://picsum.photos/200",
-      online: true,
-      uid: "abcdefg",
-      color: "#ff2312",
-    },
-    {
-      id: 4,
-      title: "sadsdasd's this",
+      title: "what's the story",
       tags: ["math", "c++"],
       description: "how to sleep in c++",
       status: "unanswered",
-
-      name: "Jane Doe",
+      name: "John Doe",
       avatar: "https://picsum.photos/200",
       online: true,
       uid: "abcdefg",
       color: "#ff2312",
     },
     {
-      id: 5,
-      title: "what's this",
+      id: 1,
+      title: "Why can't a set have the same elements inside it",
       tags: ["math", "c++"],
       description: "how to sleep in c++",
       status: "answered",
-
-      name: "Jane Doe",
+      name: "John Doe",
       avatar: "https://picsum.photos/200",
-      online: true,
+      online: false,
       uid: "abcdefg",
-      color: "#12ff26",
+      color: "#ff2312",
     },
     {
-      id: 6,
-      title: "what's this",
+      id: 1,
+      title: "Hard Inequalities problems",
       tags: ["math", "c++"],
       description: "how to sleep in c++",
       status: "answered",
-
-      name: "Jane Doe",
+      name: "John Doe",
       avatar: "https://picsum.photos/200",
-      online: true,
+      online: false,
       uid: "abcdefg",
-      color: "#889608",
-    },
-    {
-      id: 7,
-      title: "what's this",
-      tags: ["math", "c++"],
-      description: "how to sleep in c++",
-      status: "answered",
-      name: "Jane Doe",
-      avatar: "https://picsum.photos/200",
-      online: true,
-      uid: "abcdefg",
-      color: "#69ff12",
+      color: "#ff2312",
     },
   ];
   return (
@@ -115,7 +62,7 @@ export const QuestionsList = ({ questions, navigation }) => {
                 });
               }}
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: "#363636",
                 borderBottomColor:
                   item.status === "answered" ? "#6fffff" : "#ffaded",
                 borderBottomWidth: 10,
@@ -125,7 +72,7 @@ export const QuestionsList = ({ questions, navigation }) => {
               }}
             >
               <View style={{}}>
-                <Text>{item.title}</Text>
+                <Text variant="bodyInverse">{item.title}</Text>
               </View>
             </TouchableOpacity>
           </>

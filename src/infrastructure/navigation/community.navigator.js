@@ -8,7 +8,7 @@ import { shadow } from "../../components/shadow/shadow.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { CommunityScreen } from "../../features/community/screens/community.screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Platform, View } from "react-native";
+import { TouchableOpacity, Platform, View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { AddPostScreen } from "../../features/community/screens/add-post.screen";
 import { Text } from "../../components/typography/text.component";
@@ -98,28 +98,32 @@ export const CommunityNavigator = ({ navigation, route }) => {
           title: "",
           // headerShown: false,
           headerTransparent: true,
-          headerLeft: () => null,
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{
+                marginLeft: 17,
+                marginBottom: 10,
+              }}
+              onPress={() => navigation.navigate("CommunityScreen")}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  fontSize: 46,
+                }}
+                variant={"labelTitle"}
+              >
+                {"< "}
+              </Text>
+            </TouchableOpacity>
+          ),
           headerRight: () => (
-            // <View
-            //   style={{
-            //     width: 50,
-            //     height: 50,
-            //     borderRadius: 25,
-            //     marginRight: 20,
-            //     marginBottom: 10,
-            //     backgroundColor: theme.colors.brand.primary,
-            //     padding: 10,
-            //     alignItems: "center",
-            //     justifyContent: "center",
-            //   }}
-            // >
             <Ionicons
-              name="ios-add"
+              name="notifications-outline"
               size={30}
               color="#fff"
               style={{ paddingRight: 20 }}
             />
-            // </View>
           ),
           headerBackground: () => (
             <View
@@ -147,13 +151,6 @@ export const CommunityNavigator = ({ navigation, route }) => {
               </Text>
             </View>
           ),
-          // headerStyle: {
-          //   backgroundColor: theme.colors.bg.primary,
-          //   borderBottomRightRadius: 30,
-          //   borderBottomLeftRadius: 30,
-          //   height: 60 + insets.top,
-          //   ...shadow.shadow2,
-          // },
         }}
       />
     </CommunityStack.Navigator>

@@ -4,15 +4,16 @@ import { FlatList } from "react-native-gesture-handler";
 import { shadow } from "../../../components/shadow/shadow.styles";
 
 export const FriendList = ({ friends, navigation }) => {
-  // friends = [
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     avatar: "https://picsum.photos/200",
-  //     online: true,
-  //     uid: "abcdefg",
-  //     color: "#ff2312",
-  //   },
+  friends = [
+    {
+      id: 1,
+      name: "John Doe",
+      avatar: "https://picsum.photos/200",
+      online: true,
+      uid: "abcdefg",
+      color: "#ff2312",
+    },
+  ];
   //   {
   //     id: 2,
   //     name: "Jane Doe",

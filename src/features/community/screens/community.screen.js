@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -16,11 +16,11 @@ import { Row } from "../../../components/utility/row.component";
 import { CommunityContext } from "../../../services/authentication/community/community.context";
 import { TitleContainer, TitleText } from "../../home/components/home.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { useTheme } from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
-
+import { doc, getDoc } from "firebase/firestore";
 const FilterButton = () => {
   const { colors } = useTheme();
   const { user } = useContext(AuthenticationContext);
@@ -33,7 +33,7 @@ const FilterButton = () => {
         margin: 5,
       }}
     >
-      <Ionicons name="filter" color="white" size="25" />
+      <Ionicons name="filter" color="white" size={25} />
     </TouchableOpacity>
   );
 };
@@ -42,7 +42,6 @@ export const CommunityScreen = ({ navigation }) => {
   const { postData } = useContext(CommunityContext);
   const theme = useTheme();
   const { user } = useContext(AuthenticationContext);
-
   return (
     <>
       <View
@@ -55,7 +54,14 @@ export const CommunityScreen = ({ navigation }) => {
         <FlatList
           style={{ paddingTop: 50 }}
           data={postData}
-          keyExtractor={(post) => post.id}
+          keyExtractor={(post) => {
+            // console.log(post);
+            return (
+              post.title.slice(-5) +
+              post.isQuestion +
+              post.author_uid.slice(0, 5)
+            ).toString();
+          }}
           renderItem={(post) => {
             post = post.item;
             return (
@@ -85,7 +91,10 @@ export const CommunityScreen = ({ navigation }) => {
                     style={{
                       marginTop: 10,
                     }}
-                    keyExtractor={(image) => image.id}
+                    keyExtractor={(image) => {
+                      // console.log(image);
+                      return image.slice(-10);
+                    }}
                     renderItem={(image) => {
                       return (
                         <Image

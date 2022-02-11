@@ -79,7 +79,8 @@ export const Today = ({ navigation }) => {
       if (mapData.isStarted) {
         map.modules.forEach((module) => {
           // console.log(module.name, !!module.reviewAt, module.unlocked);
-          // // console.log(setsResources[module.name]["important"]);
+          // console.log(module.name + "bbb");
+          // console.log(setsResources["Type of sets"].important);
           const isToday = module.reviewAt;
           // console.log(isToday, new Date().getTime() / 1000);
           if (module.unlocked) {

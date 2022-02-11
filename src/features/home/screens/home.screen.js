@@ -8,6 +8,7 @@ import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { StatusBar } from "expo-status-bar";
+
 import {
   TitleText,
   HomeBackground,
@@ -700,7 +701,13 @@ export const HomeScreen = ({ navigation }) => {
         "level1",
         String(index)
       );
-      setDoc(quizRef, quiz);
+      setDoc(quizRef, quiz)
+        .then(() => {
+          console.log("Intro to sets level 1 quiz added");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   };
 

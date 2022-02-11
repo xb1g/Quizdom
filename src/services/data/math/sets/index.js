@@ -12,7 +12,7 @@ export const setsResources = {
   "Intro to sets": intro_to_sets,
   "Venn diagrams": venn_diagrams,
   "Type of sets": type_of_sets,
-  "Union and intersect": union_and_intersect,
+  "Union and Intersect": union_and_intersect,
   Complement: relative_and_absolute_complement,
   Subsets: subsets,
   "Power sets": powersets,
