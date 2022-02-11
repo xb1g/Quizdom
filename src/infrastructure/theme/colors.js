@@ -20,7 +20,7 @@ export const colors = {
   bg: {
     primary: "#1d1d1d",
     secondary: "#3a3a3a",
-    tertiary: "#525252",
+    tertiary: "#5e5e5e",
     inverse1: "#FFEEBB",
     inverse: "#ececec",
   },

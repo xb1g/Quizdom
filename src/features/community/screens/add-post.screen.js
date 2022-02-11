@@ -50,12 +50,12 @@ export const CloseButton = styledComponentsNative(TouchableOpacity)`
   `;
 
 export const Input = styledComponentsNative(TextInput).attrs({
-  placeholder: "Title",
+  // placeholder: "Title",
   placeholderTextColor: "#c7c7c7",
 })`
     border-radius: 10px;
     padding: 10px;
-    background-color: #5e5e5e;
+    background-color: ${(props) => props.theme.colors.bg.tertiary};
     margin: 10px;
     color: #fff;
   `;
@@ -167,7 +167,11 @@ export const AddPostScreen = ({ navigation }) => {
                 padding: 10,
               }}
             >
-              <Input onChangeText={(text) => setTitle(text)} value={title} />
+              <Input
+                onChangeText={(text) => setTitle(text)}
+                placeholder={"Title"}
+                value={title}
+              />
               <BodyInput
                 placeholderTextColor="#c2c2c2"
                 onChangeText={setBody}
