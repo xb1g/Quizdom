@@ -11,12 +11,14 @@ import {
   CenteredColumn,
   Column,
 } from "../../../components/utility/column.component";
+import Animated, { BounceIn, BounceOut } from "react-native-reanimated";
 
 const Title = styledComponentsNative(Text)`
   font-size: 46px;
   font-weight: bold;
   color: #fff;
 `;
+
 const Desc = styledComponentsNative(Text)`
   font-size: 20px;
   margin-left: -10px;
@@ -39,7 +41,6 @@ const Num = styledComponentsNative(Text)`
   font-size: 20px;
   color: #fff;
   padding: 15px;
-  align-self: flex-start;
 `;
 
 const Container = styledComponentsNative(View)`
@@ -71,21 +72,23 @@ export const BadgeScreen = ({ route, navigation }) => {
     <>
       <Container>
         <Title variant={"label"}>{badge.title + " "}</Title>
-        <Image
-          source={
-            badge.level === 1
-              ? badge.image1
-              : badge.level === 2
-              ? badge.image2
-              : badge.level === 3
-              ? badge.image3
-              : badge.image0
-          }
-          style={{
-            ...{ width: 200, height: 200 },
-            ...shadow[badge.level ? "glow" + badge.level : "shadow1"],
-          }}
-        />
+        <Animated.View entering={BounceIn} exiting={BounceOut}>
+          <Image
+            source={
+              badge.level === 1
+                ? badge.image1
+                : badge.level === 2
+                ? badge.image2
+                : badge.level === 3
+                ? badge.image3
+                : badge.image0
+            }
+            style={{
+              ...{ width: 200, height: 200 },
+              ...shadow[badge.level ? "glow" + badge.level : "shadow1"],
+            }}
+          />
+        </Animated.View>
         <Desc>{badge.description}</Desc>
         <View>
           <Progress>{badge.progress || 0}</Progress>

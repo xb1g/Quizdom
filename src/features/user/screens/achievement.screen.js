@@ -6,6 +6,7 @@ import { BackButton } from "../components/user-profile.styles";
 import { Book } from "../../../../assets/achievements";
 import { AchievementContext } from "../../../services/authentication/achievement/achievement.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
+import Animated, { BounceIn, BounceOut } from "react-native-reanimated";
 // import { BackButton } from "../../account/components/account.styles";
 
 export const AchievementScreen = ({ navigation }) => {
@@ -120,44 +121,46 @@ export const AchievementScreen = ({ navigation }) => {
           renderItem={({ item }) => {
             // const rnum = Math.floor(Math.random() * 3);
             return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("BadgeScreen", { item })}
-              >
-                <View
-                  style={{
-                    padding: 10,
-                  }}
+              <Animated.View entering={BounceIn} exiting={BounceOut}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("BadgeScreen", { item })}
                 >
                   <View
                     style={{
-                      // flex: 1,
-                      backgroundColor: "#ffffff2b",
-                      borderRadius: 30,
-                      padding: 15,
-                      zIndex: -10,
+                      padding: 10,
                     }}
                   >
-                    <Image
-                      // source={item.image[item.progress || 0]}
-                      key={
-                        String(item.id) +
-                        String(item.imageName) +
-                        String(item.progress)
-                      }
-                      source={item["image" + (item.level || 0)]}
-                      // source={item["image" + rnum]}
+                    <View
                       style={{
-                        width: 80,
-                        // padding: 20,
                         // flex: 1,
-                        height: 80,
-                        borderRadius: 50,
-                        ...shadow["glow" + (item.level || 0)],
+                        backgroundColor: "#ffffff2b",
+                        borderRadius: 30,
+                        padding: 15,
+                        zIndex: -10,
                       }}
-                    />
+                    >
+                      <Image
+                        // source={item.image[item.progress || 0]}
+                        key={
+                          String(item.id) +
+                          String(item.imageName) +
+                          String(item.progress)
+                        }
+                        source={item["image" + (item.level || 0)]}
+                        // source={item["image" + rnum]}
+                        style={{
+                          width: 80,
+                          // padding: 20,
+                          // flex: 1,
+                          height: 80,
+                          borderRadius: 50,
+                          ...shadow["glow" + (item.level || 0)],
+                        }}
+                      />
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
+                </TouchableOpacity>
+              </Animated.View>
             );
           }}
           // keyExtractor={() => {}}
