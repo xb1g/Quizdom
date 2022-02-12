@@ -6,7 +6,17 @@ export const colors = {
   },
   logo: {
     primary: "#FF7B4B",
+    primaryLight: "#ff9974",
+    primaryDark: "#d3582b",
+    primaryDarker: "#6620062b",
     secondary: "#5FFF79",
+    secondaryLight: "#bfffca",
+    secondaryDark: "#30af45",
+    secondaryDarker: "#17852a",
+    tertiary: "#FF7B09",
+    tertiaryLight: "#ff9974",
+    tertiaryDark: "#d3582b",
+    tertiaryDarker: "#6620062b",
   },
   ui: {
     primary: "#262626",

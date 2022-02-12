@@ -7,6 +7,7 @@ import { shadow } from "../../../components/shadow/shadow.styles";
 import { Text } from "../../../components/typography/text.component";
 import { Row } from "../../../components/utility/row.component";
 import { MapsContext } from "../../../services/maps/maps.context";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 
 const MapContainer = styled.View`
   background-color: #fff;
@@ -69,54 +70,58 @@ export const Maps = ({ maps, navigation }) => {
           // ).length;
           // item.key = String(item.id) + item.name;
           return (
-            <Row>
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                }}
-                onPress={() => {
-                  // console.log("MAPPER", item);
-                  if (item.isStarted) {
-                    setSelectedMapName(item.name);
-                    navigation.navigate(item.navigateName);
-                  } else {
-                    // console.log("START GAME FIRST");
-                    navigation.navigate(item.startName);
-                  }
-                }}
-              >
-                <ProgressNumber
-                  variant="label"
+            <Animated.View entering={ZoomIn.springify()} exiting={ZoomOut}>
+              <Row>
+                <TouchableOpacity
                   style={{
-                    ...shadow.shadow2,
+                    flex: 1,
+                  }}
+                  onPress={() => {
+                    // console.log("MAPPER", item);
+                    if (item.isStarted) {
+                      setSelectedMapName(item.name);
+                      navigation.navigate(item.navigateName);
+                    } else {
+                      // console.log("START GAME FIRST");
+                      navigation.navigate(item.startName);
+                    }
                   }}
                 >
-                  {(progresses[item.name] || 0) + "/" + item.modulesCount + " "}
-                </ProgressNumber>
-                <MapCardContainer>
-                  <View>
-                    {!item.isStarted && (
-                      <LinearGradient
+                  <ProgressNumber
+                    variant="label"
+                    style={{
+                      ...shadow.shadow2,
+                    }}
+                  >
+                    {(progresses[item.name] || 0) +
+                      "/" +
+                      item.modulesCount +
+                      " "}
+                  </ProgressNumber>
+                  <MapCardContainer>
+                    <View>
+                      {!item.isStarted && (
+                        <LinearGradient
+                          style={{
+                            position: "absolute",
+                            width: "100%",
+                            height: "90%",
+                            borderRadius: 25,
+                            zIndex: 1,
+                          }}
+                          colors={["#000000", "rgba(0, 0, 0, 0)"]}
+                        />
+                      )}
+                      <Image
+                        source={item.image}
                         style={{
-                          position: "absolute",
-                          width: "100%",
-                          height: "90%",
-                          borderRadius: 25,
-                          zIndex: 1,
+                          width: 150,
+                          height: 150,
+                          borderRadius: 30,
                         }}
-                        colors={["#000000", "rgba(0, 0, 0, 0)"]}
                       />
-                    )}
-                    <Image
-                      source={item.image}
-                      style={{
-                        width: 150,
-                        height: 150,
-                        borderRadius: 30,
-                      }}
-                    />
-                    <MapName variant="label">{item.name}</MapName>
-                    {/* <Text
+                      <MapName variant="label">{item.name}</MapName>
+                      {/* <Text
                       style={{
                         fontSize: 25,
                         alignSelf: "center",
@@ -127,10 +132,11 @@ export const Maps = ({ maps, navigation }) => {
                     >
                       {item.name}
                     </Text> */}
-                  </View>
-                </MapCardContainer>
-              </TouchableOpacity>
-            </Row>
+                    </View>
+                  </MapCardContainer>
+                </TouchableOpacity>
+              </Row>
+            </Animated.View>
           );
         }}
         keyExtractor={(item) => item.id + item.name}

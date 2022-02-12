@@ -7,10 +7,43 @@ import CircularProgress, {
 import Animated, {
   Extrapolate,
   interpolate,
+  useAnimatedProps,
   useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  ZoomIn,
 } from "react-native-reanimated";
 import { MapsContext } from "../../../services/maps/maps.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
+
+class Donut extends React.Component {
+  render() {
+    return (
+      <CircularProgressWithChild
+        activeStrokeColor={"#467dff"}
+        activeStrokeSecondaryColor={"#b535ff"}
+        activeStrokeWidth={25}
+        inActiveStrokeWidth={25}
+        value={
+          this.props.progress > 0 && this.props.timeProgress > 0
+            ? this.props.timeProgress
+            : 0
+        }
+        radius={this.props.radius}
+        //   radius={ selectedModule
+        // ? selectedModule.name === module.name
+        //   ? (donutRadius.value = withSpring(80))
+        //   : (donutRadius.value = withSpring(60))
+        // : (donutRadius.value = withSpring(60))}
+        showProgressValue={false}
+      >
+        {this.props.children}
+      </CircularProgressWithChild>
+    );
+  }
+}
+
+const AnimatedDonut = Animated.createAnimatedComponent(Donut);
 
 export function ModuleButton({
   color,
@@ -35,6 +68,11 @@ export function ModuleButton({
   const { setSelectedModule, selectedMapModulesData, updated, selectedModule } =
     useContext(MapsContext);
   const [timeProgress, setTimeProgress] = useState(0);
+  const donutRadius = useSharedValue(60);
+
+  const radiusProps = useAnimatedProps(() => ({
+    radius: donutRadius.value,
+  }));
 
   useEffect(() => {
     if (started && progress) {
@@ -49,6 +87,14 @@ export function ModuleButton({
     }
     console.log(updated);
   }, [updated]);
+
+  // useEffect(() => {
+  //   selectedModule
+  //     ? selectedModule.name === module.name
+  //       ? (donutRadius.value = withSpring(80))
+  //       : (donutRadius.value = withSpring(60))
+  //     : (donutRadius.value = withSpring(60));
+  // }, [selectedModule]);
 
   const module = {
     name,
@@ -70,6 +116,7 @@ export function ModuleButton({
 
   return (
     <Animated.View
+      entering={ZoomIn}
       style={[
         {
           position: "absolute",
@@ -90,6 +137,7 @@ export function ModuleButton({
       <TouchableOpacity
         onPress={() => {
           scrollTo(top - 200);
+          donutRadius.value = withSpring(80);
           if (!started) {
             const module = selectedMapModulesData.find(
               (module) => module.id === id
@@ -101,20 +149,17 @@ export function ModuleButton({
           setSelectedModule(module);
         }}
       >
-        <CircularProgressWithChild
-          activeStrokeColor={"#467dff"}
-          activeStrokeSecondaryColor={"#b535ff"}
-          activeStrokeWidth={25}
-          inActiveStrokeWidth={25}
-          value={progress > 0 && timeProgress > 0 ? timeProgress : 0}
+        <AnimatedDonut
+          progress={progress}
+          timeProgress={timeProgress}
+          // animatedProps={radiusProps}
           radius={
             selectedModule
               ? selectedModule.name === module.name
-                ? 80
-                : 60
-              : 60
+                ? (donutRadius.value = 80)
+                : (donutRadius.value = 60)
+              : (donutRadius.value = 60)
           }
-          showProgressValue={false}
           // circleBackgroundColor={"#76ffc6"}
         >
           <View
@@ -157,7 +202,7 @@ export function ModuleButton({
               {progress + " "}
             </Text>
           </View>
-        </CircularProgressWithChild>
+        </AnimatedDonut>
         <View
           style={{
             position: "absolute",

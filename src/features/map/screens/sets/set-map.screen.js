@@ -29,6 +29,10 @@ import { MapsContext } from "../../../../services/maps/maps.context";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
+  BounceOutDown,
+  ZoomIn,
+  RotateInDownLeft,
+  FlipInEasyX,
 } from "react-native-reanimated";
 import { ActivityIndicator, Button } from "react-native-paper";
 import Svg, { Line } from "react-native-svg";
@@ -90,7 +94,7 @@ export const SetMapScreen = ({ navigation }) => {
     );
   else
     return (
-      <View style={{ flexGrow: 1 }}>
+      <Animated.View style={{ flexGrow: 1 }}>
         <BackButton
           navigation={navigation}
           onPress={() => {
@@ -170,11 +174,10 @@ export const SetMapScreen = ({ navigation }) => {
           )}
         </Animated.ScrollView>
         {selectedModule && (
-          <View
+          <Animated.View
             style={{
               flex: 1,
             }}
-            // onPressOut={() => setSelectedModule(null)}
           >
             <View
               style={{
@@ -184,28 +187,14 @@ export const SetMapScreen = ({ navigation }) => {
                 zIndex: 11,
               }}
             >
-              <TouchableOpacity
-                style={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                  zIndex: 10,
-                }}
-                onPress={() => setSelectedModule(null)}
-              >
-                <Text
-                  variant="label"
-                  style={{
-                    fontSize: 40,
-                  }}
-                >
-                  {"x "}
-                </Text>
-              </TouchableOpacity>
-              <ModulePopup module={selectedModule} navigation={navigation} />
+              <ModulePopup
+                module={selectedModule}
+                navigation={navigation}
+                setSelectedModule={setSelectedModule}
+              />
             </View>
-          </View>
+          </Animated.View>
         )}
-      </View>
+      </Animated.View>
     );
 };

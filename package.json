@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@callstack/react-theme-provider": "^3.0.6",
     "@expo/ngrok": "^2.5.0",
     "@miblanchard/react-native-slider": "^2.0.2",
@@ -43,7 +44,7 @@
     "react-native-pie": "^1.1.2",
     "react-native-pie-chart": "^2.0.2",
     "react-native-really-awesome-button": "^1.6.0",
-    "react-native-reanimated": "~2.3.1",
+    "react-native-reanimated": "^2.3.1",
     "react-native-redash": "^16.2.3",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",

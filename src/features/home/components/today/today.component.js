@@ -27,6 +27,7 @@ import { setsResources } from "../../../../services/data/math/sets";
 import AwesomeButton from "react-native-really-awesome-button";
 import { LinearGradient } from "expo-linear-gradient";
 import { SET_MAP_NAVIGATION_NAME } from "../../../../infrastructure/constants/navigation";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 const TodayView = styled(View)`
   margin-horizontal: 20px;
@@ -54,6 +55,45 @@ const TodayBody = styled(Text)`
   color: ${(props) => props.theme.colors.text.inverse};
   margin: 5px;
 `;
+
+export const QuizButton = ({ theme, onPress }) => {
+  return (
+    <AwesomeButton
+      borderRadius={20}
+      stretch
+      backgroundColor={theme.colors.logo.tertiary}
+      backgroundDarker={theme.colors.logo.tertiaryDark}
+      backgroundShadow={theme.colors.logo.tertiaryDarker}
+      onPress={onPress}
+    >
+      <Text
+        variant="label"
+        style={{
+          zIndex: 10,
+          fontSize: 36,
+          color: theme.colors.text.inverse,
+        }}
+      >
+        {"Q "}
+      </Text>
+    </AwesomeButton>
+  );
+};
+
+export const AskButton = ({ theme, onPress }) => {
+  return (
+    <AwesomeButton
+      backgroundColor={theme.colors.logo.secondary}
+      backgroundDarker={theme.colors.logo.secondaryDark}
+      backgroundShadow={theme.colors.logo.secondaryDarker}
+      borderRadius={20}
+      stretch
+      onPress={onPress}
+    >
+      <Ionicons name="chatbubble" size={30} color={"#ffffff"} />
+    </AwesomeButton>
+  );
+};
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -122,35 +162,37 @@ export const Today = ({ navigation }) => {
                     }}
                     renderItem={({ item }) => {
                       return (
-                        <TouchableOpacity
-                          onPress={() => {
-                            Linking.openURL(item.link);
-                          }}
-                        >
-                          <View
-                            style={{
-                              flexDirection: "row",
-                              margin: 10,
-                              marginTop: 10,
-                              alignItems: "center",
+                        <Animated.View entering={FadeInDown}>
+                          <TouchableOpacity
+                            onPress={() => {
+                              Linking.openURL(item.link);
                             }}
                           >
-                            {item.type === "video" ? (
-                              <Ionicons
-                                name="play-circle-outline"
-                                size={24}
-                                color={theme.colors.logo.secondary}
-                              />
-                            ) : (
-                              <Ionicons
-                                name="reader"
-                                size={24}
-                                color={theme.colors.logo.primary}
-                              />
-                            )}
-                            <TodayBody>{item.title}</TodayBody>
-                          </View>
-                        </TouchableOpacity>
+                            <View
+                              style={{
+                                flexDirection: "row",
+                                margin: 10,
+                                marginTop: 10,
+                                alignItems: "center",
+                              }}
+                            >
+                              {item.type === "video" ? (
+                                <Ionicons
+                                  name="play-circle-outline"
+                                  size={24}
+                                  color={theme.colors.logo.secondary}
+                                />
+                              ) : (
+                                <Ionicons
+                                  name="reader"
+                                  size={24}
+                                  color={theme.colors.logo.primary}
+                                />
+                              )}
+                              <TodayBody>{item.title}</TodayBody>
+                            </View>
+                          </TouchableOpacity>
+                        </Animated.View>
                       );
                     }}
                     keyExtractor={(item) => item.link}
@@ -165,13 +207,9 @@ export const Today = ({ navigation }) => {
                 >
                   <Row>
                     <View style={{ flex: 0.5 }}>
-                      <AwesomeButton
-                        borderRadius={20}
-                        stretch
-                        backgroundColor={theme.colors.logo.secondary}
-                        backgroundDarker={theme.colors.logo.primary}
+                      <QuizButton
+                        theme={theme}
                         onPress={() => {
-                          // console.log(item.title);
                           setSelectedMapName(item.mapName);
                           setSelectedModule({
                             name: item.title,
@@ -180,22 +218,12 @@ export const Today = ({ navigation }) => {
                           });
                           navigation.navigate("QuizNavigator");
                         }}
-                      >
-                        <Text
-                          variant="label"
-                          style={{ zIndex: 10, fontSize: 30 }}
-                        >
-                          {"Q "}
-                        </Text>
-                      </AwesomeButton>
+                      />
                     </View>
                     <View style={{ flex: 0.05 }} />
                     <View style={{ flex: 0.5 }}>
-                      <AwesomeButton
-                        backgroundColor={theme.colors.accent.secondary}
-                        backgroundDarker={theme.colors.accent.tertiary}
-                        borderRadius={20}
-                        stretch
+                      <AskButton
+                        theme={theme}
                         onPress={() => {
                           // console.log(item.title);
                           setSelectedMapName(item.mapName);
@@ -206,9 +234,7 @@ export const Today = ({ navigation }) => {
                           });
                           navigation.navigate("Community");
                         }}
-                      >
-                        <Ionicons name="chatbubbles" size={30} />
-                      </AwesomeButton>
+                      />
                     </View>
                   </Row>
                 </View>
