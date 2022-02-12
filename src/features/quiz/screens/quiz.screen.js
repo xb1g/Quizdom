@@ -404,6 +404,7 @@ export function QuizScreen({ route, navigation }) {
               {quiz[page].tags &&
                 quiz[page].tags.map((tag) => (
                   <View
+                    key={tag}
                     style={{
                       fontSize: 16,
                       padding: 10,

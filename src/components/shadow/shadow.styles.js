@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const shadow = StyleSheet.create({
   shadow1: {
@@ -21,14 +21,26 @@ export const shadow = StyleSheet.create({
     // elevation: 5,
   },
   shadow3: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.45,
-    shadowRadius: 4,
-    // elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+        shadowOpacity: 0.45,
+        shadowRadius: 4,
+      },
+      android: {
+        //elevation:100,
+        textShadowColor: 'rgba(0, 0, 0, 0.30)',
+        textShadowRadius: 8,
+        textShadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      }
+    })
   },
   glow0: {
     shadowColor: "#000000",
