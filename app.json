@@ -27,7 +27,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "sdkVersion": "42.0.0"
+    }
   }
 }
