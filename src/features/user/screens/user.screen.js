@@ -108,37 +108,38 @@ export const UserScreen = ({ navigation }) => {
                 title="Achievement"
                 onPress={() => navigation.navigate("AchievementScreen")}
               />
-              <BigUserItem
+              {/* <BigUserItem
                 icon="person-outline"
                 title="Leaderboard"
                 onPress={() => navigation.navigate("LeaderboardScreen")}
-              />
-            </RowStretch>
-            {/* <Line /> */}
-            <Spacer />
-            <RowStretch>
+              /> */}
               <BigUserItem
                 icon="people-outline"
                 title="Friends"
                 onPress={() => navigation.navigate("FriendsScreen")}
               />
+            </RowStretch>
+            {/* <Line /> */}
+            {/* <Spacer /> */}
+            {/* <RowStretch>
+             
               <BigUserItem
                 icon="bar-chart"
                 title="Stats"
                 onPress={() => navigation.navigate("StatsScreen")}
               />
-            </RowStretch>
+            </RowStretch> */}
           </ItemContainer>
           {/* </View> */}
         </List.Section>
         <List.Section>
           <ItemContainer style={{ ...shadow.shadow1 }}>
-            <UserItem
+            {/* <UserItem
               icon="notifications-outline"
               title="Announcement"
               onPress={() => navigation.navigate("AnnouncementScreen")}
             />
-            <Line />
+            <Line /> */}
             <UserItem
               icon="settings-outline"
               title="Settings"

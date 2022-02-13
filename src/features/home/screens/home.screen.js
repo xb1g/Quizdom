@@ -761,7 +761,7 @@ export const HomeScreen = ({ navigation }) => {
         </TitleContainer>
         <Maps maps={maps} navigation={navigation} />
         {/* <ScrollView></ScrollView> */}
-        {/* <Button onPress={onLogout}>Logout</Button> */}
+        <Button onPress={onLogout}>Logout</Button>
       </ScrollView>
       <StatusBar style="light" />
     </HomeBackground>

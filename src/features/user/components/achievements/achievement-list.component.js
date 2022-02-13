@@ -17,6 +17,7 @@ export const AchievementList = ({ achievements }) => {
       image: require("../../../../../assets/achievements/achievement1/perfection.png"),
     },
   ];
+
   return (
     <View>
       {/* <Text>Achievements</Text> */}
