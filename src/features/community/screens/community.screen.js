@@ -21,6 +21,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { shadow } from "../../../components/shadow/shadow.styles";
 import { doc, getDoc } from "firebase/firestore";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 const FilterButton = () => {
   const { colors } = useTheme();
   const { user } = useContext(AuthenticationContext);
@@ -39,6 +40,7 @@ const FilterButton = () => {
 };
 
 export const CommunityScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   const { postData } = useContext(CommunityContext);
   const theme = useTheme();
   const { user } = useContext(AuthenticationContext);
@@ -52,7 +54,8 @@ export const CommunityScreen = ({ navigation }) => {
       >
         <FilterButton />
         <FlatList
-          style={{ paddingTop: 50 }}
+          contentContainerStyle={{}}
+          style={{ marginTop: 40, marginBottom: 0 }}
           data={postData}
           keyExtractor={(post) => {
             // console.log(post);

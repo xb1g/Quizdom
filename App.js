@@ -6,6 +6,8 @@ import { useFonts } from "@use-expo/font";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { AppLoading } from "expo";
+// App.js
+import "react-native-reanimated";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastructure/navigation";

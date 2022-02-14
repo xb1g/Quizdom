@@ -40,12 +40,21 @@ const ProfileImage = styled(Image)`
 
 const CommentFromPeople = ({ showComments, headerComponent }) => {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
   return (
-    <View>
+    <View
+      style={{
+        marginBottom: 40 + insets.bottom,
+      }}
+    >
       <FlatList
         // style={{ backgroundColor: "red" }}
         data={showComments}
         ListHeaderComponent={headerComponent}
+        contentContainerStyle={{
+          height: "100%",
+          marginBottom: 40 + insets.bottom,
+        }}
         renderItem={(showComment) => {
           console.log("PERTH", showComment.item);
           return (
@@ -81,6 +90,7 @@ const CommentFromPeople = ({ showComments, headerComponent }) => {
                   color: "#ffffff",
                   fontSize: 16,
                   marginHorizontal: 20,
+                  marginTop: 10,
                 }}
               >
                 {showComment.item.comment}
@@ -110,8 +120,6 @@ const CommentFromPeople = ({ showComments, headerComponent }) => {
           );
         }}
         keyExtractor={(item) => {
-          console.log("item");
-          console.log(item);
           return "comment" + item.commentId;
         }}
       />
