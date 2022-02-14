@@ -99,6 +99,14 @@ export const AddPostScreen = ({ navigation }) => {
           console.log("Document written with ID: ", docRef.id);
           const newPostRef = doc(db, "community", "Math", "posts", docRef.id);
           updateDoc(newPostRef, { id: docRef.id });
+          const userRef = doc(db, "users", user.uid, "questions", docRef.id);
+          setDoc(userRef, {
+            title: title,
+            body: body,
+            images: images,
+            isQuestion: isQuestion,
+            id: docRef.id,
+          });
         })
         .catch((err) => {
           console.log(err);
