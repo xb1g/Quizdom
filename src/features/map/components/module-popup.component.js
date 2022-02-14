@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 
 import moment from "moment";
+import { MotiView } from "moti";
 import Animated, {
   AnimatedLayout,
   BounceInDown,
@@ -25,10 +26,14 @@ export function ModulePopup({ module, navigation, setSelectedModule }) {
   const insets = useSafeAreaInsets();
 
   return (
-    <Animated.View
-      entering={BounceInDown}
-      exiting={BounceOutDown}
+    <MotiView
       key={module.id + module.name}
+      from={{ scale: 0.9, translateY: 100 }}
+      animate={{ scale: 1, translateY: 0 }}
+      exit={{ scale: 0, translateY: -100 }}
+      transition={{
+        type: "spring",
+      }}
     >
       <TouchableOpacity
         style={{
@@ -141,6 +146,6 @@ export function ModulePopup({ module, navigation, setSelectedModule }) {
           </Text>
         </TouchableOpacity>
       </View>
-    </Animated.View>
+    </MotiView>
   );
 }

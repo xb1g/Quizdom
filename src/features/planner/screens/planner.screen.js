@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import styled, { useTheme } from "styled-components/native";
+import { MotiView, MotiText } from "moti";
 import {
   createStackNavigator,
   TransitionPresets,
@@ -32,7 +33,13 @@ import { ProgressBar } from "react-native-paper";
 import moment from "moment";
 import { SET_MAP_NAVIGATION_NAME } from "../../../infrastructure/constants/navigation";
 
-const MapPlanContainer = styled(View)`
+const MapPlanContainer = styled(MotiView).attrs({
+  from: { opacity: 0, scale: 0.5 },
+  animate: { opacity: 1, scale: 1 },
+  transition: {
+    type: "spring",
+  },
+})`
   background-color: ${(props) => props.theme.colors.bg.secondary};
   border-radius: 30px;
   padding: ${(props) => props.theme.space[3]};
@@ -92,7 +99,6 @@ export const PlannerScreen = ({ navigation }) => {
                 // console.log(map);
                 return (
                   <>
-                    {/* <Text>asd</Text> */}
                     <MapPlanContainer>
                       <Text
                         variant="label"

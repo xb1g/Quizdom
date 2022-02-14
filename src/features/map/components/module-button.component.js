@@ -30,11 +30,6 @@ class Donut extends React.Component {
             : 0
         }
         radius={this.props.radius}
-        //   radius={ selectedModule
-        // ? selectedModule.name === module.name
-        //   ? (donutRadius.value = withSpring(80))
-        //   : (donutRadius.value = withSpring(60))
-        // : (donutRadius.value = withSpring(60))}
         showProgressValue={false}
       >
         {this.props.children}
